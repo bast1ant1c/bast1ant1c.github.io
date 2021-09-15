@@ -9,40 +9,40 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>Bypassing de validación en Chatroulette - Bast1ant1c</title>
-<meta name="description" content="Hoy os vengo a mostrar un bypassing de lo más absurdo en la plataforma de Chatroulette. Supongo que sabréis que a la hora de entrar en Chatroulette se lleva a cabo una especie de validación, donde te piden que sonrías para que tu cara quede registrada en el sistema y posteriormente puedas acceder. Pues atentos a la jugada.">
+<!-- begin _includes/seo.html --><title>Creando una antena casera direccional de largo alcance - Bast1ant1c</title>
+<meta name="description" content="¿Te gustaría aprender a crear una antena casera de largo alcance para hackearlos a todos?, toma asiento que te lo explico.">
 
 
 
 <meta property="og:type" content="article">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Bast1ant1c">
-<meta property="og:title" content="Bypassing de validación en Chatroulette">
-<meta property="og:url" content="http://localhost:4000/chatroulette-bypass/">
+<meta property="og:title" content="Creando una antena casera direccional de largo alcance">
+<meta property="og:url" content="http://localhost:4000/antena-casera-largo-alcance/">
 
 
-  <meta property="og:description" content="Hoy os vengo a mostrar un bypassing de lo más absurdo en la plataforma de Chatroulette. Supongo que sabréis que a la hora de entrar en Chatroulette se lleva a cabo una especie de validación, donde te piden que sonrías para que tu cara quede registrada en el sistema y posteriormente puedas acceder. Pues atentos a la jugada.">
-
-
-
-  <meta property="og:image" content="http://localhost:4000/assets/images/chatroulette-bypass/chatroulette-main.jpg">
+  <meta property="og:description" content="¿Te gustaría aprender a crear una antena casera de largo alcance para hackearlos a todos?, toma asiento que te lo explico.">
 
 
 
-
-
-  <meta property="article:published_time" content="2020-01-30T00:00:00-05:00">
+  <meta property="og:image" content="http://localhost:4000/assets/images/antenacasera/antena.jpg">
 
 
 
 
 
-  
+  <meta property="article:published_time" content="2020-11-29T00:00:00-05:00">
+
+
+
+
 
   
 
+  
 
-<link rel="canonical" href="http://localhost:4000/chatroulette-bypass/">
+
+<link rel="canonical" href="http://localhost:4000/antena-casera-largo-alcance/">
 
 
 
@@ -170,7 +170,7 @@
         <span class="sep">/</span>
       
       
-        <li class="current">Bypassing de validación en Chatroulette</li>
+        <li class="current">Creando una antena casera direccional de largo alcance</li>
       
     
   </ol>
@@ -299,15 +299,15 @@
 
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Bypassing de validación en Chatroulette">
-    <meta itemprop="description" content="Hoy os vengo a mostrar un bypassing de lo más absurdo en la plataforma de Chatroulette. Supongo que sabréis que a la hora de entrar en Chatroulette se lleva a cabo una especie de validación, donde te piden que sonrías para que tu cara quede registrada en el sistema y posteriormente puedas acceder. Pues atentos a la jugada.">
-    <meta itemprop="datePublished" content="January 30, 2020">
+    <meta itemprop="headline" content="Creando una antena casera direccional de largo alcance">
+    <meta itemprop="description" content="¿Te gustaría aprender a crear una antena casera de largo alcance para hackearlos a todos?, toma asiento que te lo explico.">
+    <meta itemprop="datePublished" content="November 29, 2020">
     
 
     <div class="page__inner-wrap">
       
         <header>
-          <h1 id="page-title" class="page__title" itemprop="headline">Bypassing de validación en Chatroulette
+          <h1 id="page-title" class="page__title" itemprop="headline">Creando una antena casera direccional de largo alcance
 </h1>
           
         </header>
@@ -317,86 +317,83 @@
         
         <p class="page__meta">
           
-            <i class="fa fa-fw fa-calendar" aria-hidden="true"></i> <time datetime="2020-01-30T00:00:00-05:00">January 30, 2020 </time>&emsp;
+            <i class="fa fa-fw fa-calendar" aria-hidden="true"></i> <time datetime="2020-11-29T00:00:00-05:00">November 29, 2020 </time>&emsp;
           
           
         </p>
-        <p><img src="/assets/images/chatroulette-bypass/chatroulette-main.jpg" alt="" /></p>
-
-<p>Hoy os vengo a mostrar un bypassing de lo más absurdo en la plataforma de Chatroulette. Supongo que sabréis que a la hora de entrar en Chatroulette se lleva a cabo una especie de validación, donde te piden que sonrías para que tu cara quede registrada en el sistema y posteriormente puedas acceder. Pues atentos a la jugada.</p>
-
-<h1 id="antecedentes">Antecedentes</h1>
-
-<p>Resulta que estaba yo tan tranquilo dispuesto a buscar a <strong>Julio Ureña</strong> en la plataforma de Chatroulette, cuando vi que para empezar a conectar con gente se me solicitaba la siguiente información:</p>
-
-<p align="center">
-<img src="/assets/images/chatroulette-bypass/smile.jpg" />
+        <p align="center">
+<img src="/assets/images/antenacasera/portada-antena.jpg" />
 </p>
 
-<p>Al parecer debes de sonreir frente a la cámara para ya comenzar a usar el servicio. Esta fase me interesó mucho, ¿de qué forma se hace la validación?… es lo que mi mente inquieta se preguntaba.</p>
+<h2 id="cómo-crear-una-antena-casera-de-largo-alcance">¿Cómo crear una antena casera de largo alcance?</h2>
 
-<p>Dado que <code class="language-plaintext highlighter-rouge">Burpsuite</code> siempre responde a estas preguntas, probé a tirar de nuestro querido proxy para ver cómo viajaban las consultas. Desde que presionas <code class="language-plaintext highlighter-rouge">Start</code>, empiezan a viajar una serie de WebSockets con valores que identifican entre otras cosas nuestro <code class="language-plaintext highlighter-rouge">UserToken</code>:</p>
+<p>Hoy aprenderás a crear una antena casera para que tu nivel de Hack llegue a distancias inimaginables.</p>
 
-<p align="center">
-<img src="/assets/images/chatroulette-bypass/burp-first.png" />
-</p>
-
-<p>Justo en el momento en el que se comienza a buscar una sonrisa del lado de nuestra cámara, se inicia un proceso de <code class="language-plaintext highlighter-rouge">ClientPing</code>, bajo el cual se saca un Snapshot para posteriormente del lado del servidor interpretar la imagen :</p>
+<p>Empecemos por el principio, ¿por qué elementos está compuesta la antena?</p>
 
 <p align="center">
-<img src="/assets/images/chatroulette-bypass/clientping.png" />&gt;
+<img src="/assets/images/antenacasera/antena.jpg" />
 </p>
 
-<h2 id="checking-absurdo">Checking absurdo</h2>
+<p>Parecerá una broma, pero no… es una lata de Pringles. Estas latas pueden convertirse en antenas WiFi caseras direccionales, otorgándonos la capacidad de recibir señales inalámbricas de aquellas redes que se encuentren bastante lejos.</p>
 
-<p>La gran fase de validación viene ahora. Si presionamos varias veces en <code class="language-plaintext highlighter-rouge">Forward</code>, de pronto podremos notar algo que llama mucho la atención:</p>
+<p>Algunos de los componentes que vamos a estar comentando los podrás conseguir en la ferretería más cercana o de confianza. Esto es simplemente acercaros a la persona que os atienda y le comentáis que queréis estar Hack… ya con esto, sabrá a qué habéis venido y lo que estáis buscando.</p>
+
+<p>El primer paso que debes seguir es colocar la lata vacía de Pringles sobre una mesa y medir la longitud de la misma con una cinta métrica. Marca un punto sobre su punto medio, con un permanente o con lo que consideres (mientras lo veas)… ya que en caso de usar un trípode tendrás que engancharlo en este punto para equilibrar el peso y lograr estabilidad, resultando más sencillo maniobrar con nuestro experimento.</p>
+
+<p>¿Qué hay dentro de la lata?, vamos a echarle un ojo:</p>
 
 <p align="center">
-<img src="/assets/images/chatroulette-bypass/base64.png" />
+<img src="/assets/images/antenacasera/interior-lata1.jpg" />
 </p>
 
-<p>La misma pregunta que te estás haciendo es la que me hice yo en su momento, ¿qué demonios es esto?.</p>
-
-<p>Bueno pues este churraco… es un base64 más grande que mi casa, y lo que más llama la atención es el tipo de archivo que representa una vez se decodifica desde consola:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌─[s4vitar@parrot]─[~/Desktop]
-└──╼ <span class="nv">$cat</span> file | <span class="nb">base64</span> <span class="nt">-d</span> <span class="o">&gt;</span> content
-┌─[s4vitar@parrot]─[~/Desktop]
-└──╼ <span class="nv">$file</span> content 
-content: PNG image data, 640 x 480, 8-bit/color RGBA, non-interlaced
-</code></pre></div></div>
-
-<p>Efectivamente, una imagen, ¿y a qué corresponde esta imagen?, a la instantánea que se realiza:</p>
+<p>Os lo muestro también con la parte superior destapada para los/as curiosos/as:</p>
 
 <p align="center">
-<img src="/assets/images/chatroulette-bypass/instantanea-base64.png" />&gt;
+<img src="/assets/images/antenacasera/interior-lata2.jpg" />
 </p>
 
-<h2 id="bypassing-de-la-sonrisa">Bypassing de la sonrisa</h2>
+<p>Como se puede apreciar, necesitaréis de una varilla roscada de 140 mm de longitud y 3 mm de grosor. Lo más probable es que también necesitéis 5 arandelas (una de ellas en la imagen no se aprecia porque estaría por el otro lado de la lata, la cual sustenta toda la base de la antena bajo presión acompañándola de una tuerca).</p>
 
-<p>¿Cómo hacemos por tanto para bypassear este sistema de validación y no tener que sonreir de nuestro lado para conectar con Julio?, pues bueno… simplemente tendríamos que coger una foto cualquiera de internet en la que salga alguien sonriendo:</p>
+<p>Si hacemos cálculos, tuercas en total… necesitarías 8 (sin contar con la que está por el otro lado).</p>
+
+<p>El conjunto de arandelas con la varilla, facilita la recepción de las ondas de frecuencia WiFi (2.4 GHZ) en el interior del tubo, el cual es de papel de aluminio, reflejando así en el culo del bote la señal y amplificando en consecuencia la misma sobre la llave USB WiFi:</p>
 
 <p align="center">
-<img src="/assets/images/chatroulette-bypass/smile-girl.jpeg" />
+<img src="/assets/images/antenacasera/medidasexactas.jpg" />
 </p>
 
-<p>La pasamos a base64 desde consola:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌─[s4vitar@parrot]─[~/Desktop]
-└──╼ <span class="nv">$cat</span> smile-girl.jpeg | <span class="nb">base64</span> <span class="nt">-w</span> 0 | xclip <span class="nt">-sel</span> clip
-┌─[s4vitar@parrot]─[~/Desktop]
-└──╼ <span class="err">$</span>
-</code></pre></div></div>
-
-<p>Y sustituimos el nuevo valor en base64 por el que previamente Burpsuite nos ha interceptado.</p>
-
-<p>Tras hacerlo, la validación se habrá aplicado y ya podremos empezar a conectar con los demás sin haber sido necesario de nuestro lado sonreir y mostrar el rostro:</p>
+<p>A la hora de montar las tuercas y arandelas, debéis ser meticulosos con las medidas entre arandelas grandes… pues conseguiremos así que la onda realice la parábola lo mejor posible:</p>
 
 <p align="center">
-<img src="/assets/images/chatroulette-bypass/man.jpg" />
+<img src="/assets/images/antenacasera/medidas.jpg" />
 </p>
 
-<p>Posteriormente, estuvimos debatiendo este señor y yo la máquina BigHead de HackTheBox, donde me comentaba una vía no intencionada de explotación para acceder al sistema, un grande este señor.</p>
+<p>Una vez con todo esto montado, obviamente… necesitamos de un sistema de sujeción.</p>
+
+<p>Por un lado, deberemos sujetar el final de la antena. Para ello, mediante un hueco en la tapa de la lata, pasaremos un clavo en el centro. Dicho extremo de la sujeción atrapará el clavo por dentro de la lata, pudiendo así cerrarla y dejando el interior terminado.</p>
+
+<p>Por otro lado, en cuanto al exterior… mediante otro sistema de agarre, sostendremos el clavo por fuera, enganchando el mismo a un cable coaxial por el centro:</p>
+
+<p align="center">
+<img src="/assets/images/antenacasera/enganche.jpg" />
+</p>
+
+<p>Desde que ya tengamos todo esto conectado, el extremo del cable coaxial tan sólo lo tendremos que enganchar a nuestro conector USB WiFi:</p>
+
+<p align="center">
+<img src="/assets/images/antenacasera/conexionfinal.jpg" />
+</p>
+
+<p>En la imagen adjunta, el recepetor de señales tiene la propia antena que viene por defecto puesta… pero es en este punto cuando se la quitaremos y la conectaremos a la antena formada por el bote de Pringles.</p>
+
+<p>Finalmente, la antena quedaría de la siguiente forma:</p>
+
+<p align="center">
+<img src="/assets/images/antenacasera/hack.jpg" />
+</p>
+
+<p>De manera casi inmediata, notaremos que el nivel de Hack habrá aumentado y ya estaremos preparados para ver una gran cantidad de redes WiFi en el entorno.</p>
 
         
       </section>
@@ -417,15 +414,15 @@ content: PNG image data, 640 x 480, 8-bit/color RGBA, non-interlaced
     
       
       
-      <a href="/tags/#burpsuite" class="page__taxonomy-item" rel="tag">Burpsuite</a><span class="sep">, </span>
+      <a href="/tags/#antena-casera" class="page__taxonomy-item" rel="tag">Antena Casera</a><span class="sep">, </span>
     
       
       
-      <a href="/tags/#bypassing" class="page__taxonomy-item" rel="tag">Bypassing</a><span class="sep">, </span>
+      <a href="/tags/#oswp" class="page__taxonomy-item" rel="tag">OSWP</a><span class="sep">, </span>
     
       
       
-      <a href="/tags/#chatroulette" class="page__taxonomy-item" rel="tag">Chatroulette</a>
+      <a href="/tags/#pentesting" class="page__taxonomy-item" rel="tag">Pentesting</a>
     
     </span>
   </p>
@@ -446,14 +443,22 @@ content: PNG image data, 640 x 480, 8-bit/color RGBA, non-interlaced
     
       
       
-      <a href="/categories/#research" class="page__taxonomy-item" rel="tag">Research</a>
+      <a href="/categories/#casero" class="page__taxonomy-item" rel="tag">Casero</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/categories/#utilidades" class="page__taxonomy-item" rel="tag">Utilidades</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/categories/#wifi" class="page__taxonomy-item" rel="tag">WiFi</a>
     
     </span>
   </p>
 
 
         
-          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Fecha:</strong> <time datetime="2020-01-30T00:00:00-05:00">January 30, 2020</time></p>
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Fecha:</strong> <time datetime="2020-11-29T00:00:00-05:00">November 29, 2020</time></p>
         
       </footer>
 
@@ -462,12 +467,11 @@ content: PNG image data, 640 x 480, 8-bit/color RGBA, non-interlaced
       
   <nav class="pagination">
     
-      <a href="/bspwm-configuration-files/" class="pagination--pager" title="Archivos de configuración de Bspwm
+      <a href="/experiencia-eWPTx/" class="pagination--pager" title="Mi experiencia con la certificación eWPTxv2
 ">Previous</a>
     
     
-      <a href="/europa-hackthebox/" class="pagination--pager" title="Europa - Hack The Box
-">Next</a>
+      <a href="#" class="pagination--pager disabled">Next</a>
     
   </nav>
 
