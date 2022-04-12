@@ -3,7 +3,7 @@ layout: single
 author: Bast1ant1c
 title: THM Spring4Shell
 excerpt: "Vamos a resolver la maquina Spring4SHell de TryHackMe. ¡Let's hack!"
-date: 2022-04-11
+date: 2022-04-10
 classes: wide
 header:
   teaser: /assets/images/spring4shell/inicio.png
