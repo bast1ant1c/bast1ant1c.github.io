@@ -1,4 +1,79 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-04-28T23:45:21-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Bast1ant1c</title><subtitle>Blog de Ciberseguridad</subtitle><author><name>BAST1ANT1C</name></author><entry><title type="html">HTB Knife</title><link href="http://localhost:4000/knife/" rel="alternate" type="text/html" title="HTB Knife" /><published>2022-04-28T00:00:00-05:00</published><updated>2022-04-28T00:00:00-05:00</updated><id>http://localhost:4000/knife</id><content type="html" xml:base="http://localhost:4000/knife/">&lt;p align=&quot;center&quot;&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-05-31T21:41:28-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Bast1ant1c</title><subtitle>Blog de Ciberseguridad</subtitle><author><name>BAST1ANT1C</name></author><entry><title type="html">mkhack</title><link href="http://localhost:4000/mkhack/" rel="alternate" type="text/html" title="mkhack" /><published>2022-05-31T00:00:00-05:00</published><updated>2022-05-31T00:00:00-05:00</updated><id>http://localhost:4000/mkhack</id><content type="html" xml:base="http://localhost:4000/mkhack/">&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/mkhack/prueba.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;¡Hola!
+En esta ocasión vamos a crear la función &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mkhack&lt;/code&gt; para organizar nuestros ficheros al momento de realizar nuestras maquinas.
+Les compartiré algo sencillo, pero bastante útil, esta función la estaré utilizando en los próximos posts, por eso quiero mostrar el origen de &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mkhack&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;la-función&quot;&gt;LA FUNCIÓN&lt;/h2&gt;
+
+&lt;p&gt;No hay mucho que decir, el objetivo es crear un directorio &lt;strong&gt;principal&lt;/strong&gt;, el cual a su vez tiene &lt;strong&gt;subdirectorios&lt;/strong&gt; que ayudaran a la organización de nuestra resolución de máquinas o proyectos que podamos tener.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mkhack &lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nb&quot;&gt;mkdir&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt;/&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;recon,exploit&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Vamos paso a paso:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mkhack&lt;/code&gt; = Nombre de la función&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mkdir&lt;/code&gt; = Comando para crear carpetas&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-p&lt;/code&gt; = Crea un directorio principal (padre)&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$1&lt;/code&gt; = Argumento #1 (nombre del directorio principal)&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/{recon,exploit}&lt;/code&gt; = Subdirectorios (hijos)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;como-se-utiliza&quot;&gt;¿COMO SE UTILIZA?&lt;/h2&gt;
+
+&lt;p&gt;Ya tenemos el codigo, ahora en qué lugar hay que guardar &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mkhack&lt;/code&gt; para poder utilizarlo como si fuera un &lt;strong&gt;ls&lt;/strong&gt;, &lt;strong&gt;cd&lt;/strong&gt;, &lt;strong&gt;mv&lt;/strong&gt;, etc…&lt;/p&gt;
+
+&lt;p&gt;Solo hay una pregunta para hacer. 
+¿Cuál es nuestro actual tipo de &lt;strong&gt;&lt;em&gt;shell&lt;/em&gt;&lt;/strong&gt;?
+En mi caso es una &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;zsh&lt;/code&gt;, pero podemos saber cuál es la nuestra con el siguiente comando.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;❯ &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$SHELL&lt;/span&gt;
+/usr/bin/zsh
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Ahora que lo sabemos vamos a editar (&lt;strong&gt;vim&lt;/strong&gt;, &lt;strong&gt;nvim&lt;/strong&gt;, &lt;strong&gt;nano&lt;/strong&gt;, etc.) nuestro archivo de configuración de la shell, para mi caso es &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.zshrc&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;❯  &lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt;
+❯ vim .zshrc
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Podremos ver la configuración de nuestra shell, es en este lugar, donde nos situamos en la última línea e ingresamos nuestra función de la siguiente manera.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Función para crear directorio y subdirectorios&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;function &lt;/span&gt;mkhack&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
+        &lt;span class=&quot;nb&quot;&gt;mkdir&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt;/&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;recon,exploit&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Luego de esto guardamos los cambios y es necesario cerrar sesión o incluso reiniciar nuestra máquina.&lt;/p&gt;
+
+&lt;h2 id=&quot;mkhack-en-acción&quot;&gt;MKHACK EN ACCIÓN&lt;/h2&gt;
+
+&lt;p&gt;¡Ahora podemos poner en marcha nuestra nueva función!
+Lo único que necesitamos en este momento es ubicarnos en donde queremos los directorios y nada más.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;❯ mkhack directorioHack
+❯ &lt;span class=&quot;nb&quot;&gt;ls &lt;/span&gt;directorioHack/
+ exploit   recon
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Hemos creado el directorio &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;directorioHack&lt;/code&gt; y a su vez los subdirectorios &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;exploit&lt;/code&gt; y &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;recon&lt;/code&gt; para poder iniciar nuestra metodología al resolver una máquina.
+¡Hemos logrado nuestra primera función en el blog!&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/mkhack/01final.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Si logro mejorar en bash, vamos publicando poco a poco cosas de este estilo, es una ventaja que podamos crear nuestros propios programas para mejorar nuestra calidad de aprendizaje.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;¡Que tengan un buen día en el planeta donde se encuentren!&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Nos vemos en otro bit.&lt;/strong&gt;&lt;/p&gt;</content><author><name>Bast1ant1c</name></author><category term="Bash" /><category term="Script" /><summary type="html">Vamos a crear la función mkhack para organizar nuestros ficheros. ¡Let's hack!</summary></entry><entry><title type="html">HTB Knife</title><link href="http://localhost:4000/knife/" rel="alternate" type="text/html" title="HTB Knife" /><published>2022-04-28T00:00:00-05:00</published><updated>2022-04-28T00:00:00-05:00</updated><id>http://localhost:4000/knife</id><content type="html" xml:base="http://localhost:4000/knife/">&lt;p align=&quot;center&quot;&gt;
 &lt;img src=&quot;/assets/images/knife/01inicio.png&quot; /&gt;
 &lt;/p&gt;
 
