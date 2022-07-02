@@ -18,4 +18,9 @@ var store = [{
         "excerpt":"¡Hola! En esta ocasión vamos a crear la función mkhack para organizar nuestros ficheros al momento de realizar nuestras maquinas. Les compartiré algo sencillo, pero bastante útil, esta función la estaré utilizando en los próximos posts, por eso quiero mostrar el origen de mkhack. LA FUNCIÓN No hay mucho que...","categories": ["Programación"],
         "tags": ["Bash","Script"],
         "url": "http://localhost:4000/mkhack/",
-        "teaser":"http://localhost:4000/assets/images/mkhack/00inicio.png"}]
+        "teaser":"http://localhost:4000/assets/images/mkhack/00inicio.png"},{
+        "title": "THM Mr. Robot",
+        "excerpt":"¡Hola! En esta ocasión vamos a resolver de la maquina Mr. Robot de TryHackMe. La máquina es nivel “Medium”, sin embargo, el nivel siempre se lo pones tú, al enfrentar estos retos, ¡vamos a ponernos hack! PREPARACIÓN Para iniciar nuestra máquina, vamos a crear con nuestra función mkhack un directorio...","categories": ["TryHackMe"],
+        "tags": ["Writeup","MrRobot"],
+        "url": "http://localhost:4000/mrrobot/",
+        "teaser":"http://localhost:4000/assets/images/mrrobot/00inicio.png"}]
