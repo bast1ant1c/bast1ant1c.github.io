@@ -23,4 +23,9 @@ var store = [{
         "excerpt":"¡Hola! En esta ocasión vamos a resolver de la maquina Mr. Robot de TryHackMe. La máquina es nivel “Medium”, sin embargo, el nivel siempre se lo pones tú, al enfrentar estos retos, ¡vamos a ponernos hack! PREPARACIÓN Para iniciar nuestra máquina, vamos a crear con nuestra función mkhack un directorio...","categories": ["TryHackMe"],
         "tags": ["Writeup","MrRobot"],
         "url": "http://localhost:4000/mrrobot/",
-        "teaser":"http://localhost:4000/assets/images/mrrobot/00inicio.png"}]
+        "teaser":"http://localhost:4000/assets/images/mrrobot/00inicio.png"},{
+        "title": "HTB Meta",
+        "excerpt":"¡Hola! En esta ocasión vamos a resolver de la maquina Meta de HackTheBox. La máquina es nivel “Medium”, sin embargo, el nivel siempre se lo pones tú, al enfrentar estos retos, ¡vamos a ponernos hack! PREPARACIÓN Para iniciar nuestra máquina, vamos a crear con nuestra función mkhack un directorio de...","categories": ["HackTheBox"],
+        "tags": ["Writeup","Meta"],
+        "url": "http://localhost:4000/meta/",
+        "teaser":"http://localhost:4000/assets/images/meta/01-inicio.png"}]

