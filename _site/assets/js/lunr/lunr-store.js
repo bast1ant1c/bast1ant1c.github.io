@@ -28,4 +28,9 @@ var store = [{
         "excerpt":"¡Hola! En esta ocasión vamos a resolver de la maquina Meta de HackTheBox. La máquina es nivel “Medium”, sin embargo, el nivel siempre se lo pones tú, al enfrentar estos retos, ¡vamos a ponernos hack! PREPARACIÓN Para iniciar nuestra máquina, vamos a crear con nuestra función mkhack un directorio de...","categories": ["HackTheBox"],
         "tags": ["Writeup","Meta"],
         "url": "http://localhost:4000/meta/",
-        "teaser":"http://localhost:4000/assets/images/meta/01-inicio.png"}]
+        "teaser":"http://localhost:4000/assets/images/meta/01-inicio.png"},{
+        "title": "osping",
+        "excerpt":"¡Hola! En esta ocasión vamos a crear la utilidad osping para detectar un sistema operativo al momento de realizar nuestras maquinas. Les compartiré algo sencillo, pero bastante útil, esta utilidad la estaré utilizando en los próximos posts, por eso quiero mostrar el origen de osping. LA UTILIDAD No hay mucho...","categories": ["Programación"],
+        "tags": ["Bash","Script"],
+        "url": "http://localhost:4000/osping/",
+        "teaser":"http://localhost:4000/assets/images/mkhack/00inicio.png"}]

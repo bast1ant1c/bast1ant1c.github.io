@@ -1,4 +1,101 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-07-16T00:14:59-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Bast1ant1c</title><subtitle>Blog de Ciberseguridad</subtitle><author><name>BAST1ANT1C</name></author><entry><title type="html">HTB Meta</title><link href="http://localhost:4000/meta/" rel="alternate" type="text/html" title="HTB Meta" /><published>2022-07-06T00:00:00-05:00</published><updated>2022-07-06T00:00:00-05:00</updated><id>http://localhost:4000/meta</id><content type="html" xml:base="http://localhost:4000/meta/">&lt;p align=&quot;center&quot;&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-07-22T09:36:16-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Bast1ant1c</title><subtitle>Blog de Ciberseguridad</subtitle><author><name>BAST1ANT1C</name></author><entry><title type="html">osping</title><link href="http://localhost:4000/osping/" rel="alternate" type="text/html" title="osping" /><published>2022-07-20T00:00:00-05:00</published><updated>2022-07-20T00:00:00-05:00</updated><id>http://localhost:4000/osping</id><content type="html" xml:base="http://localhost:4000/osping/">&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/mkhack/prueba.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;¡Hola!
+En esta ocasión vamos a crear la utilidad &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;osping&lt;/code&gt; para detectar un sistema operativo al momento de realizar nuestras maquinas.
+Les compartiré algo sencillo, pero bastante útil, esta utilidad la estaré utilizando en los próximos posts, por eso quiero mostrar el origen de &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;osping&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;la-utilidad&quot;&gt;LA UTILIDAD&lt;/h2&gt;
+
+&lt;p&gt;No hay mucho que decir, el objetivo es detectar el sistema operativo de nuestro objetivo por medio del &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ttl&lt;/code&gt; &lt;em&gt;time to live&lt;/em&gt; de una traza &lt;strong&gt;ICMP&lt;/strong&gt;, el cual ayudará a la fase de reconocimiento en la resolución de máquinas o proyectos que podamos tener en un futuro.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;c&quot;&gt;#!/bin/bash&lt;/span&gt;
+  &lt;span class=&quot;c&quot;&gt;#Author: Bast1ant1c&lt;/span&gt;
+
+  &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'''
+  [*] Detectando sistema operativo ...
+  '''&lt;/span&gt;
+  &lt;span class=&quot;nv&quot;&gt;pingstatus&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;ping &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; 1 &lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt; 2&amp;gt;/dev/null&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;nv&quot;&gt;status&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$?&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;
+  
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$status&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 0 &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;then
+          &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;ttl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;ping &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; 1 &lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;grep &lt;/span&gt;ttl | &lt;span class=&quot;nb&quot;&gt;awk&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'{print $6}'&lt;/span&gt;| &lt;span class=&quot;nb&quot;&gt;cut&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;=&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-f2&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;
+                  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$ttl&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-le&lt;/span&gt; 64 &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;then
+                          &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;[+] &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; ttl=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$ttl&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; &amp;gt;&amp;gt; Linux&quot;&lt;/span&gt; 
+                  &lt;span class=&quot;k&quot;&gt;elif&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$ttl&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-le&lt;/span&gt; 128 &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;then
+                          &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;[+] &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; ttl=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$ttl&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; &amp;gt;&amp;gt; Windows&quot;&lt;/span&gt;
+                  &lt;span class=&quot;k&quot;&gt;elif&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$ttl&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-gt&lt;/span&gt; 128 &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;then 
+                          &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;[+] &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; ttl=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$ttl&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; &amp;gt;&amp;gt; N.P.I.&quot;&lt;/span&gt;
+                  &lt;span class=&quot;k&quot;&gt;fi
+  else
+          &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'''[*] Host sin alcance, intente nuevamente
+  [*] Modo de uso
+  [+] osping &amp;lt;IP&amp;gt;
+  '''&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;fi&lt;/span&gt; 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h2 id=&quot;como-se-utiliza&quot;&gt;¿COMO SE UTILIZA?&lt;/h2&gt;
+
+&lt;p&gt;Ya tenemos el codigo, ahora en qué lugar hay que guardar &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;osping&lt;/code&gt; para poder utilizarlo como si fuera un &lt;strong&gt;ls&lt;/strong&gt;, &lt;strong&gt;cd&lt;/strong&gt;, &lt;strong&gt;mv&lt;/strong&gt;, etc…&lt;/p&gt;
+
+&lt;p&gt;Vamos a mover &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;osping&lt;/code&gt; a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/usr/bin/&lt;/code&gt; para que sea parte de la suite de programas a ejecutar, sin embargo, debemos asignarle permisos de ejecución a la utilidad para poder ejecutarla sin inconvenientes.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;chmod&lt;/span&gt; +x osping
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Luego de esto guardamos los cambios y es necesario cerrar sesión o incluso reiniciar nuestra máquina.&lt;/p&gt;
+
+&lt;h2 id=&quot;osping-en-acción&quot;&gt;OSPING EN ACCIÓN&lt;/h2&gt;
+
+&lt;p&gt;¡Ahora podemos poner en marcha nuestra nueva utilidad!
+Lo único que necesitamos en este momento es asignar la ip que necesitas y eso es todo.&lt;/p&gt;
+
+&lt;p&gt;Actualmente la utilidad tiene condicionales para detectar Linux (ttl &amp;lt; 64) y Windows (ttl &amp;lt; 128), pero puedes agregar todos los que necesites para los diferentes sistemas operativos existentes.&lt;/p&gt;
+
+&lt;h2 id=&quot;modo-de-uso&quot;&gt;MODO DE USO&lt;/h2&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;❯ osping
+
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; Detectando sistema operativo ...
+
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; Host sin alcance, intente nuevamente
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; Modo de uso
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;+] osping &amp;lt;IP&amp;gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;ejemplo-windows&quot;&gt;EJEMPLO WINDOWS&lt;/h2&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;❯ osping 192.168.0.10
+
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; Detectando sistema operativo ...
+
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;+] 192.168.0.10 &lt;span class=&quot;nv&quot;&gt;ttl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;127 &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; Windows
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;ejemplo-linux&quot;&gt;EJEMPLO LINUX&lt;/h2&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;❯ osping 10.0.2.15
+
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; Detectando sistema operativo ...
+
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;+] 10.0.2.15 &lt;span class=&quot;nv&quot;&gt;ttl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;64 &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; Linux
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Esta utilidad no solo identifica si el host se encuentra activo, sino que también detecta frente a qué tipo de sistema operativo nos estamos enfrentando, agilizando la fase de reconocimiento en nuestra metodología al resolver una máquina.&lt;/p&gt;
+
+&lt;p&gt;¡Hemos logrado nuestra primera utilidad en el blog!&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/mkhack/01final.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Son libres de hacerle las modificaciones que necesiten, aún falta mucho, pero vamos mejorando poco a poco y creando nuestras propias utilidades, es una ventaja que podamos crear nuestras propias herramientas para mejorar nuestra calidad de aprendizaje.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;¡Que tengan un buen día en el planeta donde se encuentren!&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Nos vemos en otro bit.&lt;/strong&gt;&lt;/p&gt;</content><author><name>Bast1ant1c</name></author><category term="Bash" /><category term="Script" /><summary type="html">Vamos a crear la utilidad osping para detectar un sistema operativo. ¡Let's hack!</summary></entry><entry><title type="html">HTB Meta</title><link href="http://localhost:4000/meta/" rel="alternate" type="text/html" title="HTB Meta" /><published>2022-07-06T00:00:00-05:00</published><updated>2022-07-06T00:00:00-05:00</updated><id>http://localhost:4000/meta</id><content type="html" xml:base="http://localhost:4000/meta/">&lt;p align=&quot;center&quot;&gt;
 &lt;img src=&quot;/assets/images/meta/001-inicio.png&quot; /&gt;
 &lt;/p&gt;
 
