@@ -33,4 +33,9 @@ var store = [{
         "excerpt":"¡Hola! En esta ocasión vamos a crear la utilidad osping para detectar un sistema operativo al momento de realizar nuestras maquinas. Les compartiré algo sencillo, pero bastante útil, esta utilidad la estaré utilizando en los próximos posts, por eso quiero mostrar el origen de osping. LA UTILIDAD No hay mucho...","categories": ["Programación"],
         "tags": ["Bash","Script"],
         "url": "http://localhost:4000/osping/",
-        "teaser":"http://localhost:4000/assets/images/mkhack/00inicio.png"}]
+        "teaser":"http://localhost:4000/assets/images/mkhack/00inicio.png"},{
+        "title": "OSCP Notes",
+        "excerpt":"OSCP NOTES Hola! Vamos a lograr la certificación OSCP con estas notas! Espero sean de gran ayuda. Desde 0 hasta OSCP, vamos a ponernos hack! CARPETAS DE LINUX /bin » Programas basicos (ls, cd, cat, etc.) /sbin » Programas del sistema (fdisk, mkfs, sysctl, etc) /etc » Archivos de configuración...","categories": ["Certificación"],
+        "tags": ["Notas","OSCP"],
+        "url": "http://localhost:4000/geheim/",
+        "teaser":"http://localhost:4000/assets/images/oscp/01-inicio.png"}]
