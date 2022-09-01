@@ -43,4 +43,9 @@ var store = [{
         "excerpt":"¡Hola! En esta ocasión vamos a resolver de la maquina Legacy de HackTheBox. La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, al enfrentar estos retos, ¡vamos a ponernos hack! PREPARACIÓN Para iniciar nuestra máquina, vamos a crear con nuestra función mkhack un directorio de...","categories": ["HackTheBox"],
         "tags": ["Writeup","Legacy"],
         "url": "http://localhost:4000/legacy/",
-        "teaser":"http://localhost:4000/assets/images/legacy/01-inicio.png"}]
+        "teaser":"http://localhost:4000/assets/images/legacy/01-inicio.png"},{
+        "title": "HTB Shocker",
+        "excerpt":"¡Hola! En esta ocasión vamos a resolver de la máquina Shocker de HackTheBox. La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, al enfrentar estos retos, ¡vamos a ponernos hack! PREPARACIÓN Para iniciar nuestra máquina, vamos a crear con nuestra función mkhack un directorio de...","categories": ["HackTheBox"],
+        "tags": ["Writeup","Shocker"],
+        "url": "http://localhost:4000/shocker/",
+        "teaser":"http://localhost:4000/assets/images/shocker/01-inicio.png"}]
