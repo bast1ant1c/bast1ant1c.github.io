@@ -58,4 +58,9 @@ var store = [{
         "excerpt":"¡Hola! En esta ocasión vamos a resolver de la máquina bashed de HackTheBox. La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, al enfrentar estos retos, ¡vamos a ponernos hack! PREPARACIÓN Para iniciar nuestra máquina, vamos a crear con nuestra función mkhack un directorio de...","categories": ["HackTheBox"],
         "tags": ["Writeup","Bashed"],
         "url": "http://localhost:4000/bashed/",
-        "teaser":"http://localhost:4000/assets/images/bashed/01-inicio.png"}]
+        "teaser":"http://localhost:4000/assets/images/bashed/01-inicio.png"},{
+        "title": "HTB Devel",
+        "excerpt":"¡Hola! En esta ocasión vamos a resolver de la máquina devel de HackTheBox. La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, al enfrentar estos retos, ¡vamos a ponernos hack! PREPARACIÓN Para iniciar nuestra máquina, vamos a crear con nuestra función mkhack un directorio de...","categories": ["HackTheBox"],
+        "tags": ["Writeup","Devel"],
+        "url": "http://localhost:4000/devel/",
+        "teaser":"http://localhost:4000/assets/images/devel/01-inicio.png"}]
