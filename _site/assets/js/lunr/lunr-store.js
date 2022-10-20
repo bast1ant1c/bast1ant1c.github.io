@@ -63,4 +63,9 @@ var store = [{
         "excerpt":"¡Hola! En esta ocasión vamos a resolver de la máquina devel de HackTheBox. La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, al enfrentar estos retos, ¡vamos a ponernos hack! PREPARACIÓN Para iniciar nuestra máquina, vamos a crear con nuestra función mkhack un directorio de...","categories": ["HackTheBox"],
         "tags": ["Writeup","Devel"],
         "url": "http://localhost:4000/devel/",
-        "teaser":"http://localhost:4000/assets/images/devel/01-inicio.png"}]
+        "teaser":"http://localhost:4000/assets/images/devel/01-inicio.png"},{
+        "title": "Raspberry Ducky",
+        "excerpt":"¡Hola! Vamos a crear una Rubber Ducky a partir de una Raspberry Pi Pico dejo un link de búsqueda en amazon. Una Rubber Ducky es un dispositivo malicioso en forma de USB creado por Hack5, el cual, ejecuta comandos emulando un teclado en cuestión de segundos. MODOS DE USO RASPBERRY...","categories": ["Hardware"],
+        "tags": ["Raspberry","Ducky"],
+        "url": "http://localhost:4000/raspberryducky/",
+        "teaser":"http://localhost:4000/assets/images/raspberryducky/00-pico.png"}]

