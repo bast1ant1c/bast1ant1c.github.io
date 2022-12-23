@@ -83,4 +83,14 @@ var store = [{
         "excerpt":"¡Hola! En esta ocasión vamos a resolver de la máquina beep de HackTheBox. La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, al enfrentar estos retos, ¡vamos a ponernos hack! PREPARACIÓN Para iniciar nuestra máquina, vamos a crear con nuestra función mkhack un directorio de...","categories": ["HackTheBox"],
         "tags": ["Writeup","Beep"],
         "url": "http://localhost:4000/beep/",
-        "teaser":"http://localhost:4000/assets/images/beep/01-inicio.png"}]
+        "teaser":"http://localhost:4000/assets/images/beep/01-inicio.png"},{
+        "title": "HTB bastard",
+        "excerpt":"¡Hola! En esta ocasión vamos a resolver de la máquina bastard de HackTheBox. La máquina es nivel “Medium”, sin embargo, el nivel siempre se lo pones tú, al enfrentar estos retos, ¡vamos a ponernos hack! PREPARACIÓN Para iniciar nuestra máquina, vamos a crear con nuestra función mkhack un directorio de...","categories": ["HackTheBox"],
+        "tags": ["Writeup","Bastard"],
+        "url": "http://localhost:4000/bastard/",
+        "teaser":"http://localhost:4000/assets/images/bastard/01-inicio.png"},{
+        "title": "HTB cronos",
+        "excerpt":"¡Hola! En esta ocasión vamos a resolver de la máquina cronos de HackTheBox. La máquina es nivel “Medium”, sin embargo, el nivel siempre se lo pones tú, al enfrentar estos retos, ¡vamos a ponernos hack! PREPARACIÓN Para iniciar nuestra máquina, vamos a crear con nuestra función mkhack un directorio de...","categories": ["HackTheBox"],
+        "tags": ["Writeup","Cronos"],
+        "url": "http://localhost:4000/cronos/",
+        "teaser":"http://localhost:4000/assets/images/cronos/01-inicio.png"}]
