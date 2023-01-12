@@ -93,4 +93,9 @@ var store = [{
         "excerpt":"¡Hola! En esta ocasión vamos a resolver de la máquina cronos de HackTheBox. La máquina es nivel “Medium”, sin embargo, el nivel siempre se lo pones tú, al enfrentar estos retos, ¡vamos a ponernos hack! PREPARACIÓN Para iniciar nuestra máquina, vamos a crear con nuestra función mkhack un directorio de...","categories": ["HackTheBox"],
         "tags": ["Writeup","Cronos"],
         "url": "http://localhost:4000/cronos/",
-        "teaser":"http://localhost:4000/assets/images/cronos/01-inicio.png"}]
+        "teaser":"http://localhost:4000/assets/images/cronos/01-inicio.png"},{
+        "title": "HTB granny",
+        "excerpt":"¡Hola! En esta ocasión vamos a resolver de la máquina granny de HackTheBox. La máquina es nivel “Medium”, sin embargo, el nivel siempre se lo pones tú, al enfrentar estos retos, ¡vamos a ponernos hack! PREPARACIÓN Para iniciar nuestra máquina, vamos a crear con nuestra función mkhack un directorio de...","categories": ["HackTheBox"],
+        "tags": ["Writeup","Granny"],
+        "url": "http://localhost:4000/granny/",
+        "teaser":"http://localhost:4000/assets/images/granny/01-inicio.png"}]
