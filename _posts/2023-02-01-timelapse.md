@@ -30,7 +30,7 @@ Para iniciar nuestra máquina, vamos a crear con nuestra función [mkhack](https
 
 ```bash
 mkhack timelapse
-cd !$/recon
+cd !$/recon 
 ```
 
 ## RECONOCIMIENTO  

