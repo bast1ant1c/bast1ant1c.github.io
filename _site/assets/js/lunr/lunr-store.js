@@ -113,4 +113,9 @@ var store = [{
         "excerpt":"¡Hola! En esta ocasión vamos a resolver de la máquina sauna AD de HackTheBox. La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, al enfrentar estos retos, ¡vamos a ponernos hack! PREPARACIÓN Para iniciar nuestra máquina, vamos a crear con nuestra función mkhack un directorio...","categories": ["HackTheBox"],
         "tags": ["Writeup","Sauna","Active Directory"],
         "url": "http://localhost:4000/sauna/",
-        "teaser":"http://localhost:4000/assets/images/sauna/01-inicio.png"}]
+        "teaser":"http://localhost:4000/assets/images/sauna/01-inicio.png"},{
+        "title": "HTB forest AD",
+        "excerpt":"¡Hola! En esta ocasión vamos a resolver de la máquina forest AD de HackTheBox. La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, al enfrentar estos retos, ¡vamos a ponernos hack! PREPARACIÓN Para iniciar nuestra máquina, vamos a crear con nuestra función mkhack un directorio...","categories": ["HackTheBox"],
+        "tags": ["Writeup","Forest","Active Directory"],
+        "url": "http://localhost:4000/forest/",
+        "teaser":"http://localhost:4000/assets/images/forest/01-inicio.png"}]

