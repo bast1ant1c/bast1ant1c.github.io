@@ -1,6 +1,6 @@
 ---
 layout: single
-author: Bast1ant1c
+author_profile: true
 title: Raspberry Ducky
 excerpt: "Vamos a crear una Rubber Ducky a partir de una Raspberry Pi Pico. ¡Let's hack!"
 date: 2022-10-19

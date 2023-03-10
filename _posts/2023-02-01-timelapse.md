@@ -1,6 +1,6 @@
 ---
 layout: single
-author: Bast1ant1c
+author_profile: true
 title: HTB timelapse AD
 excerpt: "Vamos a resolver la máquina timelapse AD de HackTheBox. ¡Let's hack!"
 date: 2023-02-01

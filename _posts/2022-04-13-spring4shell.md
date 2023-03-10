@@ -1,6 +1,6 @@
 ---
 layout: single
-author: Bast1ant1c
+author_profile: true
 title: THM Spring4Shell
 excerpt: "Vamos a resolver la maquina Spring4SHell de TryHackMe. ¡Let's hack!"
 date: 2022-04-13

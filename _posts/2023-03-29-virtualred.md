@@ -1,6 +1,6 @@
 ---
 layout: single
-author: Bast1ant1c
+author_profile: true
 title: Redes virtuales
 excerpt: "Vamos a crear una red virtual para entornos de pivoting. ¡Let's hack!"
 date: 2023-03-29

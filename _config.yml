@@ -20,10 +20,10 @@ title                    : "Bast1ant1c"
 title_separator          : "-"
 name                     : "Bast1ant1c"
 description              : "Blog de Ciberseguridad"
-url                      : "https://bast1ant1c.github.io" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
-baseurl                  : # the subpath of your site, e.g. "/blog"
+url                      : "https://bast1ant1c.github.io/about" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
+baseurl                  : "/" # the subpath of your site, e.g. "/blog"
 repository               : "bast1ant1c/bast1ant1c.github.io" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
-logo                     : #"/assets/images/masthead.png"
+logo                     : "/assets/images/masthead.png"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 breadcrumbs              : true # true, false (default)
 words_per_minute         : 200
@@ -103,7 +103,7 @@ analytics:
 author:
   name             : "BAST1ANT1C"
   avatar           : "/assets/images/avatar.png"
-  bio              : "CyberSecurity"
+  bio              : "Ethical hacker | eJPT"
   uri              :
   home             : # null (default), "absolute or relative url to link to author home"
   bitbucket        :
@@ -117,7 +117,7 @@ author:
   google_plus      :
   keybase          :
   instagram        : "bast1ant1c"
-  lastfm           :
+  tiktok           : "bast1ant1c"
   linkedin         : "bast1ant1c" # (the last part of your profile url, e.g. https://www.linkedin.com/in/john-doe-12345678)
   pinterest        :
   soundcloud       :

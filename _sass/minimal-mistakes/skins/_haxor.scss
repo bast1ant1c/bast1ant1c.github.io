@@ -26,3 +26,12 @@ $navicon-link-color-hover: mix(#000, $background-color, 30%) !default;
 .ais-search-box .ais-search-box--input {
   background-color: $form-background-color;
 }
+
+.author__avatar img {
+  padding: 25px;
+  border: 5px solid #434040;
+  max-width: 130px;
+  border-radius: 10%;
+}
+
+

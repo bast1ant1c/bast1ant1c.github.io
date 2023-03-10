@@ -18,10 +18,10 @@
           {% assign author_link = author.home | relative_url %}
         {% endif %}
         <a href="{{ author_link }}">
-          <img src="{{ author_src }}" alt="{{ author.name }}" itemprop="image">
+          <img src="{{ author_src }}" alt="{{ author.name }}" itemprop="image" style="padding:25px;border:5px solid #434040;max-width:130px;border-radius:10%;">
         </a>
       {% else %}
-        <img src="{{ author_src }}" alt="{{ author.name }}" itemprop="image">
+        <img src="{{ author_src }}" alt="{{ author.name }}" itemprop="image" style="padding:25px;border:5px solid #434040;max-width:130px;border-radius:10%;">
       {% endif %}
     </div>
   {% endif %}
@@ -121,6 +121,14 @@
         </li>
       {% endif %}
 
+      {% if author.github %}
+        <li>
+          <a href="https://github.com/{{ author.github }}" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub
+          </a>
+        </li>
+      {% endif %}
+      
       {% if author.instagram %}
         <li>
           <a href="https://instagram.com/{{ author.instagram }}" itemprop="sameAs" rel="nofollow noopener noreferrer">
@@ -129,6 +137,14 @@
         </li>
       {% endif %}
 
+      {% if author.tiktok %}
+        <li>
+          <a href="https://tiktok.com/@{{ author.tiktok }}" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-tiktok" aria-hidden="true"></i> TikTok
+          </a>
+        </li>
+      {% endif %}
+      
       {% if author.tumblr %}
         <li>
           <a href="https://{{ author.tumblr }}.tumblr.com" itemprop="sameAs" rel="nofollow noopener noreferrer">
@@ -141,14 +157,6 @@
         <li>
           <a href="https://bitbucket.org/{{ author.bitbucket }}" itemprop="sameAs" rel="nofollow noopener noreferrer">
             <i class="fab fa-fw fa-bitbucket" aria-hidden="true"></i> Bitbucket
-          </a>
-        </li>
-      {% endif %}
-
-      {% if author.github %}
-        <li>
-          <a href="https://github.com/{{ author.github }}" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub
           </a>
         </li>
       {% endif %}
@@ -169,13 +177,7 @@
         </li>
       {% endif %}
 
-      {% if author.lastfm %}
-        <li>
-          <a href="https://last.fm/user/{{ author.lastfm }}" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-lastfm-square" aria-hidden="true"></i> Last.fm
-          </a>
-        </li>
-      {% endif %}
+
 
       {% if author.dribbble %}
         <li>

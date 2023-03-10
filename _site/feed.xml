@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-03-09T00:53:56-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Bast1ant1c</title><subtitle>Blog de Ciberseguridad</subtitle><author><name>BAST1ANT1C</name></author><entry><title type="html">HTB forest AD</title><link href="http://localhost:4000/forest/" rel="alternate" type="text/html" title="HTB forest AD" /><published>2023-03-01T00:00:00-05:00</published><updated>2023-03-01T00:00:00-05:00</updated><id>http://localhost:4000/forest</id><content type="html" xml:base="http://localhost:4000/forest/">&lt;p align=&quot;center&quot;&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-03-10T01:37:50-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Bast1ant1c</title><subtitle>Blog de Ciberseguridad</subtitle><author><name>BAST1ANT1C</name></author><entry><title type="html">HTB forest AD</title><link href="http://localhost:4000/forest/" rel="alternate" type="text/html" title="HTB forest AD" /><published>2023-03-01T00:00:00-05:00</published><updated>2023-03-01T00:00:00-05:00</updated><id>http://localhost:4000/forest</id><content type="html" xml:base="http://localhost:4000/forest/">&lt;p align=&quot;center&quot;&gt;
 &lt;img src=&quot;/assets/images/forest/02-tarjeta.png&quot; /&gt;
 &lt;/p&gt;
 
@@ -533,7 +533,7 @@ WINRM       10.10.10.161    5985   FOREST           &lt;span class=&quot;o&quot;
 
 &lt;p&gt;&lt;em&gt;¡Que tengan un buen día en el planeta donde se encuentren!&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Nos vemos en otro bit.&lt;/strong&gt;&lt;/p&gt;</content><author><name>Bast1ant1c</name></author><category term="Writeup" /><category term="Forest" /><category term="Active Directory" /><summary type="html">Vamos a resolver la máquina forest AD de HackTheBox. ¡Let's hack!</summary></entry><entry><title type="html">HTB sauna AD</title><link href="http://localhost:4000/sauna/" rel="alternate" type="text/html" title="HTB sauna AD" /><published>2023-02-15T00:00:00-05:00</published><updated>2023-02-15T00:00:00-05:00</updated><id>http://localhost:4000/sauna</id><content type="html" xml:base="http://localhost:4000/sauna/">&lt;p align=&quot;center&quot;&gt;
+&lt;p&gt;&lt;strong&gt;Nos vemos en otro bit.&lt;/strong&gt;&lt;/p&gt;</content><author><name>BAST1ANT1C</name></author><category term="Writeup" /><category term="Forest" /><category term="Active Directory" /><summary type="html">Vamos a resolver la máquina forest AD de HackTheBox. ¡Let's hack!</summary></entry><entry><title type="html">HTB sauna AD</title><link href="http://localhost:4000/sauna/" rel="alternate" type="text/html" title="HTB sauna AD" /><published>2023-02-15T00:00:00-05:00</published><updated>2023-02-15T00:00:00-05:00</updated><id>http://localhost:4000/sauna</id><content type="html" xml:base="http://localhost:4000/sauna/">&lt;p align=&quot;center&quot;&gt;
 &lt;img src=&quot;/assets/images/sauna/02-tarjeta.png&quot; /&gt;
 &lt;/p&gt;
 
@@ -1115,7 +1115,7 @@ c:&lt;span class=&quot;se&quot;&gt;\&amp;gt;&lt;/span&gt;echo.%root:~0,10%
 
 &lt;p&gt;&lt;em&gt;¡Que tengan un buen día en el planeta donde se encuentren!&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Nos vemos en otro bit.&lt;/strong&gt;&lt;/p&gt;</content><author><name>Bast1ant1c</name></author><category term="Writeup" /><category term="Sauna" /><category term="Active Directory" /><summary type="html">Vamos a resolver la máquina sauna AD de HackTheBox. ¡Let's hack!</summary></entry><entry><title type="html">HTB timelapse AD</title><link href="http://localhost:4000/timelapse/" rel="alternate" type="text/html" title="HTB timelapse AD" /><published>2023-02-01T00:00:00-05:00</published><updated>2023-02-01T00:00:00-05:00</updated><id>http://localhost:4000/timelapse</id><content type="html" xml:base="http://localhost:4000/timelapse/">&lt;p align=&quot;center&quot;&gt;
+&lt;p&gt;&lt;strong&gt;Nos vemos en otro bit.&lt;/strong&gt;&lt;/p&gt;</content><author><name>BAST1ANT1C</name></author><category term="Writeup" /><category term="Sauna" /><category term="Active Directory" /><summary type="html">Vamos a resolver la máquina sauna AD de HackTheBox. ¡Let's hack!</summary></entry><entry><title type="html">HTB timelapse AD</title><link href="http://localhost:4000/timelapse/" rel="alternate" type="text/html" title="HTB timelapse AD" /><published>2023-02-01T00:00:00-05:00</published><updated>2023-02-01T00:00:00-05:00</updated><id>http://localhost:4000/timelapse</id><content type="html" xml:base="http://localhost:4000/timelapse/">&lt;p align=&quot;center&quot;&gt;
 &lt;img src=&quot;/assets/images/timelapse/02-tarjeta.png&quot; /&gt;
 &lt;/p&gt;
 
@@ -1556,7 +1556,7 @@ SMB         10.10.11.152    445    DC01             &lt;span class=&quot;o&quot;
 
 &lt;p&gt;&lt;em&gt;¡Que tengan un buen día en el planeta donde se encuentren!&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Nos vemos en otro bit.&lt;/strong&gt;&lt;/p&gt;</content><author><name>Bast1ant1c</name></author><category term="Writeup" /><category term="Timelapse" /><category term="Active Directory" /><summary type="html">Vamos a resolver la máquina timelapse AD de HackTheBox. ¡Let's hack!</summary></entry><entry><title type="html">HTB active AD</title><link href="http://localhost:4000/active/" rel="alternate" type="text/html" title="HTB active AD" /><published>2023-01-18T00:00:00-05:00</published><updated>2023-01-18T00:00:00-05:00</updated><id>http://localhost:4000/active</id><content type="html" xml:base="http://localhost:4000/active/">&lt;p align=&quot;center&quot;&gt;
+&lt;p&gt;&lt;strong&gt;Nos vemos en otro bit.&lt;/strong&gt;&lt;/p&gt;</content><author><name>BAST1ANT1C</name></author><category term="Writeup" /><category term="Timelapse" /><category term="Active Directory" /><summary type="html">Vamos a resolver la máquina timelapse AD de HackTheBox. ¡Let's hack!</summary></entry><entry><title type="html">HTB active AD</title><link href="http://localhost:4000/active/" rel="alternate" type="text/html" title="HTB active AD" /><published>2023-01-18T00:00:00-05:00</published><updated>2023-01-18T00:00:00-05:00</updated><id>http://localhost:4000/active</id><content type="html" xml:base="http://localhost:4000/active/">&lt;p align=&quot;center&quot;&gt;
 &lt;img src=&quot;/assets/images/active/02-tarjeta.png&quot; /&gt;
 &lt;/p&gt;
 
@@ -1966,7 +1966,7 @@ aa4beed1c0
 
 &lt;p&gt;&lt;em&gt;¡Que tengan un buen día en el planeta donde se encuentren!&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Nos vemos en otro bit.&lt;/strong&gt;&lt;/p&gt;</content><author><name>Bast1ant1c</name></author><category term="Writeup" /><category term="Active" /><category term="Active Directory" /><summary type="html">Vamos a resolver la máquina active AD de HackTheBox. ¡Let's hack!</summary></entry><entry><title type="html">HTB granny</title><link href="http://localhost:4000/granny/" rel="alternate" type="text/html" title="HTB granny" /><published>2023-01-04T00:00:00-05:00</published><updated>2023-01-04T00:00:00-05:00</updated><id>http://localhost:4000/granny</id><content type="html" xml:base="http://localhost:4000/granny/">&lt;p align=&quot;center&quot;&gt;
+&lt;p&gt;&lt;strong&gt;Nos vemos en otro bit.&lt;/strong&gt;&lt;/p&gt;</content><author><name>BAST1ANT1C</name></author><category term="Writeup" /><category term="Active" /><category term="Active Directory" /><summary type="html">Vamos a resolver la máquina active AD de HackTheBox. ¡Let's hack!</summary></entry><entry><title type="html">HTB granny</title><link href="http://localhost:4000/granny/" rel="alternate" type="text/html" title="HTB granny" /><published>2023-01-04T00:00:00-05:00</published><updated>2023-01-04T00:00:00-05:00</updated><id>http://localhost:4000/granny</id><content type="html" xml:base="http://localhost:4000/granny/">&lt;p align=&quot;center&quot;&gt;
 &lt;img src=&quot;/assets/images/granny/02-tarjeta.png&quot; /&gt;
 &lt;/p&gt;
 
@@ -2202,7 +2202,7 @@ aa4beed1c0
 
 &lt;p&gt;&lt;em&gt;¡Que tengan un buen día en el planeta donde se encuentren!&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Nos vemos en otro bit.&lt;/strong&gt;&lt;/p&gt;</content><author><name>Bast1ant1c</name></author><category term="Writeup" /><category term="Granny" /><summary type="html">Vamos a resolver la máquina granny de HackTheBox. ¡Let's hack!</summary></entry><entry><title type="html">HTB cronos</title><link href="http://localhost:4000/cronos/" rel="alternate" type="text/html" title="HTB cronos" /><published>2022-12-21T00:00:00-05:00</published><updated>2022-12-21T00:00:00-05:00</updated><id>http://localhost:4000/cronos</id><content type="html" xml:base="http://localhost:4000/cronos/">&lt;p align=&quot;center&quot;&gt;
+&lt;p&gt;&lt;strong&gt;Nos vemos en otro bit.&lt;/strong&gt;&lt;/p&gt;</content><author><name>BAST1ANT1C</name></author><category term="Writeup" /><category term="Granny" /><summary type="html">Vamos a resolver la máquina granny de HackTheBox. ¡Let's hack!</summary></entry><entry><title type="html">HTB cronos</title><link href="http://localhost:4000/cronos/" rel="alternate" type="text/html" title="HTB cronos" /><published>2022-12-21T00:00:00-05:00</published><updated>2022-12-21T00:00:00-05:00</updated><id>http://localhost:4000/cronos</id><content type="html" xml:base="http://localhost:4000/cronos/">&lt;p align=&quot;center&quot;&gt;
 &lt;img src=&quot;/assets/images/cronos/02-tarjeta.png&quot; /&gt;
 &lt;/p&gt;
 
@@ -2410,7 +2410,7 @@ bash-4.3# find / &lt;span class=&quot;nt&quot;&gt;-name&lt;/span&gt; root.txt 2&
 
 &lt;p&gt;&lt;em&gt;¡Que tengan un buen día en el planeta donde se encuentren!&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Nos vemos en otro bit.&lt;/strong&gt;.&lt;/p&gt;</content><author><name>Bast1ant1c</name></author><category term="Writeup" /><category term="Cronos" /><summary type="html">Vamos a resolver la máquina cronos de HackTheBox. ¡Let's hack!</summary></entry><entry><title type="html">HTB bastard</title><link href="http://localhost:4000/bastard/" rel="alternate" type="text/html" title="HTB bastard" /><published>2022-12-07T00:00:00-05:00</published><updated>2022-12-07T00:00:00-05:00</updated><id>http://localhost:4000/bastard</id><content type="html" xml:base="http://localhost:4000/bastard/">&lt;p align=&quot;center&quot;&gt;
+&lt;p&gt;&lt;strong&gt;Nos vemos en otro bit.&lt;/strong&gt;.&lt;/p&gt;</content><author><name>BAST1ANT1C</name></author><category term="Writeup" /><category term="Cronos" /><summary type="html">Vamos a resolver la máquina cronos de HackTheBox. ¡Let's hack!</summary></entry><entry><title type="html">HTB bastard</title><link href="http://localhost:4000/bastard/" rel="alternate" type="text/html" title="HTB bastard" /><published>2022-12-07T00:00:00-05:00</published><updated>2022-12-07T00:00:00-05:00</updated><id>http://localhost:4000/bastard</id><content type="html" xml:base="http://localhost:4000/bastard/">&lt;p align=&quot;center&quot;&gt;
 &lt;img src=&quot;/assets/images/bastard/02-tarjeta.png&quot; /&gt;
 &lt;/p&gt;
 
@@ -2965,7 +2965,7 @@ echo.%root:~0,10%
 
 &lt;p&gt;&lt;em&gt;¡Que tengan un buen día en el planeta donde se encuentren!&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Nos vemos en otro bit.&lt;/strong&gt;&lt;/p&gt;</content><author><name>Bast1ant1c</name></author><category term="Writeup" /><category term="Bastard" /><summary type="html">Vamos a resolver la máquina Bastard de HackTheBox. ¡Let's hack!</summary></entry><entry><title type="html">HTB Beep</title><link href="http://localhost:4000/beep/" rel="alternate" type="text/html" title="HTB Beep" /><published>2022-11-23T00:00:00-05:00</published><updated>2022-11-23T00:00:00-05:00</updated><id>http://localhost:4000/beep</id><content type="html" xml:base="http://localhost:4000/beep/">&lt;p align=&quot;center&quot;&gt;
+&lt;p&gt;&lt;strong&gt;Nos vemos en otro bit.&lt;/strong&gt;&lt;/p&gt;</content><author><name>BAST1ANT1C</name></author><category term="Writeup" /><category term="Bastard" /><summary type="html">Vamos a resolver la máquina Bastard de HackTheBox. ¡Let's hack!</summary></entry><entry><title type="html">HTB Beep</title><link href="http://localhost:4000/beep/" rel="alternate" type="text/html" title="HTB Beep" /><published>2022-11-23T00:00:00-05:00</published><updated>2022-11-23T00:00:00-05:00</updated><id>http://localhost:4000/beep</id><content type="html" xml:base="http://localhost:4000/beep/">&lt;p align=&quot;center&quot;&gt;
 &lt;img src=&quot;/assets/images/beep/02-tarjeta.png&quot; /&gt;
 &lt;/p&gt;
 
@@ -3358,7 +3358,7 @@ find / &lt;span class=&quot;nt&quot;&gt;-name&lt;/span&gt; root.txt 2&amp;gt;/de
 
 &lt;p&gt;&lt;em&gt;¡Que tengan un buen día en el planeta donde se encuentren!&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Nos vemos en otro bit.&lt;/strong&gt;.&lt;/p&gt;</content><author><name>Bast1ant1c</name></author><category term="Writeup" /><category term="Beep" /><summary type="html">Vamos a resolver la máquina Beep de HackTheBox. ¡Let's hack!</summary></entry><entry><title type="html">HTB Optimum</title><link href="http://localhost:4000/optimum/" rel="alternate" type="text/html" title="HTB Optimum" /><published>2022-11-09T00:00:00-05:00</published><updated>2022-11-09T00:00:00-05:00</updated><id>http://localhost:4000/optimum</id><content type="html" xml:base="http://localhost:4000/optimum/">&lt;p align=&quot;center&quot;&gt;
+&lt;p&gt;&lt;strong&gt;Nos vemos en otro bit.&lt;/strong&gt;.&lt;/p&gt;</content><author><name>BAST1ANT1C</name></author><category term="Writeup" /><category term="Beep" /><summary type="html">Vamos a resolver la máquina Beep de HackTheBox. ¡Let's hack!</summary></entry><entry><title type="html">HTB Optimum</title><link href="http://localhost:4000/optimum/" rel="alternate" type="text/html" title="HTB Optimum" /><published>2022-11-09T00:00:00-05:00</published><updated>2022-11-09T00:00:00-05:00</updated><id>http://localhost:4000/optimum</id><content type="html" xml:base="http://localhost:4000/optimum/">&lt;p align=&quot;center&quot;&gt;
 &lt;img src=&quot;/assets/images/optimum/02-tarjeta.png&quot; /&gt;
 &lt;/p&gt;
 
@@ -3572,7 +3572,7 @@ echo.%root:~1,10%
 
 &lt;p&gt;&lt;em&gt;¡Que tengan un buen día en el planeta donde se encuentren!&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Nos vemos en otro bit.&lt;/strong&gt;&lt;/p&gt;</content><author><name>Bast1ant1c</name></author><category term="Writeup" /><category term="Optimum" /><summary type="html">Vamos a resolver la máquina Optimum de HackTheBox. ¡Let's hack!</summary></entry><entry><title type="html">HTB Nibbles</title><link href="http://localhost:4000/nibbles/" rel="alternate" type="text/html" title="HTB Nibbles" /><published>2022-10-26T00:00:00-05:00</published><updated>2022-10-26T00:00:00-05:00</updated><id>http://localhost:4000/nibbles</id><content type="html" xml:base="http://localhost:4000/nibbles/">&lt;p align=&quot;center&quot;&gt;
+&lt;p&gt;&lt;strong&gt;Nos vemos en otro bit.&lt;/strong&gt;&lt;/p&gt;</content><author><name>BAST1ANT1C</name></author><category term="Writeup" /><category term="Optimum" /><summary type="html">Vamos a resolver la máquina Optimum de HackTheBox. ¡Let's hack!</summary></entry><entry><title type="html">HTB Nibbles</title><link href="http://localhost:4000/nibbles/" rel="alternate" type="text/html" title="HTB Nibbles" /><published>2022-10-26T00:00:00-05:00</published><updated>2022-10-26T00:00:00-05:00</updated><id>http://localhost:4000/nibbles</id><content type="html" xml:base="http://localhost:4000/nibbles/">&lt;p align=&quot;center&quot;&gt;
 &lt;img src=&quot;/assets/images/nibbles/02-tarjeta.png&quot; /&gt;
 &lt;/p&gt;
 
@@ -3835,4 +3835,4 @@ find / &lt;span class=&quot;nt&quot;&gt;-name&lt;/span&gt; root.txt 2&amp;gt;/de
 
 &lt;p&gt;&lt;em&gt;¡Que tengan un buen día en el planeta donde se encuentren!&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Nos vemos en otro bit.&lt;/strong&gt;.&lt;/p&gt;</content><author><name>Bast1ant1c</name></author><category term="Writeup" /><category term="Nibbles" /><summary type="html">Vamos a resolver la maquina Nibbles de HackTheBox. ¡Let's hack!</summary></entry></feed>
+&lt;p&gt;&lt;strong&gt;Nos vemos en otro bit.&lt;/strong&gt;.&lt;/p&gt;</content><author><name>BAST1ANT1C</name></author><category term="Writeup" /><category term="Nibbles" /><summary type="html">Vamos a resolver la maquina Nibbles de HackTheBox. ¡Let's hack!</summary></entry></feed>
