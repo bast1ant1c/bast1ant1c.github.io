@@ -254,15 +254,6 @@ compress_html:
   ignore:
     envs: development
 
-#HTTP Secure Headers
-http_header:
-  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
-  X-Frame-Options: SAMEORIGIN
-  X-XSS-Protection: 1; mode=block
-  X-Content-Type-Options: nosniff
-  Content-Security-Policy: default-src 'self'; base-uri 'self'; img-src 'self' data:; object-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'
-
-
 # Defaults
 defaults:
   # _posts
@@ -276,3 +267,9 @@ defaults:
       comments: false
       share: false
       related: true
+      http_header:
+        Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+        X-Frame-Options: SAMEORIGIN
+        X-XSS-Protection: 1; mode=block
+        X-Content-Type-Options: nosniff
+        Content-Security-Policy: default-src 'self'; base-uri 'self'; img-src 'self' data:; object-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'  
