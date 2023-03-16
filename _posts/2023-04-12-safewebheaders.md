@@ -3,7 +3,7 @@ layout: single
 author_profile: true
 title: SafeWebHeaders.py
 excerpt: "Vamos a conocer la utilidad SafeWebHeaders.py creada por The Game 008 para auditar cabeceras web. ¡Let's hack!"
-date: 2023-03-10
+date: 2023-04-12
 classes: wide
 header:
   teaser: /assets/images/safewebheaders/01-inicio.png
@@ -94,6 +94,25 @@ Cabeceras que deberían estar implementadas, pero no se ven implementadas:
 
 Divulgación de información en cabecera:
 - Server: GitHub.com
+```
+```bash
+python3 SafeWebHeaders.py
+Introduce la URL a escanear: <URL_INSEGURA>
+```
+```bash
+Cabeceras correctamente implementadas:
+
+Cabeceras con configuración incorrecta:
+
+Cabeceras que deberían estar implementadas, pero no se ven implementadas:
+- Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+- X-Frame-Options: SAMEORIGIN
+- X-XSS-Protection: 1; mode=block
+- X-Content-Type-Options: nosniff
+- Content-Security-Policy: default-src 'self'; base-uri 'self'; img-src 'self' data:; object-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'
+
+Divulgación de información en cabecera:
+- Server: SimpleHTTP/0.6 Python/3.9.2
 ```
 
 Como podemos evidenciar, esta utilidad nos permite identificar cabeceras correctamente implementadas, con configuración incorrecta, no implementadas y divulgación de información sensible, en esta oportunidad podemos ver que nuestro blog necesita un ajuste a nivel de cabeceras para que sea un sitio seguro.

