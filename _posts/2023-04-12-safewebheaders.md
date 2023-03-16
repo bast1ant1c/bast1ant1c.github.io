@@ -2,7 +2,7 @@
 layout: single
 author_profile: true
 title: SafeWebHeaders.py
-excerpt: "Vamos a conocer la utilidad SafeWebHeaders.py creada por The Game 008 para auditar cabeceras web. ¡Let's hack!"
+excerpt: "Vamos a conocer la utilidad SafeWebHeaders.py de The Game 008 para auditar cabeceras web. ¡Let's hack!"
 date: 2023-04-12
 classes: wide
 header:
@@ -65,158 +65,185 @@ cd Secure-Headers-OWASP
 python3 SafeWebHeaders.py
 ```
 
-<p align="center">
-<img src="/assets/images/safewebheaders/06-virtual.png">
-</p>
+## testingHeaders.py
 
-## SafeWebHeaders.py EN ACCIÓN
-
-Luego de instalar la herramienta, vamos a hacer una prueba para ver que tan seguro es nuestro blog a nivel `web`
+Hemos tomado el tiempo de hacer una prueba de concepto que puede ayudarles a validar cabeceras en un entorno local, por eso vamos a compartir el script `testingHeaders.py` desarrollado en `python`, para que puedan hacerlo en sus entornos.
 
 ```bash
-python3 SafeWebHeaders.py
-Introduce la URL a escanear: https://bast1ant1c.github.io
+# -*- coding: utf-8 -*-
+
+import sys
+import signal
+from http.server import BaseHTTPRequestHandler, HTTPServer
+from colorama import Fore, Style
+from tqdm import tqdm
+
+
+class MyHandler(BaseHTTPRequestHandler):
+    
+    def do_GET(self):
+
+        #### !! COMENTAR ESTAS 2 LINEAS PARA VER DIVULGACIÓN DE SOFTWARE !! ###
+        self.server_version = ''
+        self.sys_version = ''
+
+        # Obtiene las cabeceras personalizadas
+
+        #### !! MODIFICAR CABECERAS DE SEGURIDAD SI ES NECESARIO !! ####
+        headers = {
+            'Strict-Transport-Security': 'max-age=63072000; includeSubDomains; preload',
+            'X-Frame-Options': 'SAMEORIGIN',
+            'X-XSS-Protection': '1; mode=block',
+            'X-Content-Type-Options': 'nosniff',
+            'Content-Security-Policy': "default-src 'self'; base-uri 'self'; img-src 'self' data:; object-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'"
+        }
+
+        # Imprime las cabeceras actuales
+        print('')
+        print(Fore.YELLOW + '[i] Cabeceras actuales:' + Style.RESET_ALL)
+        print('')
+        for header, value in headers.items():
+            print(f'{Fore.CYAN}{header}:{Style.RESET_ALL} {value}')
+        print('')
+
+        # Envía las cabeceras personalizadas
+        self.send_response(200)
+        self.send_header('Content-type', 'text/html')
+        for header, value in headers.items():
+            self.send_header(header, value)
+        self.end_headers()
+
+        html = """
+        <html>
+<head>
+	<meta charset="UTF-8">
+	<title>Testing Headers PoC</title>
+	<style>
+		body {
+			background-color: #222;
+            color: #eee;
+			margin: 0;
+			padding: 0;
+		}
+		h1 {
+			text-align: center;
+			font-family: Arial, sans-serif;
+			color: #fff;
+			background-color: #333;
+			margin: 0;
+			padding: 20px;
+		}
+		.container {
+            background-color: #333;
+            color: #eee;
+			width: 80%;
+			margin: auto;
+			border: 1px solid #ccc;
+			padding: 20px;
+			box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
+			margin-top: 50px;
+		}
+		p {
+			font-family: Arial, sans-serif;
+			font-size: 16px;
+			line-height: 1.5;
+			color: #eee;
+			margin: 0;
+			padding: 0;
+		}
+		footer {
+			background-color: #333;
+            color: #eee;
+			padding: 10px;
+			text-align: center;
+			font-size: 12px;
+			font-family: Arial, sans-serif;
+			margin-top: 50px;
+		}
+		footer a {
+			color: #fff;
+		}
+	</style>
+</head>
+<body>
+	<h1>Testing Headers PoC</h1>
+	<div class="container">
+		<p>¡Bienvenido al servidor HTTP de prueba!</p>
+		<p>Esta página es una demostración de cómo se pueden enviar cabeceras personalizadas desde un servidor HTTP Python.</p>
+		<p>Puedes personalizar el contenido de esta página como desees.</p>
+	</div>
+	<footer>
+		Powered by bast1ant1c &copy; 2023
+	</footer>
+</body>
+</html>
+        """
+        self.wfile.write(bytes(html, "utf-8"))
+
+
+
+def run(ip, port):
+    # Especifica el puerto y la dirección del servidor
+    address = (ip, int(port))
+    httpd = HTTPServer(address, MyHandler)
+    print(Fore.GREEN + f'[>] Iniciando servidor en el puerto {port}...' + Style.RESET_ALL)
+
+    # Captura la señal SIGINT para salir graciosamente con Ctrl+C
+    def signal_handler(sig, frame):
+         print(Fore.RED + '\n[!] Saliendo ...' + Style.RESET_ALL)
+         sys.exit(0)
+
+    signal.signal(signal.SIGINT, signal_handler)
+    httpd.serve_forever()
+
+if __name__ == '__main__':
+    if len(sys.argv) < 3:
+        print(Fore.RED + '\n[x] Se requiere la dirección IP y el puerto como argumentos\n' + Style.RESET_ALL)
+        sys.exit(1)
+    ip = sys.argv[1]
+    port = sys.argv[2]
+    run(ip, port)
 ```
+
+De esta manera solo tendras que ejecutar el script con tu **dirección IP** y el **puerto** de preferencia para activar un servidor web con cabeceras de seguridad implementadas, para que puedas auditarlo con `SafeWebHeaders.py`.
+
 ```bash
-Cabeceras correctamente implementadas:
-
-Cabeceras con configuración incorrecta:
-- Strict-Transport-Security:
-	- Valor recomendado por OWASP: max-age=63072000; includeSubDomains; preload
-	- Configuración actual en la URL: max-age=31556952
-	- Riesgo: Vulnerabilidad a ataques de MITM
-
-Cabeceras que deberían estar implementadas, pero no se ven implementadas:
-- X-Frame-Options: SAMEORIGIN
-- X-XSS-Protection: 1; mode=block
-- X-Content-Type-Options: nosniff
-- Content-Security-Policy: default-src 'self'; base-uri 'self'; img-src 'self' data:; object-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'
-
-Divulgación de información en cabecera:
-- Server: GitHub.com
-```
-```bash
-python3 SafeWebHeaders.py
-Introduce la URL a escanear: <URL_INSEGURA>
-```
-```bash
-Cabeceras correctamente implementadas:
-
-Cabeceras con configuración incorrecta:
-
-Cabeceras que deberían estar implementadas, pero no se ven implementadas:
-- Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
-- X-Frame-Options: SAMEORIGIN
-- X-XSS-Protection: 1; mode=block
-- X-Content-Type-Options: nosniff
-- Content-Security-Policy: default-src 'self'; base-uri 'self'; img-src 'self' data:; object-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'
-
-Divulgación de información en cabecera:
-- Server: SimpleHTTP/0.6 Python/3.9.2
+python3 testingHeaders.py <IP> <PUERTO>
 ```
 
-Como podemos evidenciar, esta utilidad nos permite identificar cabeceras correctamente implementadas, con configuración incorrecta, no implementadas y divulgación de información sensible, en esta oportunidad podemos ver que nuestro blog necesita un ajuste a nivel de cabeceras para que sea un sitio seguro.
-
 <p align="center">
-<img src="/assets/images/safewebheaders/05-virtual.png">
+<img src="/assets/images/safewebheaders/05-header.png">
 </p>
 
-## CONFIGURACIÓN MÁQUINA 1
+## SafeWebHeaders.py + testingHeaders.py (SIN CABECERAS)
 
-Nuestra primera máquina tendrá conexión directa con la interfaz física, por lo tanto, solo requerimos de un adaptador de red en adaptador puente.
->
-* Clic en la `máquina`
-* Clic en `Configuración`
-* Clic en `Red`
-* Clic en `Adaptador 1`
-* Clic en `Enable Network Adapter`
-* Escoger `Adaptador puente`
-* Escoger `Interfaz` física
-* Clic en `Aceptar`
->
+Se ha modificado `testingHeaders.py` para que no tenga cabeceras de seguridad implementadas, luego auditamos nuestra web de prueba con `SafeWebHeaders.py` mostrando las cabeceras que deberían estar implementadas, pero no se evidencian en el servidor.
 
 <p align="center">
-<img src="/assets/images/safewebheaders/08-virtual.png">
+<img src="/assets/images/safewebheaders/06-header.png">
 </p>
 
-## CONFIGURACIÓN MÁQUINA 2
+## SafeWebHeaders.py + testingHeaders.py (CABECERAS PARCIALMENTE IMPLEMENTADAS)
 
-Nuestra segunda máquina tendrá la misma conexión con adaptador puente y otro adaptador de red para la nueva interfaz configurada anteriormente.
-
-### CONFIGURACIÓN INTERFAZ PUENTE
->
-* Clic en la `máquina`
-* Clic en `Configuración`
-* Clic en `Red`
-* Clic en `Adaptador 1`
-* Clic en `Enable Network Adapter`
-* Escoger `Adaptador puente`
-* Escoger `Interfaz` física
-* Clic en `Aceptar`
->
+Se ha modificado `testingHeaders.py` para que tenga algunas cabeceras de seguridad implementadas y otras con configuración diferente, luego auditamos nuestra web de prueba con `SafeWebHeaders.py` mostrando las cabeceras correctas, las de configuración incorrecta y las cabeceras faltantes en el servidor.
 
 <p align="center">
-<img src="/assets/images/safewebheaders/09-virtual.png">
+<img src="/assets/images/safewebheaders/07-header.png">
 </p>
 
-### CONFIGURACIÓN INTERFAZ CREADA
->
-* Clic en la `máquina`
-* Clic en `Configuración`
-* Clic en `Red`
-* Clic en `Adaptador 2`
-* Clic en `Enable Network Adapter`
-* Escoger `Adaptador sólo-anfitrión`
-* Escoger `Interfaz creada`
-* Clic en `Aceptar`
->
+## SafeWebHeaders.py + testingHeaders.py (CABECERAS TOTALMENTE IMPLEMENTADAS)
+
+Se ha modificado `testingHeaders.py` para que tenga todas las cabeceras de seguridad implementadas, luego auditamos nuestra web de prueba con `SafeWebHeaders.py` mostrando las cabeceras correctas en el servidor.
 
 <p align="center">
-<img src="/assets/images/safewebheaders/10-virtual.png">
+<img src="/assets/images/safewebheaders/08-header.png">
 </p>
 
-## CONFIGURACIÓN MÁQUINA 3
-
-Nuestra tercera máquina tendrá conexión directa con la interfaz creada, por lo tanto, solo requerimos de un adaptador de red en adaptador sólo-anfitrión.
->
-* Clic en la `máquina`
-* Clic en `Configuración`
-* Clic en `Red`
-* Clic en `Adaptador 2`
-* Clic en `Enable Network Adapter`
-* Escoger `Adaptador sólo-anfitrión`
-* Escoger `Interfaz creada`
-* Clic en `Aceptar`
->
+Este es el review de la herramienta `SafeWebHeaders.py` del colega [The Game 008](https://github.com/thegame008), los invito a que lo sigan, a que miren sus repositorios y apoyen sus herramientas con una **estrella** y también es una invitación para animarlos a hacer nuevas herramientas, algo que puede ser útil para ustedes, puede ser útil para alguién más y podemos generar muy buenos repositorios en comunidad, compartir conocimiento hace que seamos mejores en nuestro campo!
 
 <p align="center">
-<img src="/assets/images/safewebheaders/11-virtual.png">
+<img src="/assets/images/safewebheaders/09-finish.png">
 </p>
-
-## VALIDACIÓN DE CONEXIONES
-
-Ya tenemos el entorno configurado, ahora vamos a validar si nuestras máquinas tienen la configuración de red correcta.
-
-<p align="center">
-<img src="/assets/images/safewebheaders/12-virtual.png">
-</p>
-
-Como podemos ver, la primera máquina tiene una dirección asociada a la primera red únicamente, la segunda máquina tiene esta misma red y adicionalmente la red nueva creada a través de la interfaz, por último, la tercera máquina se encuentra asociada a la segunda red interna, también generada por la nueva interfaz.
-
-## PRUEBA DE CONECTIVIDAD
-
-Nuestra configuración ha sido exitosa, tenemos que hacer pruebas de conectividad para corroborar que nuestras redes sean operativas, debemos tener en cuenta lo siguiente:
->
-* La `máquina 1` solo puede tener conectividad por el mismo segmento de la `máquina 2`
-* La `máquina 2` tiene conectividad por el mismo segmento de las `máquinas 1 y 2`
-* La `máquina 3` solo puede tener conectividad por el mismo segmento de la `máquina 2`
->
-
-<p align="center">
-<img src="/assets/images/safewebheaders/13-virtual.png">
-</p>
-
-Con esta configuración vamos a tener la posibilidad de crear nuevos entornos para practicar nuestros ejercicios de hacking orientados al pivoting, tema bastante importante para certificaciones como la `eCPPT`, crear laboratorios propios nos da una ventaja en no depender de otras infraestructuras para practicar, así que esperen una corta serie pero de mucho aprendizaje en los próximos posts.
 
 _¡Que tengan un buen día en el planeta donde se encuentren!_
 
