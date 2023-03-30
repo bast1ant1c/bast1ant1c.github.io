@@ -123,4 +123,9 @@ var store = [{
         "excerpt":"¡Hola! En esta ocasión vamos a resolver de la máquina support AD de HackTheBox. La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, al enfrentar estos retos, ¡vamos a ponernos hack! PREPARACIÓN Para iniciar nuestra máquina, vamos a crear con nuestra función mkhack un directorio...","categories": ["HackTheBox"],
         "tags": ["Writeup","Support","Active Directory"],
         "url": "http://localhost:4000/support/",
-        "teaser":"http://localhost:4000/assets/images/support/01-inicio.png"}]
+        "teaser":"http://localhost:4000/assets/images/support/01-inicio.png"},{
+        "title": "Redes virtuales",
+        "excerpt":"¡Hola! En esta ocasión nos adentraremos en el mundo de la virtualización y configuración de entornos de red en VirtualBox, una herramienta muy útil para crear laboratorios de pruebas y ejercicios de pivoting como los que vamos a utilizar en próximos posts. ENTORNO Para este ejercicio vamos a hacer uso...","categories": ["Pivoting"],
+        "tags": ["Configuraciones","Virtualbox"],
+        "url": "http://localhost:4000/virtualred/",
+        "teaser":"http://localhost:4000/assets/images/virtualred/01-inicio.png"}]

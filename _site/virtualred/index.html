@@ -1,0 +1,660 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.15.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Redes virtuales - Bast1ant1c</title>
+<meta name="description" content="Vamos a crear una red virtual para entornos de pivoting. ¡Let’s hack!">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Bast1ant1c">
+<meta property="og:title" content="Redes virtuales">
+<meta property="og:url" content="http://localhost:4000/virtualred/">
+
+
+  <meta property="og:description" content="Vamos a crear una red virtual para entornos de pivoting. ¡Let’s hack!">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/images/virtualred/01-inicio.png">
+
+
+
+
+
+  <meta property="article:published_time" content="2023-03-29T00:00:00-05:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/virtualred/">
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Bast1ant1c",
+      "url": "http://localhost:4000/",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Bast1ant1c Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE ]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+          <a class="site-logo" href="/"><img src="/assets/images/masthead.png" alt=""></a>
+                
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about/" >About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/" >Blog</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/" >Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/" >Tags</a>
+            </li><li class="masthead__menu-item">
+              <a href="/halloffame/" >Hall of Fame</a>
+            </li><li class="masthead__menu-item">
+              <a href="/buscador/" >Search</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+    
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="http://localhost:4000//" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        <li class="current">Redes virtuales</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+
+      
+        <img src="/assets/images/avatar.png" alt="BAST1ANT1C" itemprop="image" style="padding:25px;border:5px solid #434040;max-width:130px;border-radius:10%;">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">BAST1ANT1C</h3>
+    
+    
+      <p class="author__bio" itemprop="description">
+        Ethical hacker | eJPT
+      </p>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://www.linkedin.com/in/bast1ant1c" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn
+          </a>
+        </li>
+      
+
+      
+
+      
+        <li>
+          <a href="https://github.com/bast1ant1c" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub
+          </a>
+        </li>
+      
+      
+      
+        <li>
+          <a href="https://instagram.com/bast1ant1c" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-instagram" aria-hidden="true"></i> Instagram
+          </a>
+        </li>
+      
+
+      
+        <li>
+          <a href="https://tiktok.com/@bast1ant1c" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-tiktok" aria-hidden="true"></i> TikTok
+          </a>
+        </li>
+      
+      
+      
+
+      
+
+      
+
+      
+
+
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Redes virtuales">
+    <meta itemprop="description" content="Vamos a crear una red virtual para entornos de pivoting. ¡Let’s hack!">
+    <meta itemprop="datePublished" content="March 29, 2023">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Redes virtuales
+</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p class="page__meta">
+          
+            <i class="fa fa-fw fa-calendar" aria-hidden="true"></i> <time datetime="2023-03-29T00:00:00-05:00">March 29, 2023 </time>&emsp;
+          
+          
+        </p>
+        <p align="center">
+<img src="/assets/images/virtualred/02-tarjeta.png" />
+</p>
+
+<p>¡Hola! En esta ocasión nos adentraremos en el mundo de la virtualización y configuración de entornos de red en <code class="language-plaintext highlighter-rouge">VirtualBox</code>, una herramienta muy útil para crear laboratorios de pruebas y ejercicios de pivoting como los que vamos a utilizar en próximos posts.</p>
+
+<h2 id="entorno">ENTORNO</h2>
+
+<p>Para este ejercicio vamos a hacer uso de 3 máquinas virtuales, 2 Linux y 1 Windows, esto con el fin de diversificar y comprobar que la conectividad entre máquinas no será ningún problema por los entornos que nos encontremos manejando.</p>
+
+<p>En circunstancias normales tenemos activas máquinas virtuales en conexiones <code class="language-plaintext highlighter-rouge">Puente</code> (bridge) o <code class="language-plaintext highlighter-rouge">NAT</code>, entraré un poco en detalle:</p>
+<blockquote>
+
+  <ul>
+    <li><strong>Puente (bridge):</strong> Conexión de redes lógicas separadas que comparten una misma red física.</li>
+    <li><strong>NAT:</strong> Conexión de una red privada con acceso a Internet a través de una única dirección IP pública.</li>
+  </ul>
+
+</blockquote>
+
+<p>Con la nueva configuración, vamos a tener el siguiente ambiente compuesto por 2 redes internas, una por conexión <code class="language-plaintext highlighter-rouge">puente</code> (bridge) y otra por <code class="language-plaintext highlighter-rouge">Host Only Network Adapter</code> para crear redes privadas virtuales y limitar el acceso de la máquina virtual solo al host en el que se ejecuta.</p>
+
+<p align="center">
+<img src="/assets/images/virtualred/03-virtual.png" />
+</p>
+
+<h2 id="crear-nueva-interfaz">CREAR NUEVA INTERFAZ</h2>
+<blockquote>
+
+  <ul>
+    <li>Abrir <code class="language-plaintext highlighter-rouge">VirtualBox</code></li>
+    <li>Clic en <code class="language-plaintext highlighter-rouge">herramientas</code></li>
+    <li>Clic en <code class="language-plaintext highlighter-rouge">menú</code> de herramientas</li>
+    <li>Clic en <code class="language-plaintext highlighter-rouge">Red</code></li>
+  </ul>
+
+</blockquote>
+
+<p align="center">
+<img src="/assets/images/virtualred/04-virtual.png" />
+</p>
+
+<p>Una vez en el área de trabajo vemos una interfaz configurada por defecto, sin embargo, vamos a crear una desde cero y será la que vamos a utilizar.</p>
+<blockquote>
+
+  <ul>
+    <li>Clic en <code class="language-plaintext highlighter-rouge">Crear</code></li>
+  </ul>
+
+</blockquote>
+
+<p>Automáticamente se crea una nueva interfaz.</p>
+
+<p><strong>Nota:</strong> <em>Es importante aclarar que necesitas permisos de administrador para crear la interfaz, por lo que te va a pedir una confirmación al momento de crearla.</em></p>
+
+<p align="center">
+<img src="/assets/images/virtualred/05-virtual.png" />
+</p>
+
+<h2 id="configuración-de-interfaz">CONFIGURACIÓN DE INTERFAZ</h2>
+<blockquote>
+
+  <ul>
+    <li>Clic en <code class="language-plaintext highlighter-rouge">Propiedades</code></li>
+    <li>Clic en <code class="language-plaintext highlighter-rouge">Interfaz</code></li>
+    <li>Clic en <code class="language-plaintext highlighter-rouge">Adaptador</code></li>
+    <li>Clic en <code class="language-plaintext highlighter-rouge">Configurar adaptador manualmente</code></li>
+    <li>Configurar <code class="language-plaintext highlighter-rouge">Red</code> y <code class="language-plaintext highlighter-rouge">Mascara</code></li>
+    <li>Clic en <code class="language-plaintext highlighter-rouge">Aplicar</code></li>
+  </ul>
+
+</blockquote>
+
+<p align="center">
+<img src="/assets/images/virtualred/06-virtual.png" />
+</p>
+
+<p><strong>Nota:</strong> <em>Es importante aclarar que necesitas permisos de administrador para configurar la interfaz, por lo que te va a pedir una confirmación al momento de configurar.</em></p>
+
+<h2 id="configuración-interfaz-servidor-dhcp">CONFIGURACIÓN INTERFAZ SERVIDOR DHCP</h2>
+<blockquote>
+
+  <ul>
+    <li>Clic en <code class="language-plaintext highlighter-rouge">Interfaz</code></li>
+    <li>Clic en <code class="language-plaintext highlighter-rouge">Servidor DHCP</code></li>
+    <li>Clic en <code class="language-plaintext highlighter-rouge">Habilitar servidor</code></li>
+    <li>Modificar <code class="language-plaintext highlighter-rouge">Red</code> y <code class="language-plaintext highlighter-rouge">Mascara</code> (opcional)</li>
+    <li>Clic en <code class="language-plaintext highlighter-rouge">Aplicar</code></li>
+  </ul>
+
+</blockquote>
+
+<p align="center">
+<img src="/assets/images/virtualred/07-virtual.png" />
+</p>
+
+<h2 id="configuración-máquina-1">CONFIGURACIÓN MÁQUINA 1</h2>
+
+<p>Nuestra primera máquina tendrá conexión directa con la interfaz física, por lo tanto, solo requerimos de un adaptador de red en adaptador puente.</p>
+<blockquote>
+
+  <ul>
+    <li>Clic en la <code class="language-plaintext highlighter-rouge">máquina</code></li>
+    <li>Clic en <code class="language-plaintext highlighter-rouge">Configuración</code></li>
+    <li>Clic en <code class="language-plaintext highlighter-rouge">Red</code></li>
+    <li>Clic en <code class="language-plaintext highlighter-rouge">Adaptador 1</code></li>
+    <li>Clic en <code class="language-plaintext highlighter-rouge">Enable Network Adapter</code></li>
+    <li>Escoger <code class="language-plaintext highlighter-rouge">Adaptador puente</code></li>
+    <li>Escoger <code class="language-plaintext highlighter-rouge">Interfaz</code> física</li>
+    <li>Clic en <code class="language-plaintext highlighter-rouge">Aceptar</code></li>
+  </ul>
+
+</blockquote>
+
+<p align="center">
+<img src="/assets/images/virtualred/08-virtual.png" />
+</p>
+
+<h2 id="configuración-máquina-2">CONFIGURACIÓN MÁQUINA 2</h2>
+
+<p>Nuestra segunda máquina tendrá la misma conexión con adaptador puente y otro adaptador de red para la nueva interfaz configurada anteriormente.</p>
+
+<h3 id="configuración-interfaz-puente">CONFIGURACIÓN INTERFAZ PUENTE</h3>
+<blockquote>
+
+  <ul>
+    <li>Clic en la <code class="language-plaintext highlighter-rouge">máquina</code></li>
+    <li>Clic en <code class="language-plaintext highlighter-rouge">Configuración</code></li>
+    <li>Clic en <code class="language-plaintext highlighter-rouge">Red</code></li>
+    <li>Clic en <code class="language-plaintext highlighter-rouge">Adaptador 1</code></li>
+    <li>Clic en <code class="language-plaintext highlighter-rouge">Enable Network Adapter</code></li>
+    <li>Escoger <code class="language-plaintext highlighter-rouge">Adaptador puente</code></li>
+    <li>Escoger <code class="language-plaintext highlighter-rouge">Interfaz</code> física</li>
+    <li>Clic en <code class="language-plaintext highlighter-rouge">Aceptar</code></li>
+  </ul>
+
+</blockquote>
+
+<p align="center">
+<img src="/assets/images/virtualred/09-virtual.png" />
+</p>
+
+<h3 id="configuración-interfaz-creada">CONFIGURACIÓN INTERFAZ CREADA</h3>
+<blockquote>
+
+  <ul>
+    <li>Clic en la <code class="language-plaintext highlighter-rouge">máquina</code></li>
+    <li>Clic en <code class="language-plaintext highlighter-rouge">Configuración</code></li>
+    <li>Clic en <code class="language-plaintext highlighter-rouge">Red</code></li>
+    <li>Clic en <code class="language-plaintext highlighter-rouge">Adaptador 2</code></li>
+    <li>Clic en <code class="language-plaintext highlighter-rouge">Enable Network Adapter</code></li>
+    <li>Escoger <code class="language-plaintext highlighter-rouge">Adaptador sólo-anfitrión</code></li>
+    <li>Escoger <code class="language-plaintext highlighter-rouge">Interfaz creada</code></li>
+    <li>Clic en <code class="language-plaintext highlighter-rouge">Aceptar</code></li>
+  </ul>
+
+</blockquote>
+
+<p align="center">
+<img src="/assets/images/virtualred/10-virtual.png" />
+</p>
+
+<h2 id="configuración-máquina-3">CONFIGURACIÓN MÁQUINA 3</h2>
+
+<p>Nuestra tercera máquina tendrá conexión directa con la interfaz creada, por lo tanto, solo requerimos de un adaptador de red en adaptador sólo-anfitrión.</p>
+<blockquote>
+
+  <ul>
+    <li>Clic en la <code class="language-plaintext highlighter-rouge">máquina</code></li>
+    <li>Clic en <code class="language-plaintext highlighter-rouge">Configuración</code></li>
+    <li>Clic en <code class="language-plaintext highlighter-rouge">Red</code></li>
+    <li>Clic en <code class="language-plaintext highlighter-rouge">Adaptador 2</code></li>
+    <li>Clic en <code class="language-plaintext highlighter-rouge">Enable Network Adapter</code></li>
+    <li>Escoger <code class="language-plaintext highlighter-rouge">Adaptador sólo-anfitrión</code></li>
+    <li>Escoger <code class="language-plaintext highlighter-rouge">Interfaz creada</code></li>
+    <li>Clic en <code class="language-plaintext highlighter-rouge">Aceptar</code></li>
+  </ul>
+
+</blockquote>
+
+<p align="center">
+<img src="/assets/images/virtualred/11-virtual.png" />
+</p>
+
+<h2 id="validación-de-conexiones">VALIDACIÓN DE CONEXIONES</h2>
+
+<p>Ya tenemos el entorno configurado, ahora vamos a validar si nuestras máquinas tienen la configuración de red correcta.</p>
+
+<p align="center">
+<img src="/assets/images/virtualred/12-virtual.png" />
+</p>
+
+<p>Como podemos ver, la primera máquina tiene una dirección asociada a la primera red únicamente, la segunda máquina tiene esta misma red y adicionalmente la red nueva creada a través de la interfaz, por último, la tercera máquina se encuentra asociada a la segunda red interna, también generada por la nueva interfaz.</p>
+
+<h2 id="prueba-de-conectividad">PRUEBA DE CONECTIVIDAD</h2>
+
+<p>Nuestra configuración ha sido exitosa, tenemos que hacer pruebas de conectividad para corroborar que nuestras redes sean operativas, debemos tener en cuenta lo siguiente:</p>
+<blockquote>
+
+  <ul>
+    <li>La <code class="language-plaintext highlighter-rouge">máquina 1</code> solo puede tener conectividad por el mismo segmento de la <code class="language-plaintext highlighter-rouge">máquina 2</code></li>
+    <li>La <code class="language-plaintext highlighter-rouge">máquina 2</code> tiene conectividad por el mismo segmento de las <code class="language-plaintext highlighter-rouge">máquinas 1 y 2</code></li>
+    <li>La <code class="language-plaintext highlighter-rouge">máquina 3</code> solo puede tener conectividad por el mismo segmento de la <code class="language-plaintext highlighter-rouge">máquina 2</code></li>
+  </ul>
+
+</blockquote>
+
+<p align="center">
+<img src="/assets/images/virtualred/13-virtual.png" />
+</p>
+
+<p>Con esta configuración vamos a tener la posibilidad de crear nuevos entornos para practicar nuestros ejercicios de hacking orientados al pivoting, tema bastante importante para certificaciones como la <code class="language-plaintext highlighter-rouge">eCPPT</code>, crear laboratorios propios nos da una ventaja en no depender de otras infraestructuras para practicar, así que esperen una corta serie pero de mucho aprendizaje en los próximos posts.</p>
+
+<p><em>¡Que tengan un buen día en el planeta donde se encuentren!</em></p>
+
+<p><strong>Nos vemos en otro bit.</strong></p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#configuraciones" class="page__taxonomy-item" rel="tag">Configuraciones</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#virtualbox" class="page__taxonomy-item" rel="tag">Virtualbox</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#pivoting" class="page__taxonomy-item" rel="tag">Pivoting</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Fecha:</strong> <time datetime="2023-03-29T00:00:00-05:00">March 29, 2023</time></p>
+        
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/support/" class="pagination--pager" title="HTB support AD
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+</div>
+
+    </div>
+
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+<!--
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+-->
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2023 Bast1ant1c</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script data-search-pseudo-elements defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
+  
+
+
+
+
+
+
+
+  </body>
+</html>

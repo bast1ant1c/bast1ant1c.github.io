@@ -18,7 +18,7 @@ tags:
 <p align="center">
 <img src="/assets/images/virtualred/02-tarjeta.png">
 </p>
-
+ 
 
 ¡Hola! En esta ocasión nos adentraremos en el mundo de la virtualización y configuración de entornos de red en `VirtualBox`, una herramienta muy útil para crear laboratorios de pruebas y ejercicios de pivoting como los que vamos a utilizar en próximos posts.
 
