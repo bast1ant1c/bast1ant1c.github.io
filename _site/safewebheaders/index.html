@@ -1,0 +1,679 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.15.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>SafeWebHeaders.py - Bast1ant1c</title>
+<meta name="description" content="Vamos a conocer la utilidad SafeWebHeaders.py de The Game 008 para auditar cabeceras web. ¡Let’s hack!">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Bast1ant1c">
+<meta property="og:title" content="SafeWebHeaders.py">
+<meta property="og:url" content="http://localhost:4000/safewebheaders/">
+
+
+  <meta property="og:description" content="Vamos a conocer la utilidad SafeWebHeaders.py de The Game 008 para auditar cabeceras web. ¡Let’s hack!">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/images/safewebheaders/01-inicio.png">
+
+
+
+
+
+  <meta property="article:published_time" content="2023-04-12T00:00:00-05:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/safewebheaders/">
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Bast1ant1c",
+      "url": "http://localhost:4000/",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Bast1ant1c Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE ]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+<script src="/assets/js/codeblock.js"></script>
+  <body class="layout--single wide">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+          <a class="site-logo" href="/"><img src="/assets/images/masthead.png" alt=""></a>
+                
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about/" >About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/" >Blog</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/" >Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/" >Tags</a>
+            </li><li class="masthead__menu-item">
+              <a href="/halloffame/" >Hall of Fame</a>
+            </li><li class="masthead__menu-item">
+              <a href="/buscador/" >Search</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+    
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="http://localhost:4000//" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        <li class="current">SafeWebHeaders.py</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+
+      
+        <img src="/assets/images/avatar.png" alt="BAST1ANT1C" itemprop="image" style="padding:25px;border:5px solid #434040;max-width:130px;border-radius:10%;">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">BAST1ANT1C</h3>
+    
+    
+      <p class="author__bio" itemprop="description">
+        Ethical hacker | eJPT | eCPPT
+      </p>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://www.linkedin.com/in/bast1ant1c" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn
+          </a>
+        </li>
+      
+
+      
+
+      
+        <li>
+          <a href="https://github.com/bast1ant1c" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub
+          </a>
+        </li>
+      
+      
+      
+        <li>
+          <a href="https://instagram.com/bast1ant1c" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-instagram" aria-hidden="true"></i> Instagram
+          </a>
+        </li>
+      
+
+      
+        <li>
+          <a href="https://tiktok.com/@bast1ant1c" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-tiktok" aria-hidden="true"></i> TikTok
+          </a>
+        </li>
+      
+      
+      
+
+      
+
+      
+
+      
+
+
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="SafeWebHeaders.py">
+    <meta itemprop="description" content="Vamos a conocer la utilidad SafeWebHeaders.py de The Game 008 para auditar cabeceras web. ¡Let’s hack!">
+    <meta itemprop="datePublished" content="April 12, 2023">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">SafeWebHeaders.py
+</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p class="page__meta">
+          
+            <i class="fa fa-fw fa-calendar" aria-hidden="true"></i> <time datetime="2023-04-12T00:00:00-05:00">April 12, 2023 </time>&emsp;
+          
+          
+        </p>
+        <p style="text-align: center;">
+<img src="/assets/images/safewebheaders/02-tarjeta.png" />
+</p>
+
+<p>¡Hola! En esta ocasión vamos a conocer la utilidad <a href="https://raw.githubusercontent.com/Thegame008/Secure-Headers-OWASP/main/SafeWebHeaders.py">SafeWebHeaders.py</a> creada por <a href="https://github.com/Thegame008/">The Game 008</a>, para auditar las cabeceras de una pagina web basada en las recomendaciones de <code class="language-plaintext highlighter-rouge">OWASP</code> (Open Web Application Security Project).</p>
+
+<h2 id="cabeceras-web">CABECERAS WEB</h2>
+
+<p>Las cabeceras web, son parte de los datos que se envían desde un servidor web al cliente en una respuesta <code class="language-plaintext highlighter-rouge">HTTP</code>. Estas cabeceras <strong>pueden</strong> contienen información adicional sobre la respuesta, incluyendo información sobre el servidor, la caché, el tipo de contenido, la codificación de caracteres, entre otros. Estas son indispensables porque permiten que los navegadores web y otros clientes logren procesar la respuesta del servidor y representar la información al usuario final.</p>
+
+<p>Algunos de los riesgos que se pueden presentar a nivel de seguridad en cabeceras son las siguientes:</p>
+
+<ul>
+  <li>Divulgación de información</li>
+  <li>Inyecciones de código</li>
+  <li>Secuestros de sesiones o clicks (hijacking)</li>
+  <li>Exposición de información confidencial</li>
+</ul>
+
+<p style="text-align: center;">
+<img src="/assets/images/safewebheaders/03-header.png" />
+</p>
+
+<h2 id="owasp">OWASP</h2>
+
+<p><strong>Open Web Application Security Project</strong> es una organización sin ánimo de lucro con el objetivo de mejorar la seguridad del software y las aplicaciones web. Gracias a esto se han podido identificar los riesgos de seguridad más críticos y comunes a nivel <code class="language-plaintext highlighter-rouge">web</code> y han proporcionado recursos y recomendaciones para ayudar a las comunidades a proteger sus aplicativos y páginas web.</p>
+
+<p style="text-align: center;">
+<img src="/assets/images/safewebheaders/04-header.png" />
+</p>
+
+<p>OWASP tiene una lista de los <a href="https://owasp.org/www-project-top-ten/">diez riesgos de seguridad más críticos en aplicaciones web</a>, conocida como <code class="language-plaintext highlighter-rouge">OWASP Top Ten</code>. Entre este top se encuentra la falta de protección adecuada en las cabeceras web.</p>
+
+<p>A continuación, las <strong>recomendaciones</strong> proporcionadas por OWASP para mejorar la seguridad de las aplicaciones web:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Strict-Transport-Security (HSTS)</code> que obliga al navegador a utilizar solo HTTPS para las solicitudes futuras a la misma dirección web</li>
+  <li><code class="language-plaintext highlighter-rouge">X-Frame-Options</code> que evita la incrustación no deseada de páginas web en un marco (frame) y ayuda a prevenir el clickjacking</li>
+  <li><code class="language-plaintext highlighter-rouge">X-XSS-Protection</code> que activa una protección integrada contra ataques XSS (Cross-Site Scripting) en los navegadores modernos</li>
+  <li><code class="language-plaintext highlighter-rouge">X-Content-Type-Options</code> que evita la interpretación automática del contenido cargado para prevenir ataques MIME sniffing</li>
+  <li><code class="language-plaintext highlighter-rouge">Content-Security-Policy</code> que limita los recursos que un sitio web puede cargar en su página, lo que ayuda a prevenir los ataques de inyección de código</li>
+</ul>
+
+<h2 id="instalar-safewebheaderspy">INSTALAR SafeWebHeaders.py</h2>
+
+<p>En el <a href="https://github.com/Thegame008/Secure-Headers-OWASP">repositorio</a> puedes encontrar el paso a paso de como instalar la herramienta, sin embargo, acá tambien te mostramos el proceso.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/Thegame008/Secure-Headers-OWASP.git
+<span class="nb">cd </span>Secure-Headers-OWASP
+python3 SafeWebHeaders.py
+</code></pre></div></div>
+
+<h2 id="testingheaderspy">testingHeaders.py</h2>
+
+<p>Hemos tomado el tiempo de hacer una prueba de concepto que puede ayudarles a validar cabeceras en un entorno local, por eso vamos a compartir el script <code class="language-plaintext highlighter-rouge">testingHeaders.py</code> desarrollado en <code class="language-plaintext highlighter-rouge">python</code>, para que puedan hacerlo en sus entornos.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># -*- coding: utf-8 -*-</span>
+
+import sys
+import signal
+from http.server import BaseHTTPRequestHandler, HTTPServer
+from colorama import Fore, Style
+from tqdm import tqdm
+
+
+class MyHandler<span class="o">(</span>BaseHTTPRequestHandler<span class="o">)</span>:
+    
+    def do_GET<span class="o">(</span>self<span class="o">)</span>:
+
+        <span class="c">#### !! COMENTAR ESTAS 2 LINEAS PARA VER DIVULGACIÓN DE SOFTWARE !! ###</span>
+        self.server_version <span class="o">=</span> <span class="s1">''</span>
+        self.sys_version <span class="o">=</span> <span class="s1">''</span>
+
+        <span class="c"># Obtiene las cabeceras personalizadas</span>
+
+        <span class="c">#### !! MODIFICAR CABECERAS DE SEGURIDAD SI ES NECESARIO !! ####</span>
+        headers <span class="o">=</span> <span class="o">{</span>
+            <span class="s1">'Strict-Transport-Security'</span>: <span class="s1">'max-age=63072000; includeSubDomains; preload'</span>,
+            <span class="s1">'X-Frame-Options'</span>: <span class="s1">'SAMEORIGIN'</span>,
+            <span class="s1">'X-XSS-Protection'</span>: <span class="s1">'1; mode=block'</span>,
+            <span class="s1">'X-Content-Type-Options'</span>: <span class="s1">'nosniff'</span>,
+            <span class="s1">'Content-Security-Policy'</span>: <span class="s2">"default-src 'self'; base-uri 'self'; img-src 'self' data:; object-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'"</span>
+        <span class="o">}</span>
+
+        <span class="c"># Imprime las cabeceras actuales</span>
+        print<span class="o">(</span><span class="s1">''</span><span class="o">)</span>
+        print<span class="o">(</span>Fore.YELLOW + <span class="s1">'[i] Cabeceras actuales:'</span> + Style.RESET_ALL<span class="o">)</span>
+        print<span class="o">(</span><span class="s1">''</span><span class="o">)</span>
+        <span class="k">for </span>header, value <span class="k">in </span>headers.items<span class="o">()</span>:
+            print<span class="o">(</span>f<span class="s1">'{Fore.CYAN}{header}:{Style.RESET_ALL} {value}'</span><span class="o">)</span>
+        print<span class="o">(</span><span class="s1">''</span><span class="o">)</span>
+
+        <span class="c"># Envía las cabeceras personalizadas</span>
+        self.send_response<span class="o">(</span>200<span class="o">)</span>
+        self.send_header<span class="o">(</span><span class="s1">'Content-type'</span>, <span class="s1">'text/html'</span><span class="o">)</span>
+        <span class="k">for </span>header, value <span class="k">in </span>headers.items<span class="o">()</span>:
+            self.send_header<span class="o">(</span>header, value<span class="o">)</span>
+        self.end_headers<span class="o">()</span>
+
+        html <span class="o">=</span> <span class="s2">"""
+        &lt;html&gt;
+&lt;head&gt;
+	&lt;meta charset="</span>UTF-8<span class="s2">"&gt;
+	&lt;title&gt;Testing Headers PoC&lt;/title&gt;
+	&lt;style&gt;
+		body {
+			background-color: #222;
+            color: #eee;
+			margin: 0;
+			padding: 0;
+		}
+		h1 {
+			text-align: center;
+			font-family: Arial, sans-serif;
+			color: #fff;
+			background-color: #333;
+			margin: 0;
+			padding: 20px;
+		}
+		.container {
+            background-color: #333;
+            color: #eee;
+			width: 80%;
+			margin: auto;
+			border: 1px solid #ccc;
+			padding: 20px;
+			box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
+			margin-top: 50px;
+		}
+		p {
+			font-family: Arial, sans-serif;
+			font-size: 16px;
+			line-height: 1.5;
+			color: #eee;
+			margin: 0;
+			padding: 0;
+		}
+		footer {
+			background-color: #333;
+            color: #eee;
+			padding: 10px;
+			text-align: center;
+			font-size: 12px;
+			font-family: Arial, sans-serif;
+			margin-top: 50px;
+		}
+		footer a {
+			color: #fff;
+		}
+	&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;h1&gt;Testing Headers PoC&lt;/h1&gt;
+	&lt;div class="</span>container<span class="s2">"&gt;
+		&lt;p&gt;¡Bienvenido al servidor HTTP de prueba!&lt;/p&gt;
+		&lt;p&gt;Esta página es una demostración de cómo se pueden enviar cabeceras personalizadas desde un servidor HTTP Python.&lt;/p&gt;
+		&lt;p&gt;Puedes personalizar el contenido de esta página como desees.&lt;/p&gt;
+	&lt;/div&gt;
+	&lt;footer&gt;
+		Powered by bast1ant1c &amp;copy; 2023
+	&lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+        """</span>
+        self.wfile.write<span class="o">(</span>bytes<span class="o">(</span>html, <span class="s2">"utf-8"</span><span class="o">))</span>
+
+
+
+def run<span class="o">(</span>ip, port<span class="o">)</span>:
+    <span class="c"># Especifica el puerto y la dirección del servidor</span>
+    address <span class="o">=</span> <span class="o">(</span>ip, int<span class="o">(</span>port<span class="o">))</span>
+    httpd <span class="o">=</span> HTTPServer<span class="o">(</span>address, MyHandler<span class="o">)</span>
+    print<span class="o">(</span>Fore.GREEN + f<span class="s1">'[&gt;] Iniciando servidor en el puerto {port}...'</span> + Style.RESET_ALL<span class="o">)</span>
+
+    <span class="c"># Captura la señal SIGINT para salir graciosamente con Ctrl+C</span>
+    def signal_handler<span class="o">(</span>sig, frame<span class="o">)</span>:
+         print<span class="o">(</span>Fore.RED + <span class="s1">'\n[!] Saliendo ...'</span> + Style.RESET_ALL<span class="o">)</span>
+         sys.exit<span class="o">(</span>0<span class="o">)</span>
+
+    signal.signal<span class="o">(</span>signal.SIGINT, signal_handler<span class="o">)</span>
+    httpd.serve_forever<span class="o">()</span>
+
+<span class="k">if </span>__name__ <span class="o">==</span> <span class="s1">'__main__'</span>:
+    <span class="k">if </span>len<span class="o">(</span>sys.argv<span class="o">)</span> &lt; 3:
+        print<span class="o">(</span>Fore.RED + <span class="s1">'\n[x] Se requiere la dirección IP y el puerto como argumentos\n'</span> + Style.RESET_ALL<span class="o">)</span>
+        sys.exit<span class="o">(</span>1<span class="o">)</span>
+    ip <span class="o">=</span> sys.argv[1]
+    port <span class="o">=</span> sys.argv[2]
+    run<span class="o">(</span>ip, port<span class="o">)</span>
+</code></pre></div></div>
+
+<p>De esta manera solo tendras que ejecutar el script con tu <strong>dirección IP</strong> y el <strong>puerto</strong> de preferencia para activar un servidor web con cabeceras de seguridad implementadas, para que puedas auditarlo con <code class="language-plaintext highlighter-rouge">SafeWebHeaders.py</code>.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3 testingHeaders.py &lt;IP&gt; &lt;PUERTO&gt;
+</code></pre></div></div>
+
+<p style="text-align: center;">
+<img src="/assets/images/safewebheaders/05-header.png" />
+</p>
+
+<h2 id="safewebheaderspy--testingheaderspy-sin-cabeceras">SafeWebHeaders.py + testingHeaders.py (SIN CABECERAS)</h2>
+
+<p>Se ha modificado <code class="language-plaintext highlighter-rouge">testingHeaders.py</code> para que no tenga cabeceras de seguridad implementadas, luego auditamos nuestra web de prueba con <code class="language-plaintext highlighter-rouge">SafeWebHeaders.py</code> mostrando las cabeceras que deberían estar implementadas, pero no se evidencian en el servidor.</p>
+
+<p style="text-align: center;">
+<img src="/assets/images/safewebheaders/06-header.png" />
+</p>
+
+<h2 id="safewebheaderspy--testingheaderspy-cabeceras-parcialmente-implementadas">SafeWebHeaders.py + testingHeaders.py (CABECERAS PARCIALMENTE IMPLEMENTADAS)</h2>
+
+<p>Se ha modificado <code class="language-plaintext highlighter-rouge">testingHeaders.py</code> para que tenga algunas cabeceras de seguridad implementadas y otras con configuración diferente, luego auditamos nuestra web de prueba con <code class="language-plaintext highlighter-rouge">SafeWebHeaders.py</code> mostrando las cabeceras correctas, las de configuración incorrecta y las cabeceras faltantes en el servidor.</p>
+
+<p style="text-align: center;">
+<img src="/assets/images/safewebheaders/07-header.png" />
+</p>
+
+<h2 id="safewebheaderspy--testingheaderspy-cabeceras-totalmente-implementadas">SafeWebHeaders.py + testingHeaders.py (CABECERAS TOTALMENTE IMPLEMENTADAS)</h2>
+
+<p>Se ha modificado <code class="language-plaintext highlighter-rouge">testingHeaders.py</code> para que tenga todas las cabeceras de seguridad implementadas, luego auditamos nuestra web de prueba con <code class="language-plaintext highlighter-rouge">SafeWebHeaders.py</code> mostrando las cabeceras correctas en el servidor.</p>
+
+<p style="text-align: center;">
+<img src="/assets/images/safewebheaders/08-header.png" />
+</p>
+
+<p>Este es el review de la herramienta <code class="language-plaintext highlighter-rouge">SafeWebHeaders.py</code> del colega <a href="https://github.com/thegame008">The Game 008</a>, los invito a que lo sigan, a que miren sus repositorios y apoyen sus herramientas con una <strong>estrella</strong> y también es una invitación para animarlos a hacer nuevas herramientas, algo que puede ser útil para ustedes, puede ser útil para alguién más y podemos generar muy buenos repositorios en comunidad, compartir conocimiento hace que seamos mejores en nuestro campo!</p>
+
+<p style="text-align: center;">
+<img src="/assets/images/safewebheaders/09-finish.png" />
+</p>
+
+<p><em>¡Que tengan un buen día en el planeta donde se encuentren!</em></p>
+
+<p><strong>Nos vemos en otro bit.</strong></p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#python" class="page__taxonomy-item" rel="tag">Python</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#script" class="page__taxonomy-item" rel="tag">Script</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#programacion" class="page__taxonomy-item" rel="tag">Programacion</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Fecha:</strong> <time datetime="2023-04-12T00:00:00-05:00">April 12, 2023</time></p>
+        
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/virtualred/" class="pagination--pager" title="Redes virtuales
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+</div>
+
+    </div>
+
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+<!--
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+-->
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2023 Bast1ant1c</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script data-search-pseudo-elements defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
+  <script src="/assets/js/codeblock.js"></script>
+  
+
+
+
+
+
+
+
+  </body>
+</html>

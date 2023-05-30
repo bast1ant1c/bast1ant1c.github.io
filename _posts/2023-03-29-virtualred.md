@@ -15,7 +15,7 @@ tags:
   - Virtualbox
 ---
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/virtualred/02-tarjeta.png">
 </p>
  
@@ -34,7 +34,7 @@ En circunstancias normales tenemos activas máquinas virtuales en conexiones `Pu
 
 Con la nueva configuración, vamos a tener el siguiente ambiente compuesto por 2 redes internas, una por conexión `puente` (bridge) y otra por `Host Only Network Adapter` para crear redes privadas virtuales y limitar el acceso de la máquina virtual solo al host en el que se ejecuta.
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/virtualred/03-virtual.png">
 </p>
 
@@ -46,7 +46,7 @@ Con la nueva configuración, vamos a tener el siguiente ambiente compuesto por 2
 * Clic en `Red`
 >
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/virtualred/04-virtual.png">
 </p>
 
@@ -59,7 +59,7 @@ Automáticamente se crea una nueva interfaz.
 
 **Nota:** _Es importante aclarar que necesitas permisos de administrador para crear la interfaz, por lo que te va a pedir una confirmación al momento de crearla._
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/virtualred/05-virtual.png">
 </p>
 
@@ -73,7 +73,7 @@ Automáticamente se crea una nueva interfaz.
 * Clic en `Aplicar`
 >
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/virtualred/06-virtual.png">
 </p>
 
@@ -88,7 +88,7 @@ Automáticamente se crea una nueva interfaz.
 * Clic en `Aplicar`
 >
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/virtualred/07-virtual.png">
 </p>
 
@@ -106,7 +106,7 @@ Nuestra primera máquina tendrá conexión directa con la interfaz física, por 
 * Clic en `Aceptar`
 >
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/virtualred/08-virtual.png">
 </p>
 
@@ -126,7 +126,7 @@ Nuestra segunda máquina tendrá la misma conexión con adaptador puente y otro 
 * Clic en `Aceptar`
 >
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/virtualred/09-virtual.png">
 </p>
 
@@ -142,7 +142,7 @@ Nuestra segunda máquina tendrá la misma conexión con adaptador puente y otro 
 * Clic en `Aceptar`
 >
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/virtualred/10-virtual.png">
 </p>
 
@@ -160,7 +160,7 @@ Nuestra tercera máquina tendrá conexión directa con la interfaz creada, por l
 * Clic en `Aceptar`
 >
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/virtualred/11-virtual.png">
 </p>
 
@@ -168,7 +168,7 @@ Nuestra tercera máquina tendrá conexión directa con la interfaz creada, por l
 
 Ya tenemos el entorno configurado, ahora vamos a validar si nuestras máquinas tienen la configuración de red correcta.
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/virtualred/12-virtual.png">
 </p>
 
@@ -183,7 +183,7 @@ Nuestra configuración ha sido exitosa, tenemos que hacer pruebas de conectivida
 * La `máquina 3` solo puede tener conectividad por el mismo segmento de la `máquina 2`
 >
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/virtualred/13-virtual.png">
 </p>
 

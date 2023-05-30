@@ -128,4 +128,9 @@ var store = [{
         "excerpt":"¡Hola! En esta ocasión nos adentraremos en el mundo de la virtualización y configuración de entornos de red en VirtualBox, una herramienta muy útil para crear laboratorios de pruebas y ejercicios de pivoting como los que vamos a utilizar en próximos posts. ENTORNO Para este ejercicio vamos a hacer uso...","categories": ["Pivoting"],
         "tags": ["Configuraciones","Virtualbox"],
         "url": "http://localhost:4000/virtualred/",
-        "teaser":"http://localhost:4000/assets/images/virtualred/01-inicio.png"}]
+        "teaser":"http://localhost:4000/assets/images/virtualred/01-inicio.png"},{
+        "title": "SafeWebHeaders.py",
+        "excerpt":"¡Hola! En esta ocasión vamos a conocer la utilidad SafeWebHeaders.py creada por The Game 008, para auditar las cabeceras de una pagina web basada en las recomendaciones de OWASP (Open Web Application Security Project). CABECERAS WEB Las cabeceras web, son parte de los datos que se envían desde un servidor...","categories": ["Programacion"],
+        "tags": ["Python","Script"],
+        "url": "http://localhost:4000/safewebheaders/",
+        "teaser":"http://localhost:4000/assets/images/safewebheaders/01-inicio.png"}]

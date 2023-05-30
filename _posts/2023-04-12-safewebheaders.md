@@ -15,7 +15,7 @@ tags:
   - Script
 ---
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/safewebheaders/02-tarjeta.png">
 </p>
 
@@ -33,7 +33,7 @@ Algunos de los riesgos que se pueden presentar a nivel de seguridad en cabeceras
 * Secuestros de sesiones o clicks (hijacking)
 * Exposición de información confidencial
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/safewebheaders/03-header.png">
 </p>
 
@@ -41,7 +41,7 @@ Algunos de los riesgos que se pueden presentar a nivel de seguridad en cabeceras
 
 **Open Web Application Security Project** es una organización sin ánimo de lucro con el objetivo de mejorar la seguridad del software y las aplicaciones web. Gracias a esto se han podido identificar los riesgos de seguridad más críticos y comunes a nivel `web` y han proporcionado recursos y recomendaciones para ayudar a las comunidades a proteger sus aplicativos y páginas web. 
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/safewebheaders/04-header.png">
 </p>
 
@@ -211,7 +211,7 @@ De esta manera solo tendras que ejecutar el script con tu **dirección IP** y el
 python3 testingHeaders.py <IP> <PUERTO>
 ```
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/safewebheaders/05-header.png">
 </p>
 
@@ -219,7 +219,7 @@ python3 testingHeaders.py <IP> <PUERTO>
 
 Se ha modificado `testingHeaders.py` para que no tenga cabeceras de seguridad implementadas, luego auditamos nuestra web de prueba con `SafeWebHeaders.py` mostrando las cabeceras que deberían estar implementadas, pero no se evidencian en el servidor.
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/safewebheaders/06-header.png">
 </p>
 
@@ -227,7 +227,7 @@ Se ha modificado `testingHeaders.py` para que no tenga cabeceras de seguridad im
 
 Se ha modificado `testingHeaders.py` para que tenga algunas cabeceras de seguridad implementadas y otras con configuración diferente, luego auditamos nuestra web de prueba con `SafeWebHeaders.py` mostrando las cabeceras correctas, las de configuración incorrecta y las cabeceras faltantes en el servidor.
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/safewebheaders/07-header.png">
 </p>
 
@@ -235,13 +235,13 @@ Se ha modificado `testingHeaders.py` para que tenga algunas cabeceras de segurid
 
 Se ha modificado `testingHeaders.py` para que tenga todas las cabeceras de seguridad implementadas, luego auditamos nuestra web de prueba con `SafeWebHeaders.py` mostrando las cabeceras correctas en el servidor.
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/safewebheaders/08-header.png">
 </p>
 
 Este es el review de la herramienta `SafeWebHeaders.py` del colega [The Game 008](https://github.com/thegame008), los invito a que lo sigan, a que miren sus repositorios y apoyen sus herramientas con una **estrella** y también es una invitación para animarlos a hacer nuevas herramientas, algo que puede ser útil para ustedes, puede ser útil para alguién más y podemos generar muy buenos repositorios en comunidad, compartir conocimiento hace que seamos mejores en nuestro campo!
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/safewebheaders/09-finish.png">
 </p>
 

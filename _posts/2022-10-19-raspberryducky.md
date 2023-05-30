@@ -15,7 +15,7 @@ tags:
   - Ducky
 ---
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/raspberryducky/00-ducky.png">
 </p>
 
@@ -32,7 +32,7 @@ No es obligatorio hacer uso de estos modos, sin embargo, vamos a mostrar el modo
 
 Como una buena práctica, vamos a hacer uso de este modo conectando el primer pin `GP0` y el pin 3 `GND`, que evitará la inyección del payload a la misma maquina donde vamos a conectar el dispositivo, es decir, nuestra maquina local. Lo más recomendable es hacer un **puente** entre estos pines con un cable de la siguiente manera.
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/raspberryducky/01-pico.png">
 </p>
 
@@ -42,7 +42,7 @@ El modo de sigilo es utilizado para que nuestro dispositivo no se muestre como u
 
 De esta manera al conectar nuevamente la Raspberry no será generada una alerta de conectividad por USB.
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/raspberryducky/02-pico.png">
 </p>
 
@@ -50,7 +50,7 @@ De esta manera al conectar nuevamente la Raspberry no será generada una alerta 
 
 Para restaurar a modo de `fabrica` la Raspberry se debe mantener presionado el botón `BOOTSEL` de color blanco en el momento de la conexión del dispositivo a la máquina.
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/raspberryducky/03-pico.png">
 </p>
 
@@ -58,15 +58,15 @@ Para restaurar a modo de `fabrica` la Raspberry se debe mantener presionado el b
 
 Ahora que ya tenemos claros los modos de la Raspberry, vamos a conectar la Raspberry Pi Pico en modo de *fabrica*, debe mostrarse el dispositivo como `RP1-RP2`.
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/raspberryducky/04-pico.png">
 </p>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/raspberryducky/05-pico.png">
 </p>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/raspberryducky/06-pico.png">
 </p>
 
@@ -92,11 +92,11 @@ Ahora procedemos a copiar `adafruit-circuitpython-raspberry_pi_pico-es-7.3.3.uf2
 
 Lo que sucederá es que el dispositivo se va a desconectar y conectar automáticamente, con el nombre nuevo `CIRCUITPY`.
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/raspberryducky/07-pico.png">
 </p>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/raspberryducky/08-pico.png">
 </p>
 
@@ -112,13 +112,13 @@ https://github.com/adafruit/Adafruit_CircuitPython_Bundle/releases/download/2022
 
 Navegamos en la carpeta descomprimida y ubicamos las carpetas `adafruit_hid` y `asyncio`, de igual forma los archivos `adafruit_debouncer.mpy` y `adafruit_ticks.mpy` en lib, procedemos a copiar todo en la carpeta `lib` de la Raspberry `CIRCUITPY`.
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/raspberryducky/09-pico.png">
 </p>
 
 Copiamos ahora del repositorio git descargado los archivos `boot.py` y `duckyinpython.py` en la raíz de la Raspberry `CIRCUITPY`.
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/raspberryducky/10-pico.png">
 </p>
 
@@ -139,13 +139,13 @@ Procedemos a ingresar la URL `https://kbdlayout.info/kbdla` en el campo de texto
 
 Luego damos clic en `Download de zip file` y descomprimimos el archivo.
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/raspberryducky/11-pico.png">
 </p>
 
 Copiamos los archivos `keyboard_layout_win_la.py` y `keycode_win_la.py` en el directorio `lib` de la Raspberry `CIRCUITPY`.
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/raspberryducky/12-pico.png">
 </p>
 
@@ -160,7 +160,7 @@ from keyboard_layout_win_la import KeyboardLayout
 from keycode_win_la import Keycode
 ```
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/raspberryducky/13-pico.png">
 </p>
 
@@ -181,7 +181,7 @@ from keycode_win_es import Keycode
 
 Guardamos el archivo y renombramos el mismo por `code.py`, sobrescribiendo el archivo existente.
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/raspberryducky/14-pico.png">
 </p>
 
@@ -230,7 +230,7 @@ ENTER
 
 Finalmente desconectamos la Raspberry y ya está lista para el uso que deseamos, al conectarla en un dispositivo siempre y cuando todo este correcto, en este caso obtenemos la información de un dispositivo almacenado en nuestro dispositivo.
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/raspberryducky/15-pico.png">
 </p>
 
@@ -242,7 +242,7 @@ Debes tener en cuenta que en el momento en que tengas el script configurado en e
 
 ¡Hemos logrado nuestra primera rubber ducky con Raspberry en el blog!
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/raspberryducky/16-pico.png">
 </p>
 

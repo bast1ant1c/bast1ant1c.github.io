@@ -106,6 +106,7 @@
 
   </head>
 
+<script src="/assets/js/codeblock.js"></script>
   <body class="layout--single wide">
 
     <!--[if lt IE 9]>
@@ -201,7 +202,7 @@
     
     
       <p class="author__bio" itemprop="description">
-        Ethical hacker | eJPT
+        Ethical hacker | eJPT | eCPPT
       </p>
     
   </div>
@@ -327,7 +328,7 @@
           
           
         </p>
-        <p align="center">
+        <p style="text-align: center;">
 <img src="/assets/images/devel/02-tarjeta.png" />
 </p>
 
@@ -412,13 +413,13 @@ ftp&gt; <span class="nb">dir
 
 <p>Procedemos a revisar la página web por el puerto <code class="language-plaintext highlighter-rouge">80</code>, obteniendo una página por defecto de un servidor <code class="language-plaintext highlighter-rouge">IIS</code>.</p>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/devel/03-page.png" />
 </p>
 
 <p>Inspeccionando el contenido podemos ver que la imagen se denomina como <code class="language-plaintext highlighter-rouge">welcome.png</code>, recurso que vimos anteriormente en el reconocimiento ftp.</p>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/devel/04-page2.png" />
 </p>
 
@@ -455,7 +456,7 @@ ftp&gt; put console.aspx
 
 <p>Tenemos nuestra webshell en la máquina y lo podemos comprobar al ingresar al recurso en el navegador <code class="language-plaintext highlighter-rouge">http://10.10.10.5/console.aspx</code></p>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/devel/05-page3.png" />
 </p>
 
@@ -476,7 +477,7 @@ ftp&gt; put console.aspx
 
 <p>Finalmente obtenemos acceso a una shell de la máquina victima con el usuario <code class="language-plaintext highlighter-rouge">iis apppool\web</code>.</p>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/devel/06-page4.png" />  
 </p>
 
@@ -512,7 +513,7 @@ ftp&gt; put reverseShell.aspx
 
 <p>En el navegador vamos a la ruta <code class="language-plaintext highlighter-rouge">http://10.10.10.5/reverseShell.aspx</code> y logramos tener acceso por otra vía a la máquina víctima.</p>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/devel/07-page5.png" />  
 </p>
 
@@ -557,7 +558,7 @@ rlwrap nc <span class="nt">-lvnp</span> <span class="nv">$2</span> 2&gt;/dev/nul
 <span class="k">fi</span>
 </code></pre></div></div>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/devel/08-page6.png" />  
 </p>
 
@@ -613,7 +614,7 @@ echo.%root:~0,10%
 
 <p>¡Hemos logrado completar la máquina <code class="language-plaintext highlighter-rouge">devel</code> de HackTheBox!</p>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/devel/09-finish.png" />
 </p>
 
@@ -726,6 +727,7 @@ echo.%root:~0,10%
     
   <script src="/assets/js/main.min.js"></script>
   <script data-search-pseudo-elements defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
+  <script src="/assets/js/codeblock.js"></script>
   
 
 

@@ -2,6 +2,65 @@
 # Only the main Sass file needs front matter (the dashes are enough)
 ---
 
+.page__content p{margin:0 0 1.3em;text-align:justify}; //Justificar texto posts
+
+pre.highlight {
+    padding: 8px 12px;
+    position: relative;
+
+    border-bottom: 15px solid #222;
+    border-radius: 4px;
+
+    // override skeleton styles
+    > code {
+      border: 0;
+      overflow-x: auto;
+      padding-right: 0;
+      padding-left: 0;
+    }
+  
+    &.highlight {
+      border-left: 15px solid #35383c;
+      color: #c1c2c3;
+      overflow: auto;
+      white-space: pre;
+      word-wrap: normal;
+  
+      &,code {
+        background-color: #222;
+        font-size: 14px;
+      }
+    }
+  
+    &:active,
+    &:focus,
+    &:hover {
+      background: rgba(0, 0, 0, 0.7);
+      opacity: 1;
+    }
+
+  } 
+
+.copy-button  {
+  background-color: transparent;      
+  color: #c1c2c3;
+  border: none;
+  padding: 3px;
+  font-size: 12px;
+  cursor: pointer;
+  float: right;
+  margin-right: 10px;
+}
+
+.copy-button:focus {
+  outline: none; /* Eliminar contorno cuando se selecciona */
+}
+
+.copied-message {
+  color: #d1135b;
+  float: right;
+}
+
 @charset "utf-8";
 
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin

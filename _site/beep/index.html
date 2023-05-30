@@ -106,6 +106,7 @@
 
   </head>
 
+<script src="/assets/js/codeblock.js"></script>
   <body class="layout--single wide">
 
     <!--[if lt IE 9]>
@@ -201,7 +202,7 @@
     
     
       <p class="author__bio" itemprop="description">
-        Ethical hacker | eJPT
+        Ethical hacker | eJPT | eCPPT
       </p>
     
   </div>
@@ -327,7 +328,7 @@
           
           
         </p>
-        <p align="center">
+        <p style="text-align: center;">
 <img src="/assets/images/beep/02-tarjeta.png" />
 </p>
 
@@ -447,7 +448,7 @@ http://10.10.10.7 <span class="o">[</span>302 Found] Apache[2.2.3], Country[RESE
 
 <p>Inspeccionando las peticiones podemos ver un panel de login con el servicio <code class="language-plaintext highlighter-rouge">elastix</code>.</p>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/beep/03-page.png" />
 </p>
 
@@ -491,7 +492,7 @@ Elastix 2.2.0 - <span class="s1">'graph.php'</span> Local File Inclusion | php/w
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>https://10.10.10.7/vtigercrm/graph.php?current_language<span class="o">=</span>../../../../../../../..//etc/amportal.conf%00&amp;module<span class="o">=</span>Accounts&amp;action
 </code></pre></div></div>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/beep/04-page.png" />
 </p>
 
@@ -527,13 +528,13 @@ root
 
 <p>Logramos un acceso a un nuevo portal, por lo que vamos a probar las credenciales obtenidas, teniendo total capacidad de navegar en el servicio web.</p>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/beep/05-page.png" />
 </p>
 
 <p>Realizamos la búsqueda de posibles vías de explotación en el portal, logrando ingresar a los detalles de la organización.</p>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/beep/06-page.png" /> 
 </p>
 
@@ -560,7 +561,7 @@ root
 
 <p>Ingresamos al servicio alojado en el puerto <code class="language-plaintext highlighter-rouge">10000</code> y automáticamente detectamos una extensión <code class="language-plaintext highlighter-rouge">CGI</code>, lo que presuntamente puede ocasionar un ataque por <code class="language-plaintext highlighter-rouge">shellshock</code>, en esta ocasión la contraseña funcionó con el usuario <code class="language-plaintext highlighter-rouge">root</code> así como sucedió en la intrusión por <code class="language-plaintext highlighter-rouge">SSH</code>, logrando un mayor grado de enumeración de la máquina víctima.</p>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/beep/07-page.png" />   
 </p>
 
@@ -714,7 +715,7 @@ find / <span class="nt">-name</span> root.txt 2&gt;/dev/null | xargs <span class
 
 <p>¡Hemos logrado completar la máquina <code class="language-plaintext highlighter-rouge">beep</code> de HackTheBox!</p>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/beep/08-finish.png" />
 </p>
 
@@ -827,6 +828,7 @@ find / <span class="nt">-name</span> root.txt 2&gt;/dev/null | xargs <span class
     
   <script src="/assets/js/main.min.js"></script>
   <script data-search-pseudo-elements defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
+  <script src="/assets/js/codeblock.js"></script>
   
 
 

@@ -16,7 +16,7 @@ tags:
   - Active Directory
 ---
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/timelapse/02-tarjeta.png">
 </p>
 
@@ -520,7 +520,7 @@ Lo único que nos queda es leer las banderas de user y root. Pueden ver la flag 
 
 ¡Hemos logrado completar la máquina `timelapse` de HackTheBox!
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/timelapse/03-finish.png">
 </p>
 

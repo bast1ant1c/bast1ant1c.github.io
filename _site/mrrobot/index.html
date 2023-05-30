@@ -106,6 +106,7 @@
 
   </head>
 
+<script src="/assets/js/codeblock.js"></script>
   <body class="layout--single wide">
 
     <!--[if lt IE 9]>
@@ -201,7 +202,7 @@
     
     
       <p class="author__bio" itemprop="description">
-        Ethical hacker | eJPT
+        Ethical hacker | eJPT | eCPPT
       </p>
     
   </div>
@@ -327,7 +328,7 @@
           
           
         </p>
-        <p align="center">
+        <p style="text-align: center;">
 <img src="/assets/images/mrrobot/00inicio.png" />
 </p>
 
@@ -386,7 +387,7 @@ PORT    STATE SERVICE  VERSION
 
 <p>Podemos identificar que el puerto <code class="language-plaintext highlighter-rouge">80</code> tiene una página web en servicio, por lo que revisamos con el explorador la página en cuestión.</p>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/mrrobot/01pagina.png" />
 </p>
 
@@ -431,13 +432,13 @@ key-1-of-3.txt
 
 <p>Vamos a explorar la ruta wp-login, la cual muestra un panel de loggeo en un gestor de contenido como lo es <strong>Wordpress</strong>.</p>
 
-<p align="center">
+<p style="text-align: center;">
   <img src="/assets/images/mrrobot/02login.png" />
  </p>
 
 <p>Vamos a realizar un ataque de fuerza bruta por la utilidad <code class="language-plaintext highlighter-rouge">hydra</code>, pero antes de esto es necesario capturar la petición con <code class="language-plaintext highlighter-rouge">burpsuite</code>, para poder obtener los campos de usuario y contraseña que usaremos en nuestro ataque de fuerza bruta.</p>
 
-<p align="center">
+<p style="text-align: center;">
   <img src="/assets/images/mrrobot/03burp.png" />
  </p>
 
@@ -447,7 +448,7 @@ key-1-of-3.txt
 <span class="o">[</span>80][http-post-form] host: 10.10.235.157   login: elliot   password: <span class="nb">test</span>
 </code></pre></div></div>
 
-<p align="center">  
+<p style="text-align: center;">  
  <img src="/assets/images/mrrobot/04hydra1.png" />    
 </p>
 
@@ -459,7 +460,7 @@ key-1-of-3.txt
 <span class="o">[</span>80][http-post-form] host: 10.10.235.157   login: elliot   password: ER28-0652
 </code></pre></div></div>
 
-<p align="center">  
+<p style="text-align: center;">  
  <img src="/assets/images/mrrobot/05hydra2.png" />     
 </p>
 
@@ -476,7 +477,7 @@ key-1-of-3.txt
   <li>Guardamos cambios.</li>
 </ul>
 
-<p align="center">    
+<p style="text-align: center;">    
  <img src="/assets/images/mrrobot/06wp1.png" />     
 </p>
 
@@ -490,7 +491,7 @@ key-1-of-3.txt
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>❯ curl <span class="nt">-s</span> <span class="s2">"http://10.10.235.157/wp-content/themes/twentyfifteen/archive.php"</span>
 </code></pre></div></div>
 
-<p align="center">  
+<p style="text-align: center;">  
  <img src="/assets/images/mrrobot/07reverse.png" />    
 </p>
 
@@ -612,7 +613,7 @@ find / <span class="nt">-name</span> key-<span class="k">*</span><span class="nt
 
 <p>¡Hemos logrado completar la maquina <code class="language-plaintext highlighter-rouge">mr. robot</code> de TryHackMe!</p>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/mrrobot/finish.png" />
 </p>
 
@@ -725,6 +726,7 @@ find / <span class="nt">-name</span> key-<span class="k">*</span><span class="nt
     
   <script src="/assets/js/main.min.js"></script>
   <script data-search-pseudo-elements defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
+  <script src="/assets/js/codeblock.js"></script>
   
 
 

