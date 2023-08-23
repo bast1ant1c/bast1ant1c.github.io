@@ -133,4 +133,9 @@ var store = [{
         "excerpt":"¡Hola! En esta ocasión vamos a conocer la utilidad SafeWebHeaders.py creada por The Game 008, para auditar las cabeceras de una pagina web basada en las recomendaciones de OWASP (Open Web Application Security Project). CABECERAS WEB Las cabeceras web, son parte de los datos que se envían desde un servidor...","categories": ["Programacion"],
         "tags": ["Python","Script"],
         "url": "http://localhost:4000/safewebheaders/",
-        "teaser":"http://localhost:4000/assets/images/safewebheaders/01-inicio.png"}]
+        "teaser":"http://localhost:4000/assets/images/safewebheaders/01-inicio.png"},{
+        "title": "eCPPT Review",
+        "excerpt":"¡Hola! Vengo a contar mi experiencia de como logré adquirir el certificado de “eLearnSecurity Certified Professional Penetration Tester” (eCPPT) He dividido en 6 secciones lo que pude identificar, para cada una de las fases de mi preparación antes, durante y después del examen. Espero le sirva a la persona que...","categories": ["Certificaciones"],
+        "tags": ["Pentesting","eLearnSecurity"],
+        "url": "http://localhost:4000/ecppt/",
+        "teaser":"http://localhost:4000/assets/images/ecppt/ecppt.png"}]

