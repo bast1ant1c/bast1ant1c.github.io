@@ -1,10 +1,10 @@
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/mkhack/prueba.png" />
 </p>
 
 <p>¡Hola!
-En esta ocasión vamos a crear la función <code class="highlighter-rouge">mkhack</code> para organizar nuestros ficheros al momento de realizar nuestras maquinas.
-Les compartiré algo sencillo, pero bastante útil, esta función la estaré utilizando en los próximos posts, por eso quiero mostrar el origen de <code class="highlighter-rouge">mkhack</code>.</p>
+En esta ocasión vamos a crear la función <code class="language-plaintext highlighter-rouge">mkhack</code> para organizar nuestros ficheros al momento de realizar nuestras maquinas.
+Les compartiré algo sencillo, pero bastante útil, esta función la estaré utilizando en los próximos posts, por eso quiero mostrar el origen de <code class="language-plaintext highlighter-rouge">mkhack</code>.</p>
 
 <h2 id="la-función">LA FUNCIÓN</h2>
 
@@ -17,26 +17,26 @@ Les compartiré algo sencillo, pero bastante útil, esta función la estaré uti
 <p>Vamos paso a paso:</p>
 
 <ul>
-  <li><code class="highlighter-rouge">mkhack</code> = Nombre de la función</li>
-  <li><code class="highlighter-rouge">mkdir</code> = Comando para crear carpetas</li>
-  <li><code class="highlighter-rouge">-p</code> = Crea un directorio principal (padre)</li>
-  <li><code class="highlighter-rouge">$1</code> = Argumento #1 (nombre del directorio principal)</li>
-  <li><code class="highlighter-rouge">/{recon,exploit}</code> = Subdirectorios (hijos)</li>
+  <li><code class="language-plaintext highlighter-rouge">mkhack</code> = Nombre de la función</li>
+  <li><code class="language-plaintext highlighter-rouge">mkdir</code> = Comando para crear carpetas</li>
+  <li><code class="language-plaintext highlighter-rouge">-p</code> = Crea un directorio principal (padre)</li>
+  <li><code class="language-plaintext highlighter-rouge">$1</code> = Argumento #1 (nombre del directorio principal)</li>
+  <li><code class="language-plaintext highlighter-rouge">/{recon,exploit}</code> = Subdirectorios (hijos)</li>
 </ul>
 
 <h2 id="como-se-utiliza">¿COMO SE UTILIZA?</h2>
 
-<p>Ya tenemos el codigo, ahora en qué lugar hay que guardar <code class="highlighter-rouge">mkhack</code> para poder utilizarlo como si fuera un <strong>ls</strong>, <strong>cd</strong>, <strong>mv</strong>, etc…</p>
+<p>Ya tenemos el codigo, ahora en qué lugar hay que guardar <code class="language-plaintext highlighter-rouge">mkhack</code> para poder utilizarlo como si fuera un <strong>ls</strong>, <strong>cd</strong>, <strong>mv</strong>, etc…</p>
 
 <p>Solo hay una pregunta para hacer. 
 ¿Cuál es nuestro actual tipo de <strong><em>shell</em></strong>?
-En mi caso es una <code class="highlighter-rouge">zsh</code>, pero podemos saber cuál es la nuestra con el siguiente comando.</p>
+En mi caso es una <code class="language-plaintext highlighter-rouge">zsh</code>, pero podemos saber cuál es la nuestra con el siguiente comando.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>❯ <span class="nb">echo</span> <span class="nv">$SHELL</span>
 /usr/bin/zsh
 </code></pre></div></div>
 
-<p>Ahora que lo sabemos vamos a editar (<strong>vim</strong>, <strong>nvim</strong>, <strong>nano</strong>, etc.) nuestro archivo de configuración de la shell, para mi caso es <code class="highlighter-rouge">.zshrc</code>.</p>
+<p>Ahora que lo sabemos vamos a editar (<strong>vim</strong>, <strong>nvim</strong>, <strong>nano</strong>, etc.) nuestro archivo de configuración de la shell, para mi caso es <code class="language-plaintext highlighter-rouge">.zshrc</code>.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>❯  <span class="nb">cd</span>
 ❯ vim .zshrc
@@ -62,10 +62,10 @@ Lo único que necesitamos en este momento es ubicarnos en donde queremos los dir
  exploit   recon
 </code></pre></div></div>
 
-<p>Hemos creado el directorio <code class="highlighter-rouge">directorioHack</code> y a su vez los subdirectorios <code class="highlighter-rouge">exploit</code> y <code class="highlighter-rouge">recon</code> para poder iniciar nuestra metodología al resolver una máquina.
+<p>Hemos creado el directorio <code class="language-plaintext highlighter-rouge">directorioHack</code> y a su vez los subdirectorios <code class="language-plaintext highlighter-rouge">exploit</code> y <code class="language-plaintext highlighter-rouge">recon</code> para poder iniciar nuestra metodología al resolver una máquina.
 ¡Hemos logrado nuestra primera función en el blog!</p>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/mkhack/01final.png" />
 </p>
 

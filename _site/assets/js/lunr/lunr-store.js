@@ -138,4 +138,9 @@ var store = [{
         "excerpt":"¡Hola! Vengo a contar mi experiencia de como logré adquirir el certificado de “eLearnSecurity Certified Professional Penetration Tester” (eCPPT) He dividido en 6 secciones lo que pude identificar, para cada una de las fases de mi preparación antes, durante y después del examen. Espero le sirva a la persona que...","categories": ["Certificaciones"],
         "tags": ["Pentesting","eLearnSecurity"],
         "url": "http://localhost:4000/ecppt/",
-        "teaser":"http://localhost:4000/assets/images/ecppt/ecppt.png"}]
+        "teaser":"http://localhost:4000/assets/images/ecppt/ecppt.png"},{
+        "title": "eWPTX Review",
+        "excerpt":"¡Hola! Vengo a contar mi experiencia de como logré adquirir el certificado de “eLearnSecurity Web Application Penetration Tester eXtreme” (eWPTX) He dividido en 6 secciones lo que pude identificar, para cada una de las fases de mi preparación antes, durante y después del examen. Espero le sirva a la persona...","categories": ["Certificaciones"],
+        "tags": ["Pentesting","eLearnSecurity"],
+        "url": "http://localhost:4000/ewptx/",
+        "teaser":"http://localhost:4000/assets/images/ewptx/ewptx.png"}]

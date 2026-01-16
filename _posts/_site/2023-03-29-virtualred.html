@@ -1,0 +1,216 @@
+<p style="text-align: center;">
+<img src="/assets/images/virtualred/02-tarjeta.png" />
+</p>
+
+<p>¡Hola! En esta ocasión nos adentraremos en el mundo de la virtualización y configuración de entornos de red en <code class="language-plaintext highlighter-rouge">VirtualBox</code>, una herramienta muy útil para crear laboratorios de pruebas y ejercicios de pivoting como los que vamos a utilizar en próximos posts.</p>
+
+<h2 id="entorno">ENTORNO</h2>
+
+<p>Para este ejercicio vamos a hacer uso de 3 máquinas virtuales, 2 Linux y 1 Windows, esto con el fin de diversificar y comprobar que la conectividad entre máquinas no será ningún problema por los entornos que nos encontremos manejando.</p>
+
+<p>En circunstancias normales tenemos activas máquinas virtuales en conexiones <code class="language-plaintext highlighter-rouge">Puente</code> (bridge) o <code class="language-plaintext highlighter-rouge">NAT</code>, entraré un poco en detalle:</p>
+<blockquote>
+
+  <ul>
+    <li><strong>Puente (bridge):</strong> Conexión de redes lógicas separadas que comparten una misma red física.</li>
+    <li><strong>NAT:</strong> Conexión de una red privada con acceso a Internet a través de una única dirección IP pública.</li>
+  </ul>
+
+</blockquote>
+
+<p>Con la nueva configuración, vamos a tener el siguiente ambiente compuesto por 2 redes internas, una por conexión <code class="language-plaintext highlighter-rouge">puente</code> (bridge) y otra por <code class="language-plaintext highlighter-rouge">Host Only Network Adapter</code> para crear redes privadas virtuales y limitar el acceso de la máquina virtual solo al host en el que se ejecuta.</p>
+
+<p style="text-align: center;">
+<img src="/assets/images/virtualred/03-virtual.png" />
+</p>
+
+<h2 id="crear-nueva-interfaz">CREAR NUEVA INTERFAZ</h2>
+<blockquote>
+
+  <ul>
+    <li>Abrir <code class="language-plaintext highlighter-rouge">VirtualBox</code></li>
+    <li>Clic en <code class="language-plaintext highlighter-rouge">herramientas</code></li>
+    <li>Clic en <code class="language-plaintext highlighter-rouge">menú</code> de herramientas</li>
+    <li>Clic en <code class="language-plaintext highlighter-rouge">Red</code></li>
+  </ul>
+
+</blockquote>
+
+<p style="text-align: center;">
+<img src="/assets/images/virtualred/04-virtual.png" />
+</p>
+
+<p>Una vez en el área de trabajo vemos una interfaz configurada por defecto, sin embargo, vamos a crear una desde cero y será la que vamos a utilizar.</p>
+<blockquote>
+
+  <ul>
+    <li>Clic en <code class="language-plaintext highlighter-rouge">Crear</code></li>
+  </ul>
+
+</blockquote>
+
+<p>Automáticamente se crea una nueva interfaz.</p>
+
+<p><strong>Nota:</strong> <em>Es importante aclarar que necesitas permisos de administrador para crear la interfaz, por lo que te va a pedir una confirmación al momento de crearla.</em></p>
+
+<p style="text-align: center;">
+<img src="/assets/images/virtualred/05-virtual.png" />
+</p>
+
+<h2 id="configuración-de-interfaz">CONFIGURACIÓN DE INTERFAZ</h2>
+<blockquote>
+
+  <ul>
+    <li>Clic en <code class="language-plaintext highlighter-rouge">Propiedades</code></li>
+    <li>Clic en <code class="language-plaintext highlighter-rouge">Interfaz</code></li>
+    <li>Clic en <code class="language-plaintext highlighter-rouge">Adaptador</code></li>
+    <li>Clic en <code class="language-plaintext highlighter-rouge">Configurar adaptador manualmente</code></li>
+    <li>Configurar <code class="language-plaintext highlighter-rouge">Red</code> y <code class="language-plaintext highlighter-rouge">Mascara</code></li>
+    <li>Clic en <code class="language-plaintext highlighter-rouge">Aplicar</code></li>
+  </ul>
+
+</blockquote>
+
+<p style="text-align: center;">
+<img src="/assets/images/virtualred/06-virtual.png" />
+</p>
+
+<p><strong>Nota:</strong> <em>Es importante aclarar que necesitas permisos de administrador para configurar la interfaz, por lo que te va a pedir una confirmación al momento de configurar.</em></p>
+
+<h2 id="configuración-interfaz-servidor-dhcp">CONFIGURACIÓN INTERFAZ SERVIDOR DHCP</h2>
+<blockquote>
+
+  <ul>
+    <li>Clic en <code class="language-plaintext highlighter-rouge">Interfaz</code></li>
+    <li>Clic en <code class="language-plaintext highlighter-rouge">Servidor DHCP</code></li>
+    <li>Clic en <code class="language-plaintext highlighter-rouge">Habilitar servidor</code></li>
+    <li>Modificar <code class="language-plaintext highlighter-rouge">Red</code> y <code class="language-plaintext highlighter-rouge">Mascara</code> (opcional)</li>
+    <li>Clic en <code class="language-plaintext highlighter-rouge">Aplicar</code></li>
+  </ul>
+
+</blockquote>
+
+<p style="text-align: center;">
+<img src="/assets/images/virtualred/07-virtual.png" />
+</p>
+
+<h2 id="configuración-máquina-1">CONFIGURACIÓN MÁQUINA 1</h2>
+
+<p>Nuestra primera máquina tendrá conexión directa con la interfaz física, por lo tanto, solo requerimos de un adaptador de red en adaptador puente.</p>
+<blockquote>
+
+  <ul>
+    <li>Clic en la <code class="language-plaintext highlighter-rouge">máquina</code></li>
+    <li>Clic en <code class="language-plaintext highlighter-rouge">Configuración</code></li>
+    <li>Clic en <code class="language-plaintext highlighter-rouge">Red</code></li>
+    <li>Clic en <code class="language-plaintext highlighter-rouge">Adaptador 1</code></li>
+    <li>Clic en <code class="language-plaintext highlighter-rouge">Enable Network Adapter</code></li>
+    <li>Escoger <code class="language-plaintext highlighter-rouge">Adaptador puente</code></li>
+    <li>Escoger <code class="language-plaintext highlighter-rouge">Interfaz</code> física</li>
+    <li>Clic en <code class="language-plaintext highlighter-rouge">Aceptar</code></li>
+  </ul>
+
+</blockquote>
+
+<p style="text-align: center;">
+<img src="/assets/images/virtualred/08-virtual.png" />
+</p>
+
+<h2 id="configuración-máquina-2">CONFIGURACIÓN MÁQUINA 2</h2>
+
+<p>Nuestra segunda máquina tendrá la misma conexión con adaptador puente y otro adaptador de red para la nueva interfaz configurada anteriormente.</p>
+
+<h3 id="configuración-interfaz-puente">CONFIGURACIÓN INTERFAZ PUENTE</h3>
+<blockquote>
+
+  <ul>
+    <li>Clic en la <code class="language-plaintext highlighter-rouge">máquina</code></li>
+    <li>Clic en <code class="language-plaintext highlighter-rouge">Configuración</code></li>
+    <li>Clic en <code class="language-plaintext highlighter-rouge">Red</code></li>
+    <li>Clic en <code class="language-plaintext highlighter-rouge">Adaptador 1</code></li>
+    <li>Clic en <code class="language-plaintext highlighter-rouge">Enable Network Adapter</code></li>
+    <li>Escoger <code class="language-plaintext highlighter-rouge">Adaptador puente</code></li>
+    <li>Escoger <code class="language-plaintext highlighter-rouge">Interfaz</code> física</li>
+    <li>Clic en <code class="language-plaintext highlighter-rouge">Aceptar</code></li>
+  </ul>
+
+</blockquote>
+
+<p style="text-align: center;">
+<img src="/assets/images/virtualred/09-virtual.png" />
+</p>
+
+<h3 id="configuración-interfaz-creada">CONFIGURACIÓN INTERFAZ CREADA</h3>
+<blockquote>
+
+  <ul>
+    <li>Clic en la <code class="language-plaintext highlighter-rouge">máquina</code></li>
+    <li>Clic en <code class="language-plaintext highlighter-rouge">Configuración</code></li>
+    <li>Clic en <code class="language-plaintext highlighter-rouge">Red</code></li>
+    <li>Clic en <code class="language-plaintext highlighter-rouge">Adaptador 2</code></li>
+    <li>Clic en <code class="language-plaintext highlighter-rouge">Enable Network Adapter</code></li>
+    <li>Escoger <code class="language-plaintext highlighter-rouge">Adaptador sólo-anfitrión</code></li>
+    <li>Escoger <code class="language-plaintext highlighter-rouge">Interfaz creada</code></li>
+    <li>Clic en <code class="language-plaintext highlighter-rouge">Aceptar</code></li>
+  </ul>
+
+</blockquote>
+
+<p style="text-align: center;">
+<img src="/assets/images/virtualred/10-virtual.png" />
+</p>
+
+<h2 id="configuración-máquina-3">CONFIGURACIÓN MÁQUINA 3</h2>
+
+<p>Nuestra tercera máquina tendrá conexión directa con la interfaz creada, por lo tanto, solo requerimos de un adaptador de red en adaptador sólo-anfitrión.</p>
+<blockquote>
+
+  <ul>
+    <li>Clic en la <code class="language-plaintext highlighter-rouge">máquina</code></li>
+    <li>Clic en <code class="language-plaintext highlighter-rouge">Configuración</code></li>
+    <li>Clic en <code class="language-plaintext highlighter-rouge">Red</code></li>
+    <li>Clic en <code class="language-plaintext highlighter-rouge">Adaptador 2</code></li>
+    <li>Clic en <code class="language-plaintext highlighter-rouge">Enable Network Adapter</code></li>
+    <li>Escoger <code class="language-plaintext highlighter-rouge">Adaptador sólo-anfitrión</code></li>
+    <li>Escoger <code class="language-plaintext highlighter-rouge">Interfaz creada</code></li>
+    <li>Clic en <code class="language-plaintext highlighter-rouge">Aceptar</code></li>
+  </ul>
+
+</blockquote>
+
+<p style="text-align: center;">
+<img src="/assets/images/virtualred/11-virtual.png" />
+</p>
+
+<h2 id="validación-de-conexiones">VALIDACIÓN DE CONEXIONES</h2>
+
+<p>Ya tenemos el entorno configurado, ahora vamos a validar si nuestras máquinas tienen la configuración de red correcta.</p>
+
+<p style="text-align: center;">
+<img src="/assets/images/virtualred/12-virtual.png" />
+</p>
+
+<p>Como podemos ver, la primera máquina tiene una dirección asociada a la primera red únicamente, la segunda máquina tiene esta misma red y adicionalmente la red nueva creada a través de la interfaz, por último, la tercera máquina se encuentra asociada a la segunda red interna, también generada por la nueva interfaz.</p>
+
+<h2 id="prueba-de-conectividad">PRUEBA DE CONECTIVIDAD</h2>
+
+<p>Nuestra configuración ha sido exitosa, tenemos que hacer pruebas de conectividad para corroborar que nuestras redes sean operativas, debemos tener en cuenta lo siguiente:</p>
+<blockquote>
+
+  <ul>
+    <li>La <code class="language-plaintext highlighter-rouge">máquina 1</code> solo puede tener conectividad por el mismo segmento de la <code class="language-plaintext highlighter-rouge">máquina 2</code></li>
+    <li>La <code class="language-plaintext highlighter-rouge">máquina 2</code> tiene conectividad por el mismo segmento de las <code class="language-plaintext highlighter-rouge">máquinas 1 y 2</code></li>
+    <li>La <code class="language-plaintext highlighter-rouge">máquina 3</code> solo puede tener conectividad por el mismo segmento de la <code class="language-plaintext highlighter-rouge">máquina 2</code></li>
+  </ul>
+
+</blockquote>
+
+<p style="text-align: center;">
+<img src="/assets/images/virtualred/13-virtual.png" />
+</p>
+
+<p>Con esta configuración vamos a tener la posibilidad de crear nuevos entornos para practicar nuestros ejercicios de hacking orientados al pivoting, tema bastante importante para certificaciones como la <code class="language-plaintext highlighter-rouge">eCPPT</code>, crear laboratorios propios nos da una ventaja en no depender de otras infraestructuras para practicar, así que esperen una corta serie pero de mucho aprendizaje en los próximos posts.</p>
+
+<p><em>¡Que tengan un buen día en el planeta donde se encuentren!</em></p>
+
+<p><strong>Nos vemos en otro bit.</strong></p>

