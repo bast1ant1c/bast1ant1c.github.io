@@ -143,4 +143,9 @@ var store = [{
         "excerpt":"¡Hola! Vengo a contar mi experiencia de como logré adquirir el certificado de “eLearnSecurity Web Application Penetration Tester eXtreme” (eWPTX) He dividido en 6 secciones lo que pude identificar, para cada una de las fases de mi preparación antes, durante y después del examen. Espero le sirva a la persona...","categories": ["Certificaciones"],
         "tags": ["Pentesting","eLearnSecurity"],
         "url": "http://localhost:4000/ewptx/",
-        "teaser":"http://localhost:4000/assets/images/ewptx/ewptx.png"}]
+        "teaser":"http://localhost:4000/assets/images/ewptx/ewptx.png"},{
+        "title": "OSCP Review",
+        "excerpt":"¡Hola! Vengo a contar mi experiencia de como logré adquirir el certificado de “Offensive Security Certified Perntester” (OSCP). He dividido en 6 secciones lo que pude identificar, para cada una de las fases de mi preparación antes, durante y después del examen. Espero le sirva a la persona que está...","categories": ["Certificaciones"],
+        "tags": ["Pentesting","offensiveSecurity"],
+        "url": "http://localhost:4000/oscp/",
+        "teaser":"http://localhost:4000/assets/images/oscp/oscp.png"}]

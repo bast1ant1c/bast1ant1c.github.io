@@ -1,0 +1,18 @@
+current directory: /mnt/hgfs/Blog/bast1ant1c.github.io/vendor/bundle/ruby/3.3.0/gems/racc-1.8.1/ext/racc/cparse
+/usr/bin/ruby3.3 -I/usr/lib/ruby/vendor_ruby extconf.rb
+creating Makefile
+
+current directory: /mnt/hgfs/Blog/bast1ant1c.github.io/vendor/bundle/ruby/3.3.0/gems/racc-1.8.1/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20260812-555886-xhf79t sitelibdir\=./.gem.20260812-555886-xhf79t clean
+
+current directory: /mnt/hgfs/Blog/bast1ant1c.github.io/vendor/bundle/ruby/3.3.0/gems/racc-1.8.1/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20260812-555886-xhf79t sitelibdir\=./.gem.20260812-555886-xhf79t
+compiling cparse.c
+linking shared-object racc/cparse.so
+
+current directory: /mnt/hgfs/Blog/bast1ant1c.github.io/vendor/bundle/ruby/3.3.0/gems/racc-1.8.1/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20260812-555886-xhf79t sitelibdir\=./.gem.20260812-555886-xhf79t install
+/usr/bin/install -c -m 0755 cparse.so ./.gem.20260812-555886-xhf79t/racc
+
+current directory: /mnt/hgfs/Blog/bast1ant1c.github.io/vendor/bundle/ruby/3.3.0/gems/racc-1.8.1/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20260812-555886-xhf79t sitelibdir\=./.gem.20260812-555886-xhf79t clean

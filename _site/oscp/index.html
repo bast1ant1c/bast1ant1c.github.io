@@ -1,0 +1,561 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.15.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>OSCP Review - Bast1ant1c</title>
+<meta name="description" content="¡Hola! Vengo a contar mi experiencia de como logré adquirir el certificado de Offensive Security Certified Pentester (OSCP)">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Bast1ant1c">
+<meta property="og:title" content="OSCP Review">
+<meta property="og:url" content="http://localhost:4000/oscp/">
+
+
+  <meta property="og:description" content="¡Hola! Vengo a contar mi experiencia de como logré adquirir el certificado de Offensive Security Certified Pentester (OSCP)">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/images/oscp/oscp.png">
+
+
+
+
+
+  <meta property="article:published_time" content="2026-08-12T00:00:00-05:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/oscp/">
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Bast1ant1c",
+      "url": "http://localhost:4000/",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Bast1ant1c Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE ]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+<script src="/assets/js/codeblock.js"></script>
+  <body class="layout--single wide">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+          <a class="site-logo" href="/"><img src="/assets/images/masthead.png" alt=""></a>
+                
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about/" >About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/" >Blog</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/" >Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/" >Tags</a>
+            </li><li class="masthead__menu-item">
+              <a href="/halloffame/" >Hall of Fame</a>
+            </li><li class="masthead__menu-item">
+              <a href="/buscador/" >Search</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+    
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="http://localhost:4000//" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        <li class="current">OSCP Review</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+
+      
+        <img src="/assets/images/avatar.png" alt="BAST1ANT1C" itemprop="image" style="padding:25px;border:5px solid #434040;max-width:130px;border-radius:10%;">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">BAST1ANT1C</h3>
+    
+    
+      <p class="author__bio" itemprop="description">
+        Ethical hacker | eJPT | eCPPT | eWPTX
+      </p>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://www.linkedin.com/in/bast1ant1c" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn
+          </a>
+        </li>
+      
+
+      
+
+      
+        <li>
+          <a href="https://github.com/bast1ant1c" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub
+          </a>
+        </li>
+      
+      
+      
+        <li>
+          <a href="https://instagram.com/bast1ant1c" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-instagram" aria-hidden="true"></i> Instagram
+          </a>
+        </li>
+      
+
+      
+        <li>
+          <a href="https://tiktok.com/@bast1ant1c" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-tiktok" aria-hidden="true"></i> TikTok
+          </a>
+        </li>
+      
+      
+      
+
+      
+
+      
+
+      
+
+
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="OSCP Review">
+    <meta itemprop="description" content="¡Hola! Vengo a contar mi experiencia de como logré adquirir el certificado de Offensive Security Certified Pentester (OSCP)">
+    <meta itemprop="datePublished" content="August 12, 2026">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">OSCP Review
+</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p class="page__meta">
+          
+            <i class="fa fa-fw fa-calendar" aria-hidden="true"></i> <time datetime="2026-08-12T00:00:00-05:00">August 12, 2026 </time>&emsp;
+          
+          
+        </p>
+        <p style="text-align: center;">
+<img src="/assets/images/oscp/oscp.png" />
+</p>
+
+<p>¡Hola!
+Vengo a contar mi experiencia de como logré adquirir el certificado de <em>“Offensive Security Certified Perntester”</em> <strong>(OSCP)</strong>.</p>
+
+<p>He dividido en <strong>6</strong> secciones lo que pude identificar, para cada una de las fases de mi preparación antes, durante y después del <strong>examen</strong>.</p>
+
+<p>Espero le sirva a la persona que está leyendo, así como a mí me sirvieron algunos <strong>reviews</strong> que leí en su momento.</p>
+
+<p>Seré breve en todas las secciones para no saturarlos de información.</p>
+
+<p><strong>Nota:</strong> Debo indicar que este review es del 2025, no estoy seguro si hay nuevas actualizaciones a día de hoy.</p>
+
+<h2 id="pre-requisitos">PRE-REQUISITOS</h2>
+
+<p>Una vez más aconsejo hacer un plan de estudio, llévalo a tu ritmo, prepárate con calma, disfruta lo que haces, porque estas aprendiendo para tu futuro, no solo para un examen.</p>
+
+<ul>
+  <li>Organiza tu <strong>tiempo</strong> y mantente constante, será de gran ayuda!</li>
+  <li>Lleva unos <strong>apuntes</strong>, ya sea en hojas o en un PC (Sublime en mi caso).</li>
+  <li>Se proactivo, investiga, lee, mantente <strong>actualizado</strong>.</li>
+  <li>Planifica una <strong>meta</strong>, una fecha o una ocasión especial para hacer el examen.</li>
+  <li>Si puedes <strong>explicarle</strong> a alguien lo que has aprendido, te ayudara bastante a entender un poco más.</li>
+</ul>
+
+<h2 id="preparación">PREPARACIÓN</h2>
+
+<p>Considero que para la OSCP tienes una cantidad de información de <strong>calidad</strong> a la mano, apóyate en tus colegas, grupos, internet, libros si es necesario, como mejor te sientas para lograr entender lo que estas aprendiendo, no hay un camino correcto, <strong>todos llegamos a un mismo destino</strong>, yo personalmente he tomado el curso por 1 año, esto fue mejor para lograr estudiar a mi tiempo, quería mantener las cosas con calma y así poder interiorizar los conceptos de una mejor manera.</p>
+
+<p>Esta certificación era mi nivel experto, bajo la relación de tiempo/dificultad, donde se trabaja mucho la metodología, pensar fuera de la caja, web y directorio activo, todo en uno, lo que hace que seas un pentester integral, puedo considerar que es una certificación de complejidad media-avanzada por la agrupación de tantas cosas en un solo momento bajo una supervisión y en tiempo limitado, <strong>no por esto es algo imposible</strong>, es solo que como siempre decimos en este mundo, try harder, entre más claros tengas los conceptos, los ataques y sus ejecuciones, te vas a sentir mejor en el examen, la <strong>metodología</strong> es tu mejor aliada, mantener la calma y tomarte el tiempo necesario hace que fluyan las cosas, disfruta la experiencia, no dejes de lado la documentación, recuerda que en esta ocasión no respondes preguntas, realizas un informe técnico, así que presta mucha atención a los requisitos de ese informe.</p>
+
+<p>Dejaré los temas que son evaluados en la OSCP:</p>
+
+<ul>
+  <li>Metodología.</li>
+  <li>Explotación Web.</li>
+  <li>Pivoting.</li>
+  <li>Active Directory.</li>
+  <li>Elaboración de informes.</li>
+</ul>
+
+<h2 id="tips">TIPS</h2>
+
+<p>El mejor consejo que puedo dar para esta certificación es estar preparado en todos los sentidos, te va a ayudar a concentrarte en el examen, así que te voy a dejar algunas de las cosas que preparé antes de iniciar:</p>
+
+<ul>
+  <li>Alista todo tu <code class="language-plaintext highlighter-rouge">entorno de trabajo</code>, es muy importante que tengas todas las herramientas a punto, no dejes a la suerte algo que en ese momento no te funcione, prueba todo, has laboratorios, práctica para que vayas lo más preparado posible.</li>
+  <li>Ten lo más preparada posible la <code class="language-plaintext highlighter-rouge">plantilla de tu informe</code>, Offensive Security ofrece su propio template, lo mejor es que vayas con ese mismo, ya está todo listo, a diferencia de los reportes que hacía con INE, este reporte es un poco menos detallado en cuanto a matrices de riesgos, va más al punto, el informe básicamente es explota, saca las evidencias y explica muy bien como lograste obtener las flags, recuerda que tienes 24 horas nada más para ese informe, debes ser lo más eficiente en tu certificación.</li>
+  <li>Las <code class="language-plaintext highlighter-rouge">notas</code> son tus mejores aliadas, recuerda que en esta certificación no puedes utilizar IA, por lo que cuentas netamente con búsquedas en navegadores y tus apuntes, utiliza una aplicación de preferencia, es importante que tomes evidencias en cada proceso que ejecutas, yo tenía notas en Sublime y Notion para iniciar a tomar notas del examen.</li>
+  <li>Puedo decir que la mayor parte de mi preparación se dividió en dos, una <code class="language-plaintext highlighter-rouge">serie de videos</code> del canal de <a href="https://www.youtube.com/@S4viSinFiltro">S4vitar</a>, mirando las máquinas de los gsheets de <a href="https://docs.google.com/spreadsheets/d/18weuz_Eeynr6sXFQ87Cd5F0slOj9Z6rt/edit?gid=487240997#gid=487240997">LainKusanagi</a> y <a href="https://docs.google.com/spreadsheets/u/1/d/1dwSMIAPIam0PuRBkCiDI88pU3yzrqqHkDtBngUHNCw8/htmlview">NetSecFocus</a>; por otra parte los laboratorios A, B y C de Offensive Security me han parecido fundamentales para entender el flujo de la certificación, tener diferentes escenarios te prepara bastante bien para todas las condiciones y contratiempos que puedes tener en el momento de la certificación, mi proceso de aprendizaje consistía en ver los videos y tomar notas de cada uno de ellos, luego emulaba los laboratorios y continuaba con el siguiente video, hasta completar mi plan de estudio.</li>
+</ul>
+
+<h2 id="el-examen">EL EXAMEN</h2>
+
+<p>Tienes <strong>2</strong> días para realizar el examen (1 laboratorio y 1 informe) y necesitas de una VPN en tu máquina, procura tener buen internet, conectado por cable si es posible, compra algo de comer, algo de tomar, pon música, despliega todas tus notas, duerme bien el día anterior y escoge la mejor hora y fecha para realizar la certificación, si estas tranquilo, todo va a salir bien, no te presiones, en esta ocasión el tiempo es el que juega en tu contra, uno suele sentir mayor presión por esto, pero desde que tengas buena metodología, puedes sobrepasar esos límites mentales, tienes que identificar las flags de usuario y root, enfócate en lo que te piden y no solo en vulnerar todos los sistemas hasta que seas un usuario administrador.</p>
+
+<p>Recuerda que estás haciendo un pentesting integral, enfócate en las máquinas stand alone o en el AD, en el que te sientas más fuerte primero, luego lo siguiente, debes consolidar todos los requerimientos que te dan en un informe, recuerda los temas de <strong>AD</strong>, <strong>Enumeración</strong> y <strong>Búsqueda de vulnerabilidades</strong> porque es muy importante tenerlos claros y, por último, sácale el mayor provecho, aprende mucho, <strong>diviértete</strong> y comparte tu conocimiento, ¡alguien más te lo agradecerá!</p>
+
+<p>Ítems claves de la certificación:</p>
+
+<ul>
+  <li>Lee con atención todos los requerimientos.</li>
+  <li>Duración: 2 días (1 laboratorio y 1 informe).</li>
+  <li>Informe final.</li>
+  <li>Estudia los temas mencionados anteriormente.</li>
+  <li>Ten presente tus notas.</li>
+</ul>
+
+<h2 id="extras">EXTRAS</h2>
+
+<p>Te dejare <strong>algunos</strong> links que fueron de ayuda para mí, estoy seguro de que van a ayudarte en este proceso:</p>
+
+<ul>
+  <li><a href="https://hackingvault.com/auth/signin">S4vitar machines</a></li>
+  <li><a href="https://medium.com/@ardian.danny">Proving Grounds Writeups</a></li>
+  <li><a href="https://www.youtube.com/watch?v=9GFtDz9aEfI&amp;list=PLcgWR3INc4O9ujY3YXqzjUdnLS1MT4xWS">Videos Proving Grounds</a></li>
+  <li><a href="https://www.youtube.com/@HackerBlueprint/videos">Videos Blueprint</a></li>
+  <li><a href="https://www.youtube.com/@S4viSinFiltro">Videos S4vitar</a></li>
+</ul>
+
+<h2 id="conclusión">CONCLUSIÓN</h2>
+
+<p>Cada vez se me dificulta un poco tener entradas en el blog, pido disculpas por eso, pero quiero contar un poco de lo que viví en su momento, puede ser de ayuda para los próximos pentesters a través de mis experiencias, en lo personal esta certificación afianzó mi metodología, el enfocarme en <strong>enumeración</strong> fue un todo en esta ocasión, mucho más que en certificaciones anteriores, más cuando uno suelen existir tantos caminos diferentes de explotación, el tiempo si influye mucho, llegan momentos en que la preocupación y la frustración se vuelven protagonistas, ahí es donde debes tomar pausas, bebe agua, respira y analiza la situación, porque a veces tienes la respuesta en todo el frente y no te das cuenta.</p>
+
+<p>Mi metodología se centró en empezar a hacer <code class="language-plaintext highlighter-rouge">reconocimiento</code> de todo el entorno, esto siempre ayuda no solo en las certificaciones, sino también en la vida real como dice un colega mío, en todos los procesos de ethical hacking, el reconocimiento es uno de los pilares del éxito.</p>
+
+<p>Con el pasar de las horas, investigando, revisando mis notas y <code class="language-plaintext highlighter-rouge">analizando</code> las situaciones del entorno, voy primero con el <code class="language-plaintext highlighter-rouge">directorio activo</code>, enumerando, revisando todas las vías potenciales de acceso, hasta llegar al punto de acceder a las máquinas víctimas y tomar la administración de ello, luego obtener el administrador y lograr mis primeros 40 puntos si mal no estoy por tener el set de AD, me di cuenta que es muy importante enumerar toda la información posible, no dejar ningún detalle al azar, revisar todas las rutas, las cadenas de caracteres, eso marca bastante la diferencia y te ayuda a ser más eficaz en el momento de analizar información interna, todo esto sucedió las primeras 5 horas, me sentía bien, confiado, era un buen momento para descansar ya que era algo de noche.</p>
+
+<p>Vuelvo luego de una buena noche y empiezo el laboratorio nuevamente, por cada standalone (3 en total), te dan 20 puntos, 10 por ser el usuario y 10 adicionales por ser administrador, mi objetivo era claro, tenía que pwnear <code class="language-plaintext highlighter-rouge">2/3 máquinas standalone</code> mínimo, para esto antes de la siesta puse a escanear las máquinas faltantes y al ver los resultados en la mañana, empiezo a revisar y encuentro el camino para explotar una máquina de manera exitosa, revisar los archivos es parte importante del poder lograr está máquina, nuevamente la enumeración fue la figura de este laboratorio.</p>
+
+<p>Aquí es donde empieza la preocupación, donde reviso la segunda máquina standalone, luego de muchas horas de enumeración y frustración por no encontrar la manera de lograr acceder a la máquina, tuve que relajarme, analizar bien la situación y revisar cada uno de los detalles que tenía el objetivo, nuevamente prestar atención a los hallazgos de <code class="language-plaintext highlighter-rouge">enumeración</code> fue la perla en el océano, se logra la explotación y escalamiento de privilegios para fortuna minutos antes de acabar el tiempo, por lo que se logra obtener una totalidad de 80/100 puntos y la obtención de la certificación!</p>
+
+<p>Recuerda revisar las técnicas que te indiqué anteriormente, mira las playlist y gsheets, come bien y duerme, una mente tranquila es una mente enfocada y eficiente! Enumera!</p>
+
+<p>Las <strong>notas</strong> que tenía previamente fueron bastante útiles, ayudó mucho revisar una por una las vulnerabilidades, comprender no solo la explotación sino también la manera en que se da la vulnerabilidad, en este caso mi punto a mejorar fue la enumeración y manejo de la frustración, muchas veces nos quedamos todo el tiempo en el mismo agujero negro sin pensar que hay otras posibilidades.</p>
+
+<p>Revisar y dejar a punto la <strong>plantilla del informe</strong> me ahorró muchísimo tiempo en la <code class="language-plaintext highlighter-rouge">documentación</code>, pude descansar y prácticamente me dedique a reportar las vulnerabilidades de la manera más completa posible, siento que fue nuevamente un punto positivo muy a favor ir preparado de esta manera.</p>
+
+<p>El examen considero que es justo en balance, tiene tiempo para que desempeñes una <code class="language-plaintext highlighter-rouge">metodología</code> bien ejecutada, sin embargo, lo que suele suceder a diferencia de entornos laborales es que suele generar más presiones por las limitantes de horario, las emociones debes regularlas de una buena manera, tu mente es el centro de este laboratorio.</p>
+
+<p>Yo recomiendo hacer los laboratorios, estudiar y tomar notas de todo, ponerlo en práctica y si es posible explicarles a tus compañeros para que consolides ese conocimiento adquirido.</p>
+
+<p>Los links de ayuda son una gran oportunidad de tener guías a la mano para no dejar escapar ningún detalle.</p>
+
+<p>Leer los requerimientos para poder pasar exitosamente, ahí es donde se debe poner especial atención, debes trabajar para lograr ese resultado.</p>
+
+<p>Por otro lado y nuevamente, come bien, duerme bien, aléjate del PC de vez en cuando, respira, toma aire, sal a caminar un poco, eso oxigena la mente y te dará un nuevo aire para pensar mejor.</p>
+
+<p>Lo único que puedo decir es que es una excelente certificación para subir mucho más el nivel, personalmente me siento muy bien con el trabajo realizado, quería compartir un poco de esta experiencia para que se motiven a hacer la certificación, en el mundo laboral puede ser bastante importante, ¡nunca está de más tener un nuevo reto en la vida!</p>
+
+<p><em>¡Que tengan un buen día en el planeta donde se encuentren!</em></p>
+
+<p><strong>Nos vemos en otro bit.</strong></p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#offensivesecurity" class="page__taxonomy-item" rel="tag">offensiveSecurity</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#pentesting" class="page__taxonomy-item" rel="tag">Pentesting</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#certificaciones" class="page__taxonomy-item" rel="tag">Certificaciones</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Fecha:</strong> <time datetime="2026-08-12T00:00:00-05:00">August 12, 2026</time></p>
+        
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/ewptx/" class="pagination--pager" title="eWPTX Review
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+</div>
+
+    </div>
+
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+<!--
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+-->
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2026 Bast1ant1c</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script data-search-pseudo-elements defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
+  <script src="/assets/js/codeblock.js"></script>
+  
+
+
+
+
+
+
+
+  </body>
+</html>
